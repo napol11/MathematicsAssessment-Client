@@ -1,0 +1,52 @@
+.c-sidebar .c-sidebar-nav-link.c-active {
+  color: #fff;
+  background: #fdc331;
+  border-radius: 25px;
+  margin: 0px 10px;
+  border: 1px solid #4f4e4e;
+  color: black;
+  font-weight: bold;
+}
+
+.c-sidebar .c-sidebar-nav-link:hover,
+.c-sidebar .c-sidebar-nav-dropdown-toggle:hover {
+  color: #fff;
+  background: #fdc331;
+  border: 1px solid #4f4e4e;
+  color: black;
+  font-weight: bold;
+}
+.c-sidebar.c-sidebar-minimized .c-sidebar-nav-item:hover > .c-sidebar-nav-link,
+.c-sidebar.c-sidebar-minimized
+  .c-sidebar-nav-item:hover
+  > .c-sidebar-nav-dropdown-toggle {
+  background: #fdc331;
+  color: #fff;
+  border-radius: 0px;
+  margin: 0px;
+  border: 1px solid #4f4e4e;
+  color: black;
+  font-weight: bold;
+}
+
+.c-sidebar.c-sidebar-minimized
+  .c-sidebar-nav-item
+  > .c-sidebar-nav-link.c-active {
+  color: #fff;
+  background: #fdc331;
+  border-radius: 0px;
+  margin: 0px;
+  border: 1px solid #4f4e4e;
+  color: black;
+  font-weight: bold;
+}
+
+.c-sidebar .c-sidebar-nav-link.c-active .c-sidebar-nav-icon,
+.c-sidebar .c-active.c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon {
+  color: #000015;
+}
+
+.c-sidebar .c-sidebar-nav-link:hover .c-sidebar-nav-icon,
+.c-sidebar .c-sidebar-nav-dropdown-toggle:hover .c-sidebar-nav-icon {
+  color: #000015;
+}

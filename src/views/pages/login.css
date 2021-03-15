@@ -1,0 +1,30 @@
+.text-reset-password {
+  color: black;
+  cursor: pointer;
+}
+
+.text-reset-password:hover {
+  text-decoration: underline;
+}
+
+.submitYellow {
+  background-color: #ffd110;
+  color: white;
+  border: none;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.submitYellow:hover {
+  background-color: #F04D22;
+  color: white;
+  border: none;
+}
+
+.password::placeholder {
+  color: #d4d4d4;
+}
+
+.username::placeholder {
+  color: #d4d4d4;
+}

@@ -1,0 +1,36 @@
+.adminTable .ant-table thead > tr > th {
+  background-color: #f26843 !important;
+}
+
+.adminTable .ant-table-cell-scrollbar {
+  /* box-shadow: 0 1px 0 1px #f26843 !important; */
+  box-shadow: none !important;
+}
+
+.adminButton .ant-input-group > .ant-input {
+  background-color: #e9e9e9;
+}
+.adminButton .ant-btn {
+  /* border-left: none; */
+  background-color: #e9e9e9;
+}
+
+.deleteBtn:hover {
+  color: #f26843;
+}
+
+.react-datepicker__close-icon::after {
+  background-color: #ced2d8 !important;
+}
+
+.ant-btn {
+  border-radius:20px !important;
+  -webkit-border-radius:20px !important;
+  -moz-border-radius:20px !important;
+  -ms-border-radius:20px !important;
+  -o-border-radius:20px !important;
+}
+
+/* .ant-col-sm-16 {
+  max-width: 95% !important;
+} */
