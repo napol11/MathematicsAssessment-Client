@@ -20,7 +20,7 @@ const AdminAssessment = () => {
   const [LoadingTable, setLoadingTable] = useState(false);
   const [show, setshow] = useState(false);
   const [ModalTitle, setModalTitle] = useState("");
-  const [SendData, setSendData] = useState([]);
+  // const [SendData, setSendData] = useState([]);
 
   const LoadData = () => {
     setLoadingTable(true);
@@ -332,7 +332,7 @@ const AdminAssessment = () => {
         show={show}
         close={closeModal}
         title={ModalTitle}
-        data={SendData}
+        // data={SendData}
       />
     </div>
   );

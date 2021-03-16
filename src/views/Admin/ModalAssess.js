@@ -1,17 +1,8 @@
 import React, { useRef, useState } from "react";
 import { CModal, CModalHeader, CModalBody, CModalFooter } from "@coreui/react";
-import { Spin, Form, Button, Input } from "antd";
+import { Spin, Form } from "antd";
 import { WatDatePicker } from "thaidatepicker-react";
 import { notify } from "../CustomComponent";
-
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
 
 const ModalAssess = (props) => {
   const [Loading, setLoading] = useState(false);
@@ -65,14 +56,14 @@ const ModalAssess = (props) => {
 
   const LoadData = () => {
     setLoading(true);
-    console.log("start", props.data.start);
-    if (props.title.type === "edit") {
-      setSelectedDateStart(props.data.start);
-      setSelectedDateEnd(props.data.end);
-    } else {
-      setSelectedDateStart("");
-      setSelectedDateEnd("");
-    }
+    // console.log("start", props.data.start);
+    // if (props.title.type === "edit") {
+    //   setSelectedDateStart(props.data.start);
+    //   setSelectedDateEnd(props.data.end);
+    // } else {
+    //   setSelectedDateStart("");
+    //   setSelectedDateEnd("");
+    // }
     setLoading(false);
   };
 
