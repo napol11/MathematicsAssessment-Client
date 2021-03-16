@@ -7,7 +7,7 @@ import {
   CSidebarNav,
   CSidebarNavDivider,
   CSidebarNavTitle,
-  // CSidebarMinimizer,
+  CSidebarMinimizer,
   CSidebarNavDropdown,
   CSidebarNavItem,
   CSidebarHeader,
@@ -107,10 +107,10 @@ const TheSidebar = () => {
           ออกจากระบบ
         </div>
       </CSidebarFooter>
-      {/* <CSidebarMinimizer
+      <CSidebarMinimizer
         style={{ background: bg }}
         className="c-d-md-down-none"
-      /> */}
+      />
     </CSidebar>
   );
 };

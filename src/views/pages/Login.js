@@ -38,11 +38,11 @@ const Login = () => {
     } else if (Number(username) === 2 && Number(password) === 123) {
       Cookies.set(token.type, 2);
       Cookies.set(token.token, "kmuttTest");
-      window.location.replace("/");
+      window.location.replace("/committee");
     } else if (Number(username) === 3 && Number(password) === 123) {
       Cookies.set(token.type, 3);
       Cookies.set(token.token, "kmuttTest");
-      window.location.replace("/");
+      window.location.replace("/administrator/committee");
     }
     // window.location.replace("/"); // Login เสร็จต้องไปหน้าหลัก ห้ามใช้ history.push เฉพาะอันนี้
   };

@@ -23,14 +23,50 @@
   background-color: #ced2d8 !important;
 }
 
-.ant-btn {
-  border-radius:20px !important;
-  -webkit-border-radius:20px !important;
-  -moz-border-radius:20px !important;
-  -ms-border-radius:20px !important;
-  -o-border-radius:20px !important;
+/* .input-modal {
+    border: 1.5px solid orange !important;
+    border-radius: 5px;
+    width: 100%;
+} */
+
+.input-modal:focus {
+    outline: none !important
 }
 
-/* .ant-col-sm-16 {
-  max-width: 95% !important;
-} */
+.btn-modal-cancel {
+    border-radius: 20px;
+    padding: 5px 25px;
+    border: 1px solid #f26843;
+    background-color: transparent;
+}
+
+.btn-modal-cancel:focus {
+    outline: none !important
+}
+
+.btn-modal-confirm {
+    border-radius: 20px;
+    padding: 5px 25px;
+    border: 1px solid transparent;
+    background-color: #f26843;
+    color: white;
+}
+
+.btn-modal-confirm:focus {
+    outline: none !important
+}
+
+.select-modal {
+    /* border-radius: 5px;
+    /* padding: 5px 25px; */
+    /* border: 1px solid orange;
+    width: 100%; */ 
+}
+
+.select-modal:focus {
+    /* outline: none !important */
+}
+
+
+
+

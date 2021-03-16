@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table, Input, Popconfirm } from "antd";
 import { notify } from "../CustomComponent";
-import { useDispatch } from "react-redux";
-import ModalAdmin from "./ModalAdmin";
+import ModalStaff from "./ModalStaff";
 
 import "./admin.css";
 
@@ -15,9 +14,8 @@ const AdminStaff = () => {
   const [LoadingSearch, setLoadingSearch] = useState(false);
   const [datastaff, setdatastaff] = useState([]);
   const [filterstaff, setfilterstaff] = useState([]);
-  const [SendData, setSendData] = useState([]);
-
-  const dispatch = useDispatch();
+  //   const [SendData, setSendData] = useState([]);
+  const [show, setshow] = useState(false);
 
   const columnsstaff = [
     {
@@ -196,17 +194,6 @@ const AdminStaff = () => {
     setLoadingTable(false);
   };
 
-  const openModal = (type, page) => {
-    dispatch({
-      type: "set",
-      adminModal: {
-        show: true,
-        type,
-        page,
-      },
-    });
-  };
-
   useEffect(() => {
     LoadData();
   }, []);
@@ -236,7 +223,7 @@ const AdminStaff = () => {
                 size={"large"}
                 onMouseEnter={() => sethover(true)}
                 onMouseLeave={() => sethover(false)}
-                onClick={() => openModal("add", "staff")}
+                onClick={() => setshow(true)}
                 style={
                   hover
                     ? {
@@ -279,16 +266,21 @@ const AdminStaff = () => {
             locale={{ emptyText: "ไม่มีข้อมูล" }}
             scroll={{ y: 500 }}
             size="small"
-            onRow={(record, recordIndex) => ({
-              onClick: (e) => {
-                setSendData(record);
-                openModal("edit", "staff");
-              },
-            })}
+            // onRow={(record, recordIndex) => ({
+            //   onClick: (e) => {
+            //     setSendData(record);
+            //     openModal("edit", "staff");
+            //   },
+            // })}
           />
         </div>
       </div>
-      <ModalAdmin reload={LoadData} data={SendData} />
+      <ModalStaff
+        reload={LoadData}
+        // data={SendData}
+        show={show}
+        closeModal={() => setshow(false)}
+      />
     </div>
   );
 };

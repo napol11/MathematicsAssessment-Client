@@ -316,15 +316,15 @@ const AdminAssessment = () => {
             locale={{ emptyText: "ไม่มีข้อมูล" }}
             scroll={{ y: 500 }}
             size="small"
-            onRow={(record, recordIndex) => ({
-              onClick: (e) => {
-                setSendData({
-                  ...record,
-                  text: dateText(record.start, record.end),
-                });
-                openModal("edit");
-              },
-            })}
+            // onRow={(record, recordIndex) => ({
+            //   onClick: (e) => {
+            //     setSendData({
+            //       ...record,
+            //       text: dateText(record.start, record.end),
+            //     });
+            //     openModal("edit");
+            //   },
+            // })}
           />
         </div>
       </div>
