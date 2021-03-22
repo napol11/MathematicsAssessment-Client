@@ -1,16 +1,24 @@
 import React from "react";
 
 const Main = React.lazy(() => import("./views/main"));
+
+//พนักาน
 const HistoryEmployee = React.lazy(() =>
   import("./views/Employee/historyEmployee")
 );
+const EmployeeAssess = React.lazy(() =>
+  import("./views/Employee/employeeAssess")
+);
 
+
+//แอดมิน
 const AdminAssessment = React.lazy(() =>
   import("./views/Admin/adminAssessment")
 );
 const AdminStaff = React.lazy(() => import("./views/Admin/adminStaff"));
 const AdminCommittee = React.lazy(() => import("./views/Admin/adminCommittee"));
 
+//กรรมการ
 const CommitteeMain = React.lazy(() =>
   import("./views/Committee/committeeMain")
 );
@@ -20,12 +28,22 @@ const CommitteeAssess = React.lazy(() =>
 
 const routes = [
   { path: "/", exact: true, name: "หน้าหลัก", component: Main },
+  
+  // ****************************************************  พนักงาน  ***********************************************************************************************
   {
     path: "/employee/history",
     exact: true,
     name: "ประวัติพนักงาน",
     component: HistoryEmployee,
   },
+  {
+    path: "/employee/:id",
+    exact: true,
+    name: "ทำประเมิน",
+    component: EmployeeAssess,
+  },
+
+    // ****************************************************  แอดมิน  ***********************************************************************************************
   {
     path: "/administrator/assessment",
     exact: true,
@@ -44,6 +62,8 @@ const routes = [
     name: "กรรมการ",
     component: AdminCommittee,
   },
+
+   // ****************************************************  กรรมการ  ***********************************************************************************************
   {
     path: "/committee",
     exact: true,
