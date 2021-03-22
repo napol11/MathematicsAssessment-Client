@@ -165,12 +165,13 @@ const CommitteAssessStep31 = (props) => {
         className="committeeTableAssess3 mt-4"
         columns={columns}
         dataSource={data.EvaForm31}
-        pagination={{
-          defaultPageSize: 10,
-          showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30"],
-          locale: { items_per_page: "/ หน้า" },
-        }}
+        pagination={false}
+        // pagination={{
+        //   defaultPageSize: 100,
+        //   showSizeChanger: true,
+        //   pageSizeOptions: ["10", "20", "30"],
+        //   locale: { items_per_page: "/ หน้า" },
+        // }}
         // loading={{
         //   spinning: LoadingTable,
         //   tip: "กำลังโหลด...",
@@ -178,7 +179,7 @@ const CommitteAssessStep31 = (props) => {
         // }}
         locale={{ emptyText: "ไม่มีข้อมูล" }}
         scroll={{ y: 500 }}
-        size="small"
+        size="middle"
       />
       <div
         className="mt-3 mb-4"

@@ -86,7 +86,7 @@ const CommitteAssessStep2 = (props) => {
               })
             }
           >
-            {`${success ? "อัพโหลดเอกสารแล้ว" : ""}`}
+            {`${success ? "มีเอกสาร" : ""}`}
           </div>
         );
       },
@@ -107,10 +107,10 @@ const CommitteAssessStep2 = (props) => {
           className="col-sm-6 text-sm-right align-self-sm-end"
           // style={{ display: "flex", justifyContent: "center" }}
         >
-          <div className="row justify-content-sm-end">
+          {/* <div className="row justify-content-sm-end">
             <div className="committee2Btn pl-4 pr-4 mr-4">หมายเหตุคะแนน</div>
             <div className="committee2Btn pl-4 pr-4">รหัสกลยุทธ์</div>
-          </div>
+          </div> */}
         </div>
       </div>
       <Table
@@ -136,7 +136,7 @@ const CommitteAssessStep2 = (props) => {
         // }}
         locale={{ emptyText: "ไม่มีข้อมูล" }}
         scroll={{ y: 500 }}
-        size="small"
+        size="middle"
       />
       <div
         className="mt-3 mb-4"

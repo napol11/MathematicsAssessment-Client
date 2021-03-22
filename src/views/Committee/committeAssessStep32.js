@@ -59,7 +59,7 @@ const CommitteAssessStep32 = (props) => {
               borderRadius: "10px",
             }}
             placeholder="กรุณาแสดงความคิดเห็น"
-            rows="4"
+            rows="8"
             value={row.comment}
           />
         </div>

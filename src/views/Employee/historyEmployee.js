@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
-  CImg,
+  // CImg,
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
@@ -55,13 +55,16 @@ const HistoryEmployee = () => {
               ประวัติพนักงาน
             </label>
           </div>
-          <div className="container-fluid " style={{ paddingTop: "40px" }}>
+          <div
+            className="container-fluid "
+            // style={{ paddingTop: "10px" }}
+          >
             <div className="row no-gutter">
               <div
                 className="col-md-5 text-center"
-                style={{ paddingTop: "5%" }}
+                style={{ paddingTop: "1%" }}
               >
-                <CImg
+                {/* <CImg
                   src={"avatars/5.jpg"}
                   style={{
                     borderRadius: "50em",
@@ -69,9 +72,9 @@ const HistoryEmployee = () => {
                     width: "150px",
                     border: "1px solid #f8f8f8 ",
                   }}
-                />
+                /> */}
                 <br />
-                <div
+                {/* <div
                   onMouseEnter={() => setHover(true)}
                   onMouseLeave={() => setHover(false)}
                   onClick={() => setVisible(true)}
@@ -98,10 +101,10 @@ const HistoryEmployee = () => {
                   }
                 >
                   เปลี่ยนรหัสผ่าน
-                </div>
+                </div> */}
               </div>
               <div
-                className="col-md-7 "
+                className="col-12 "
                 style={{
                   //   border: "1px solid black",
                   minHeight: "100px",
@@ -229,6 +232,38 @@ const HistoryEmployee = () => {
                       {data.times}
                     </label>
                   </div>
+                </div>
+                <div
+                  onMouseEnter={() => setHover(true)}
+                  onMouseLeave={() => setHover(false)}
+                  onClick={() => setVisible(true)}
+                  type="submit"
+                  className="text-uppercase mb-2 rounded-pill shadow-sm"
+                  style={
+                    hover
+                      ? {
+                          color: "white",
+                          padding: "10px 80px",
+                          marginTop: "3%",
+                          backgroundColor: "#f6be32",
+                          border: "1px solid #f6be32",
+                          fontSize: "16px",
+                          textAlign: "center",
+                          width: "20%",
+                        }
+                      : {
+                          color: "black",
+                          padding: "10px 80px",
+                          marginTop: "3%",
+                          backgroundColor: "white",
+                          border: "1px solid #f6be32",
+                          fontSize: "16px",
+                          textAlign: "center",
+                          width: "20%",
+                        }
+                  }
+                >
+                  เปลี่ยนรหัสผ่าน
                 </div>
               </div>
 

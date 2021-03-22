@@ -215,7 +215,7 @@ const AdminCommittee = () => {
             columns={columnsCommittee}
             dataSource={dataCommittee}
             pagination={{
-              defaultPageSize: 20,
+              defaultPageSize: 10,
               showSizeChanger: true,
               pageSizeOptions: ["10", "20", "30"],
               locale: { items_per_page: "/ หน้า" },
@@ -227,7 +227,7 @@ const AdminCommittee = () => {
             }}
             locale={{ emptyText: "ไม่มีข้อมูล" }}
             scroll={{ y: 500 }}
-            size="small"
+            size="middle"
             // onRow={(record, recordIndex) => ({
             //   onClick: (e) => {
             //     console.log(e);

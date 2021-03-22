@@ -254,7 +254,7 @@ const CommitteeMain = () => {
             }}
             locale={{ emptyText: "ไม่มีข้อมูล" }}
             scroll={{ y: 500 }}
-            size="small"
+            size="middle"
           />
         </div>
       </div>

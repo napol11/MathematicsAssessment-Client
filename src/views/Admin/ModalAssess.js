@@ -84,6 +84,18 @@ const ModalAssess = (props) => {
             <br />
             {props.title.type === "edit" ? props.data.text : null}
           </label>
+
+          <div className="col-2 text-right">
+              <i
+                onClick={close}
+                className="fas fa-times-circle"
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                  fontSize: 20,
+                }}
+              />
+            </div>
         </CModalHeader>
         <Form
           ref={formRef}
@@ -95,9 +107,9 @@ const ModalAssess = (props) => {
             <div className="row ">
               <div className="col-sm-6">
                 <Form.Item
-                  style={{ marginBottom: "10px" }}
+                  style={{ marginBottom: "10px"}}
                   name={"roundStart"}
-                  label="รอบการประเมิน"
+                  label="รอบการประเมิน ตั้งแต่"
                   rules={[
                     {
                       required: true,
@@ -114,7 +126,7 @@ const ModalAssess = (props) => {
                     inputStyle={{
                       color: "black",
                       //   borderRight: "none",
-                      //   width: 180,
+                      width: 350,
                     }}
                     maxDate={selectedDateEndR}
                     clearable={true}
@@ -125,7 +137,7 @@ const ModalAssess = (props) => {
                 <Form.Item
                   style={{ marginBottom: "10px" }}
                   name={"roundEnd"}
-                  label="รอบการประเมิน"
+                  label="รอบการประเมิน ถึง"
                   rules={[
                     {
                       required: true,
@@ -141,7 +153,7 @@ const ModalAssess = (props) => {
                     inputStyle={{
                       color: "black",
                       //   borderLeft: "none",
-                      //   width: 180,
+                      width: 350,
                     }}
                     minDate={selectedDateStartR}
                     clearable={true}
@@ -170,7 +182,7 @@ const ModalAssess = (props) => {
                     displayFormat={"DD MMM YY"}
                     inputStyle={{
                       color: "black",
-                      // width: 120,
+                      width: 350,
                     }}
                     maxDate={selectedDateEnd}
                     clearable={true}
@@ -197,7 +209,7 @@ const ModalAssess = (props) => {
                     displayFormat={`DD MMM YY`}
                     inputStyle={{
                       color: "black",
-                      // width: 120,
+                      width: 350,
                     }}
                     minDate={selectedDateStart}
                     clearable={true}
@@ -225,7 +237,7 @@ const ModalAssess = (props) => {
                     inputStyle={{
                       color: "black",
                       // width: "100%",
-                      width: 400,
+                      width: 750,
                     }}
                     minDate={selectedDateEnd}
                     clearable={true}

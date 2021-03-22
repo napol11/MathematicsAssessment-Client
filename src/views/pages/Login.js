@@ -34,7 +34,7 @@ const Login = () => {
     if (Number(username) === 1 && Number(password) === 123) {
       Cookies.set(token.type, 1);
       Cookies.set(token.token, "kmuttTest");
-      window.location.replace("/");
+      window.location.replace("/employee/history");
     } else if (Number(username) === 2 && Number(password) === 123) {
       Cookies.set(token.type, 2);
       Cookies.set(token.token, "kmuttTest");
@@ -104,7 +104,9 @@ const Login = () => {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-10 col-xl-7 mx-auto">
-                    <h1 className=" text-center">ลงชื่อเข้าสู่ระบบ</h1>
+                    <h1 className=" text-center">
+                      ลงชื่อเข้าสู่ระบบประเมินประสิทธิภาพ
+                    </h1>
                     <br />
                     <form onSubmit={submitLogin}>
                       <div className="form-group mb-3">

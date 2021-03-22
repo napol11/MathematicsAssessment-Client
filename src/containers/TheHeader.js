@@ -50,7 +50,7 @@ const TheHeader = () => {
       <CHeaderBrand
         className="mx-auto d-lg-none"
         style={{ fontWeight: "bold", color: "#f37736" }}
-        to="/"
+        // to="/"
       >
         <CImg
           src={logo}

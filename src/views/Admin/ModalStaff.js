@@ -224,7 +224,7 @@ export default function ModalStaff(props) {
                     label="วันที่เริ่มทำงาน"
                     rules={[
                       {
-                        required: false,
+                        required: true,
                         message: "กรุณากรอก วันที่เริ่มทำงาน!",
                       },
                     ]}
@@ -235,7 +235,7 @@ export default function ModalStaff(props) {
                       displayFormat={"DD MMM YY"}
                       inputStyle={{
                         color: "black",
-                        width: "100%",
+                        width: 370,
                       }}
                       clearable={true}
                     />

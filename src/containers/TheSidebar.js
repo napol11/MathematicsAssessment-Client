@@ -12,7 +12,7 @@ import {
   CSidebarNavItem,
   CSidebarHeader,
   CSidebarFooter,
-  CImg,
+  // CImg,
 } from "@coreui/react";
 
 // sidebar nav config
@@ -40,7 +40,7 @@ const TheSidebar = () => {
   };
   useEffect(() => {
     setName("พุทธะ มณฑล");
-    setPosition("กรรมการ");
+    setPosition("พนักงาน");
   }, []);
   return (
     <CSidebar
@@ -50,10 +50,10 @@ const TheSidebar = () => {
     >
       <CSidebarHeader style={{ background: bg }}>
         <div className="text-center mt-5">
-          <CImg
+          {/* <CImg
             src={"avatars/6.jpg"}
             style={{ borderRadius: "50em", height: "auto", width: "100px" }}
-          />
+          /> */}
           <br />
           <label className="mb-0 mt-4" style={{ fontSize: fontSize }}>
             {name}
@@ -75,6 +75,10 @@ const TheSidebar = () => {
           }}
         />
       </CSidebarNav>
+      <CSidebarMinimizer
+        style={{ background: bg }}
+        className="c-d-md-down-none"
+      />
       <CSidebarFooter style={{ background: bg }}>
         <div
           style={
@@ -107,10 +111,6 @@ const TheSidebar = () => {
           ออกจากระบบ
         </div>
       </CSidebarFooter>
-      <CSidebarMinimizer
-        style={{ background: bg }}
-        className="c-d-md-down-none"
-      />
     </CSidebar>
   );
 };

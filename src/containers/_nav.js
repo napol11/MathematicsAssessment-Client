@@ -2,14 +2,14 @@ import Cookies from "js-cookie";
 import { token } from "../config";
 
 const nav = [
-  {
-    _tag: "CSidebarNavItem",
-    name: "หน้าหลัก",
-    to: "/",
-    icon: "cil-home",
-    className: "mb-2",
-    id: 1,
-  },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "หน้าหลัก",
+  //   to: "/",
+  //   icon: "cil-home",
+  //   className: "mb-2",
+  //   id: 1,
+  // },
   {
     _tag: "CSidebarNavItem",
     name: "ประวัติพนักงาน",
