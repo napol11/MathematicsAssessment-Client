@@ -1,0 +1,204 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+} 
+
+.App {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.logoKMUTT {
+    margin: 0px;
+    width: 400px;
+    margin-top: 6px;
+    margin-left: 5px;
+}
+
+.guidepointpic {
+    margin: 0px;
+    width: 300px;
+}
+
+.userhome {
+    margin-top: 1cm;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.userprofile {
+    margin-top: 1cm;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.userprofile h1 {
+    font-weight: bold;
+}
+
+.userprofile h2 {
+    margin-left: 1%;
+    font-weight: bold;
+}
+
+.userassessment {
+    margin-top: 1cm;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.userassessment h1{
+    font-weight: bold;
+}
+
+.userform {
+    margin-top: 1cm;
+    margin-left: 4%;
+    margin-right: 4%;
+    text-align: center;
+}
+
+.userform h1 {
+    font-weight: bold;
+}
+
+.userform1 {
+    margin-top: 1cm;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.userform1 h1 {
+    font-weight: bold;
+}
+
+.userform1 h2 {
+    margin-left: 1%;
+    font-weight: bold;
+}
+
+.userform2 {
+    margin-top: 1cm;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.userform2 h1 {
+    font-weight: bold;
+}
+
+.userform3 {
+    margin-top: 1cm;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+
+.userform3 h1 {
+    font-weight: bold;
+    /* font-size: 2rem; */
+}
+
+.userform3 p {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.userresult{
+    margin-top: 1cm;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.userresult h1,h2{
+    font-weight: bold;
+}
+
+.headrow {
+    padding-top: 15px;
+    padding-left: 4%;
+    color: #4F4E4E;
+}
+
+.inrow {
+    padding-top: 10px;
+    padding-left: 4%;
+    color: #000000;
+    font-weight: bold;
+}
+
+.card {
+    background-color: whitesmoke;
+    display: block;
+    margin: 20px auto;
+    padding: 30px;
+}
+
+/* วแบบนี้ไม่เเนะนำ มันจะเปี่ยน ทุก table ใน app */
+.ant-table-thead > tr > th {
+    background: #F04D22 !important;
+    color: white !important;
+}
+
+.buttons_add {
+    background: white;
+    border-color: #F6BE32;
+    font-size: 15px;
+    border-radius:20px;
+    margin-right:auto;
+    text-align: center;
+    padding:4px 15px;
+}
+
+.buttons_add:hover {
+    background: #F04D22;
+    color: white;
+}
+
+.buttons_form2_1 {
+    background: white;
+    border-color: #F6BE32;
+    font-size: 15px;
+    border-radius:20px;
+    margin-right:auto;
+    text-align: center;
+    padding:4px 11px;
+}
+
+.buttons_form2_1:hover {
+    background: #F04D22;
+    color: white;
+}
+
+.buttons_form2_2 {
+    background: #F6BE32;
+    border-color: #F6BE32;
+    font-size: 15px;
+    border-radius:20px;
+    margin-right:auto;
+    text-align: center;
+    padding:4px 15px;
+}
+
+.buttons_form2_2:hover {
+    background: #F04D22;
+    color: white;
+}
+
+.control-buttons {
+    margin-bottom: 10px;
+}
+
+.input {
+    margin: 1;
+}
+
+.ant-btn {
+    border-radius:20px !important;
+    -webkit-border-radius:20px !important;
+    -moz-border-radius:20px !important;
+    -ms-border-radius:20px !important;
+    -o-border-radius:20px !important;
+}

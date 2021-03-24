@@ -12,7 +12,6 @@ const AdminCommittee = () => {
   const [hover, setHover] = useState(false);
   const [LoadingTable, setLoadingTable] = useState(true);
   const [dataCommittee, setdataCommittee] = useState([]);
-
   //const [SendData, setSendData] = useState([]);
 
   const dispatch = useDispatch();
@@ -46,7 +45,7 @@ const AdminCommittee = () => {
     },
     {
       title: <div style={title}>เบอร์โทร</div>,
-      dataIndex: "bel",
+      dataIndex: "tel",
       key: "bel",
     },
     {
@@ -112,54 +111,54 @@ const AdminCommittee = () => {
     // position lead = "หัวหน้า"
     // position committee = "กรรมการ"
     setdataCommittee([
-      {
-        no: "1",
-        firstname: "John",
-        lastname: "Brown",
-        position: "lead",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "2",
-        firstname: "Jim",
-        lastname: "Green",
-        position: "committee",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "3",
-        firstname: "Joe",
-        lastname: "Black",
-        position: "committee",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "4",
-        firstname: "John",
-        lastname: "Brown1",
-        position: "lead",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "5",
-        firstname: "Jim",
-        lastname: "Green1",
-        position: "lead",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "6",
-        firstname: "Joe",
-        lastname: "Black1",
-        position: "lead",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
+      // {
+      //   no: "1",
+      //   firstname: "John",
+      //   lastname: "Brown",
+      //   position: "lead",
+      //   bel: "xxxxxxxxxxx",
+      //   email: "xxxxx@hotmail.com",
+      // },
+      // {
+      //   no: "2",
+      //   firstname: "Jim",
+      //   lastname: "Green",
+      //   position: "committee",
+      //   bel: "xxxxxxxxxxx",
+      //   email: "xxxxx@hotmail.com",
+      // },
+      // {
+      //   no: "3",
+      //   firstname: "Joe",
+      //   lastname: "Black",
+      //   position: "committee",
+      //   bel: "xxxxxxxxxxx",
+      //   email: "xxxxx@hotmail.com",
+      // },
+      // {
+      //   no: "4",
+      //   firstname: "John",
+      //   lastname: "Brown1",
+      //   position: "lead",
+      //   bel: "xxxxxxxxxxx",
+      //   email: "xxxxx@hotmail.com",
+      // },
+      // {
+      //   no: "5",
+      //   firstname: "Jim",
+      //   lastname: "Green1",
+      //   position: "lead",
+      //   bel: "xxxxxxxxxxx",
+      //   email: "xxxxx@hotmail.com",
+      // },
+      // {
+      //   no: "6",
+      //   firstname: "Joe",
+      //   lastname: "Black1",
+      //   position: "lead",
+      //   bel: "xxxxxxxxxxx",
+      //   email: "xxxxx@hotmail.com",
+      // },
     ]);
   };
 

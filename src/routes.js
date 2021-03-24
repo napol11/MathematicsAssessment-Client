@@ -2,14 +2,12 @@ import React from "react";
 
 const Main = React.lazy(() => import("./views/main"));
 
-//พนักาน
+//พนักงาน
 const HistoryEmployee = React.lazy(() =>
   import("./views/Employee/historyEmployee")
 );
-const EmployeeAssess = React.lazy(() =>
-  import("./views/Employee/employeeAssess")
-);
-
+const Employee = React.lazy(() => import("./views/Employee/employeeMain"));
+const EmployeeAssess = React.lazy(() => import("./views/Employee/UserForm"));
 
 //แอดมิน
 const AdminAssessment = React.lazy(() =>
@@ -28,7 +26,7 @@ const CommitteeAssess = React.lazy(() =>
 
 const routes = [
   { path: "/", exact: true, name: "หน้าหลัก", component: Main },
-  
+
   // ****************************************************  พนักงาน  ***********************************************************************************************
   {
     path: "/employee/history",
@@ -37,13 +35,19 @@ const routes = [
     component: HistoryEmployee,
   },
   {
-    path: "/employee/:id",
+    path: "/employee/evaluation",
     exact: true,
     name: "ทำประเมิน",
+    component: Employee,
+  },
+  {
+    path: "/employee/evaluation/:id",
+    exact: true,
+    name: "การประเมินพนักงาน",
     component: EmployeeAssess,
   },
 
-    // ****************************************************  แอดมิน  ***********************************************************************************************
+  // ****************************************************  แอดมิน  ***********************************************************************************************
   {
     path: "/administrator/assessment",
     exact: true,
@@ -63,7 +67,7 @@ const routes = [
     component: AdminCommittee,
   },
 
-   // ****************************************************  กรรมการ  ***********************************************************************************************
+  // ****************************************************  กรรมการ  ***********************************************************************************************
   {
     path: "/committee",
     exact: true,

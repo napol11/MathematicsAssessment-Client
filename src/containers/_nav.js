@@ -26,14 +26,14 @@ const nav = [
     className: "mb-2",
     id: 1,
   },
-  {
-    _tag: "CSidebarNavItem",
-    name: "ผลการประเมิน",
-    to: "/employee/result",
-    icon: "cilSpreadsheet",
-    className: "mb-2",
-    id: 1,
-  },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "ผลการประเมิน",
+  //   to: "/employee/result",
+  //   icon: "cilSpreadsheet",
+  //   className: "mb-2",
+  //   id: 1,
+  // },
   {
     _tag: "CSidebarNavItem",
     name: "ประเมินพนักงาน",

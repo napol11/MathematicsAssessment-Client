@@ -1,0 +1,135 @@
+/* * {
+  font-size: 1rem;
+} */
+
+/* Table Ant design Committee */
+.committeeTable .ant-table thead > tr > th {
+  background-color: #f26843 !important;
+}
+
+.committeeTable .ant-table-cell-scrollbar {
+  /* box-shadow: 0 1px 0 1px #f26843 !important; */
+  box-shadow: none !important;
+}
+
+.committeeInput .ant-input-group > .ant-input {
+  background-color: #e9e9e9;
+}
+.committeeInput .ant-btn {
+  background-color: #e9e9e9;
+}
+
+.btnCommitteeDisable {
+  border: none;
+  border-radius: 20px;
+  padding: 2px;
+  background-color: #c6c6c6;
+  color: white;
+  cursor: no-drop;
+}
+
+.btnCommittee {
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 2px;
+  background-color: #f26843;
+  color: white;
+  cursor: pointer;
+}
+
+.btnCommittee:hover {
+  border: 1px solid #f26843;
+  border-radius: 20px;
+  padding: 2px;
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+}
+
+.committeeSteps .ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #fdc331;
+  border-color: transparent;
+}
+
+.committeeSteps .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+  color: black;
+}
+
+.btnCancel {
+  border-radius: 5px;
+  border: 1px solid #f6be32;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btnCancel:hover {
+  border-radius: 5px;
+  border: 1px solid white;
+  background-color: #f6be32;
+  color: white;
+  cursor: pointer;
+}
+
+.btnConfirm {
+  border-radius: 5px;
+  border: 1px solid white;
+  background-color: #f6be32;
+  cursor: pointer;
+}
+
+.btnConfirm:hover {
+  border-radius: 5px;
+  border: 1px solid white;
+  background-color: #f6be32;
+  color: white;
+  cursor: pointer;
+}
+
+.btnConfirmDis {
+  border-radius: 5px;
+  border: 1px solid #c6c6c6;
+  background-color: #c6c6c6;
+  cursor: no-drop;
+}
+
+.committee2Btn {
+  border-radius: 20px;
+  border: 1px solid #f6be32;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.committee2Btn:hover {
+  border-radius: 20px;
+  border: 1px solid white;
+  background-color: #f6be32;
+  color: white;
+  cursor: pointer;
+}
+
+/* Table Ant design Assess2 */
+.committeeTableAssess2 .ant-table-title {
+  background-color: #e4e4e4 !important;
+}
+
+.committeeTableAssess2 .ant-table thead > tr > th {
+  background-color: #e4e4e4 !important;
+}
+
+.committeeTableAssess2 .ant-table-cell-scrollbar {
+  box-shadow: none !important;
+}
+
+/* Table Ant design Assess3 */
+.committeeTableAssess3 .ant-table-title {
+  background-color: #fbdb8a !important;
+}
+
+.committeeTableAssess3 .ant-table thead > tr > th {
+  background-color: #fbdb8a !important;
+}
+
+.committeeTableAssess3 .ant-table-cell-scrollbar {
+  box-shadow: none !important;
+}
