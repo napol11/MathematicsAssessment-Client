@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
-import { Steps, Button, Row, Modal } from "antd";
+import { Steps, Button, Row } from "antd";
 import "antd/dist/antd.css";
 import "./step.css";
+
+import { CModal, CModalBody } from "@coreui/react";
 
 import Form1 from "./UserForm1";
 import Form2 from "./UserForm2";
@@ -111,7 +113,55 @@ function UserStep() {
           </Button>
         )}
       </div>
-      <Modal
+      <CModal show={modal} size="lg">
+        <CModalBody>
+          <img
+            src="/logo/warning.png"
+            alt="warning"
+            style={{
+              width: "15%",
+              marginBottom: "3%",
+              marginTop: "3%",
+              marginLeft: "40%",
+            }}
+          />
+          <Row style={{ marginLeft: "3%" }}>
+            <h2>หากท่านเลือก</h2>
+            <h2 style={{ color: "red" }}> "ยืนยัน" </h2>
+            <h2>จะไม่สามารถกลับมาแก้ไขแบบประเมินได้อีก</h2>
+          </Row>
+          <Row style={{ marginLeft: "23%" }}>
+            <h2>ท่านต้องการส่งแบบประเมินหรือไม่</h2>
+          </Row>
+
+          <Button
+            style={{
+              marginTop: "3%",
+              marginRight: "2%",
+              borderColor: "#F6BE32",
+              color: "black",
+              width: "15%",
+              marginLeft: "30%",
+            }}
+            onClick={() => handleCancel()}
+          >
+            ยกเลิก
+          </Button>
+          <Button
+            style={{
+              marginTop: "3%",
+              borderColor: "#F6BE32",
+              color: "black",
+              backgroundColor: "#F6BE32",
+              width: "15%",
+            }}
+            onClick={() => handleOk()}
+          >
+            ยืนยัน
+          </Button>
+        </CModalBody>
+      </CModal>
+      {/* <Modal
         visible={modal}
         width={"35%"}
         style={{ textAlign: "center" }}
@@ -156,7 +206,7 @@ function UserStep() {
         >
           ยืนยัน
         </Button>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

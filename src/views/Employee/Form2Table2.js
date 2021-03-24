@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Button, Popconfirm, Form, Col, Row } from "antd";
+import { Table, Input, Button, Popconfirm, Form } from "antd";
 
 import { MdDelete } from "react-icons/md";
 import "./App.css";
 
 const EditableContext = React.createContext(null);
+
+const title = { color: "black", textAlign: "center" };
 
 const EditableRow = ({ index, ...props }) => {
   const [form] = Form.useForm();
@@ -91,45 +93,45 @@ class Form2Table2 extends React.Component {
     super(props);
     this.columns = [
       {
-        title: "หัวข้อ",
+        title: <div style={title}>{"หัวข้อ"}</div>,
         dataIndex: "Table2No",
         editable: true,
         width: "5%",
       },
       {
-        title: "กิจกรรม",
+        title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table2Activity",
         editable: true,
       },
       {
-        title: "FTE %",
+        title: <div style={title}>{"FTE %"}</div>,
         dataIndex: "Table2FTE",
         editable: true,
         width: "10%",
       },
       {
-        title: "ระดับความสำเร็จ",
+        title: <div style={title}>{"ระดับความสำเร็จ"}</div>,
         dataIndex: "Table2Level",
         editable: true,
         width: "10%",
       },
       {
-        title: "คะแนนรวม",
+        title: <div style={title}>{"คะแนนรวม"}</div>,
         dataIndex: "Table2TotalScore",
         width: "10%",
       },
       {
-        title: "คะแนนรวม %",
+        title: <div style={title}>{"คะแนนรวม %"}</div>,
         dataIndex: "Table2TotalScorePercent",
         width: "10%",
       },
       {
-        title: "ความคิดเห็น",
+        title: <div style={title}>{"ความคิดเห็น"}</div>,
         dataIndex: "Table2Comments",
         editable: true,
       },
       {
-        title: "รหัสกลยุทธ์",
+        title: <div style={title}>{"รหัสกลยุทธ์"}</div>,
         dataIndex: "Table2Code",
         editable: true,
       },
@@ -223,26 +225,29 @@ class Form2Table2 extends React.Component {
 
     return (
       <>
-        <div>
-          <Row>
-            <Col xs={24} sm={20} md={21} lg={21} xl={22}>
-              <h2>2. การบริหารนโยบาย</h2>
-            </Col>
-            <space />
-            <Col xs={24} sm={4} md={3} lg={3} xl={2}>
-              <div className="control-buttons">
-                <button className="buttons_add" onClick={this.handleAdd}>
-                  เพิ่มแถวตาราง
-                </button>
-              </div>
-            </Col>
-          </Row>
+        <div
+          className="col-sm-12 text-sm-right align-self-sm-end"
+          style={{ marginTop: "1%" }}
+        >
+          <button className="buttons_add" onClick={this.handleAdd}>
+            เพิ่มแถวตาราง
+          </button>
         </div>
         <Table
+          className="committeeTableAssess2 mt-4"
           components={components}
           rowClassName={() => "editable-row"}
           dataSource={dataSource}
           columns={columns}
+          title={() => (
+            <label style={{ fontSize: "16px", fontWeight: "bold" }}>
+              2. การบริหารนโยบาย
+            </label>
+          )}
+          pagination={{
+            defaultPageSize: 4,
+          }}
+          size="middle"
         />
       </>
     );

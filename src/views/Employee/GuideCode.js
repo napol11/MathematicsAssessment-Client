@@ -1,8 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { CModal, CModalHeader, CModalBody, CModalFooter } from "@coreui/react";
+import { CModal, CModalHeader, CModalBody } from "@coreui/react";
 import { Row, Col, Divider } from "antd";
-import { AiFillCloseCircle } from "react-icons/ai";
 
 class GuideCode extends React.Component {
   state = { visible: false };

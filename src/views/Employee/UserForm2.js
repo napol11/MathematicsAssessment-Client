@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "antd";
+// import { Col, Row } from "antd";
 
 import "./App.css";
 
@@ -14,37 +14,40 @@ function UserForm2() {
   return (
     <div style={{ width: "100%" }}>
       <div className="userform2">
-        <Row>
-          <Col xs={24} sm={18} md={18} lg={18} xl={20}>
-            <h1>ส่วนที่ 2.1 รายงานผลการปฏิบัติงาน</h1>
-          </Col>
-          <space />
-          <Col xs={24} sm={4} md={3} lg={3} xl={2}>
-            <GuidePoint />
-          </Col>
-          <Col
-            xs={24}
-            sm={4}
-            md={3}
-            lg={3}
-            xl={2}
-            style={{ paddingLeft: "1%" }}
+        <div className="row no-gutter">
+          <div className="col-sm-6">
+            <label
+              style={{ fontWeight: "bold", fontSize: "24px", color: "black" }}
+            >
+              {`ส่วนที่ 2.1 รายการผลการปฏิบัติงาน`}
+            </label>
+          </div>
+          <div
+            className="col-sm-6 text-sm-right align-self-sm-end"
+            // style={{ display: "flex", justifyContent: "center" }}
           >
-            <GuideCode />
-          </Col>
-        </Row>
-        <div className="card">
+            <div className="row justify-content-sm-end">
+              {/* <div className="committee2Btn pl-4 pr-4 mr-4"> */}
+              <GuidePoint />
+              {/* </div> */}
+              {/* <div className="committee2Btn pl-4 pr-4"> */}
+              <GuideCode />
+              {/* </div> */}
+            </div>
+          </div>
+        </div>
+        <div>
           <Form2Table1 />
         </div>
-        <div className="card">
-          <Form2Table2 />
-        </div>
-        <div className="card">
-          <Form2Table3 />
-        </div>
-        <div className="card">
-          <Form2Table4 />
-        </div>
+        {/* <div className="card"> */}
+        <Form2Table2 />
+        {/* </div> */}
+        {/* <div className="card"> */}
+        <Form2Table3 />
+        {/* </div> */}
+        {/* <div className="card"> */}
+        <Form2Table4 />
+        {/* </div> */}
       </div>
     </div>
   );
