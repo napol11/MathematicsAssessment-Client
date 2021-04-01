@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import ModalCommittee from "./ModalCommittee";
 
 import "./admin.css";
+// import axios from "axios";
 
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
@@ -110,6 +111,11 @@ const AdminCommittee = () => {
     //  set dataCommittee
     // position lead = "หัวหน้า"
     // position committee = "กรรมการ"
+    // const getCommittee = axios
+    //   .get(`http://localhost:3001/api/admin/committee`)
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
     setdataCommittee([
       // {
       //   no: "1",
