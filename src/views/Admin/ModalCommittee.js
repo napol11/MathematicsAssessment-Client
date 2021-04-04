@@ -118,7 +118,7 @@ const ModalCommittee = (props) => {
                   style={{ marginBottom: "10px" }}
                   name={["user", "firstName"]}
                   label="ชื่อ"
-                  rules={[{ required: true, message: "กรุณากรอก ชื่อ!" }]}
+                  rules={[{ required: true, message: "กรุณาระบุ ชื่อ" }]}
                 >
                   <Input
                     type="text"
@@ -133,7 +133,7 @@ const ModalCommittee = (props) => {
                   style={{ marginBottom: "10px" }}
                   name={["user", "lastName"]}
                   label="นามสกุล"
-                  rules={[{ required: true, message: "กรุณากรอก นามสกุล!" }]}
+                  rules={[{ required: true, message: "กรุณาระบุ นามสกุล" }]}
                 >
                   <Input
                     placeholder=" ‎‏‏‎ ‎ระบุนามสกุล"
@@ -147,7 +147,7 @@ const ModalCommittee = (props) => {
               style={{ marginBottom: "10px" }}
               name={["user", "position"]}
               label="ตำแหน่ง"
-              rules={[{ required: true, message: "กรุณากรอก ตำแหน่ง!" }]}
+              rules={[{ required: true, message: "กรุณาระบุ ตำแหน่ง" }]}
             >
               <Select
                 className="select-modal"
@@ -163,14 +163,14 @@ const ModalCommittee = (props) => {
                 <Form.Item
                   style={{ marginBottom: "10px" }}
                   name={["user", "email"]}
-                  label="อีเมลล์"
+                  label="อีเมล"
                   rules={[
-                    { required: true, message: "กรุณากรอก อีเมลล์!" },
-                    { type: "email", message: "อีเมลล์ ไม่ถูกต้อง!" },
+                    { required: true, message: "กรุณาระบุ อีเมล" },
+                    { type: "email", message: "อีเมล ไม่ถูกต้อง!" },
                   ]}
                 >
                   <Input
-                    placeholder=" ‎‏‏‎ ‎ระบุอีเมลล์"
+                    placeholder=" ‎‏‏‎ ‎ระบุอีเมล"
                     autoComplete={"off"}
                     className="input-modal"
                   />
@@ -181,7 +181,7 @@ const ModalCommittee = (props) => {
                   style={{ marginBottom: "10px" }}
                   name={["user", "bel"]}
                   label="เบอร์โทร"
-                  rules={[{ required: true, message: "กรุณากรอก เบอร์โทร!" }]}
+                  rules={[{ required: true, message: "กรุณาระบุ เบอร์โทร" }]}
                 >
                   <Input
                     placeholder={"‏‏‎ ‎‏‏‎ ‎ระบุเบอร์โทร"}

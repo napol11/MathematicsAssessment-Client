@@ -128,7 +128,7 @@ export default function ModalStaff(props) {
                     style={{ marginBottom: "10px" }}
                     name={["user", "firstName"]}
                     label="ชื่อ"
-                    rules={[{ required: true, message: "กรุณากรอก ชื่อ!" }]}
+                    rules={[{ required: true, message: "กรุณาระบุ ชื่อ" }]}
                   >
                     <Input
                       placeholder=" ‎‏‏‎ ‎ระบุชื่อ"
@@ -142,7 +142,7 @@ export default function ModalStaff(props) {
                     style={{ marginBottom: "10px" }}
                     name={["user", "lastName"]}
                     label="นามสกุล"
-                    rules={[{ required: true, message: "กรุณากรอก นามสกุล!" }]}
+                    rules={[{ required: true, message: "กรุณาระบุ นามสกุล" }]}
                   >
                     <Input
                       placeholder=" ‎‏‏‎ ‎ระบุนามสกุล"
@@ -158,7 +158,7 @@ export default function ModalStaff(props) {
                     style={{ marginBottom: "10px" }}
                     name={["user", "position"]}
                     label="ตำแหน่ง"
-                    rules={[{ required: true, message: "กรุณากรอก ตำแหน่ง!" }]}
+                    rules={[{ required: true, message: "กรุณาระบุ ตำแหน่ง" }]}
                   >
                     <Select
                       className="select-modal"
@@ -174,7 +174,7 @@ export default function ModalStaff(props) {
                     style={{ marginBottom: "10px" }}
                     name={["user", "number"]}
                     label="เลขที่"
-                    rules={[{ required: true, message: "กรุณากรอก เลขที่!" }]}
+                    rules={[{ required: true, message: "กรุณาระบุ เลขที่" }]}
                   >
                     <Input
                       placeholder=" ‎‏‏‎ ‎ระบุเลขที่"
@@ -190,7 +190,7 @@ export default function ModalStaff(props) {
                     style={{ marginBottom: "10px" }}
                     name={["user", "level"]}
                     label="ระดับ"
-                    rules={[{ required: true, message: "กรุณากรอก ระดับ!" }]}
+                    rules={[{ required: true, message: "กรุณาระบุ ระดับ" }]}
                   >
                     <Select
                       className="select-modal"
@@ -205,7 +205,7 @@ export default function ModalStaff(props) {
                     style={{ marginBottom: "10px" }}
                     name={["user", "division"]}
                     label="สังกัด"
-                    rules={[{ required: true, message: "กรุณากรอก สังกัด!" }]}
+                    rules={[{ required: true, message: "กรุณาระบุ สังกัด" }]}
                   >
                     <Select
                       className="select-modal"
@@ -225,7 +225,7 @@ export default function ModalStaff(props) {
                     rules={[
                       {
                         required: true,
-                        message: "กรุณากรอก วันที่เริ่มทำงาน!",
+                        message: "กรุณาระบุ วันที่เริ่มทำงาน",
                       },
                     ]}
                   >
@@ -245,14 +245,14 @@ export default function ModalStaff(props) {
                   <Form.Item
                     style={{ marginBottom: "10px" }}
                     name={["user", "email"]}
-                    label="อีเมลล์"
+                    label="อีเมล"
                     rules={[
-                      { required: true, message: "กรุณากรอก อีเมลล์!" },
-                      { type: "email", message: "อีเมลล์ ไม่ถูกต้อง!" },
+                      { required: true, message: "กรุณาระบุ อีเมล" },
+                      { type: "email", message: "อีเมล ไม่ถูกต้อง!" },
                     ]}
                   >
                     <Input
-                      placeholder=" ‎‏‏‎ ‎ระบุอีเมลล์"
+                      placeholder=" ‎‏‏‎ ‎ระบุอีเมล"
                       autoComplete={"off"}
                       className="input-modal"
                     />

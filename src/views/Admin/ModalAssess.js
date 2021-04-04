@@ -113,7 +113,7 @@ const ModalAssess = (props) => {
                   rules={[
                     {
                       required: true,
-                      message: "กรุณากรอก รอบการประเมิน",
+                      message: "กรุณาระบุ รอบการประเมิน",
                     },
                   ]}
                 >
@@ -146,7 +146,7 @@ const ModalAssess = (props) => {
                   rules={[
                     {
                       required: true,
-                      message: "กรุณากรอก รอบการประเมิน",
+                      message: "กรุณาระบุ รอบการประเมิน",
                     },
                   ]}
                 >
@@ -175,7 +175,7 @@ const ModalAssess = (props) => {
                   rules={[
                     {
                       required: true,
-                      message: "กรุณากรอก วันที่เริ่มต้นการประเมิน",
+                      message: "กรุณาระบุ วันที่เริ่มต้นการประเมิน",
                     },
                   ]}
                 >
@@ -202,7 +202,7 @@ const ModalAssess = (props) => {
                   rules={[
                     {
                       required: true,
-                      message: "กรุณากรอก วันที่สิ้นสุดการประเมิน",
+                      message: "กรุณาระบุ วันที่สิ้นสุดการประเมิน",
                     },
                   ]}
                 >
@@ -231,7 +231,7 @@ const ModalAssess = (props) => {
                   rules={[
                     {
                       required: true,
-                      message: "กรุณากรอก วันที่สิ้นสุดการกรอกแบบประเมิน",
+                      message: "กรุณาระบุ วันที่สิ้นสุดการกรอกแบบประเมิน",
                     },
                   ]}
                 >
