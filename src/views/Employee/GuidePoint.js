@@ -4,6 +4,8 @@ import { Row, Col } from "antd";
 
 import { CModal, CModalHeader, CModalBody } from "@coreui/react";
 
+import logo from "../pages/หมายเหตุคะแนน.png";
+
 class GuidePoint extends React.Component {
   state = { visible: false };
 
@@ -40,11 +42,7 @@ class GuidePoint extends React.Component {
           <CModalBody>
             <Row>
               <Col>
-                <img
-                  className="guidepointpic"
-                  src="/logo/หมายเหตุคะแนน.png"
-                  alt="หมายเหตุคะแนน"
-                />
+                <img className="guidepointpic" src={logo} alt="หมายเหตุคะแนน" />
               </Col>
               <Col>
                 <p>4 = ประสิทธิภาพดีเยี่ยม ควรเป็นแบบอย่าง</p>

@@ -104,7 +104,7 @@ class Form2Table1 extends React.Component {
         editable: true,
       },
       {
-        title: <div style={title}>{"%FTE (A)"}</div>,
+        title: <div style={title}>{"%FTE"}</div>,
         dataIndex: "Table1FTE",
         editable: true,
         width: "10%",
