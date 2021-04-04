@@ -235,7 +235,7 @@ export default function ModalStaff(props) {
                       displayFormat={"DD MMM YY"}
                       inputStyle={{
                         color: "black",
-                        width: 370,
+                        width: 370,     
                       }}
                       clearable={true}
                     />

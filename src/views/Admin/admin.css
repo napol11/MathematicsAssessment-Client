@@ -78,11 +78,15 @@
   box-shadow: 0 0 4px #f26843 !important;
 }
 
-/* .datepicker-modal:hover {
-    border: 1.5px solid #f26843 !important;
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input:hover {
+  border-color: #f26843 !important;
 }
 
-.datepicker-modal:focus {
-    box-shadow: 0 0 4px #f26843;
-    border: 1.5px solid #f26843;
-} */
+.react-datepicker-wrapper:focus,
+.react-datepicker__input-container:focus,
+.react-datepicker__input-container input:focus {
+  border-color: #f26843 !important;
+  box-shadow: 0 0 4px #f26843 !important;
+}
