@@ -156,7 +156,7 @@ const CommitteAssessStep31 = (props) => {
         <div className="col-sm-3 text-sm-right align-self-sm-end">
           <div className="row justify-content-sm-end">
             {/* <div className="committee2Btn pl-4 pr-4 mr-4">หมายเหตุคะแนน</div> */}
-            <div className="committee2Btn pl-4 pr-4">เกณฑ์การประเมิน</div>
+            {/* <div className="committee2Btn pl-4 pr-4">เกณฑ์การประเมิน</div> */}
           </div>
         </div>
       </div>
