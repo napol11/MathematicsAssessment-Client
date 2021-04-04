@@ -24,6 +24,10 @@ const CommitteeAssess = React.lazy(() =>
   import("./views/Committee/committeeAssess")
 );
 
+//หัวหน้า
+const HeadMain = React.lazy(() => import("./views/Head/headMain"));
+const HeadAssess = React.lazy(() => import("./views/Head/HeadAssess"));
+
 const routes = [
   { path: "/", exact: true, name: "หน้าหลัก", component: Main },
 
@@ -79,6 +83,20 @@ const routes = [
     exact: true,
     name: "การประเมินพนักงาน",
     component: CommitteeAssess,
+  },
+
+  // ****************************************************  หัวหน้า  ***********************************************************************************************
+  {
+    path: "/head",
+    exact: true,
+    name: "รายการประเมิน",
+    component: HeadMain,
+  },
+  {
+    path: "/head/:id",
+    exact: true,
+    name: "การประเมินพนักงาน",
+    component: HeadAssess,
   },
 ];
 

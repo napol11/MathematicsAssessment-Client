@@ -43,6 +43,10 @@ const Login = () => {
       Cookies.set(token.type, 3);
       Cookies.set(token.token, "kmuttTest");
       window.location.replace("/administrator/committee");
+    } else if (Number(username) === 4 && Number(password) === 123) {
+      Cookies.set(token.type, 4);
+      Cookies.set(token.token, "kmuttTest");
+      window.location.replace("/head");
     }
     // window.location.replace("/"); // Login เสร็จต้องไปหน้าหลัก ห้ามใช้ history.push เฉพาะอันนี้
   };

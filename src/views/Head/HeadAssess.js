@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Steps } from "antd";
-import CommitteAssessStep1 from "./committeAssessStep1";
-import CommitteAssessStep2 from "./committeAssessStep2";
-import CommitteAssessStep31 from "./committeAssessStep31";
-import CommitteAssessStep32 from "./committeAssessStep32";
-import CommitteAssessStep4 from "./committeAssessStep4";
-import ModalComAssess2 from "./modalComAssess2";
+import HeadAssessStep1 from "./HeadAssessStep1";
+import HeadAssessStep2 from "./HeadAssessStep2";
+import HeadAssessStep31 from "./HeadAssessStep31";
+import HeadAssessStep32 from "./HeadAssessStep32";
+import HeadAssessStep4 from "./HeadAssessStep4";
 
-import "./committee.css";
+import "./head.css";
 import "./step.css";
 
 const { Step } = Steps;
 
-const CommitteeAssess = () => {
+const HeadAssess = () => {
   const [data, setData] = useState([]);
   const [current, setCurrent] = React.useState(0);
   const [step3, setStep3] = useState(0);
@@ -49,53 +48,53 @@ const CommitteeAssess = () => {
         },
       ],
       punishHistory: [], /// [{ start:'2020-02-01', end:'2020-02-03',detail:"" }]
-      performanceReport: [
-        {
-          head: "1.1",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "success",
-        },
-        {
-          head: "1.2",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "success",
-        },
-        {
-          head: "1.3",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "success",
-        },
-        {
-          head: "1.4",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "success",
-        },
-        {
-          head: "1.5",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "wait",
-        },
-      ],
+      // performanceReport: [
+      //   {
+      //     head: "1.1",
+      //     event: "xxxxxxxxxxxxxxxxxxx",
+      //     fte: "xx",
+      //     levelEmployee: "xx",
+      //     levelCommittee: "xx",
+      //     comment: "xxxxxxxxxxxx",
+      //     upload: "success",
+      //   },
+      //   {
+      //     head: "1.2",
+      //     event: "xxxxxxxxxxxxxxxxxxx",
+      //     fte: "xx",
+      //     levelEmployee: "xx",
+      //     levelCommittee: "xx",
+      //     comment: "xxxxxxxxxxxx",
+      //     upload: "success",
+      //   },
+      //   {
+      //     head: "1.3",
+      //     event: "xxxxxxxxxxxxxxxxxxx",
+      //     fte: "xx",
+      //     levelEmployee: "xx",
+      //     levelCommittee: "xx",
+      //     comment: "xxxxxxxxxxxx",
+      //     upload: "success",
+      //   },
+      //   {
+      //     head: "1.4",
+      //     event: "xxxxxxxxxxxxxxxxxxx",
+      //     fte: "xx",
+      //     levelEmployee: "xx",
+      //     levelCommittee: "xx",
+      //     comment: "xxxxxxxxxxxx",
+      //     upload: "success",
+      //   },
+      //   {
+      //     head: "1.5",
+      //     event: "xxxxxxxxxxxxxxxxxxx",
+      //     fte: "xx",
+      //     levelEmployee: "xx",
+      //     levelCommittee: "xx",
+      //     comment: "xxxxxxxxxxxx",
+      //     upload: "wait",
+      //   },
+      // ],
       EvaForm31: [
         {
           id: 1,
@@ -519,15 +518,12 @@ const CommitteeAssess = () => {
       },
     });
   };
-
   const setValues = (data) => {
     setData(data);
   };
-
   useEffect(() => {
     LoadData();
   }, []);
-
   return (
     <div className="justify-center align-center">
       <div className="row wrap window-height">
@@ -585,12 +581,12 @@ const CommitteeAssess = () => {
           <div>
             {/* ห้าม refresh ไม่งั้น Data State จะกลับสู่ defualt ต้อง save ทุกครั้งที่ กด ถัดไป */}
             {current === 0 ? (
-              <CommitteAssessStep1
+              <HeadAssessStep1
                 data={data}
                 next={() => setCurrent(current + 1)}
               />
             ) : current === 1 ? (
-              <CommitteAssessStep2
+              <HeadAssessStep2
                 data={data}
                 prev={() => setCurrent(current - 1)}
                 next={() => setCurrent(current + 1)}
@@ -598,14 +594,14 @@ const CommitteeAssess = () => {
               />
             ) : current === 2 ? (
               step3 === 0 ? (
-                <CommitteAssessStep31
+                <HeadAssessStep31
                   data={data}
                   prev={() => setCurrent(current - 1)}
                   next={() => setStep3(step3 + 1)}
                   setData={setValues}
                 />
               ) : (
-                <CommitteAssessStep32
+                <HeadAssessStep32
                   data={data}
                   prev={() => setStep3(step3 - 1)}
                   next={() => setCurrent(4)}
@@ -613,17 +609,15 @@ const CommitteeAssess = () => {
                 />
               )
             ) : current === 3 ? (
-              <CommitteAssessStep4 data={data} />
+              <HeadAssessStep4 data={data} />
             ) : current === 4 ? (
-              <CommitteAssessStep4 data={data} />
+              <HeadAssessStep4 data={data} />
             ) : null}
           </div>
           {/* *************************************************************** */}
         </div>
       </div>
-      <ModalComAssess2 />
     </div>
   );
 };
-
-export default CommitteeAssess;
+export default HeadAssess;

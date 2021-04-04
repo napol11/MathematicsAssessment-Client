@@ -3,12 +3,12 @@ import React from "react";
 import "moment/locale/th";
 // import { useDispatch, useSelector } from "react-redux";
 
-import "./committee.css";
-import Table1 from "../Committee/Table1";
-import Table2 from "../Committee/Table2";
-import Table3 from "../Committee/Table3";
-import Table4 from "../Committee/Table4";
+import Table1 from "../Head/Table1";
+import Table2 from "../Head/Table2";
+import Table3 from "../Head/Table3";
+import Table4 from "../Head/Table4";
 
+import "./head.css";
 // const title = { color: "black", fontWeight: "bold", textAlign: "center" };
 
 const CommitteAssessStep2 = (props) => {
@@ -69,33 +69,33 @@ const CommitteAssessStep2 = (props) => {
   //     dataIndex: "comment",
   //     key: "comment",
   //   },
-  //   {
-  //     title: <div style={title}>{null}</div>,
-  //     dataIndex: "upload",
-  //     key: "upload",
-  //     align: "center",
-  //     render: (text, row, index) => {
-  //       const success = text === "success" ? true : false;
-  //       return (
-  //         <div
-  //           style={{
-  //             wordWrap: "break-word",
-  //             wordBreak: "break-word",
-  //             textAlign: "center",
-  //             cursor: "pointer",
-  //           }}
-  //           onClick={() =>
-  //             dispatch({
-  //               type: "set",
-  //               committeeAss2Modal: { ...committeeAss2Modal, show: true },
-  //             })
-  //           }
-  //         >
-  //           {`${success ? "มีเอกสาร" : ""}`}
-  //         </div>
-  //       );
-  //     },
-  //   },
+  //   // {
+  //   //   title: <div style={title}>{null}</div>,
+  //   //   dataIndex: "upload",
+  //   //   key: "upload",
+  //   //   align: "center",
+  //   //   render: (text, row, index) => {
+  //   //     const success = text === "success" ? true : false;
+  //   //     return (
+  //   //       <div
+  //   //         style={{
+  //   //           wordWrap: "break-word",
+  //   //           wordBreak: "break-word",
+  //   //           textAlign: "center",
+  //   //           cursor: "pointer",
+  //   //         }}
+  //   //         onClick={() =>
+  //   //           dispatch({
+  //   //             type: "set",
+  //   //             committeeAss2Modal: { ...committeeAss2Modal, show: true },
+  //   //           })
+  //   //         }
+  //   //       >
+  //   //         {`${success ? "มีเอกสาร" : ""}`}
+  //   //       </div>
+  //   //     );
+  //   //   },
+  //   // },
   // ];
 
   return (

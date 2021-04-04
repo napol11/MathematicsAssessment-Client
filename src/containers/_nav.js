@@ -66,6 +66,14 @@ const nav = [
     className: "mb-2",
     id: 3,
   },
+  {
+    _tag: "CSidebarNavItem",
+    name: "ประเมินพนักงาน",
+    to: "/head",
+    icon: "cilList",
+    className: "mb-2",
+    id: 4,
+  },
 ];
 
 // เปลี่ยน menu ตรง id
