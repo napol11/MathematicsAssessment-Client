@@ -80,27 +80,29 @@ const TheSidebar = () => {
         className="c-d-md-down-none"
       />
       <CSidebarFooter style={{ background: bg }}>
-        <div
+        <div className="ml-4 mb-4"
           style={
             cusStyle
-              ? {
-                  padding: "13px 16px",
+              ? { 
+                  width: "80%",
+                  padding: "13px",
                   fontWeight: "bold",
                   textAlign: "center",
                   borderRadius: "25px",
                   border: "1px solid #fdc331",
                   background: "#fdc331",
-                  fontSize: fontSize,
+                  fontSize: "14px",
                   cursor: "pointer",
                   color: "#000015",
                 }
               : {
-                  padding: "13px 16px",
+                  width: "80%",
+                  padding: "13px",
                   fontWeight: "bold",
                   textAlign: "center",
                   borderRadius: "25px",
                   border: "1px solid #fdc331",
-                  fontSize: fontSize,
+                  fontSize: "14px",
                   cursor: "pointer",
                 }
           }
