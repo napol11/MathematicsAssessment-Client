@@ -86,11 +86,16 @@ const TheHeader = () => {
           className="d-inline-block align-top m-2"
           alt="KMUTT ระบบประเมินประสิทธิภาพพนักงานสายสนับสนุน"
           height="90"
+          style={{
+            paddingLeft: "25px",
+          }}
         />
+        <dv >
         <br />
         ระบบประเมินประสิทธิภาพพนักงานสายสนับสนุน
         <br />
         ภาควิชาคณิตศาสตร์
+        </dv>
       </CHeaderNav>
 
       {/* <CSubheader className="px-3 justify-content-between">
