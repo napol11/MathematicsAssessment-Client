@@ -236,7 +236,6 @@ export default function ModalStaff(props) {
                       inputStyle={{
                         color: "black",
                         width: 370,
-
                       }}
                       clearable={true}
                     />
