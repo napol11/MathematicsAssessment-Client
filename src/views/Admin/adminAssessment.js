@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table, Input, Popconfirm } from "antd";
-import { WatDatePicker } from "thaidatepicker-react";
+// import { WatDatePicker } from "thaidatepicker-react";
 import { notify } from "../CustomComponent";
 import { date2Thai } from "../CustomFunction";
 import ModalAssess from "./ModalAssess";
@@ -11,12 +11,12 @@ const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
 const AdminAssessment = () => {
   const [Hover, setHover] = useState(false);
-  const [selectedDateStart, setSelectedDateStart] = useState("");
-  const [selectedDateEnd, setSelectedDateEnd] = useState("");
+  // const [selectedDateStart, setSelectedDateStart] = useState("");
+  // const [selectedDateEnd, setSelectedDateEnd] = useState("");
   //   const [selectedDateStartTH, setSelectedDateStartTH] = useState(""); //วันที่ไทย
   //   const [selectedDateEndTH, setSelectedDateEndTH] = useState(""); //วันที่ไทย
   const [data, setdata] = useState([]);
-  const [filter, setfilter] = useState([]);
+  // const [filter, setfilter] = useState([]);
   const [LoadingTable, setLoadingTable] = useState(false);
   const [show, setshow] = useState(false);
   const [ModalTitle, setModalTitle] = useState("");
@@ -45,27 +45,27 @@ const AdminAssessment = () => {
         end: "2021-02-25", // yyyy-mm-dd
       },
     ]);
-    setfilter([
-      // custom ใน column
-      {
-        no: "1",
-        // round: "วว ดด ปป - วว ดด ปป",
-        start: "2021-02-01", // yyyy-mm-dd
-        end: "2021-02-20", // yyyy-mm-dd
-      },
-      {
-        no: "2",
-        // round: "วว ดด ปป - วว ดด ปป",
-        start: "2021-02-20", // yyyy-mm-dd
-        end: "2021-02-22", // yyyy-mm-dd
-      },
-      {
-        no: "3",
-        // round: "วว ดด ปป - วว ดด ปป",
-        start: "2021-02-22", // yyyy-mm-dd
-        end: "2021-02-25", // yyyy-mm-dd
-      },
-    ]);
+    // setfilter([
+    //   // custom ใน column
+    //   {
+    //     no: "1",
+    //     // round: "วว ดด ปป - วว ดด ปป",
+    //     start: "2021-02-01", // yyyy-mm-dd
+    //     end: "2021-02-20", // yyyy-mm-dd
+    //   },
+    //   {
+    //     no: "2",
+    //     // round: "วว ดด ปป - วว ดด ปป",
+    //     start: "2021-02-20", // yyyy-mm-dd
+    //     end: "2021-02-22", // yyyy-mm-dd
+    //   },
+    //   {
+    //     no: "3",
+    //     // round: "วว ดด ปป - วว ดด ปป",
+    //     start: "2021-02-22", // yyyy-mm-dd
+    //     end: "2021-02-25", // yyyy-mm-dd
+    //   },
+    // ]);
     setLoadingTable(false);
   };
 
@@ -89,36 +89,36 @@ const AdminAssessment = () => {
     notify.success(`ลบรายการประเมิน เรียบร้อย!`);
   };
 
-  const filterData = (s, e) => {
-    setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
-    const find = filter.filter(({ start, end }) => {
-      return start >= s && end <= e;
-    });
-    setdata(find); // set Data ใส่ตาราง
-    setLoadingTable(false);
-  };
+  // const filterData = (s, e) => {
+  //   setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
+  //   const find = filter.filter(({ start, end }) => {
+  //     return start >= s && end <= e;
+  //   });
+  //   setdata(find); // set Data ใส่ตาราง
+  //   setLoadingTable(false);
+  // };
 
-  const handleDatePickerStart = (christDate, buddhistDate) => {
-    setSelectedDateStart(christDate);
-    // setSelectedDateStartTH(buddhistDate); วันที่ไทย
-    if (christDate !== "" && selectedDateEnd !== "") {
-      //   notify.success("filter");
-      filterData(christDate, selectedDateEnd);
-    } else {
-      LoadData();
-    }
-  };
+  // const handleDatePickerStart = (christDate, buddhistDate) => {
+  //   setSelectedDateStart(christDate);
+  //   // setSelectedDateStartTH(buddhistDate); วันที่ไทย
+  //   if (christDate !== "" && selectedDateEnd !== "") {
+  //     //   notify.success("filter");
+  //     filterData(christDate, selectedDateEnd);
+  //   } else {
+  //     LoadData();
+  //   }
+  // };
 
-  const handleDatePickerEnd = (christDate, buddhistDate) => {
-    setSelectedDateEnd(christDate);
-    // setSelectedDateEndTH(buddhistDate); วันที่ไทย
-    if (christDate !== "" && selectedDateStart !== "") {
-      //   notify.success("filter");
-      filterData(selectedDateStart, christDate);
-    } else {
-      LoadData();
-    }
-  };
+  // const handleDatePickerEnd = (christDate, buddhistDate) => {
+  //   setSelectedDateEnd(christDate);
+  //   // setSelectedDateEndTH(buddhistDate); วันที่ไทย
+  //   if (christDate !== "" && selectedDateStart !== "") {
+  //     //   notify.success("filter");
+  //     filterData(selectedDateStart, christDate);
+  //   } else {
+  //     LoadData();
+  //   }
+  // };
 
   const dateText = (begin, finish) => {
     const len = date2Thai(begin).toString().length;
@@ -210,7 +210,7 @@ const AdminAssessment = () => {
             การประเมิน
           </label>
           <div className="row no-gutter  mb-3">
-            <div className="col-sm-6">
+            {/* <div className="col-sm-6">
               <label style={{ color: "#c3c9d2" }}>ค้นหารอบการประเมิน</label>
               <Input.Group compact>
                 <WatDatePicker
@@ -266,8 +266,8 @@ const AdminAssessment = () => {
                   prefix={<i className="fas fa-calendar-alt" />}
                 />
               </Input.Group>
-            </div>
-            <div className="col-sm-6  d-sm-flex align-items-sm-end justify-content-sm-end mt-2 ">
+            </div> */}
+            <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2 ">
               <Button
                 shape="round"
                 size={"large"}

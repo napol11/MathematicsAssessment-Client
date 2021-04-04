@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { CModal, CModalHeader, CModalBody, CModalFooter } from "@coreui/react";
-import { Spin, Form } from "antd";
+import { Spin, Form, Input } from "antd";
 import { WatDatePicker } from "thaidatepicker-react";
 import { notify } from "../CustomComponent";
 
@@ -8,8 +8,8 @@ const ModalAssess = (props) => {
   const [Loading, setLoading] = useState(false);
   const [selectedDateStart, setSelectedDateStart] = useState("");
   const [selectedDateEnd, setSelectedDateEnd] = useState("");
-  const [selectedDateStartR, setSelectedDateStartR] = useState("");
-  const [selectedDateEndR, setSelectedDateEndR] = useState("");
+  // const [selectedDateStartR, setSelectedDateStartR] = useState("");
+  // const [selectedDateEndR, setSelectedDateEndR] = useState("");
   const formRef = useRef(null);
 
   const handleDatePickerStart = (christDate, buddhistDate) => {
@@ -21,13 +21,13 @@ const ModalAssess = (props) => {
     setSelectedDateEnd(christDate);
   };
 
-  const handleDatePickerStartR = (christDate, buddhistDate) => {
-    setSelectedDateStartR(christDate);
-  };
+  // const handleDatePickerStartR = (christDate, buddhistDate) => {
+  //   setSelectedDateStartR(christDate);
+  // };
 
-  const handleDatePickerEndR = (christDate, buddhistDate) => {
-    setSelectedDateEndR(christDate);
-  };
+  // const handleDatePickerEndR = (christDate, buddhistDate) => {
+  //   setSelectedDateEndR(christDate);
+  // };
 
   const close = () => {
     formRef.current.resetFields();
@@ -38,8 +38,8 @@ const ModalAssess = (props) => {
   const reset = () => {
     setSelectedDateStart("");
     setSelectedDateEnd("");
-    setSelectedDateStartR("");
-    setSelectedDateEndR("");
+    // setSelectedDateStartR("");
+    // setSelectedDateEndR("");
   };
 
   const onFinish = (values) => {
@@ -86,16 +86,16 @@ const ModalAssess = (props) => {
           </label>
 
           <div className="col-2 text-right">
-              <i
-                onClick={close}
-                className="fas fa-times-circle"
-                style={{
-                  color: "red",
-                  cursor: "pointer",
-                  fontSize: 20,
-                }}
-              />
-            </div>
+            <i
+              onClick={close}
+              className="fas fa-times-circle"
+              style={{
+                color: "red",
+                cursor: "pointer",
+                fontSize: 20,
+              }}
+            />
+          </div>
         </CModalHeader>
         <Form
           ref={formRef}
@@ -107,9 +107,9 @@ const ModalAssess = (props) => {
             <div className="row ">
               <div className="col-sm-6">
                 <Form.Item
-                  style={{ marginBottom: "10px"}}
+                  style={{ marginBottom: "10px" }}
                   name={"roundStart"}
-                  label="รอบการประเมิน ตั้งแต่"
+                  label="รอบการประเมิน "
                   rules={[
                     {
                       required: true,
@@ -117,7 +117,12 @@ const ModalAssess = (props) => {
                     },
                   ]}
                 >
-                  <WatDatePicker
+                  <Input
+                    placeholder=" ‎‏‏‎ ‎ระบุรอบประเมิน"
+                    autoComplete="off"
+                    className="input-modal"
+                  />
+                  {/* <WatDatePicker
                     value={selectedDateStartR}
                     onChange={handleDatePickerStartR}
                     placeholder={"ระบุวันที่เริ่มรอบการประเมิน"}
@@ -130,10 +135,10 @@ const ModalAssess = (props) => {
                     }}
                     maxDate={selectedDateEndR}
                     clearable={true}
-                  />
+                  /> */}
                 </Form.Item>
               </div>
-              <div className="col-sm-6">
+              {/* <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
                   name={"roundEnd"}
@@ -159,7 +164,7 @@ const ModalAssess = (props) => {
                     clearable={true}
                   />
                 </Form.Item>
-              </div>
+              </div> */}
             </div>
             <div className="row no-gutter">
               <div className="col-sm-6">
