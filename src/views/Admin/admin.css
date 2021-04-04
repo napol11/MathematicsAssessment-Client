@@ -23,14 +23,14 @@
   background-color: #ced2d8 !important;
 }
 
-/* .input-modal {
-    border: 1.5px solid orange !important;
-    border-radius: 5px;
-    width: 100%;
-} */
+.input-modal:hover {
+    border: 1.5px solid #f26843 !important;
+}
 
 .input-modal:focus {
-    outline: none !important
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
 }
 
 .btn-modal-cancel {
@@ -64,17 +64,25 @@
     outline: none !important
 }
 
-.select-modal {
-    /* border-radius: 5px;
-    /* padding: 5px 25px; */
-    /* border: 1px solid orange;
-    width: 100%; */ 
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:hover,
+.ant-select-open .ant-select-selector {
+  border-color: #f26843 !important;
 }
 
-.select-modal:focus {
-    /* outline: none !important */
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+  border-color: #f26843 !important;
+  box-shadow: 0 0 4px #f26843 !important;
 }
 
+/* .datepicker-modal:hover {
+    border: 1.5px solid #f26843 !important;
+}
 
-
-
+.datepicker-modal:focus {
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
+} */

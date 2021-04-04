@@ -187,7 +187,7 @@ const ModalAssess = (props) => {
                     displayFormat={"DD MMM YY"}
                     inputStyle={{
                       color: "black",
-                      width: 350,
+                      width: 370,
                     }}
                     maxDate={selectedDateEnd}
                     clearable={true}
