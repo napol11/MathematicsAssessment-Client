@@ -66,11 +66,11 @@ const EditableCell = ({
         rules={[
           {
             required: true,
-            message: `กรุณากรอก ${title}!`,
+            message: `กรุณาระบุ ${title}!`,
           },
         ]}
       >
-        <Input ref={inputRef} onPressEnter={save} onBlur={save} />
+        <Input className="textbox" ref={inputRef} onPressEnter={save} onBlur={save} />
       </Form.Item>
     ) : (
       <div
@@ -136,7 +136,7 @@ class Form2Table1 extends React.Component {
         width: "10%",
         render: (_, record) =>
           this.state.dataSource.length >= 1 ? (
-            <Button style={{ borderColor: "#F04D22" }}>อัปโหลดเอกสาร</Button>
+            <Button className="buttons_upload">อัปโหลดเอกสาร</Button>
           ) : null,
       },
       {
@@ -146,10 +146,10 @@ class Form2Table1 extends React.Component {
         render: (_, record) =>
           this.state.dataSource.length >= 1 ? (
             <Popconfirm
-              title="คุณแน่ใจว่าจะลบ ?"
+              title="คุณแน่ใจว่าจะลบกิจกรรมนี้ ?"
               onConfirm={() => this.handleDelete(record.key)}
             >
-              <MdDelete size="25px" color="red" />
+              <MdDelete size="25px" color="red" cursor="pointer" />
             </Popconfirm>
           ) : null,
       },
@@ -171,12 +171,12 @@ class Form2Table1 extends React.Component {
     const newData = {
       key: count,
       Table1No: `${count}`,
-      Table1Activity: "กรอกชื่อกิจกรรม",
-      Table1FTE: "กรอกค่า FTE",
-      Table1Level: "กรอกระดับ",
+      Table1Activity: "ระบุชื่อกิจกรรม",
+      Table1FTE: "ระบุค่า FTE",
+      Table1Level: "ระบุระดับ",
       Table1TotalScore: "",
       Table1TotalScorePercent: "",
-      Table1Comments: "กรอกความคิดเห็น",
+      Table1Comments: "ระบุความคิดเห็น",
     };
     this.setState({
       dataSource: [...dataSource, newData],

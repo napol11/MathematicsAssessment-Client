@@ -157,6 +157,23 @@
     color: white;
 }
 
+.buttons_upload {
+    color: black;
+    border: 1px solid #F6BE32;
+}
+
+.buttons_upload:hover {
+    color: white;
+    border: 1px solid #F6BE32;
+    background: #F6BE32;
+}
+
+.buttons_upload:focus {
+    color: white;
+    border: 1px solid #F6BE32;
+    background: #F6BE32;
+}
+
 .buttons_form2_1 {
     background: white;
     border: 2px solid #F6BE32;
