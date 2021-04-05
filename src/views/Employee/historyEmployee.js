@@ -48,63 +48,52 @@ const HistoryEmployee = () => {
     <div className="justify-center align-center">
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12 ">
-          <div className="text-center">
             <label
-              style={{ fontWeight: "bold", fontSize: "36px", color: "black" }}
+              style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
             >
               ประวัติพนักงาน
             </label>
-          </div>
+            
+            <div
+                  onMouseEnter={() => setHover(true)}
+                  onMouseLeave={() => setHover(false)}
+                  onClick={() => setVisible(true)}
+                  type="submit"
+                  className="text-uppercase mb-2 rounded-pill shadow-sm align-items-sm-end"
+                  style={
+                    hover
+                      ? {
+                          color: "white",
+                          padding: "10px",
+                          marginLeft: "90%",
+                          backgroundColor: "#f6be32",
+                          border: "2px solid #f6be32",
+                          fontSize: "15px",
+                          textAlign: "center",
+                          width: "10%",
+                        }
+                      : {
+                          color: "black",
+                          padding: "10px",
+                          marginLeft: "90%",
+                          backgroundColor: "white",
+                          border: "2px solid #f6be32",
+                          fontSize: "15px",
+                          textAlign: "center",
+                          width: "10%",
+                        }
+                  }
+                >
+                  เปลี่ยนรหัสผ่าน
+                </div>
+
           <div
             className="container-fluid "
             // style={{ paddingTop: "10px" }}
           >
             <div className="row no-gutter">
               <div
-                className="col-md-5 text-center"
-                style={{ paddingTop: "1%" }}
-              >
-                {/* <CImg
-                  src={"avatars/5.jpg"}
-                  style={{
-                    borderRadius: "50em",
-                    height: "auto",
-                    width: "150px",
-                    border: "1px solid #f8f8f8 ",
-                  }}
-                /> */}
-                <br />
-                {/* <div
-                  onMouseEnter={() => setHover(true)}
-                  onMouseLeave={() => setHover(false)}
-                  onClick={() => setVisible(true)}
-                  type="submit"
-                  className="text-uppercase mb-2 rounded-pill shadow-sm"
-                  style={
-                    hover
-                      ? {
-                          color: "white",
-                          padding: "10px 80px",
-                          marginTop: "10%",
-                          backgroundColor: "#f6be32",
-                          border: "1px solid #f6be32",
-                          fontSize: "16px",
-                        }
-                      : {
-                          color: "black",
-                          padding: "10px 80px",
-                          marginTop: "10%",
-                          backgroundColor: "white",
-                          border: "1px solid #f6be32",
-                          fontSize: "16px",
-                        }
-                  }
-                >
-                  เปลี่ยนรหัสผ่าน
-                </div> */}
-              </div>
-              <div
-                className="col-12 "
+                className="col-12 mt-2"
                 style={{
                   //   border: "1px solid black",
                   minHeight: "100px",
@@ -122,7 +111,7 @@ const HistoryEmployee = () => {
                 >
                   ข้อมูลทั่วไป
                 </label>
-                <div className="row no-gutter mb-4">
+                <div className="row no-gutter mt-4 ml-3">
                   <div className="col-md-4">
                     <label
                       className="m-0"
@@ -169,7 +158,7 @@ const HistoryEmployee = () => {
                     </label>
                   </div>
                 </div>
-                <div className="row no-gutter mb-4">
+                <div className="row no-gutter mt-4 ml-3">
                   <div className="col-md-4">
                     <label
                       className="m-0"
@@ -201,7 +190,7 @@ const HistoryEmployee = () => {
                     </label>
                   </div>
                 </div>
-                <div className="row no-gutter mb-4">
+                <div className="row no-gutter mt-4 ml-3 mb-3">
                   <div className="col-md-8">
                     <label
                       className="m-0"
@@ -232,38 +221,6 @@ const HistoryEmployee = () => {
                       {data.times}
                     </label>
                   </div>
-                </div>
-                <div
-                  onMouseEnter={() => setHover(true)}
-                  onMouseLeave={() => setHover(false)}
-                  onClick={() => setVisible(true)}
-                  type="submit"
-                  className="text-uppercase mb-2 rounded-pill shadow-sm"
-                  style={
-                    hover
-                      ? {
-                          color: "white",
-                          padding: "10px 80px",
-                          marginTop: "3%",
-                          backgroundColor: "#f6be32",
-                          border: "1px solid #f6be32",
-                          fontSize: "16px",
-                          textAlign: "center",
-                          width: "20%",
-                        }
-                      : {
-                          color: "black",
-                          padding: "10px 80px",
-                          marginTop: "3%",
-                          backgroundColor: "white",
-                          border: "1px solid #f6be32",
-                          fontSize: "16px",
-                          textAlign: "center",
-                          width: "20%",
-                        }
-                  }
-                >
-                  เปลี่ยนรหัสผ่าน
                 </div>
               </div>
 
