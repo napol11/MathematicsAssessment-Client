@@ -14,7 +14,7 @@ const AdminCommittee = () => {
   const [hover, setHover] = useState(false);
   const [LoadingTable, setLoadingTable] = useState(true);
   const [dataCommittee, setdataCommittee] = useState([]);
-  // const [SendData, setSendData] = useState([]);
+  const [SendData, setSendData] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -85,30 +85,30 @@ const AdminCommittee = () => {
         );
       },
     },
-    // {
-    //   title: <div style={title}>{null}</div>,
-    //   dataIndex: "edit",
-    //   key: "edit",
-    //   width: "50px",
-    //   render: (text, row, index) => {
-    //     return (
-    //       <div
-    //         style={{
-    //           wordWrap: "break-word",
-    //           wordBreak: "break-word",
-    //           textAlign: "center",
-    //           backgroundColor: "none",
-    //           cursor: "pointer",
-    //         }}
-    //       >
-    //         <i
-    //           className="fas fa-user-edit editBtn"
-    //           onClick={() => openModal("edit", "committee")}
-    //         />
-    //       </div>
-    //     );
-    //   },
-    // },
+    {
+      title: <div style={title}>{null}</div>,
+      dataIndex: "edit",
+      key: "edit",
+      width: "50px",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              textAlign: "center",
+              backgroundColor: "none",
+              cursor: "pointer",
+            }}
+          >
+            <i
+              className="fas fa-user-edit editBtn"
+              onClick={() => openModal("edit", "committee")}
+            />
+          </div>
+        );
+      },
+    },
   ];
 
   const openModal = (type, page) => {
@@ -217,19 +217,17 @@ const AdminCommittee = () => {
             locale={{ emptyText: "ไม่มีข้อมูล" }}
             // scroll={{ y: 500 }}
             size="middle"
-            // onRow={(record, recordIndex) => ({
-            // onClick: (e) => {
-            //   console.log(e);
-            //   // setSendData(record);
-            //   openModal("edit", "committee");
-            // },
-            // })}
+            onRow={(record, recordIndex) => ({
+              onClick: (e) => {
+                console.log(e);
+                setSendData(record);
+                openModal("edit", "committee");
+              },
+            })}
           />
         </div>
       </div>
-      <ModalCommittee
-        reload={LoadData} //data={SendData}
-      />
+      <ModalCommittee reload={LoadData} data={SendData} />
     </div>
   );
 };
