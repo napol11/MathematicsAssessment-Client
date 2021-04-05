@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Input, Popconfirm } from "antd";
+import { Button, Table, Popconfirm } from "antd";
 import { notify } from "../CustomComponent";
 import ModalStaff from "./ModalStaff";
 
 import "./admin.css";
+import axios from "axios";
+const url = `http://localhost:3001/api/admin`;
 
-const { Search } = Input;
+// const { Search } = Input;
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
 const AdminStaff = () => {
   const [hover, sethover] = useState(false);
   const [LoadingTable, setLoadingTable] = useState(false);
-  const [LoadingSearch, setLoadingSearch] = useState(false);
+  // const [LoadingSearch, setLoadingSearch] = useState(false);
   const [datastaff, setdatastaff] = useState([]);
-  const [filterstaff, setfilterstaff] = useState([]);
+  // const [filterstaff, setfilterstaff] = useState([]);
   //   const [SendData, setSendData] = useState([]);
   const [show, setshow] = useState(false);
 
@@ -32,6 +34,9 @@ const AdminStaff = () => {
       title: <div style={title}>ชื่อ-นามสกุล</div>,
       dataIndex: "name",
       key: "name",
+      render: (text, row, index) => {
+        return `${row.firstname} ${row.lastname}`;
+      },
     },
     {
       title: <div style={title}>ตำแหน่ง</div>,
@@ -40,8 +45,8 @@ const AdminStaff = () => {
     },
     {
       title: <div style={title}>เบอร์โทร</div>,
-      dataIndex: "bel",
-      key: "bel",
+      dataIndex: "tel",
+      key: "tel",
     },
     {
       title: <div style={title}>อีเมล</div>,
@@ -83,114 +88,40 @@ const AdminStaff = () => {
   const deleteStaff = (row) => {
     console.log("delete พนักงาน", row);
     notify.success("ลบรายชื่อพนักงาน เรียบร้อย!");
+    axios.delete(`${url}/employee/` + row.id);
+    LoadData();
   };
 
-  const search = (value) => {
-    setLoadingSearch(true); // loading ปุ่ม search  // true = โหลดอยู่ , false = เสร็จแล้ว
-    setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
-    const regex = new RegExp(value.toString().toUpperCase(), "g");
-    const find = filterstaff.filter(({ name }) => {
-      const upper = name.toString().toUpperCase();
-      return upper.match(regex);
-    });
-    setdatastaff(find); // set Data ใส่ตาราง
-    setLoadingSearch(false);
-    setLoadingTable(false);
-  };
+  // const search = (value) => {
+  //   setLoadingSearch(true); // loading ปุ่ม search  // true = โหลดอยู่ , false = เสร็จแล้ว
+  //   setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
+  //   const regex = new RegExp(value.toString().toUpperCase(), "g");
+  //   const find = filterstaff.filter(({ name }) => {
+  //     const upper = name.toString().toUpperCase();
+  //     return upper.match(regex);
+  //   });
+  //   setdatastaff(find); // set Data ใส่ตาราง
+  //   setLoadingSearch(false);
+  //   setLoadingTable(false);
+  // };
 
   const LoadData = () => {
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
     setLoadingTable(true);
     // set Data ใส่ตาราง
-    setdatastaff([
-      {
-        no: "1",
-        name: "John Brown",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "2",
-        name: "Jim Green",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "3",
-        name: "Joe Black",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "4",
-        name: "John Brown",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "5",
-        name: "Jim Green",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "6",
-        name: "Joe Black",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-    ]);
+    axios.get(`${url}/employee`).then((res) => {
+      const data = res.data.data.map((v, i) => ({
+        ...v,
+        no: i + 1,
+        firstname: v.employee_firstname,
+        lastname: v.employee_lastname,
+        position: v.employee_position,
+        tel: v.employee_tel,
+      }));
+      setdatastaff(data);
+      // setfilterstaff(data);
+    });
     // set Data ไว้ filter
-    setfilterstaff([
-      {
-        no: "1",
-        name: "John Brown",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "2",
-        name: "Jim Green",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "3",
-        name: "Joe Black",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "4",
-        name: "John Brown",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "5",
-        name: "Jim Green",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-      {
-        no: "6",
-        name: "Joe Black",
-        position: "xxxxxxxxxxx",
-        bel: "xxxxxxxxxxx",
-        email: "xxxxx@hotmail.com",
-      },
-    ]);
     setLoadingTable(false);
   };
 
@@ -208,7 +139,7 @@ const AdminStaff = () => {
             รายชื่อพนักงาน
           </label>
           <div className="row no-gutter  mb-3">
-            <div className="col-sm-6">
+            {/* <div className="col-sm-6">
               <Search
                 className="adminButton"
                 placeholder="ค้นหารายชื่อพนักงาน"
@@ -216,8 +147,8 @@ const AdminStaff = () => {
                 style={{ width: "80%" }}
                 onSearch={search}
               />
-            </div>
-            <div className="col-sm-6 text-sm-right ">
+            </div> */}
+            <div className="col-sm-12 text-sm-right ">
               <Button
                 shape="round"
                 size={"large"}
@@ -252,19 +183,20 @@ const AdminStaff = () => {
             className="adminTable"
             columns={columnsstaff}
             dataSource={datastaff}
-            pagination={{
-              defaultPageSize: 10,
-              showSizeChanger: true,
-              pageSizeOptions: ["10", "20", "30"],
-              locale: { items_per_page: "/ หน้า" },
-            }}
+            pagination={false}
+            // pagination={{
+            //   defaultPageSize: 10,
+            //   showSizeChanger: true,
+            //   pageSizeOptions: ["10", "20", "30"],
+            //   locale: { items_per_page: "/ หน้า" },
+            // }}
             loading={{
               spinning: LoadingTable,
               tip: "กำลังโหลด...",
               size: "large",
             }}
             locale={{ emptyText: "ไม่มีข้อมูล" }}
-            scroll={{ y: 500 }}
+            // scroll={{ y: 500 }}
             size="middle"
             // onRow={(record, recordIndex) => ({
             //   onClick: (e) => {

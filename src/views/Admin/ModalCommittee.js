@@ -55,9 +55,12 @@ const ModalCommittee = (props) => {
   };
 
   const addcommittee = (values) => {
-    console.log(values);
+    const data = {
+      ...values,
+      status: values.position === "หัวหน้า" ? "1" : "0",
+    };
     axios
-      .post(`${url}/committee`, { values })
+      .post(`${url}/committee`, data)
       .then((res) => {
         console.log(res);
       })
@@ -68,7 +71,7 @@ const ModalCommittee = (props) => {
 
   const saveCommittee = (values) => {
     setLoading(true);
-    // close();
+    close();
     notify.success("บันทึกรายชื่อกรรมการเรียบร้อย !");
     props.reload();
     setLoading(false);
@@ -92,32 +95,10 @@ const ModalCommittee = (props) => {
     }
   };
 
-  // const onChange = (value) => {
-  //   // const value = e.target.value;
-  //   console.log(value);
-  // };
-
-  // const onChangeFirstName = (e) => {
-  //   setFirstName(e.target.value);
-  // };
-
-  // const onChangeLastName = (e) => {
-  //   setLastName(e.target.value);
-  // };
-
   const onChangePosition = (e) => {
     const value = e;
     console.log(value);
-    // setPosition(e);
   };
-
-  // const onChangeEmail = (e) => {
-  //   setEmail(e.target.value);
-  // };
-
-  // const onChangeTal = (e) => {
-  //   setTal(e.target.value);
-  // };
 
   return (
     <CModal
@@ -160,7 +141,7 @@ const ModalCommittee = (props) => {
               <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
-                  name={["user", "committee_firstname"]}
+                  name={["firstname"]}
                   label="ชื่อ"
                   rules={[{ required: true, message: "กรุณาระบุ ชื่อ" }]}
                 >
@@ -169,15 +150,13 @@ const ModalCommittee = (props) => {
                     placeholder=" ‎‏‏‎ ‎ระบุชื่อ"
                     autoComplete="off"
                     className="input-modal"
-                    // onChange={onChangeFirstName}
-                    // value={firtName}
                   />
                 </Form.Item>
               </div>
               <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
-                  name={["user", "committee_lastname"]}
+                  name={["lastname"]}
                   label="นามสกุล"
                   rules={[{ required: true, message: "กรุณาระบุ นามสกุล" }]}
                 >
@@ -185,15 +164,13 @@ const ModalCommittee = (props) => {
                     placeholder=" ‎‏‏‎ ‎ระบุนามสกุล"
                     autoComplete={"off"}
                     className="input-modal"
-                    // onChange={onChangeLastName}
-                    // value={lastName}
                   />
                 </Form.Item>
               </div>
             </div>
             <Form.Item
               style={{ marginBottom: "10px" }}
-              name={["user", "committee_position"]}
+              name={["position"]}
               label="ตำแหน่ง"
               rules={[{ required: true, message: "กรุณาระบุ ตำแหน่ง" }]}
             >
@@ -210,7 +187,7 @@ const ModalCommittee = (props) => {
               <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
-                  name={["user", "email"]}
+                  name={["email"]}
                   label="อีเมล"
                   rules={[
                     { required: true, message: "กรุณาระบุ อีเมล" },
@@ -221,16 +198,13 @@ const ModalCommittee = (props) => {
                     placeholder=" ‎‏‏‎ ‎ระบุอีเมล"
                     autoComplete={"off"}
                     className="input-modal"
-
-                    // onChange={onChangeEmail}
-                    // value={email}
                   />
                 </Form.Item>
               </div>
               <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
-                  name={["user", "committee_tel"]}
+                  name={["tel"]}
                   label="เบอร์โทร"
                   rules={[{ required: true, message: "กรุณาระบุ เบอร์โทร" }]}
                 >
@@ -240,8 +214,6 @@ const ModalCommittee = (props) => {
                     className="input-modal"
                     minLength={10}
                     maxLength={10}
-                    // onChange={onChangeTal}
-                    // value={tal}
                   />
                 </Form.Item>
               </div>

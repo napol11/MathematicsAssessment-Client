@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Table, Popconfirm } from "antd";
 // import { WatDatePicker } from "thaidatepicker-react";
 import { notify } from "../CustomComponent";
-import { date2Thai } from "../CustomFunction";
+// import { date2Thai } from "../CustomFunction";
 import ModalAssess from "./ModalAssess";
 
 import "./admin.css";
+import axios from "axios";
+const url = `http://localhost:3001/api/admin`;
 
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
@@ -23,29 +25,18 @@ const AdminAssessment = () => {
   // const [SendData, setSendData] = useState([]);
 
   const LoadData = () => {
+    axios.get(`${url}/assessment`).then((res) => {
+      console.log(res);
+      const data = res.data.data.map((v, i) => ({
+        ...v,
+        no: i + 1,
+        name: v.assessment_name,
+      }));
+      setdata(data);
+    });
+
     setLoadingTable(true);
-    setdata([
-      // custom ใน column
-      {
-        no: "1",
-        // round: "วว ดด ปป - วว ดด ปป",
-        start: "2021-02-01", // yyyy-mm-dd
-        end: "2021-02-20", // yyyy-mm-dd
-      },
-      {
-        no: "2",
-        // round: "วว ดด ปป - วว ดด ปป",
-        start: "2021-02-20", // yyyy-mm-dd
-        end: "2021-02-22", // yyyy-mm-dd
-      },
-      {
-        no: "3",
-        // round: "วว ดด ปป - วว ดด ปป",
-        start: "2021-02-22", // yyyy-mm-dd
-        end: "2021-02-25", // yyyy-mm-dd
-      },
-    ]);
-    // setfilter([
+    // setdata([
     //   // custom ใน column
     //   {
     //     no: "1",
@@ -87,6 +78,8 @@ const AdminAssessment = () => {
   const deleteStaff = (row) => {
     console.log("delete การประเมิน", row);
     notify.success(`ลบรายการประเมิน เรียบร้อย!`);
+    axios.delete(`${url}/assessment/` + row.id);
+    LoadData();
   };
 
   // const filterData = (s, e) => {
@@ -120,31 +113,31 @@ const AdminAssessment = () => {
   //   }
   // };
 
-  const dateText = (begin, finish) => {
-    const len = date2Thai(begin).toString().length;
-    const lend = date2Thai(finish).toString().length;
-    const ystart = date2Thai(begin)
-      .toString()
-      .substring(len - 2, len); // ตัดจาก 2564 เป็น 64
-    const dMstart = date2Thai(begin)
-      .toString()
-      .substring(0, len - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ.
-    const start = dMstart + ystart; // รวม  01 ก.พ. 64
-    const yend = date2Thai(finish)
-      .toString()
-      .substring(lend - 2, lend); // ตัดจาก 2564 เป็น 64
-    const dMend = date2Thai(finish)
-      .toString()
-      .substring(0, lend - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ
-    const end = dMend + yend; // รวม  01 ก.พ. 64
-    return `${start} - ${end}`;
-  };
+  // const dateText = (begin, finish) => {
+  //   const len = date2Thai(begin).toString().length;
+  //   const lend = date2Thai(finish).toString().length;
+  //   const ystart = date2Thai(begin)
+  //     .toString()
+  //     .substring(len - 2, len); // ตัดจาก 2564 เป็น 64
+  //   const dMstart = date2Thai(begin)
+  //     .toString()
+  //     .substring(0, len - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ.
+  //   const start = dMstart + ystart; // รวม  01 ก.พ. 64
+  //   const yend = date2Thai(finish)
+  //     .toString()
+  //     .substring(lend - 2, lend); // ตัดจาก 2564 เป็น 64
+  //   const dMend = date2Thai(finish)
+  //     .toString()
+  //     .substring(0, lend - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ
+  //   const end = dMend + yend; // รวม  01 ก.พ. 64
+  //   return `${start} - ${end}`;
+  // };
 
   const columns = [
     {
       title: <div style={title}>เลขที่</div>,
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "no",
+      key: "no",
       align: "center",
       width: "80px",
       render: (text, row, index) => {
@@ -157,12 +150,12 @@ const AdminAssessment = () => {
           รอบการประเมิน
         </div>
       ),
-      dataIndex: "round", //ตั้งไม่ซ้ำ กับฟิลด์ดาต้า
-      key: "round", //ตั้งไม่ซ้ำ กับฟิลด์ดาต้า
-      render: (text, row, index) => {
-        // ห้ามเป็น null
-        return dateText(row.start, row.end);
-      },
+      dataIndex: "name", //ตั้งไม่ซ้ำ กับฟิลด์ดาต้า
+      key: "name", //ตั้งไม่ซ้ำ กับฟิลด์ดาต้า
+      // render: (text, row, index) => {
+      //   // ห้ามเป็น null
+      //   return dateText(row.start, row.end);
+      // },
     },
     {
       title: <div style={title}>{null}</div>,
@@ -302,19 +295,20 @@ const AdminAssessment = () => {
             className="adminTable"
             columns={columns}
             dataSource={data}
-            pagination={{
-              defaultPageSize: 10,
-              showSizeChanger: true,
-              pageSizeOptions: ["10", "20", "30"],
-              locale: { items_per_page: "/ หน้า" },
-            }}
+            pagination={false}
+            // pagination={{
+            //   defaultPageSize: 10,
+            //   showSizeChanger: true,
+            //   pageSizeOptions: ["10", "20", "30"],
+            //   locale: { items_per_page: "/ หน้า" },
+            // }}
             loading={{
               spinning: LoadingTable,
               tip: "กำลังโหลด...",
               size: "large",
             }}
             locale={{ emptyText: "ไม่มีข้อมูล" }}
-            scroll={{ y: 500 }}
+            // scroll={{ y: 500 }}
             size="middle"
             // onRow={(record, recordIndex) => ({
             //   onClick: (e) => {

@@ -85,30 +85,30 @@ const AdminCommittee = () => {
         );
       },
     },
-    {
-      title: <div style={title}>{null}</div>,
-      dataIndex: "edit",
-      key: "edit",
-      width: "50px",
-      render: (text, row, index) => {
-        return (
-          <div
-            style={{
-              wordWrap: "break-word",
-              wordBreak: "break-word",
-              textAlign: "center",
-              backgroundColor: "none",
-              cursor: "pointer",
-            }}
-          >
-            <i
-              className="fas fa-user-edit editBtn"
-              onClick={() => openModal("edit", "committee")}
-            />
-          </div>
-        );
-      },
-    },
+    // {
+    //   title: <div style={title}>{null}</div>,
+    //   dataIndex: "edit",
+    //   key: "edit",
+    //   width: "50px",
+    //   render: (text, row, index) => {
+    //     return (
+    //       <div
+    //         style={{
+    //           wordWrap: "break-word",
+    //           wordBreak: "break-word",
+    //           textAlign: "center",
+    //           backgroundColor: "none",
+    //           cursor: "pointer",
+    //         }}
+    //       >
+    //         <i
+    //           className="fas fa-user-edit editBtn"
+    //           onClick={() => openModal("edit", "committee")}
+    //         />
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
 
   const openModal = (type, page) => {
@@ -123,8 +123,9 @@ const AdminCommittee = () => {
   };
 
   const deleteCommittee = (row) => {
-    console.log("delete กรรมการ", row);
     notify.success(`ลบรายชื่อกรรมการ เรียบร้อย!`);
+    axios.delete(`${url}/committee/` + row.id);
+    LoadData();
   };
 
   const LoadData = () => {
@@ -132,6 +133,7 @@ const AdminCommittee = () => {
 
     axios.get(`${url}/committee`).then((res) => {
       const data = res.data.data.map((v, i) => ({
+        ...v,
         no: i + 1,
         firstname: v.committee_firstname,
         lastname: v.committee_lastname,

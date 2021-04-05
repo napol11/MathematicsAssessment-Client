@@ -5,6 +5,9 @@ import { notify } from "../CustomComponent";
 import { WatDatePicker } from "thaidatepicker-react";
 import "./admin.css";
 
+import axios from "axios";
+const url = `http://localhost:3001/api/admin`;
+
 const { Option } = Select;
 
 export default function ModalStaff(props) {
@@ -75,7 +78,19 @@ export default function ModalStaff(props) {
     setLoading(false);
   };
 
-  const save = () => {
+  const addEmployee = (values) => {
+    axios
+      .post(`${url}/employee`, values)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const save = (values) => {
+    addEmployee(values);
     setLoading(true);
     close();
     notify.success("บันทึกรายชื่อพนักงานเรียบร้อย !");
@@ -85,8 +100,8 @@ export default function ModalStaff(props) {
 
   const onFinish = (values) => {
     // values ค่าจาก form
-    console.log(values);
-    save();
+    // console.log(values);
+    save(values);
   };
 
   return (
@@ -126,7 +141,7 @@ export default function ModalStaff(props) {
                 <div className="col-sm-6">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
-                    name={["user", "firstName"]}
+                    name={["firstname"]}
                     label="ชื่อ"
                     rules={[{ required: true, message: "กรุณาระบุ ชื่อ" }]}
                   >
@@ -140,7 +155,7 @@ export default function ModalStaff(props) {
                 <div className="col-sm-6">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
-                    name={["user", "lastName"]}
+                    name={["lastname"]}
                     label="นามสกุล"
                     rules={[{ required: true, message: "กรุณาระบุ นามสกุล" }]}
                   >
@@ -156,7 +171,7 @@ export default function ModalStaff(props) {
                 <div className="col-sm-6">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
-                    name={["user", "position"]}
+                    name={["position"]}
                     label="ตำแหน่ง"
                     rules={[{ required: true, message: "กรุณาระบุ ตำแหน่ง" }]}
                   >
@@ -164,15 +179,15 @@ export default function ModalStaff(props) {
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุตำแหน่ง"
                     >
-                      <Option value="committee">กรรมการ</Option>
-                      <Option value="lead">หัวหน้า</Option>
+                      <Option value="กรรมการ">กรรมการ</Option>
+                      <Option value="หัวหน้า">หัวหน้า</Option>
                     </Select>
                   </Form.Item>
                 </div>
                 <div className="col-sm-6">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
-                    name={["user", "number"]}
+                    name={["number"]}
                     label="เลขที่"
                     rules={[{ required: true, message: "กรุณาระบุ เลขที่" }]}
                   >
@@ -188,7 +203,7 @@ export default function ModalStaff(props) {
                 <div className="col-sm-6">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
-                    name={["user", "level"]}
+                    name={["degree"]}
                     label="ระดับ"
                     rules={[{ required: true, message: "กรุณาระบุ ระดับ" }]}
                   >
@@ -203,7 +218,7 @@ export default function ModalStaff(props) {
                 <div className="col-sm-6">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
-                    name={["user", "division"]}
+                    name={["group"]}
                     label="สังกัด"
                     rules={[{ required: true, message: "กรุณาระบุ สังกัด" }]}
                   >
@@ -220,7 +235,7 @@ export default function ModalStaff(props) {
                 <div className="col-sm-6">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
-                    name={["user", "dateStart"]}
+                    name={["start"]}
                     label="วันที่เริ่มทำงาน"
                     rules={[
                       {
@@ -235,7 +250,7 @@ export default function ModalStaff(props) {
                       displayFormat={"DD MMM YY"}
                       inputStyle={{
                         color: "black",
-                        width: 370,     
+                        width: 370,
                       }}
                       clearable={true}
                     />
@@ -244,7 +259,7 @@ export default function ModalStaff(props) {
                 <div className="col-sm-6">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
-                    name={["user", "email"]}
+                    name={["email"]}
                     label="อีเมล"
                     rules={[
                       { required: true, message: "กรุณาระบุ อีเมล" },
@@ -255,6 +270,22 @@ export default function ModalStaff(props) {
                       placeholder=" ‎‏‏‎ ‎ระบุอีเมล"
                       autoComplete={"off"}
                       className="input-modal"
+                    />
+                  </Form.Item>
+                </div>
+                <div className="col-sm-6">
+                  <Form.Item
+                    style={{ marginBottom: "10px" }}
+                    name={["tel"]}
+                    label="เบอร์โทร"
+                    rules={[{ required: true, message: "กรุณาระบุ เบอร์โทร" }]}
+                  >
+                    <Input
+                      placeholder=" ‎‏‏‎ เบอร์โทร"
+                      autoComplete={"off"}
+                      className="input-modal"
+                      minLength={10}
+                      maxLength={10}
                     />
                   </Form.Item>
                 </div>

@@ -4,6 +4,9 @@ import { Spin, Form, Input } from "antd";
 import { WatDatePicker } from "thaidatepicker-react";
 import { notify } from "../CustomComponent";
 
+import axios from "axios";
+const url = `http://localhost:3001/api/admin`;
+
 const ModalAssess = (props) => {
   const [Loading, setLoading] = useState(false);
   const [selectedDateStart, setSelectedDateStart] = useState("");
@@ -28,6 +31,20 @@ const ModalAssess = (props) => {
   // const handleDatePickerEndR = (christDate, buddhistDate) => {
   //   setSelectedDateEndR(christDate);
   // };
+  const addAssessment = (values) => {
+    axios
+      .post(`${url}/assessment`, values)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const save = (values) => {
+    addAssessment(values);
+  };
 
   const close = () => {
     formRef.current.resetFields();
@@ -49,8 +66,8 @@ const ModalAssess = (props) => {
       notify.success("แก้ไขรายการประเมินเรียบร้อย!");
     } else {
       close();
-      console.log("data save", values);
       notify.success("บันทึกรายการประเมินเรียบร้อย!");
+      save(values);
     }
   };
 
@@ -105,10 +122,10 @@ const ModalAssess = (props) => {
         >
           <CModalBody>
             <div className="row ">
-              <div className="col-sm-6">
+              <div className="col-12">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
-                  name={"roundStart"}
+                  name={"name"}
                   label="รอบการประเมิน "
                   rules={[
                     {
@@ -226,7 +243,7 @@ const ModalAssess = (props) => {
               <div className="col-12">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
-                  name={"finish"}
+                  name={"endedit"}
                   label="วันที่สิ้นสุดการกรอกแบบประเมิน"
                   rules={[
                     {
