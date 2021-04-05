@@ -12,7 +12,7 @@ const CommitteeMain = () => {
 
   const [LoadingTable, setLoadingTable] = useState(false);
   const [data, setdata] = useState([]);
-  const [filter, setfilter] = useState([]);
+//   const [filter, setfilter] = useState([]);
   // const [Title, setTitle] = useState("");
 
   const columns = [
@@ -60,17 +60,17 @@ const CommitteeMain = () => {
     },
   ];
 
-  const search = (value) => {
-    setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
+//   const search = (value) => {
+//     setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
 
-    const regex = new RegExp(value.toString().toUpperCase(), "g");
-    const find = filter.filter(({ name }) => {
-      const upper = name.toString().toUpperCase();
-      return upper.match(regex);
-    });
-    setdata(find); // set Data ใส่ตาราง
-    setLoadingTable(false);
-  };
+//     const regex = new RegExp(value.toString().toUpperCase(), "g");
+//     const find = filter.filter(({ name }) => {
+//       const upper = name.toString().toUpperCase();
+//       return upper.match(regex);
+//     });
+//     setdata(find); // set Data ใส่ตาราง
+//     setLoadingTable(false);
+//   };
 
   const LoadData = () => {
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
@@ -89,18 +89,18 @@ const CommitteeMain = () => {
       },
     ]);
     // set Data ไว้ filter
-    setfilter([
-      {
-        no: "1",
-        name: "1 มกราคม 2562  -  30  กรกฎาคม 2562",
-        status: "wait",
-      },
-      {
-        no: "2",
-        name: "1 ตุลาคม 2562  -  30  ธันวาคม 2562",
-        status: "wait",
-      },
-    ]);
+    // setfilter([
+    //   {
+    //     no: "1",
+    //     name: "1 มกราคม 2562  -  30  กรกฎาคม 2562",
+    //     status: "wait",
+    //   },
+    //   {
+    //     no: "2",
+    //     name: "1 ตุลาคม 2562  -  30  ธันวาคม 2562",
+    //     status: "wait",
+    //   },
+    // ]);
     // set Title
     // setTitle(
     //   `${date2Thai("2020-01-01", true)} - ${date2Thai("2020-07-01", true)}`
