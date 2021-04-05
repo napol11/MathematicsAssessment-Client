@@ -19,12 +19,6 @@ const ModalCommittee = (props) => {
   const [Title, setTitle] = useState(null);
   const [Loading, setLoading] = useState(false);
 
-  // const [firtName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // // const [position, setPosition] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [tal, setTal] = useState("");
-
   const LoadData = () => {
     setLoading(true);
 
@@ -34,16 +28,16 @@ const ModalCommittee = (props) => {
       setTitle(`เพิ่ม${title}`);
     } else {
       setTitle(`แก้ไข${title}`);
+      console.log(props);
       ///  set values เซ็ทค่าในฟอร์ม
       // จะเอามาจาก props หรือ Axios ก็ได้
-      // formRef.current.setFieldsValue({
-      //   user: {
-      //     name: props.data.name,
-      //     position: props.data.position,
-      //     email: props.data.email,
-      //     tal: props.data.bel,
-      //   },
-      // });
+      formRef.current.setFieldsValue({
+        firstname: props.data.firstname,
+        lastname: props.data.lastname,
+        position: props.data.position,
+        email: props.data.email,
+        tal: props.data.tel,
+      });
     }
     // formRef.current.setFieldsValue({ user: { position: null } });
     setLoading(false);
@@ -59,8 +53,26 @@ const ModalCommittee = (props) => {
       ...values,
       status: values.position === "หัวหน้า" ? "1" : "0",
     };
+    // console.log(data);
     axios
       .post(`${url}/committee`, data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const editcommittee = (values) => {
+    const data = {
+      ...values,
+      status: values.position === "หัวหน้า" ? "1" : "0",
+    };
+    // console.log(data);
+    // console.log(props.data.id);
+    axios
+      .put(`${url}/committee/` + props.data.id, data)
       .then((res) => {
         console.log(res);
       })
@@ -78,12 +90,13 @@ const ModalCommittee = (props) => {
     addcommittee(values);
   };
 
-  const editCommittee = () => {
+  const editCommittee = (values) => {
     setLoading(true);
     close();
     notify.success("แก้ไขรายชื่อกรรมการเรียบร้อย !");
     props.reload();
     setLoading(false);
+    editcommittee(values);
   };
 
   const onFinish = (values) => {
@@ -91,7 +104,7 @@ const ModalCommittee = (props) => {
     if (adminModal.type === "add") {
       saveCommittee(values);
     } else {
-      editCommittee();
+      editCommittee(values);
     }
   };
 
@@ -198,6 +211,7 @@ const ModalCommittee = (props) => {
                     placeholder=" ‎‏‏‎ ‎ระบุอีเมล"
                     autoComplete={"off"}
                     className="input-modal"
+                    disabled={adminModal.type === "add" ? false : true}
                   />
                 </Form.Item>
               </div>
@@ -209,7 +223,7 @@ const ModalCommittee = (props) => {
                   rules={[{ required: true, message: "กรุณาระบุ เบอร์โทร" }]}
                 >
                   <Input
-                    placeholder={"‏‏‎ ‎‏‏‎ ‎ระบุเบอร์โทร"}
+                    placeholder="‏‏‎‎‎ระบุเบอร์โทร"
                     autoComplete={"off"}
                     className="input-modal"
                     minLength={10}

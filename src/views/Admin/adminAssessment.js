@@ -26,7 +26,7 @@ const AdminAssessment = () => {
 
   const LoadData = () => {
     axios.get(`${url}/assessment`).then((res) => {
-      console.log(res);
+      // console.log(res);
       const data = res.data.data.map((v, i) => ({
         ...v,
         no: i + 1,
@@ -183,6 +183,30 @@ const AdminAssessment = () => {
             >
               <i className="fas fa-trash-alt deleteBtn" />
             </Popconfirm>
+          </div>
+        );
+      },
+    },
+    {
+      title: <div style={title}>{null}</div>,
+      dataIndex: "edit",
+      key: "edit",
+      width: "50px",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              textAlign: "center",
+              backgroundColor: "none",
+              cursor: "pointer",
+            }}
+          >
+            <i
+              className="fas fa-edit editBtn"
+              // onClick={() => }
+            />
           </div>
         );
       },

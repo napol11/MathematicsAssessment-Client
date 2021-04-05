@@ -3,6 +3,8 @@ import { Button, Table, Popconfirm } from "antd";
 import { notify } from "../CustomComponent";
 import ModalStaff from "./ModalStaff";
 
+import { useDispatch } from "react-redux";
+
 import "./admin.css";
 import axios from "axios";
 const url = `http://localhost:3001/api/admin`;
@@ -18,6 +20,8 @@ const AdminStaff = () => {
   // const [filterstaff, setfilterstaff] = useState([]);
   //   const [SendData, setSendData] = useState([]);
   const [show, setshow] = useState(false);
+  const [SendData, setSendData] = useState([]);
+  const dispatch = useDispatch();
 
   const columnsstaff = [
     {
@@ -48,11 +52,11 @@ const AdminStaff = () => {
       dataIndex: "tel",
       key: "tel",
     },
-    {
-      title: <div style={title}>อีเมล</div>,
-      dataIndex: "email",
-      key: "email",
-    },
+    // {
+    //   title: <div style={title}>อีเมล</div>,
+    //   dataIndex: "email",
+    //   key: "email",
+    // },
     {
       title: <div style={title}>{null}</div>,
       dataIndex: "delete",
@@ -83,7 +87,42 @@ const AdminStaff = () => {
         );
       },
     },
+    {
+      title: <div style={title}>{null}</div>,
+      dataIndex: "edit",
+      key: "edit",
+      width: "50px",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              textAlign: "center",
+              backgroundColor: "none",
+              cursor: "pointer",
+            }}
+          >
+            <i
+              className="fas fa-user-edit editBtn"
+              // onClick={() => }
+            />
+          </div>
+        );
+      },
+    },
   ];
+
+  const openModal = (type, page) => {
+    dispatch({
+      type: "set",
+      adminModal: {
+        show: true,
+        type,
+        page,
+      },
+    });
+  };
 
   const deleteStaff = (row) => {
     console.log("delete พนักงาน", row);
@@ -198,18 +237,19 @@ const AdminStaff = () => {
             locale={{ emptyText: "ไม่มีข้อมูล" }}
             // scroll={{ y: 500 }}
             size="middle"
-            // onRow={(record, recordIndex) => ({
-            //   onClick: (e) => {
-            //     setSendData(record);
-            //     openModal("edit", "staff");
-            //   },
-            // })}
+            onRow={(record, recordIndex) => ({
+              onClick: (e) => {
+                console.log(e);
+                setSendData(record);
+                openModal("edit", "committee");
+              },
+            })}
           />
         </div>
       </div>
       <ModalStaff
         reload={LoadData}
-        // data={SendData}
+        data={SendData}
         show={show}
         closeModal={() => setshow(false)}
       />
