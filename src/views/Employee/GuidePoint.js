@@ -2,7 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Row, Col } from "antd";
 
-import { CModal, CModalHeader, CModalBody } from "@coreui/react";
+import { CModal, CModalBody } from "@coreui/react";
 
 import logo from "../pages/หมายเหตุคะแนน.png";
 
@@ -38,13 +38,28 @@ class GuidePoint extends React.Component {
           </button>
         </div>
         <CModal show={this.state.visible} onClose={this.showModal} size="lg">
-          <CModalHeader closeButton>หมายเหตุคะแนน</CModalHeader>
           <CModalBody>
-            <Row>
+            <div className="text-right">
+              <i
+                onClick={this.showModal}
+                className="fas fa-times-circle"
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                  fontSize: 20,
+                }}
+              />
+            </div>
+            <Row style={{ marginTop: "3%" }}>
+                <Col offset={13}>
+                    <h3>หมายเหตุการให้คะแนน</h3>
+                </Col>
+            </Row>
+            <Row justify="start" style={{ marginTop: "1%" }}>
               <Col>
                 <img className="guidepointpic" src={logo} alt="หมายเหตุคะแนน" />
               </Col>
-              <Col>
+              <Col style={{ textAlign: "start" }}>
                 <p>4 = ประสิทธิภาพดีเยี่ยม ควรเป็นแบบอย่าง</p>
                 <p>3.5 = ประสิทธิภาพดีมาก</p>
                 <p>3 = ประสิทธิภาพดี</p>
@@ -54,9 +69,9 @@ class GuidePoint extends React.Component {
                 <p>1 = ต้องการปรับปรุงพัฒนาอย่างเร่งด่วน</p>
               </Col>
             </Row>
-            <h3 style={{ textAlign: "center", marginTop: "2%" }}>
+            <h4 style={{ textAlign: "center", marginTop: "3%" }}>
               **คะแนนในส่วนนี้คิดเป็นคะแนนเต็ม 70 คะแนน ของผลงานในภาพรวมทั้งหมด
-            </h3>
+            </h4>
           </CModalBody>
         </CModal>
       </>
