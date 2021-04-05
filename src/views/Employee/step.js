@@ -113,7 +113,7 @@ function UserStep() {
           </Button>
         )}
       </div>
-      <CModal show={modal} size="lg">
+      <CModal show={modal} size="lg" style={{ textAlign:"center" }}>
         <CModalBody>
           <img
             src="/logo/warning.png"
@@ -122,16 +122,15 @@ function UserStep() {
               width: "15%",
               marginBottom: "3%",
               marginTop: "3%",
-              marginLeft: "40%",
             }}
           />
-          <Row style={{ marginLeft: "3%" }}>
-            <h2>หากท่านเลือก</h2>
-            <h2 style={{ color: "red" }}> "ยืนยัน" </h2>
-            <h2>จะไม่สามารถกลับมาแก้ไขแบบประเมินได้อีก</h2>
+          <Row justify="center">
+            <h4>หากท่านเลือก</h4>
+            <h4 style={{ color: "red"}}> "ยืนยัน" </h4>
+            <h4>จะไม่สามารถกลับมาแก้ไขแบบประเมินได้อีก</h4>
           </Row>
-          <Row style={{ marginLeft: "23%" }}>
-            <h2>ท่านต้องการส่งแบบประเมินหรือไม่</h2>
+          <Row justify="center">
+            <h4>ท่านต้องการส่งแบบประเมินหรือไม่</h4>
           </Row>
 
           <Button
@@ -141,7 +140,6 @@ function UserStep() {
               borderColor: "#F6BE32",
               color: "black",
               width: "15%",
-              marginLeft: "30%",
             }}
             onClick={() => handleCancel()}
           >
