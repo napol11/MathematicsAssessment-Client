@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Table, Input } from "antd";
+import { Table } from "antd";
 // import { date2Thai } from "../CustomFunction";
 import { useHistory } from "react-router-dom";
 
 import "./employee.css";
 
-const { Search } = Input;
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
 const CommitteeMain = () => {
   const history = useHistory();
 
   const [LoadingTable, setLoadingTable] = useState(false);
-  const [LoadingSearch, setLoadingSearch] = useState(false);
   const [data, setdata] = useState([]);
   const [filter, setfilter] = useState([]);
   // const [Title, setTitle] = useState("");
@@ -63,7 +61,6 @@ const CommitteeMain = () => {
   ];
 
   const search = (value) => {
-    setLoadingSearch(true); // loading ปุ่ม search  // true = โหลดอยู่ , false = เสร็จแล้ว
     setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
 
     const regex = new RegExp(value.toString().toUpperCase(), "g");
@@ -72,7 +69,6 @@ const CommitteeMain = () => {
       return upper.match(regex);
     });
     setdata(find); // set Data ใส่ตาราง
-    setLoadingSearch(false);
     setLoadingTable(false);
   };
 
@@ -123,35 +119,14 @@ const CommitteeMain = () => {
           <label
             style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
           >
-            รายการการประเมิน
+            รายการแบบประเมิน
             {/* {Title} */}
           </label>
-          <div className="row no-gutter  mb-3">
-            <div className="col-sm-6">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "20px",
-                  color: "black",
-                }}
-              >
-                {/* รายชื่อพนักงานที่ต้องประเมิน */}
-              </label>
-            </div>
-            <div className="col-sm-6 text-sm-right ">
-              <Search
-                className="committeeInput"
-                placeholder="ค้นหารายชื่อพนักงาน"
-                loading={LoadingSearch}
-                style={{ width: "80%" }}
-                onSearch={search}
-              />
-            </div>
-          </div>
+          
           {/* ********************************** */}
           <Table
             rowKey={"no"} // uniq key หรือ primary key ตัวไม่ซ้ำ
-            className="committeeTable"
+            className="committeeTable mt-4"
             columns={columns}
             dataSource={data}
             pagination={false}
