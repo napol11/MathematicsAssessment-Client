@@ -50,7 +50,7 @@ class GuidePoint extends React.Component {
                 }}
               />
             </div>
-            <Row style={{ marginTop: "3%" }}>
+            <Row style={{ marginTop: "1%" }}>
                 <Col offset={13}>
                     <h3>หมายเหตุการให้คะแนน</h3>
                 </Col>
@@ -69,7 +69,7 @@ class GuidePoint extends React.Component {
                 <p>1 = ต้องการปรับปรุงพัฒนาอย่างเร่งด่วน</p>
               </Col>
             </Row>
-            <h4 style={{ textAlign: "center", marginTop: "3%" }}>
+            <h4 style={{ textAlign: "center", marginTop: "2%" }}>
               **คะแนนในส่วนนี้คิดเป็นคะแนนเต็ม 70 คะแนน ของผลงานในภาพรวมทั้งหมด
             </h4>
           </CModalBody>
