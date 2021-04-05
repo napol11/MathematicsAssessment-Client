@@ -19,6 +19,10 @@
   color: #f26843;
 }
 
+.editBtn:hover {
+  color: #f26843;
+}
+
 .react-datepicker__close-icon::after {
   background-color: #ced2d8 !important;
 }

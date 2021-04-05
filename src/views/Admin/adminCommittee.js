@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import ModalCommittee from "./ModalCommittee";
 
 import "./admin.css";
-// import axios from "axios";
+import axios from "axios";
+const url = `http://localhost:3001/api/admin`;
 
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
@@ -13,7 +14,7 @@ const AdminCommittee = () => {
   const [hover, setHover] = useState(false);
   const [LoadingTable, setLoadingTable] = useState(true);
   const [dataCommittee, setdataCommittee] = useState([]);
-  //const [SendData, setSendData] = useState([]);
+  // const [SendData, setSendData] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -40,20 +41,20 @@ const AdminCommittee = () => {
       title: <div style={title}>ตำแหน่ง</div>,
       dataIndex: "position",
       key: "position",
-      render: (text, row, index) => {
-        return `${text === "lead" ? "หัวหน้า" : "กรรมการ"}`;
-      },
+      //   render: (text, row, index) => {
+      //     return `${text === "lead" ? "หัวหน้า" : "กรรมการ"}`;
+      //   },
     },
     {
       title: <div style={title}>เบอร์โทร</div>,
       dataIndex: "tel",
-      key: "bel",
+      key: "tel",
     },
-    {
-      title: <div style={title}>อีเมล</div>,
-      dataIndex: "email",
-      key: "email",
-    },
+    // {
+    //   title: <div style={title}>อีเมล</div>,
+    //   dataIndex: "email",
+    //   key: "email",
+    // },
     {
       title: <div style={title}>{null}</div>,
       dataIndex: "delete",
@@ -84,6 +85,30 @@ const AdminCommittee = () => {
         );
       },
     },
+    {
+      title: <div style={title}>{null}</div>,
+      dataIndex: "edit",
+      key: "edit",
+      width: "50px",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              textAlign: "center",
+              backgroundColor: "none",
+              cursor: "pointer",
+            }}
+          >
+            <i
+              className="fas fa-user-edit editBtn"
+              onClick={() => openModal("edit", "committee")}
+            />
+          </div>
+        );
+      },
+    },
   ];
 
   const openModal = (type, page) => {
@@ -105,67 +130,23 @@ const AdminCommittee = () => {
   const LoadData = () => {
     // Axios data ตอนเริ่ม Component
 
+    axios.get(`${url}/committee`).then((res) => {
+      const data = res.data.data.map((v, i) => ({
+        no: i + 1,
+        firstname: v.committee_firstname,
+        lastname: v.committee_lastname,
+        position: v.committee_position,
+        tel: v.committee_tel,
+      }));
+      setdataCommittee(data);
+    });
+
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
     setLoadingTable(false);
 
     //  set dataCommittee
     // position lead = "หัวหน้า"
     // position committee = "กรรมการ"
-    // const getCommittee = axios
-    //   .get(`http://localhost:3001/api/admin/committee`)
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
-    setdataCommittee([
-      // {
-      //   no: "1",
-      //   firstname: "John",
-      //   lastname: "Brown",
-      //   position: "lead",
-      //   bel: "xxxxxxxxxxx",
-      //   email: "xxxxx@hotmail.com",
-      // },
-      // {
-      //   no: "2",
-      //   firstname: "Jim",
-      //   lastname: "Green",
-      //   position: "committee",
-      //   bel: "xxxxxxxxxxx",
-      //   email: "xxxxx@hotmail.com",
-      // },
-      // {
-      //   no: "3",
-      //   firstname: "Joe",
-      //   lastname: "Black",
-      //   position: "committee",
-      //   bel: "xxxxxxxxxxx",
-      //   email: "xxxxx@hotmail.com",
-      // },
-      // {
-      //   no: "4",
-      //   firstname: "John",
-      //   lastname: "Brown1",
-      //   position: "lead",
-      //   bel: "xxxxxxxxxxx",
-      //   email: "xxxxx@hotmail.com",
-      // },
-      // {
-      //   no: "5",
-      //   firstname: "Jim",
-      //   lastname: "Green1",
-      //   position: "lead",
-      //   bel: "xxxxxxxxxxx",
-      //   email: "xxxxx@hotmail.com",
-      // },
-      // {
-      //   no: "6",
-      //   firstname: "Joe",
-      //   lastname: "Black1",
-      //   position: "lead",
-      //   bel: "xxxxxxxxxxx",
-      //   email: "xxxxx@hotmail.com",
-      // },
-    ]);
   };
 
   useEffect(() => {
@@ -219,26 +200,27 @@ const AdminCommittee = () => {
             className="adminTable"
             columns={columnsCommittee}
             dataSource={dataCommittee}
-            pagination={{
-              defaultPageSize: 10,
-              showSizeChanger: true,
-              pageSizeOptions: ["10", "20", "30"],
-              locale: { items_per_page: "/ หน้า" },
-            }}
+            pagination={false}
+            // pagination={{
+            //   defaultPageSize: 10,
+            //   showSizeChanger: true,
+            //   pageSizeOptions: ["10", "20", "30"],
+            //   locale: { items_per_page: "/ หน้า" },
+            // }}
             loading={{
               spinning: LoadingTable,
               tip: "กำลังโหลด...",
               size: "large",
             }}
             locale={{ emptyText: "ไม่มีข้อมูล" }}
-            scroll={{ y: 500 }}
+            // scroll={{ y: 500 }}
             size="middle"
             // onRow={(record, recordIndex) => ({
-            //   onClick: (e) => {
-            //     console.log(e);
-            //     setSendData(record);
-            //     openModal("edit", "committee");
-            //   },
+            // onClick: (e) => {
+            //   console.log(e);
+            //   // setSendData(record);
+            //   openModal("edit", "committee");
+            // },
             // })}
           />
         </div>
