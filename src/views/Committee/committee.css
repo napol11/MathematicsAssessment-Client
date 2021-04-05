@@ -22,7 +22,7 @@
 .btnCommitteeDisable {
   border: none;
   border-radius: 20px;
-  padding: 2px;
+  padding: 5px;
   background-color: #c6c6c6;
   color: white;
   cursor: no-drop;
@@ -31,7 +31,7 @@
 .btnCommittee {
   border: 1px solid white;
   border-radius: 20px;
-  padding: 2px;
+  padding: 5px;
   background-color: #f26843;
   color: white;
   cursor: pointer;
@@ -40,7 +40,7 @@
 .btnCommittee:hover {
   border: 1px solid #f26843;
   border-radius: 20px;
-  padding: 2px;
+  padding: 5px;
   background-color: transparent;
   color: black;
   cursor: pointer;
