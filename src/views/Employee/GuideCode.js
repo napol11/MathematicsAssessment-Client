@@ -35,18 +35,29 @@ class GuideCode extends React.Component {
           </button>
         </div>
         <CModal show={this.state.visible} onClose={this.showModal} size="xl">
-          <CModalHeader closeButton>
-            รหัสการพัฒนามหาวิทยาลัยในระยะแผนกลยุทธ์ ฉบับที่ 12 (Strategic Goals){" "}
+          <CModalHeader>
+            <h4>รหัสการพัฒนามหาวิทยาลัยในระยะแผนกลยุทธ์ ฉบับที่ 12 (Strategic Goals)</h4>
+            <div className="text-right">
+              <i
+                onClick={this.showModal}
+                className="fas fa-times-circle"
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                  fontSize: 20,
+                }}
+              />
+            </div>
           </CModalHeader>
           <CModalBody>
             <Row style={{ backgroundColor: "whitesmoke" }}>
-              <Col span={10} style={{ textAlign: "left" }}>
+              <Col span={9} style={{ textAlign: "left" }}>
                 <p>
                   1.ผลิตบัณฑิตที่มีคุณภาพตามคุณลักษณะที่พึงประสงค์ของ มจธ.
                   (Social Change Agent)
                 </p>
               </Col>
-              <Col span={12}>
+              <Col span={13}>
                 <Row>
                   <p> - พัฒนาและปรับปรุงกระบวนการเรียนรู้</p>
                   <Divider style={{ margin: 0 }} />
@@ -65,13 +76,13 @@ class GuideCode extends React.Component {
             </Row>
             <Divider style={{ margin: 0 }} />
             <Row>
-              <Col span={10} style={{ textAlign: "left", marginTop: 10 }}>
+              <Col span={9} style={{ textAlign: "left", marginTop: 10 }}>
                 <p>
                   2.สร้างความเป็นเลิศทางการวิจัย งานสร้างสรรค์ และนวัตกรรม
                   (Research and Innovation)
                 </p>
               </Col>
-              <Col span={12}>
+              <Col span={13}>
                 <Row>
                   <p>
                     {" "}
@@ -122,10 +133,10 @@ class GuideCode extends React.Component {
             </Row>
             <Divider style={{ margin: 0 }} />
             <Row style={{ backgroundColor: "whitesmoke" }}>
-              <Col span={10} style={{ textAlign: "left", marginTop: 10 }}>
+              <Col span={9} style={{ textAlign: "left", marginTop: 10 }}>
                 <p>3.พัฒนา มจธ. สู่ความเป็นสากล(Internationalization)</p>
               </Col>
-              <Col span={12}>
+              <Col span={13}>
                 <Row>
                   <p>
                     {" "}
@@ -164,13 +175,13 @@ class GuideCode extends React.Component {
             </Row>
             <Divider style={{ margin: 0 }} />
             <Row>
-              <Col span={10} style={{ textAlign: "left", marginTop: 10 }}>
+              <Col span={9} style={{ textAlign: "left", marginTop: 10 }}>
                 <p>
                   4.พัฒนาสมรรถนะองค์กรเพื่อให้บริการอย่างมีคุณภาพ สู่การเป็น
                   “องค์กรที่มีขีดสมรรถนะสูง” High (Performance Organization)
                 </p>
               </Col>
-              <Col span={12}>
+              <Col span={13}>
                 <Row>
                   <p>
                     {" "}
@@ -205,13 +216,13 @@ class GuideCode extends React.Component {
             </Row>
             <Divider style={{ margin: 0 }} />
             <Row style={{ backgroundColor: "whitesmoke" }}>
-              <Col span={10} style={{ textAlign: "left", marginTop: 10 }}>
+              <Col span={9} style={{ textAlign: "left", marginTop: 10 }}>
                 <p>
                   5.ส่งเสริมและพัฒนาที่เป็นมิตรกับสังคมและสิ่งแวดล้อม (Green
                   Heart)
                 </p>
               </Col>
-              <Col span={12}>
+              <Col span={13}>
                 <Row>
                   <p>
                     {" "}
@@ -242,10 +253,10 @@ class GuideCode extends React.Component {
             </Row>
             <Divider style={{ margin: 0 }} />
             <Row>
-              <Col span={10} style={{ textAlign: "left", marginTop: 10 }}>
+              <Col span={9} style={{ textAlign: "left", marginTop: 10 }}>
                 <p>6.เครือข่ายและพันธมิตร (Alliances and Partnerships)</p>
               </Col>
-              <Col span={12}>
+              <Col span={13}>
                 <Row>
                   <p> - เครือข่ายและพันธมิตร Alliances and Partnerships</p>
                 </Row>
@@ -256,10 +267,10 @@ class GuideCode extends React.Component {
             </Row>
             <Divider style={{ margin: 0 }} />
             <Row style={{ backgroundColor: "whitesmoke" }}>
-              <Col span={10} style={{ textAlign: "left", marginTop: 10 }}>
+              <Col span={9} style={{ textAlign: "left", marginTop: 10 }}>
                 <p>7.KMUTT New Normal</p>
               </Col>
-              <Col span={12}></Col>
+              <Col span={13}></Col>
               <Col span={2} style={{ textAlign: "center" }}>
                 <p>71</p>
               </Col>
