@@ -27,13 +27,14 @@ function UserForm2() {
             // style={{ display: "flex", justifyContent: "center" }}
           >
             <div className="row justify-content-sm-end">
-              {/* <div className="committee2Btn pl-4 pr-4 mr-4"> */}
-              <GuidePoint />
-              {/* </div> */}
-              {/* <div className="committee2Btn pl-4 pr-4"> */}
-              <GuideCode />
-              {/* </div> */}
+                <div className="mr-3">
+                    <GuidePoint />
+                </div>
+                <div>
+                    <GuideCode />
+                </div>
             </div>
+
           </div>
         </div>
         <div>

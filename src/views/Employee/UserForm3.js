@@ -30,7 +30,7 @@ function UserFrom3() {
               },
             ]}
           >
-            <TextArea rows={4} />
+            <TextArea className="textbox" rows={4}/>
           </Form.Item>
           <p>
             2. ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ
@@ -46,7 +46,7 @@ function UserFrom3() {
               },
             ]}
           >
-            <TextArea rows={4} />
+            <TextArea className="textbox" rows={4} />
           </Form.Item>
           <p>3. ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง</p>
           <Form.Item
@@ -59,7 +59,7 @@ function UserFrom3() {
               },
             ]}
           >
-            <TextArea rows={4} />
+            <TextArea className="textbox" rows={4} />
           </Form.Item>
           <p>
             4. ท่านสนใจการฝึกอบรม
@@ -76,7 +76,7 @@ function UserFrom3() {
               },
             ]}
           >
-            <TextArea rows={4} />
+            <TextArea className="textbox" rows={4} />
           </Form.Item>
         </Form>
       </div>

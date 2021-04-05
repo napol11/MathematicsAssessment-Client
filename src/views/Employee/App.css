@@ -144,7 +144,7 @@
 
 .buttons_add {
     background: white;
-    border-color: #F6BE32;
+    border: 2px solid #F6BE32;
     font-size: 15px;
     border-radius:20px;
     margin-right:auto;
@@ -153,37 +153,35 @@
 }
 
 .buttons_add:hover {
-    background: #F04D22;
+    background: #F6BE32;
     color: white;
 }
 
 .buttons_form2_1 {
     background: white;
-    border-color: #F6BE32;
+    border: 2px solid #F6BE32;
     font-size: 15px;
     border-radius:20px;
-    margin-right:auto;
     text-align: center;
     padding:4px 11px;
 }
 
 .buttons_form2_1:hover {
-    background: #F04D22;
+    background: #F6BE32;
     color: white;
 }
 
 .buttons_form2_2 {
-    background: #F6BE32;
-    border-color: #F6BE32;
+    background: white;
+    border: 2px solid #F6BE32;
     font-size: 15px;
     border-radius:20px;
-    margin-right:auto;
     text-align: center;
     padding:4px 15px;
 }
 
 .buttons_form2_2:hover {
-    background: #F04D22;
+    background: #F6BE32;
     color: white;
 }
 
@@ -202,3 +200,14 @@
     -ms-border-radius:20px !important;
     -o-border-radius:20px !important;
 }
+
+.textbox:hover {
+    border: 1.5px solid #f26843 !important;
+}
+
+.textbox:focus {
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
+}
+
