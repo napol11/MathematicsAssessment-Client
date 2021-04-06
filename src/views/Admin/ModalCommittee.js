@@ -68,6 +68,7 @@ const ModalCommittee = (props) => {
     const data = {
       ...values,
       status: values.position === "หัวหน้า" ? "1" : "0",
+      role: "1",
     };
     // console.log(data);
     // console.log(props.data.id);

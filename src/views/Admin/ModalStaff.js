@@ -109,8 +109,12 @@ export default function ModalStaff(props) {
   };
 
   const addEmployee = (values) => {
+    const data = {
+      ...values,
+      role: "2",
+    };
     axios
-      .post(`${url}/employee`, values)
+      .post(`${url}/employee`, data)
       .then((res) => {
         // console.log(res);
       })
