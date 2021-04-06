@@ -22,7 +22,7 @@ const ModalAssess = (props) => {
 
   const handleDatePickerStart = (christDate, buddhistDate) => {
     setSelectedDateStart(christDate);
-    console.log(formRef.current.getFieldValue("start"));
+    // console.log(formRef.current.getFieldValue("start"));
   };
 
   const handleDatePickerEnd = (christDate, buddhistDate) => {
@@ -269,7 +269,7 @@ const ModalAssess = (props) => {
                       color: "black",
                       width: 370,
                     }}
-                    maxDate={selectedDateEnd}
+                    // maxDate={selectedDateEnd}
                     clearable={true}
                   />
                 </Form.Item>
@@ -324,7 +324,8 @@ const ModalAssess = (props) => {
                       // width: "100%",
                       width: 750,
                     }}
-                    minDate={selectedDateEnd}
+                    minDate={selectedDateStart}
+                    maxDate={selectedDateEnd}
                     clearable={true}
                   />
                 </Form.Item>
