@@ -3,11 +3,16 @@ import { CModal, CModalHeader, CModalBody, CModalFooter } from "@coreui/react";
 import { Spin, Form, Input } from "antd";
 import { WatDatePicker } from "thaidatepicker-react";
 import { notify } from "../CustomComponent";
+import { useSelector, useDispatch } from "react-redux";
 
 import axios from "axios";
 const url = `http://localhost:3001/api/admin`;
 
 const ModalAssess = (props) => {
+  const dispatch = useDispatch();
+  const [Title, setTitle] = useState(null);
+  const adminModal = useSelector((state) => state.adminModal);
+
   const [Loading, setLoading] = useState(false);
   const [selectedDateStart, setSelectedDateStart] = useState("");
   const [selectedDateEnd, setSelectedDateEnd] = useState("");
@@ -30,44 +35,87 @@ const ModalAssess = (props) => {
 
   // const handleDatePickerEndR = (christDate, buddhistDate) => {
   //   setSelectedDateEndR(christDate);
-  // };
+  // // };
   const addAssessment = (values) => {
     axios
       .post(`${url}/assessment`, values)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const sditAssessment = (values) => {
+    axios
+      .put(`${url}/assessment/` + props.data.id, values)
+      .then((res) => {
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // const save = (values) => {
+  //   addAssessment(values);
+  // };
+
   const save = (values) => {
+    setLoading(true);
+    close();
+    notify.success("บันทึกการประเมินเรียบร้อย !");
+    props.reload();
+    setLoading(false);
     addAssessment(values);
   };
 
+  const edit = (values) => {
+    setLoading(true);
+    close();
+    notify.success("แก้ไขการประเมินเรียบร้อย !");
+    props.reload();
+    setLoading(false);
+    sditAssessment(values);
+  };
+
+  // const close = () => {
+  //   formRef.current.resetFields();
+  //   reset();
+  //   props.close();
+  // };
+
   const close = () => {
     formRef.current.resetFields();
-    reset();
-    props.close();
+    dispatch({ type: "set", adminModal: { ...adminModal, show: false } });
   };
 
-  const reset = () => {
-    setSelectedDateStart("");
-    setSelectedDateEnd("");
-    // setSelectedDateStartR("");
-    // setSelectedDateEndR("");
-  };
+  // const reset = () => {
+  //   setSelectedDateStart("");
+  //   setSelectedDateEnd("");
+  //   // setSelectedDateStartR("");
+  //   // setSelectedDateEndR("");
+  // };
+
+  // const onFinish = (values) => {
+  //   if (props.title.type === "edit") {
+  //     close();
+  //     console.log("data editt", values);
+  //     notify.success("แก้ไขรายการประเมินเรียบร้อย!");
+  //   } else {
+  //     close();
+  //     notify.success("บันทึกรายการประเมินเรียบร้อย!");
+  //     save(values);
+  //   }
+  // };
 
   const onFinish = (values) => {
-    if (props.title.type === "edit") {
-      close();
-      console.log("data editt", values);
-      notify.success("แก้ไขรายการประเมินเรียบร้อย!");
-    } else {
-      close();
-      notify.success("บันทึกรายการประเมินเรียบร้อย!");
+    // console.log(values);
+    if (adminModal.type === "add") {
       save(values);
+    } else {
+      edit(values);
     }
   };
 
@@ -81,12 +129,29 @@ const ModalAssess = (props) => {
     //   setSelectedDateStart("");
     //   setSelectedDateEnd("");
     // }
+    let title = "การประเมิน";
+
+    if (adminModal.type === "add") {
+      setTitle(`เพิ่ม${title}`);
+    } else {
+      setTitle(`แก้ไข${title}`);
+      // console.log(props);
+      ///  set values เซ็ทค่าในฟอร์ม
+      // จะเอามาจาก props หรือ Axios ก็ได้
+      formRef.current.setFieldsValue({
+        name: props.data.assessment_name,
+        start: props.data.assessment_start,
+        end: props.data.assessment_end,
+        endedit: props.data.assessment_endedit,
+      });
+    }
+
     setLoading(false);
   };
 
   return (
     <CModal
-      show={props.show}
+      show={adminModal.show}
       onOpened={LoadData}
       closeOnBackdrop={false}
       size="lg"
@@ -97,9 +162,7 @@ const ModalAssess = (props) => {
             className="m-0"
             style={{ color: "black", fontWeight: "bold", fontSize: 20 }}
           >
-            {props.title.name}
-            <br />
-            {props.title.type === "edit" ? props.data.text : null}
+            {Title}
           </label>
 
           <div className="col-2 text-right">

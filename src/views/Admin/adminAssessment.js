@@ -5,6 +5,8 @@ import { notify } from "../CustomComponent";
 // import { date2Thai } from "../CustomFunction";
 import ModalAssess from "./ModalAssess";
 
+import { useDispatch } from "react-redux";
+
 import "./admin.css";
 import axios from "axios";
 const url = `http://localhost:3001/api/admin`;
@@ -12,6 +14,8 @@ const url = `http://localhost:3001/api/admin`;
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
 const AdminAssessment = () => {
+  const dispatch = useDispatch();
+
   const [Hover, setHover] = useState(false);
   // const [selectedDateStart, setSelectedDateStart] = useState("");
   // const [selectedDateEnd, setSelectedDateEnd] = useState("");
@@ -20,9 +24,9 @@ const AdminAssessment = () => {
   const [data, setdata] = useState([]);
   // const [filter, setfilter] = useState([]);
   const [LoadingTable, setLoadingTable] = useState(false);
-  const [show, setshow] = useState(false);
-  const [ModalTitle, setModalTitle] = useState("");
-  // const [SendData, setSendData] = useState([]);
+  // const [show, setshow] = useState(false);
+  // const [ModalTitle, setModalTitle] = useState("");
+  const [SendData, setSendData] = useState([]);
 
   const LoadData = () => {
     axios.get(`${url}/assessment`).then((res) => {
@@ -60,23 +64,32 @@ const AdminAssessment = () => {
     setLoadingTable(false);
   };
 
-  const closeModal = () => {
-    setshow(false);
-  };
+  // const closeModal = () => {
+  //   setshow(false);
+  // };
 
-  const openModal = (type) => {
-    const list = "รายการประเมิน";
-    if (type === "add") {
-      setModalTitle({ name: `เพิ่ม${list}`, type: "add" });
-      setshow(true);
-    } else {
-      setModalTitle({ name: `แก้ไข${list}`, type: "edit" });
-      setshow(true);
-    }
+  // const openModal = (type) => {
+  //   const list = "รายการประเมิน";
+  //   if (type === "add") {
+  //     setModalTitle({ name: `เพิ่ม${list}`, type: "add" });
+  //     setshow(true);
+  //   } else {
+  //     setModalTitle({ name: `แก้ไข${list}`, type: "edit" });
+  //     setshow(true);
+  //   }
+  // };
+  const openModal = (type, page) => {
+    dispatch({
+      type: "set",
+      adminModal: {
+        show: true,
+        type,
+        page,
+      },
+    });
   };
 
   const deleteStaff = (row) => {
-    console.log("delete การประเมิน", row);
     notify.success(`ลบรายการประเมิน เรียบร้อย!`);
     axios.delete(`${url}/assessment/` + row.id);
     LoadData();
@@ -205,7 +218,10 @@ const AdminAssessment = () => {
           >
             <i
               className="fas fa-edit editBtn"
-              // onClick={() => }
+              onClick={() => {
+                setSendData(row);
+                openModal("edit", "assessment");
+              }}
             />
           </div>
         );
@@ -346,12 +362,13 @@ const AdminAssessment = () => {
           />
         </div>
       </div>
-      <ModalAssess
+      {/* <ModalAssess
         show={show}
         close={closeModal}
-        title={ModalTitle}
+        // title={ModalTitle}
         // data={SendData}
-      />
+      /> */}
+      <ModalAssess reload={LoadData} data={SendData} />
     </div>
   );
 };

@@ -103,7 +103,10 @@ const AdminCommittee = () => {
           >
             <i
               className="fas fa-user-edit editBtn"
-              onClick={() => openModal("edit", "committee")}
+              onClick={() => {
+                setSendData(row);
+                openModal("edit", "committee");
+              }}
             />
           </div>
         );
@@ -217,13 +220,13 @@ const AdminCommittee = () => {
             locale={{ emptyText: "ไม่มีข้อมูล" }}
             // scroll={{ y: 500 }}
             size="middle"
-            onRow={(record, recordIndex) => ({
-              onClick: (e) => {
-                console.log(e);
-                setSendData(record);
-                openModal("edit", "committee");
-              },
-            })}
+            // onRow={(record, recordIndex) => ({
+            //   onClick: (e) => {
+            //     console.log(e);
+            //     setSendData(record);
+            //     openModal("edit", "committee");
+            //   },
+            // })}
           />
         </div>
       </div>

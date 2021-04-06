@@ -18,9 +18,8 @@ const AdminStaff = () => {
   // const [LoadingSearch, setLoadingSearch] = useState(false);
   const [datastaff, setdatastaff] = useState([]);
   // const [filterstaff, setfilterstaff] = useState([]);
-  //   const [SendData, setSendData] = useState([]);
-  const [show, setshow] = useState(false);
   const [SendData, setSendData] = useState([]);
+  // const [show, setshow] = useState(false);
   const dispatch = useDispatch();
 
   const columnsstaff = [
@@ -105,7 +104,10 @@ const AdminStaff = () => {
           >
             <i
               className="fas fa-user-edit editBtn"
-              // onClick={() => }
+              onClick={() => {
+                setSendData(row);
+                openModal("edit", "staff");
+              }}
             />
           </div>
         );
@@ -125,7 +127,7 @@ const AdminStaff = () => {
   };
 
   const deleteStaff = (row) => {
-    console.log("delete พนักงาน", row);
+    // console.log("delete พนักงาน", row);
     notify.success("ลบรายชื่อพนักงาน เรียบร้อย!");
     axios.delete(`${url}/employee/` + row.id);
     LoadData();
@@ -193,7 +195,8 @@ const AdminStaff = () => {
                 size={"large"}
                 onMouseEnter={() => sethover(true)}
                 onMouseLeave={() => sethover(false)}
-                onClick={() => setshow(true)}
+                onClick={() => openModal("add", "staff")}
+                // onClick={() => setshow(true)}
                 style={
                   hover
                     ? {
@@ -237,22 +240,23 @@ const AdminStaff = () => {
             locale={{ emptyText: "ไม่มีข้อมูล" }}
             // scroll={{ y: 500 }}
             size="middle"
-            onRow={(record, recordIndex) => ({
-              onClick: (e) => {
-                console.log(e);
-                setSendData(record);
-                openModal("edit", "committee");
-              },
-            })}
+            // onRow={(record, recordIndex) => ({
+            //   onClick: (e) => {
+            //     // console.log(e);
+            //     setSendData(record);
+            //     openModal("edit", "staff");
+            //   },
+            // })}
           />
         </div>
       </div>
-      <ModalStaff
+      {/* <ModalStaff
         reload={LoadData}
         data={SendData}
         show={show}
         closeModal={() => setshow(false)}
-      />
+      /> */}
+      <ModalStaff reload={LoadData} data={SendData} />
     </div>
   );
 };

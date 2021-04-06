@@ -5,13 +5,18 @@ import { notify } from "../CustomComponent";
 import { WatDatePicker } from "thaidatepicker-react";
 import "./admin.css";
 
+import { useSelector, useDispatch } from "react-redux";
+
 import axios from "axios";
 const url = `http://localhost:3001/api/admin`;
 
 const { Option } = Select;
 
 export default function ModalStaff(props) {
-  const { show, reload, closeModal } = props;
+  // const { show, reload, closeModal } = props;
+
+  const dispatch = useDispatch();
+  const adminModal = useSelector((state) => state.adminModal);
 
   const formRef = useRef(null);
 
@@ -20,9 +25,14 @@ export default function ModalStaff(props) {
   const [Level, setLevel] = useState(null);
   const [Division, setDivision] = useState(null);
 
+  // const close = () => {
+  //   formRef.current.resetFields();
+  //   closeModal();
+  // };
+
   const close = () => {
     formRef.current.resetFields();
-    closeModal();
+    dispatch({ type: "set", adminModal: { ...adminModal, show: false } });
   };
 
   const LoadData = () => {
@@ -70,7 +80,27 @@ export default function ModalStaff(props) {
     });
     setLoading(true);
     // Title
-    setTitle("เพิ่มรายชื่อพนักงาน");
+    let title = "รายชื่อพนักงาน";
+
+    if (adminModal.type === "add") {
+      setTitle(`เพิ่ม${title}`);
+    } else {
+      setTitle(`แก้ไข${title}`);
+      // console.log(props);
+      ///  set values เซ็ทค่าในฟอร์ม
+      // จะเอามาจาก props หรือ Axios ก็ได้
+      formRef.current.setFieldsValue({
+        firstname: props.data.firstname,
+        lastname: props.data.lastname,
+        position: props.data.position,
+        email: props.data.email,
+        tal: props.data.employee_tel,
+        number: props.data.no,
+        degree: props.data.employee_degree,
+        group: props.data.employee_group,
+        start: props.data.employee_start,
+      });
+    }
     // map ระดับ สังกัด
     setLevel(levels);
     setDivision(divisions);
@@ -82,7 +112,18 @@ export default function ModalStaff(props) {
     axios
       .post(`${url}/employee`, values)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const editEmployrr = (values) => {
+    axios
+      .put(`${url}/employee/` + props.data.id, values)
+      .then((res) => {
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -94,19 +135,36 @@ export default function ModalStaff(props) {
     setLoading(true);
     close();
     notify.success("บันทึกรายชื่อพนักงานเรียบร้อย !");
-    reload();
+    // reload();
+    setLoading(false);
+  };
+
+  const edit = (values) => {
+    editEmployrr(values);
+    setLoading(true);
+    close();
+    notify.success("แก้ไขรายชื่อพนักงานเรียบร้อย !");
+    // reload();
     setLoading(false);
   };
 
   const onFinish = (values) => {
-    // values ค่าจาก form
     // console.log(values);
-    save(values);
+    if (adminModal.type === "add") {
+      save(values);
+    } else {
+      edit(values);
+    }
   };
 
   return (
     <div>
-      <CModal show={show} onOpened={LoadData} closeOnBackdrop={false} size="lg">
+      <CModal
+        show={adminModal.show}
+        onOpened={LoadData}
+        closeOnBackdrop={false}
+        size="lg"
+      >
         <Spin size="large" tip="กำลังโหลด..." spinning={Loading}>
           <CModalHeader>
             <div className="col-10">
@@ -270,6 +328,7 @@ export default function ModalStaff(props) {
                       placeholder=" ‎‏‏‎ ‎ระบุอีเมล"
                       autoComplete={"off"}
                       className="input-modal"
+                      disabled={adminModal.type === "add" ? false : true}
                     />
                   </Form.Item>
                 </div>

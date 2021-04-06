@@ -28,7 +28,7 @@ const ModalCommittee = (props) => {
       setTitle(`เพิ่ม${title}`);
     } else {
       setTitle(`แก้ไข${title}`);
-      console.log(props);
+      // console.log(props);
       ///  set values เซ็ทค่าในฟอร์ม
       // จะเอามาจาก props หรือ Axios ก็ได้
       formRef.current.setFieldsValue({
@@ -57,7 +57,7 @@ const ModalCommittee = (props) => {
     axios
       .post(`${url}/committee`, data)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -74,7 +74,7 @@ const ModalCommittee = (props) => {
     axios
       .put(`${url}/committee/` + props.data.id, data)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         console.log(err);
