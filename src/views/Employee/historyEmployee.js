@@ -14,6 +14,10 @@ import {
   CButton,
 } from "@coreui/react";
 
+import { date2Thai } from "../CustomFunction";
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
+
 const HistoryEmployee = () => {
   const inputReset = useRef(null);
   const [showPass, setshowPass] = useState(false);
@@ -33,59 +37,95 @@ const HistoryEmployee = () => {
     console.log("success");
   };
 
-  useEffect(() => {
-    setData({
-      name: "สโรชา สังข์บูญ",
-      position: "บาริสต้า",
-      number: 49,
-      level: "เชี่ยวชาญ",
-      group: "ดุสิต",
-      start: "วันที่ 10  เดือน กรกฎาคม พ.ศ. 2552",
-      times: "11 ปี 6 เดือน 22 วัน",
+  // const dateText = (begin) => {
+  //   const len = date2Thai(begin).toString().length;
+  //   const ystart = date2Thai(begin)
+  //     .toString()
+  //     .substring(len - 2, len); // ตัดจาก 2564 เป็น 64
+  //   const dMstart = date2Thai(begin)
+  //     .toString()
+  //     .substring(0, len - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ.
+  //   const start = dMstart + ystart; // รวม  01 ก.พ. 64
+  //   return `${start}`;
+  // };
+
+  const LoadData = () => {
+    const id_employee = 1;
+    axios.get(`${url}/employee/` + id_employee).then((res) => {
+      const startWork = date2Thai(res.data.data.employee_start);
+      const start = new Date(res.data.data.employee_start);
+      const data = new Date();
+      const timeYear = data.getFullYear() - start.getFullYear();
+      setData({
+        name:
+          res.data.data.employee_firstname +
+          " " +
+          res.data.data.employee_lastname,
+        position: res.data.data.employee_position,
+        number: res.data.data.employee_number,
+        level: res.data.data.employee_degree,
+        group: res.data.data.employee_group,
+        start: startWork,
+        times: timeYear + "   ปี",
+      });
     });
+  };
+
+  useEffect(() => {
+    LoadData();
+
+    // setData({
+    //   name: "สโรชา สังข์บูญ",
+    //   position: "บาริสต้า",
+    //   number: 49,
+    //   level: "เชี่ยวชาญ",
+    //   group: "ดุสิต",
+    //   start: "วันที่ 10  เดือน กรกฎาคม พ.ศ. 2552",
+    //   times: "11 ปี 6 เดือน 22 วัน",
+    // });
   }, []);
   return (
     <div className="justify-center align-center">
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12 ">
-            <label
-              style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
-            >
-              ประวัติพนักงาน
-            </label>
-            
-            <div
-                  onMouseEnter={() => setHover(true)}
-                  onMouseLeave={() => setHover(false)}
-                  onClick={() => setVisible(true)}
-                  type="submit"
-                  className="text-uppercase mb-2 rounded-pill shadow-sm align-items-sm-end"
-                  style={
-                    hover
-                      ? {
-                          color: "white",
-                          padding: "10px",
-                          marginLeft: "90%",
-                          backgroundColor: "#f6be32",
-                          border: "2px solid #f6be32",
-                          fontSize: "15px",
-                          textAlign: "center",
-                          width: "10%",
-                        }
-                      : {
-                          color: "black",
-                          padding: "10px",
-                          marginLeft: "90%",
-                          backgroundColor: "white",
-                          border: "2px solid #f6be32",
-                          fontSize: "15px",
-                          textAlign: "center",
-                          width: "10%",
-                        }
+          <label
+            style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
+          >
+            ประวัติพนักงาน
+          </label>
+
+          <div
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            onClick={() => setVisible(true)}
+            type="submit"
+            className="text-uppercase mb-2 rounded-pill shadow-sm align-items-sm-end"
+            style={
+              hover
+                ? {
+                    color: "white",
+                    padding: "10px",
+                    marginLeft: "90%",
+                    backgroundColor: "#f6be32",
+                    border: "2px solid #f6be32",
+                    fontSize: "15px",
+                    textAlign: "center",
+                    width: "10%",
                   }
-                >
-                  เปลี่ยนรหัสผ่าน
-                </div>
+                : {
+                    color: "black",
+                    padding: "10px",
+                    marginLeft: "90%",
+                    backgroundColor: "white",
+                    border: "2px solid #f6be32",
+                    fontSize: "15px",
+                    textAlign: "center",
+                    width: "10%",
+                  }
+            }
+          >
+            เปลี่ยนรหัสผ่าน
+          </div>
 
           <div
             className="container-fluid "

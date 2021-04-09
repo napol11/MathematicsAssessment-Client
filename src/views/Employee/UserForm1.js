@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 // import { date2Thai } from "../CustomFunction";
 // import moment from "moment";
@@ -8,19 +8,47 @@ import "antd/dist/antd.css";
 // import "./App.css";
 
 import "./employee.css";
+import { date2Thai } from "../CustomFunction";
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
 // const data = props.data;
 // const history = useHistory();
 
-// const name = "สโรชา";
-// const surname = "สังข์บุญลือ";
-// const postion = "บาริสต้า";
-// const no = "49";
-// const level = "เชี่ยวชาญ";
-// const affiiliate = "ดุสิต";
-// const datestart = "วันที่ 10 เดือนกรกฎาคม พ.ศ. 2552";
-// const datetotal = "11 ปี 6 เดือน 22 วัน   ";
-
 function UserProfile() {
+  const [data, setData] = useState({
+    name: null,
+    position: null,
+    number: null,
+    level: null,
+    group: null,
+    start: null,
+    times: null,
+  });
+  const LoadData = () => {
+    const id_employee = 1;
+    axios.get(`${url}/employee/` + id_employee).then((res) => {
+      const startWork = date2Thai(res.data.data.employee_start);
+      const start = new Date(res.data.data.employee_start);
+      const data = new Date();
+      const timeYear = data.getFullYear() - start.getFullYear();
+      setData({
+        name:
+          res.data.data.employee_firstname +
+          " " +
+          res.data.data.employee_lastname,
+        position: res.data.data.employee_position,
+        number: res.data.data.employee_number,
+        level: res.data.data.employee_degree,
+        group: res.data.data.employee_group,
+        start: startWork,
+        times: timeYear + "   ปี",
+      });
+    });
+  };
+
+  useEffect(() => {
+    LoadData();
+  }, []);
   return (
     <div style={{ marginTop: "2%" }}>
       <label style={{ fontWeight: "bold", fontSize: "24px", color: "black" }}>
@@ -47,6 +75,7 @@ function UserProfile() {
               </label>
             </div>
           </div>
+          <br />
           <div className="row no-gutter pl-4 pr-4">
             <div className="col-sm-3">
               <label
@@ -60,9 +89,7 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {/* {`${data.information ? data.information.firstName : null} ${
-                  data.information ? data.information.lastName : null
-                }`} */}
+                {data.name}
               </label>
             </div>
             <div className="col-sm-2">
@@ -77,7 +104,7 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {/* {`${data.information ? data.information.position : null}`} */}
+                {data.position}
               </label>
             </div>
             <div className="col-sm-2">
@@ -92,7 +119,7 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {/* {`${data.information ? data.information.number : null}`} */}
+                {data.number}
               </label>
             </div>
             <div className="col-sm-2">
@@ -107,7 +134,7 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {/* {`${data.information ? data.information.level : null}`} */}
+                {data.level}
               </label>
             </div>
             <div className="col-sm-3">
@@ -122,7 +149,7 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {/* {`${data.information ? data.information.division : null}`} */}
+                {data.group}
               </label>
             </div>
           </div>
@@ -139,38 +166,7 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {/* {`${
-                  data.information
-                    ? `วันที่ ${date2Thai(data.information.startTimes, true)
-                        .toString()
-                        .substring(0, 2)}
-                            เดือน ${date2Thai(data.information.startTimes, true)
-                              .toString()
-                              .substring(
-                                3,
-                                date2Thai(
-                                  data.information.startTimes,
-                                  true
-                                ).toString().length - 4
-                              )}
-                              พ.ศ. ${date2Thai(
-                                data.information.startTimes,
-                                true
-                              )
-                                .toString()
-                                .substring(
-                                  date2Thai(
-                                    data.information.startTimes,
-                                    true
-                                  ).toString().length - 4,
-                                  date2Thai(
-                                    data.information.startTimes,
-                                    true
-                                  ).toString().length
-                                )}
-                            `
-                    : null
-                }`} */}
+                {data.start}
               </label>
             </div>
             <div className="col-sm-7">
@@ -185,13 +181,7 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {/* {`${
-                  data.information
-                    ? moment(data.information.startTimes, "YYYY-MM-DD").fromNow(
-                        true
-                      )
-                    : null
-                }`} */}
+                {data.times}
               </label>
             </div>
           </div>

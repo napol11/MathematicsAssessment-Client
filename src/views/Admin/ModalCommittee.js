@@ -28,7 +28,7 @@ const ModalCommittee = (props) => {
       setTitle(`เพิ่ม${title}`);
     } else {
       setTitle(`แก้ไข${title}`);
-      // console.log(props);
+      console.log(props);
       ///  set values เซ็ทค่าในฟอร์ม
       // จะเอามาจาก props หรือ Axios ก็ได้
       formRef.current.setFieldsValue({
@@ -70,12 +70,11 @@ const ModalCommittee = (props) => {
       status: values.position === "หัวหน้า" ? "1" : "0",
       role: "1",
     };
-    // console.log(data);
     // console.log(props.data.id);
     axios
       .put(`${url}/committee/` + props.data.id, data)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);

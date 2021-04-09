@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "antd";
-// import { date2Thai } from "../CustomFunction";
+import { date2Thai } from "../CustomFunction";
 import { useHistory } from "react-router-dom";
 
 import "./employee.css";
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
 
-const title = { color: "white", fontWeight: "bold", textAlign: "center" };
+const title = { color: "white", fontWeight: "bold", textAlign: "left" };
 
 const CommitteeMain = () => {
   const history = useHistory();
 
   const [LoadingTable, setLoadingTable] = useState(false);
   const [data, setdata] = useState([]);
-//   const [filter, setfilter] = useState([]);
+  //   const [filter, setfilter] = useState([]);
   // const [Title, setTitle] = useState("");
+
+  const dateText = (date) => {
+    const len = date2Thai(date).toString().length;
+    const ystart = date2Thai(date)
+      .toString()
+      .substring(len - 2, len); // ตัดจาก 2564 เป็น 64
+    const dMstart = date2Thai(date)
+      .toString()
+      .substring(0, len - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ.
+    const start = dMstart + ystart; // รวม  01 ก.พ. 64
+    return `${start}`;
+  };
 
   const columns = [
     {
       title: <div style={title}>เลขที่</div>,
-      dataIndex: "id",
-      key: "id",
-      align: "center",
+      dataIndex: "no",
+      key: "no",
+      // align: "center",
       width: "10%",
       render: (text, row, index) => {
         return index + 1;
@@ -30,15 +44,35 @@ const CommitteeMain = () => {
       title: <div style={title}>รอบการประเมิน</div>,
       dataIndex: "name",
       key: "name",
-      width: "75%",
+      // width: "50%",
+    },
+    {
+      title: <div style={title}>วันเริ่มประเมิน</div>,
+      dataIndex: "start",
+      key: "start",
+      // width: "75%",
+      render: (text, row, index) => {
+        // ห้ามเป็น null
+        return dateText(row.start);
+      },
+    },
+    {
+      title: <div style={title}>วันสิ้นสุดส่งแบบฟอร์ม</div>,
+      dataIndex: "end",
+      key: "end",
+      render: (text, row, index) => {
+        // ห้ามเป็น null
+        return dateText(row.end);
+      },
     },
     {
       title: <div style={title}>{null}</div>,
       dataIndex: "status",
       key: "status",
-      //   width: "50px",
+      width: "15%",
       render: (text, row, index) => {
         const success = row.status === "success" ? true : false;
+        const Intime = new Date(row.end) < new Date() ? true : false;
         return (
           <div
             style={{
@@ -46,48 +80,73 @@ const CommitteeMain = () => {
               wordBreak: "break-word",
               textAlign: "center",
             }}
-            className={success ? "btnCommitteeDisable" : "btnCommittee"}
+            // className={success ? "btnCommitteeDisable" : "btnCommittee"}
+            className={
+              new Date(row.end) < new Date()
+                ? "btnCommitteeDisable"
+                : "btnCommittee"
+              // || success
+              // ? "btnCommitteeDisable"
+              // : "btnCommittee"
+            }
+            // onClick={
+            //   success
+            //     ? null
+            //     : () => history.push(`/employee/evaluation/${row.id}`)
+            // }
             onClick={
-              success
+              Intime
                 ? null
-                : () => history.push(`/employee/evaluation/${row.no}`)
+                : () =>
+                    history.push(`/employee/evaluation/${row.id}`) || success
+                      ? null
+                      : () => history.push(`/employee/evaluation/${row.id}`)
             }
           >
-            {`${success ? "ส่งแบบประเมินแล้ว" : "ส่งแบบประเมิน"}`}
+            {/* {`${success ? "ส่งแบบประเมินแล้ว" : "ส่งแบบประเมิน"}`} */}
+            {`${Intime ? "หมดเวลาส่งแบบฟอร์ม" : "ส่งแบบประเมิน"}` ||
+              `${success ? "ส่งแบบประเมินแล้ว" : null}`}
           </div>
         );
       },
     },
   ];
 
-//   const search = (value) => {
-//     setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
+  //   const search = (value) => {
+  //     setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
 
-//     const regex = new RegExp(value.toString().toUpperCase(), "g");
-//     const find = filter.filter(({ name }) => {
-//       const upper = name.toString().toUpperCase();
-//       return upper.match(regex);
-//     });
-//     setdata(find); // set Data ใส่ตาราง
-//     setLoadingTable(false);
-//   };
+  //     const regex = new RegExp(value.toString().toUpperCase(), "g");
+  //     const find = filter.filter(({ name }) => {
+  //       const upper = name.toString().toUpperCase();
+  //       return upper.match(regex);
+  //     });
+  //     setdata(find); // set Data ใส่ตาราง
+  //     setLoadingTable(false);
+  //   };
 
   const LoadData = () => {
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
     setLoadingTable(true);
     // set Data ใส่ตาราง
-    setdata([
-      {
-        no: "1",
-        name: "1 มกราคม 2562  -  30  กรกฎาคม 2562",
-        status: "wait",
-      },
-      {
-        no: "2",
-        name: "1 ตุลาคม 2562  -  30  ธันวาคม 2562",
-        status: "wait",
-      },
-    ]);
+    const employee_id = {
+      employee_id: "1",
+    };
+    axios.post(`${url}/assessment`, employee_id).then((res) => {
+      const form = res.data.data.form;
+
+      const data = form.map((v, i) => ({
+        ...v,
+        no: i + 1,
+        name: v.assessment_name,
+        start: v.assessment_start,
+        end: v.assessment_endedit,
+        // status: d2.getDate(v.assessment_endedit) + d1.getDate(),
+      }));
+      setdata(data);
+      // console.log(data);
+      // console.log(new Date("2021-04-14") < new Date() ? true : false);
+    });
+    // const d2 = new Date();
     // set Data ไว้ filter
     // setfilter([
     //   {
@@ -122,7 +181,7 @@ const CommitteeMain = () => {
             รายการแบบประเมิน
             {/* {Title} */}
           </label>
-          
+
           {/* ********************************** */}
           <Table
             rowKey={"no"} // uniq key หรือ primary key ตัวไม่ซ้ำ

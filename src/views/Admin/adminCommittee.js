@@ -144,6 +144,7 @@ const AdminCommittee = () => {
         tel: v.committee_tel,
       }));
       setdataCommittee(data);
+      console.log(data);
     });
 
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
