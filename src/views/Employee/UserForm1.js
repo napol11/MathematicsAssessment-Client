@@ -1,22 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { InputNumber, Form } from "antd";
+import { useParams } from "react-router-dom";
+import { notify } from "../CustomComponent";
 import "antd/dist/antd.css";
 // import { date2Thai } from "../CustomFunction";
 // import moment from "moment";
-// import { useHistory } from "react-router-dom";
-// import { Row, Col, Form, Input, InputNumber } from "antd";
-
-// import "./App.css";
 
 import "./employee.css";
 import { date2Thai } from "../CustomFunction";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
-// const data = props.data;
-// const history = useHistory();
 
-function UserProfile(props) {
-  console.log(props.data);
+function UserProfile() {
+  const { id } = useParams();
+  // console.log(`${id}`);
   const formRef = useRef(null);
   const [data, setData] = useState({
     name: null,
@@ -27,8 +24,9 @@ function UserProfile(props) {
     start: null,
     times: null,
   });
+
   const LoadData = () => {
-    const id_employee = 1;
+    const id_employee = "1";
     axios.get(`${url}/employee/` + id_employee).then((res) => {
       const startWork = date2Thai(res.data.data.employee_start);
       const start = new Date(res.data.data.employee_start);
@@ -47,11 +45,149 @@ function UserProfile(props) {
         times: timeYear + "   ปี",
       });
     });
+    // const id_assessment = `${id}`;
+    const id_assessment = "1";
+    const assessment = {
+      employee_id: id_employee,
+      assessment_id: id_assessment,
+    };
+    axios.post(`${url}/dataFormone`, assessment).then((res) => {
+      setDatala([
+        {
+          name: ["formone_lasick"],
+          value:
+            res.data.data.formone.formone_lasick === null
+              ? 0
+              : res.data.data.formone.formone_lasick,
+        },
+        {
+          name: ["formone_lalate"],
+          value:
+            res.data.data.formone.formone_lalate === null
+              ? 0
+              : res.data.data.formone.formone_lalate,
+        },
+        {
+          name: ["formone_laleave"],
+          value:
+            res.data.data.formone.formone_laleave === null
+              ? 0
+              : res.data.data.formone.formone_laleave,
+        },
+        {
+          name: ["formone_lamilitary"],
+          value:
+            res.data.data.formone.formone_lamilitary === null
+              ? 0
+              : res.data.data.formone.formone_lamilitary,
+        },
+        {
+          name: ["formone_lamonk"],
+          value:
+            res.data.data.formone.formone_lamonk === null
+              ? 0
+              : res.data.data.formone.formone_lamonk,
+        },
+        {
+          name: ["formone_lapaper"],
+          value:
+            res.data.data.formone.formone_lapaper === null
+              ? 0
+              : res.data.data.formone.formone_lapaper,
+        },
+        {
+          name: ["formone_laprivate"],
+          value:
+            res.data.data.formone.formone_laprivate === null
+              ? 0
+              : res.data.data.formone.formone_laprivate,
+        },
+        {
+          name: ["formone_historypromo"],
+          value:
+            res.data.data.formone.formone_historypromo === null
+              ? ""
+              : res.data.data.formone.formone_historypromo,
+        },
+        {
+          name: ["formone_historypunish"],
+          value:
+            res.data.data.formone.formone_historypunish === null
+              ? ""
+              : res.data.data.formone.formone_historypunish,
+        },
+        {
+          name: ["formone_lababy"],
+          value:
+            res.data.data.formone.formone_lababy === null
+              ? 0
+              : res.data.data.formone.formone_lababy,
+        },
+      ]);
+    });
   };
 
   const onFinish = (values) => {
-    console.log(values);
+    const data = {
+      ...values,
+      assessment_id: 1,
+      employee_id: 1,
+    };
+    // console.log(values);
+    axios
+      .post(`${url}/formone`, data)
+      .then((res) => {
+        console.log(res);
+        notify.success("บันทึกสำเร็จ !");
+      })
+      .catch((err) => {
+        console.log(err);
+        notify.error("บันทึกไม่สำเร็จ !");
+      });
   };
+
+  const [datala, setDatala] = useState([
+    {
+      name: ["formone_lasick"],
+      value: "",
+    },
+    {
+      name: ["formone_lalat"],
+      value: "",
+    },
+    {
+      name: ["formone_laleave"],
+      value: "",
+    },
+    {
+      name: ["formone_lamilitary"],
+      value: "",
+    },
+    {
+      name: ["formone_lamonk"],
+      value: "",
+    },
+    {
+      name: ["formone_lapaper"],
+      value: "",
+    },
+    {
+      name: ["formone_laprivate"],
+      value: "",
+    },
+    {
+      name: ["formone_historypromo"],
+      value: "",
+    },
+    {
+      name: ["formone_historypunish"],
+      value: "",
+    },
+    {
+      name: ["formone_lababy"],
+      value: "",
+    },
+  ]);
 
   useEffect(() => {
     LoadData();
@@ -215,60 +351,12 @@ function UserProfile(props) {
             </label>
           </div>
         </div>
-        {/* <div className="row no-gutter pl-4 pr-4">
-          <div className="col-sm-12">
-            <label
-              className="m-0"
-              style={{ color: "#5f5f5f", fontSize: "14px" }}
-            >
-              การลาศึกษาต่อ
-            </label>
-            <br />
-            <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
-              <input
-                // value={text}
-                style={{
-                  width: "300px",
-                  border: "1px solid transparent",
-                  backgroundColor: "rgba(79, 78, 78, 0.1)",
-                  borderRadius: "3px",
-                }}
-                placeholder="ระบุวันลาศึกษาต่อ"
-              />
-              {`${data.leaveHistory ? data.leaveHistory.studieLeave : null}`}
-            </label>
-          </div>
-        </div> */}
-        {/* <div className="row no-gutter pl-4 pr-4 mt-2">
-          <div className="col-sm-12">
-            <label
-              className="m-0"
-              style={{ color: "#5f5f5f", fontSize: "14px" }}
-            >
-              เวลาปฏิบัติงานในรอบปีงบประมาณที่ผ่านมา
-            </label>
-            <br />
-            <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
-              {`${
-                data.leaveHistory
-                  ? date2Thai(data.leaveHistory.startWork, true)
-                  : null
-              }
-                  ${`-`}
-                  ${
-                    data.leaveHistory
-                      ? date2Thai(data.leaveHistory.endWork, true)
-                      : null
-                  }
-                  `}
-            </label>
-          </div>
-        </div> */}
         <Form
           ref={formRef}
           layout="vertical"
           name="nest-messages"
           onFinish={onFinish}
+          fields={datala}
         >
           <div className="row no-gutter pl-4 pr-4 mt-2">
             <div className="col-sm-3">
@@ -286,14 +374,13 @@ function UserProfile(props) {
                     borderRadius: "3px",
                   }}
                   placeholder="ระบุจำนวนวัน"
-                  // value={la.test}
                 />
               </Form.Item>
             </div>
             <div className="col-sm-3">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
+                name={["formone_lapaper"]}
                 label="ลาป่วย ที่มีใบรับรองแพทย์"
               >
                 <InputNumber
@@ -311,7 +398,7 @@ function UserProfile(props) {
             <div className="col-sm-3">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
+                name={["formone_laprivate"]}
                 label="ลากิจ"
                 // rules={[{ required: true }]}
               >
@@ -330,7 +417,7 @@ function UserProfile(props) {
             <div className="col-sm-3">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
+                name={["formone_lalate"]}
                 label="มาสาย"
                 // rules={[{ required: true }]}
               >
@@ -351,7 +438,7 @@ function UserProfile(props) {
             <div className="col-sm-3">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
+                name={["formone_laleave"]}
                 label="ลาพักผ่อน"
                 // rules={[{ required: true }]}
               >
@@ -370,7 +457,7 @@ function UserProfile(props) {
             <div className="col-sm-3">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
+                name={["formone_lababy"]}
                 label="ลาคลอดบุตร"
                 // rules={[{ required: true }]}
               >
@@ -389,7 +476,7 @@ function UserProfile(props) {
             <div className="col-sm-3">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
+                name={["formone_lamonk"]}
                 label="ลาอุปสมบท"
                 // rules={[{ required: true }]}
               >
@@ -408,7 +495,7 @@ function UserProfile(props) {
             <div className="col-sm-3">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
+                name={["formone_lamilitary"]}
                 label="ขาดราชการ"
                 // rules={[{ required: true }]}
               >
@@ -450,7 +537,7 @@ function UserProfile(props) {
               {/* {salaryHistory()} */}
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
+                name={["formone_historypromo"]}
                 // label="ประวัติการเลื่อนขั้นเงินเดือน"
                 // rules={[{ required: true }]}
               >
@@ -488,12 +575,9 @@ function UserProfile(props) {
               </div>
             </div>
             <div className="row no-gutter pl-4 pr-4 mt-2">
-              {/* {punishHistory()} */}
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                // name={["formone_lasick"]}
-                // label="ประวัติการถูกลงโทษทางวินัย"
-                // rules={[{ required: true }]}
+                name={["formone_historypunish"]}
               >
                 <textarea
                   // value={text}
