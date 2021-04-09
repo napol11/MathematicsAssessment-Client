@@ -7,7 +7,7 @@ const HistoryEmployee = React.lazy(() =>
   import("./views/Employee/historyEmployee")
 );
 const Employee = React.lazy(() => import("./views/Employee/employeeMain"));
-const EmployeeAssess = React.lazy(() => import("./views/Employee/UserForm"));
+const EmployeeAssess = React.lazy(() => import("./views/Employee/step"));
 
 //แอดมิน
 const AdminAssessment = React.lazy(() =>
