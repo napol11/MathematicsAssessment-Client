@@ -162,11 +162,28 @@
   box-shadow: none !important;
 }
 
-.input_search:hover {
+.ant-cascader-picker:hover .ant-input {
+    border: 1.5px solid #f26843 !important;  
+}
+
+.ant-cascader-picker:focus .ant-input {
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
+}
+
+.textarea {
+    width: 100%;
+    background-color: #E7E5E3;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.textarea:hover {
     border: 1.5px solid #f26843 !important;
 }
 
-.input_search:focus {
+.textarea:focus {
     outline: none !important;
     box-shadow: 0 0 4px #f26843;
     border: 1.5px solid #f26843;

@@ -54,13 +54,8 @@ const CommitteAssessStep32 = (props) => {
           <textarea
             key={`area${index}`}
             onChange={(e) => Comment(e, row, index)}
-            style={{
-              width: "100%",
-              backgroundColor: "#E7E5E3",
-              border: "1px solid transparent",
-              borderRadius: "10px",
-            }}
-            placeholder="กรุณาแสดงความคิดเห็น"
+            className="textarea"
+            placeholder="     กรุณาแสดงความคิดเห็น"
             rows="8"
             value={row.comment}
           />
