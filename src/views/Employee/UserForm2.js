@@ -1,5 +1,7 @@
-import React from "react";
-// import { Col, Row } from "antd";
+import React, { useState, useEffect, useRef } from "react";
+import { Form } from "antd";
+import { useParams } from "react-router-dom";
+import { notify } from "../CustomComponent";
 
 import "./App.css";
 
@@ -9,8 +11,24 @@ import Form2Table1 from "./Form2Table1";
 import Form2Table2 from "./Form2Table2";
 import Form2Table3 from "./Form2Table3";
 import Form2Table4 from "./Form2Table4";
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
 
 function UserForm2() {
+  const { id } = useParams();
+  const formRef = useRef(null);
+
+  const LoadData = () => {
+    console.log("123");
+  };
+
+  const onFinish = (values) => {
+    console.log(values);
+  };
+
+  useEffect(() => {
+    LoadData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div style={{ width: "100%" }}>
       <div className="userform2">
@@ -27,28 +45,40 @@ function UserForm2() {
             // style={{ display: "flex", justifyContent: "center" }}
           >
             <div className="row justify-content-sm-end">
-                <div className="mr-3">
-                    <GuidePoint />
-                </div>
-                <div>
-                    <GuideCode />
-                </div>
+              <div className="mr-3">
+                <GuidePoint />
+              </div>
+              <div>
+                <GuideCode />
+              </div>
             </div>
-
           </div>
         </div>
-        <div>
-          <Form2Table1 />
-        </div>
-        {/* <div className="card"> */}
-        <Form2Table2 />
-        {/* </div> */}
-        {/* <div className="card"> */}
-        <Form2Table3 />
-        {/* </div> */}
-        {/* <div className="card"> */}
-        <Form2Table4 />
-        {/* </div> */}
+        <Form
+          ref={formRef}
+          layout="vertical"
+          name="nest-messages"
+          onFinish={onFinish}
+          // fields={datala}
+        >
+          <Form.Item name={["formtwo", "formtwo_T1"]}>
+            <Form2Table1 />
+          </Form.Item>
+          <Form.Item name={["formtwo", "formtwo_T2"]}>
+            <Form2Table2 />
+          </Form.Item>
+          <Form.Item name={["formtwo", "formtwo_T3"]}>
+            <Form2Table3 />
+          </Form.Item>
+          <Form.Item name={["formtwo", "formtwo_T4"]}>
+            <Form2Table4 />
+          </Form.Item>
+          <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+            <button className="btn-modal-confirm" type="submit">
+              บันทึก
+            </button>
+          </div>
+        </Form>
       </div>
     </div>
   );

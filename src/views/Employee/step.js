@@ -11,8 +11,9 @@ import Form2 from "./UserForm2";
 import Form3 from "./UserForm3";
 import Success from "./UserSuccess";
 
-// import axios from "axios";
-// const url = `http://localhost:3001/api/employee`;
+import { useParams } from "react-router-dom";
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
 
 const { Step } = Steps;
 
@@ -34,7 +35,7 @@ const steps = [
 function UserStep() {
   const [current, setCurrent] = useState(0);
   const [modal, setModal] = useState(false);
-  // const [formone, setFormone] = useState([]);
+  const { id } = useParams();
 
   const next = () => {
     setCurrent(current + 1);
@@ -49,6 +50,20 @@ function UserStep() {
   };
 
   const handleOk = () => {
+    const id_assessment = `${id}`;
+    const id_employee = "1";
+    const data = {
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+    };
+    axios
+      .post(`${url}/finishAssessment`, data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setModal(false);
     next();
   };
@@ -56,37 +71,6 @@ function UserStep() {
   const handleCancel = () => {
     setModal(false);
   };
-
-  // const LoadData = () => {
-  //   const employee_id = {
-  //     employee_id: "1",
-  //     assessment_id: "1",
-  //   };
-  //   axios.post(`${url}/dataFormone`, employee_id).then((res) => {
-  //     // console.log(res);
-  //     setFormone({
-  //       formone_budgetone: res.data.data.formone.formone_budgetone,
-  //       formone_budgettwo: res.data.data.formone.formone_budgettwo,
-  //       formone_lababy: res.data.data.formone.formone_lababy,
-  //       formone_lalate: res.data.data.formone.formone_lalate,
-  //       formone_laleave: res.data.data.formone.formone_laleave,
-  //       formone_lamilitary: res.data.data.formone.formone_lamilitary,
-  //       formone_lamonk: res.data.data.formone.formone_lamonk,
-  //       formone_lapaper: res.data.data.formone.formone_lapaper,
-  //       formone_laprivate: res.data.data.formone.formone_laprivate,
-  //       formone_lasick: res.data.data.formone.formone_lasick,
-  //       formone_promone: res.data.data.formone.formone_promone,
-  //       formone_promtwo: res.data.data.formone.formone_promtwo,
-  //       formone_punishdate: res.data.data.formone.formone_punishdate,
-  //       formone_punishievel: res.data.data.formone.formone_punishievel,
-  //       employee_id,
-  //     });
-  //     // setFormone(data);
-  //   });
-  // };
-  // useEffect(() => {
-  //   // LoadData();
-  // }, []);
 
   return (
     <div>

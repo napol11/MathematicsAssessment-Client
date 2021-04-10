@@ -133,6 +133,7 @@ const CommitteeMain = () => {
     };
     axios.post(`${url}/assessment`, employee_id).then((res) => {
       const form = res.data.data.form;
+      // const result = res.data.data.formresult;
 
       const data = form.map((v, i) => ({
         ...v,
@@ -140,13 +141,11 @@ const CommitteeMain = () => {
         name: v.assessment_name,
         start: v.assessment_start,
         end: v.assessment_endedit,
-        // status: d2.getDate(v.assessment_endedit) + d1.getDate(),
+        // status: v.id.map((value) => result.fk_assessment_id === value),
       }));
       setdata(data);
       // console.log(data);
-      // console.log(new Date("2021-04-14") < new Date() ? true : false);
     });
-    // const d2 = new Date();
     // set Data ไว้ filter
     // setfilter([
     //   {

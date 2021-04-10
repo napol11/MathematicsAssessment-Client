@@ -45,8 +45,7 @@ function UserProfile() {
         times: timeYear + "   ปี",
       });
     });
-    // const id_assessment = `${id}`;
-    const id_assessment = "1";
+    const id_assessment = `${id}`;
     const assessment = {
       employee_id: id_employee,
       assessment_id: id_assessment,
@@ -128,12 +127,13 @@ function UserProfile() {
   };
 
   const onFinish = (values) => {
+    const id_assessment = `${id}`;
+    const id_employee = "1";
     const data = {
       ...values,
-      assessment_id: 1,
-      employee_id: 1,
+      assessment_id: id_assessment,
+      employee_id: id_employee,
     };
-    // console.log(values);
     axios
       .post(`${url}/formone`, data)
       .then((res) => {
@@ -191,7 +191,7 @@ function UserProfile() {
 
   useEffect(() => {
     LoadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div style={{ marginTop: "2%" }}>
       <label style={{ fontWeight: "bold", fontSize: "24px", color: "black" }}>
