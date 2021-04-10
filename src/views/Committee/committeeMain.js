@@ -209,7 +209,7 @@ const CommitteeMain = () => {
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12">
           <label
-            style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
+            style={{ fontWeight: "bold", fontSize: "26px", color: "black", marginBottom: "2%" }}
           >
             การประเมินรอบปีงบประมาณ {Title}
           </label>

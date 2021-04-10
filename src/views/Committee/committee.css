@@ -15,8 +15,33 @@
 .committeeInput .ant-input-group > .ant-input {
   background-color: #e9e9e9;
 }
+
+.ant-input:hover {
+    background-color: #e9e9e9;
+    border: 1.5px solid #f26843 !important;
+  }
+
+.ant-input:focus {
+    background-color: #e9e9e9;
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843 !important;
+}  
+
 .committeeInput .ant-btn {
   background-color: #e9e9e9;
+}
+
+.ant-btn:hover {
+    background-color: #e9e9e9;
+    border: 1.5px solid #f26843 !important;
+}
+
+.ant-btn:focus,.ant-btn:active {
+    background-color: #e9e9e9;
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843 !important;
 }
 
 .btnCommitteeDisable {
@@ -132,4 +157,14 @@
 
 .committeeTableAssess3 .ant-table-cell-scrollbar {
   box-shadow: none !important;
+}
+
+.input_search:hover {
+    border: 1.5px solid #f26843 !important;
+}
+
+.input_search:focus {
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
 }

@@ -38,10 +38,13 @@ const TheSidebar = () => {
     remove();
     history.push("/login");
   };
+
+//   ชื่อ user
   useEffect(() => {
-    setName("พุทธะ มณฑล");
-    setPosition("พนักงาน");
+    setName("");
+    setPosition("");
   }, []);
+  
   return (
     <CSidebar
       show={show}
