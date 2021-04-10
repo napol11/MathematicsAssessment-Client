@@ -16,12 +16,12 @@
   background-color: #e9e9e9;
 }
 
-.ant-input:hover {
+.committeeInput .ant-input:hover {
     background-color: #e9e9e9;
     border: 1.5px solid #f26843 !important;
   }
 
-.ant-input:focus {
+.committeeInput .ant-input:focus {
     background-color: #e9e9e9;
     outline: none !important;
     box-shadow: 0 0 4px #f26843;
@@ -32,12 +32,12 @@
   background-color: #e9e9e9;
 }
 
-.ant-btn:hover {
+.committeeInput .ant-btn:hover {
     background-color: #e9e9e9;
     border: 1.5px solid #f26843 !important;
 }
 
-.ant-btn:focus,.ant-btn:active {
+.committeeInput .ant-btn:focus,.ant-btn:active {
     background-color: #e9e9e9;
     outline: none !important;
     box-shadow: 0 0 4px #f26843;
@@ -81,6 +81,7 @@
 }
 
 .btnCancel {
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid #f6be32;
   background-color: white;
@@ -96,6 +97,7 @@
 }
 
 .btnConfirm {
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid white;
   background-color: #f6be32;
@@ -111,6 +113,7 @@
 }
 
 .btnConfirmDis {
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid #c6c6c6;
   background-color: #c6c6c6;

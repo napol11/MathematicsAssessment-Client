@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button, Row } from "antd";
+import { CModal, CModalBody } from "@coreui/react";
 
 import "./committee.css";
 
@@ -78,6 +80,15 @@ const CommitteAssessStep32 = (props) => {
     });
   };
 
+  const [modal, setModal] = useState(false);
+  const showmodal = () => {
+    setModal(true);
+  };
+
+  const handleCancel = () => {
+    setModal(false);
+  };
+
   return (
     <div>
       <div className="row no-gutter">
@@ -136,6 +147,54 @@ const CommitteAssessStep32 = (props) => {
           </div>
         </div>
       </div>
+
+      <CModal show={modal} size="lg" style={{ textAlign: "center" }}>
+        <CModalBody>
+          <img
+            src="/logo/warning.png"
+            alt="warning"
+            style={{
+              width: "15%",
+              marginBottom: "3%",
+              marginTop: "3%",
+            }}
+          />
+          <Row justify="center">
+            <h4>หากท่านเลือก</h4>
+            <h4 style={{ color: "red" }}> "ยืนยัน" </h4>
+            <h4>จะไม่สามารถกลับมาแก้ไขแบบประเมินได้อีก</h4>
+          </Row>
+          <Row justify="center">
+            <h4>ท่านต้องการส่งแบบประเมินหรือไม่</h4>
+          </Row>
+
+          <Button
+            style={{
+              marginTop: "3%",
+              marginRight: "2%",
+              borderColor: "#F6BE32",
+              color: "black",
+              width: "15%",
+            }}
+            onClick={() => handleCancel()}
+          >
+            ยกเลิก
+          </Button>
+          <Button
+            style={{
+              marginTop: "3%",
+              borderColor: "#F6BE32",
+              color: "black",
+              backgroundColor: "#F6BE32",
+              width: "15%",
+            }}
+            onClick={props.next}
+          >
+            ยืนยัน
+          </Button>
+        </CModalBody>
+      </CModal>
+
       <div
         className="mt-3 mb-4"
         style={{
@@ -146,7 +205,7 @@ const CommitteAssessStep32 = (props) => {
         <div className="pl-4 pr-4 mr-4 btnCancel" onClick={props.prev}>
           ย้อนกลับ
         </div>
-        <div className="pl-4 pr-4 mr-4 btnConfirm" onClick={props.next}>
+        <div className="pl-4 pr-4 mr-4 btnConfirm" onClick={() => showmodal()}>
           ถัดไป
         </div>
       </div>
