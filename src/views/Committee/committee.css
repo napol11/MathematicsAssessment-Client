@@ -173,10 +173,13 @@
 }
 
 .textarea {
-    width: 100%;
     background-color: #E7E5E3;
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .textarea:hover {
