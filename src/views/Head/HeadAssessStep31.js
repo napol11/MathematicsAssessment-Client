@@ -116,16 +116,12 @@ const CommitteAssessStep31 = (props) => {
         const str = typeof row.title === "string" ? true : false;
         if (str) {
           return (
-            <input
+            <textarea
               onChange={(value) => inputSkill(value, row, index)}
               value={text}
-              style={{
-                backgroundColor: "#E7E5E3",
-                borderRadius: "5px",
-                border: "1px solid transparent",
-                width: "80%",
-              }}
-            ></input>
+              className="textarea"
+              style={{width: "90%"}}
+            ></textarea>
           );
         } else {
           return null;
@@ -192,8 +188,8 @@ const CommitteAssessStep31 = (props) => {
           ย้อนกลับ
         </div>
         <div
-          className={`pl-4 pr-4 mr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
-          onClick={diss ? null : props.next}
+          className="pl-4 pr-4 mr-4 btnConfirm"
+          onClick={props.next}
         >
           ถัดไป
         </div>

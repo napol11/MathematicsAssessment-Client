@@ -518,7 +518,7 @@ const CommitteAssessStep1 = (props) => {
       >
         <div
           className="pl-4 pr-4 mr-4 btnCancel"
-          onClick={() => history.push("/committee")}
+          onClick={() => history.push("/head")}
         >
           ยกเลิก
         </div>
