@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Button, Row } from "antd";
+import React, { useState, useRef, useEffect } from "react";
+import { Button, Row, Form, Input } from "antd";
 import { CModal, CModalBody } from "@coreui/react";
+import { useParams } from "react-router-dom";
+import { notify } from "../CustomComponent";
 
 import "./committee.css";
 
+import axios from "axios";
+const url = `http://localhost:3001/api/committee`;
+
 const CommitteAssessStep32 = (props) => {
-  // console.log(props.data.EvaForm32);
   const data = props.data.EvaForm32;
 
   const Employee = () => {
@@ -42,42 +46,6 @@ const CommitteAssessStep32 = (props) => {
     return values;
   };
 
-  const Committee = () => {
-    const styleTitle = { marginBottom: 0 };
-    const value = data.Committee.map((row, index) => {
-      return (
-        <div>
-          <p
-            key={`p${index}`}
-            className={index !== 0 ? "mt-5 mb-2" : "mb-2"}
-            style={styleTitle}
-          >{`${index + 1}. ${row.title}`}</p>
-          <textarea
-            key={`area${index}`}
-            onChange={(e) => Comment(e, row, index)}
-            className="textarea"
-            style={{ width: "100%" }}
-            placeholder="     กรุณาแสดงความคิดเห็น"
-            rows="8"
-            // value={row.comment}
-          />
-        </div>
-      );
-    });
-
-    return value;
-  };
-
-  const Comment = (e, row, index) => {
-    const val = [...data.Committee];
-    val.splice(index, 1, { ...row, comment: e.target.value });
-    // props.setData({
-    //   ...props.data,
-    //   EvaForm32: { ...data, Committee: val },
-    // });
-    console.log(val);
-  };
-
   const [modal, setModal] = useState(false);
   const showmodal = () => {
     setModal(true);
@@ -86,6 +54,75 @@ const CommitteAssessStep32 = (props) => {
   const handleCancel = () => {
     setModal(false);
   };
+
+  const { id, assessment } = useParams();
+  const formRef = useRef(null);
+  const { TextArea } = Input;
+
+  const onFinish = (values) => {
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const id_committee = "1";
+    const form = {
+      ...values,
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+      committee_id: id_committee,
+    };
+    axios
+      .post(`${url}/formfour`, form)
+      .then((res) => {
+        console.log(res);
+        notify.success("บันทึกสำเร็จ !");
+      })
+      .catch((err) => {
+        console.log(err);
+        // notify.error("บันทึกไม่สำเร็จ !");
+      });
+  };
+  const [form, setForm] = useState([
+    {
+      name: ["comone"],
+      value: "",
+    },
+    {
+      name: ["comtwo"],
+      value: "",
+    },
+  ]);
+
+  const LoadData = () => {
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const id_committee = "1";
+    const form = {
+      employee_id: id_employee,
+      assessment_id: id_assessment,
+      committee_id: id_committee,
+    };
+    axios.post(`${url}/dataFormfourById`, form).then((res) => {
+      setForm([
+        {
+          name: ["comone"],
+          value:
+            res.data.data.formfour_comone === null
+              ? " "
+              : res.data.data.formfour_comone,
+        },
+        {
+          name: ["comtwo"],
+          value:
+            res.data.data.formfour_comtwo === null
+              ? " "
+              : res.data.data.formfour_comtwo,
+        },
+      ]);
+    });
+  };
+
+  useEffect(() => {
+    LoadData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -141,7 +178,45 @@ const CommitteAssessStep32 = (props) => {
               padding: "3%",
             }}
           >
-            {Committee()}
+            {/* {Committee()} */}
+            <Form
+              ref={formRef}
+              layout="vertical"
+              name="nest-messages"
+              onFinish={onFinish}
+              fields={form}
+            >
+              <p>
+                1. ท่านคิดว่าผู้ใใต้บังคับบัญชายังขาดความรู้
+                ความชำนาญทักษะในเรื่องใดบ้าง
+              </p>
+              <Form.Item name={["comone"]}>
+                <TextArea
+                  className="textarea"
+                  style={{ width: "100%" }}
+                  placeholder="     กรุณาแสดงความคิดเห็น"
+                  rows="5"
+                />
+              </Form.Item>
+              <p>
+                2. ท่านคิดว่าผู้ใใต้บังคับบัญชาหควรจะอบรม
+                หรือต้องการความรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
+                (เรียงลำดับความสำคัญ 1-5)
+              </p>
+              <Form.Item name={["comtwo"]}>
+                <TextArea
+                  className="textarea"
+                  style={{ width: "100%" }}
+                  placeholder="     กรุณาแสดงความคิดเห็น"
+                  rows="5"
+                />
+              </Form.Item>
+              <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+                <button className="btn-modal-confirm" type="submit">
+                  บันทึก
+                </button>
+              </div>
+            </Form>
           </div>
         </div>
       </div>
