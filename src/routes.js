@@ -79,7 +79,7 @@ const routes = [
     component: CommitteeMain,
   },
   {
-    path: "/committee/:id",
+    path: "/committee/:assessment/:id",
     exact: true,
     name: "การประเมินพนักงาน",
     component: CommitteeAssess,

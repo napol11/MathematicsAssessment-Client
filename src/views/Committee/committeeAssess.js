@@ -7,8 +7,13 @@ import CommitteAssessStep32 from "./committeAssessStep32";
 import CommitteAssessStep4 from "./committeAssessStep4";
 import ModalComAssess2 from "./modalComAssess2";
 
+import { useParams } from "react-router-dom";
+
 import "./committee.css";
 import "./step.css";
+
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
 
 const { Step } = Steps;
 
@@ -17,38 +22,80 @@ const CommitteeAssess = () => {
   const [current, setCurrent] = React.useState(0);
   const [step3, setStep3] = useState(0);
 
+  const { id, assessment } = useParams();
+
+  const [dataStape1, setDataStape1] = useState([]);
+
   const LoadData = () => {
+    // console.log(id, assessment);
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const form = {
+      employee_id: id_employee,
+      assessment_id: id_assessment,
+    };
+    axios.get(`${url}/employee/` + id_employee).then((info) => {
+      axios.post(`${url}/dataFormone`, form).then((form1) => {
+        setDataStape1({
+          information: {
+            firstName: info.data.data.employee_firstname,
+            lastName: info.data.data.employee_lastname,
+            position: info.data.data.employee_position,
+            number: info.data.data.employee_number,
+            level: info.data.data.employee_degree,
+            division: info.data.data.employee_group,
+            startTimes: info.data.data.employee_start,
+          },
+          leaveHistory: {
+            sickLeave:
+              form1.data.data.formone.formone_lasick === null
+                ? 0
+                : form1.data.data.formone.formone_lasick,
+            sickLeaveMedical:
+              form1.data.data.formone.formone_lapaper === null
+                ? 0
+                : form1.data.data.formone.formone_lapaper,
+            businessLeave:
+              form1.data.data.formone.formone_laprivate === null
+                ? 0
+                : form1.data.data.formone.formone_laprivate,
+            late:
+              form1.data.data.formone.formone_lalate === null
+                ? 0
+                : form1.data.data.formone.formone_lalate,
+            holiday:
+              form1.data.data.formone.formone_laleave === null
+                ? 0
+                : form1.data.data.formone.formone_laleave,
+            MaternityLeave:
+              form1.data.data.formone.formone_lababy === null
+                ? 0
+                : form1.data.data.formone.formone_lababy,
+            ordainLeave:
+              form1.data.data.formone.formone_lamonk === null
+                ? 0
+                : form1.data.data.formone.formone_lamonk,
+            govermentLack:
+              form1.data.data.formone.formone_lamilitary === null
+                ? 0
+                : form1.data.data.formone.formone_lamilitary,
+          },
+          salaryHistory: {
+            text:
+              form1.data.data.formone.formone_historypromo === null
+                ? ""
+                : form1.data.data.formone.formone_historypromo,
+          },
+          punishHistory: {
+            text:
+              form1.data.data.formone.formone_historypunish === null
+                ? ""
+                : form1.data.data.formone.formone_historypunish,
+          },
+        });
+      });
+    });
     setData({
-      information: {
-        firstName: "สโรชา",
-        lastName: "สังข์บุญลือ",
-        position: "บาริสต้า",
-        number: 49,
-        level: "เชี่ยวชาญ",
-        division: "ดุสิต",
-        startTimes: "2009-07-10",
-      },
-      leaveHistory: {
-        sickLeave: 20,
-        sickLeaveMedical: 0,
-        businessLeave: 0,
-        late: 0,
-        holiday: 0,
-        MaternityLeave: 0,
-        ordainLeave: 0,
-        govermentLack: 0,
-        studieLeave: "ไม่ได้ลาศึกษาต่อ",
-        startWork: "2020-02-01",
-        endWork: "2020-07-31",
-      },
-      salaryHistory: [
-        {
-          start: "2019-10-01",
-          end: "2019-09-30",
-          salary: 0,
-        },
-      ],
-      punishHistory: [], /// [{ start:'2020-02-01', end:'2020-02-03',detail:"" }]
       performanceReport: [
         {
           head: "1.1",
@@ -526,7 +573,7 @@ const CommitteeAssess = () => {
 
   useEffect(() => {
     LoadData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="justify-center align-center">
@@ -551,8 +598,10 @@ const CommitteeAssess = () => {
               color: "rgb(243, 119, 54)",
             }}
           >
-            {`${data.information ? data.information.firstName : null} ${
-              data.information ? data.information.lastName : null
+            {`${
+              dataStape1.information ? dataStape1.information.firstName : null
+            } ${
+              dataStape1.information ? dataStape1.information.lastName : null
             }`}
           </label>
           <label
@@ -567,7 +616,9 @@ const CommitteeAssess = () => {
               color: "rgb(243, 119, 54)",
             }}
           >
-            {` ${data.information ? data.information.number : null}`}
+            {` ${
+              dataStape1.information ? dataStape1.information.number : null
+            }`}
           </label>
           <div className="row no-gutter mt-2 ">
             <div className="col-sm-2" />
@@ -586,7 +637,7 @@ const CommitteeAssess = () => {
             {/* ห้าม refresh ไม่งั้น Data State จะกลับสู่ defualt ต้อง save ทุกครั้งที่ กด ถัดไป */}
             {current === 0 ? (
               <CommitteAssessStep1
-                data={data}
+                data={dataStape1}
                 next={() => setCurrent(current + 1)}
               />
             ) : current === 1 ? (

@@ -47,19 +47,31 @@ function UserFrom3() {
       setForm([
         {
           name: ["empne"],
-          value: res.data.data.formfour.formfour_emone,
+          value:
+            res.data.data.formfour.formfour_emone === null
+              ? ""
+              : res.data.data.formfour.formfour_emone,
         },
         {
           name: ["emtwo"],
-          value: res.data.data.formfour.formfour_emtwo,
+          value:
+            res.data.data.formfour.formfour_emtwo === null
+              ? ""
+              : res.data.data.formfour.formfour_emtwo,
         },
         {
           name: ["emthree"],
-          value: res.data.data.formfour.formfour_emthree,
+          value:
+            res.data.data.formfour.formfour_emthree === null
+              ? ""
+              : res.data.data.formfour.formfour_emthree,
         },
         {
           name: ["emfour"],
-          value: res.data.data.formfour.formfour_emfour,
+          value:
+            res.data.data.formfour.formfour_emfour === null
+              ? ""
+              : res.data.data.formfour.formfour_emfour,
         },
       ]);
     });

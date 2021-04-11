@@ -1,7 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+  // useState,
+  useEffect,
+  useRef,
+} from "react";
 import { Form } from "antd";
-import { useParams } from "react-router-dom";
-import { notify } from "../CustomComponent";
+// import { useParams } from "react-router-dom";
+// import { notify } from "../CustomComponent";
 
 import "./App.css";
 
@@ -11,11 +15,11 @@ import Form2Table1 from "./Form2Table1";
 import Form2Table2 from "./Form2Table2";
 import Form2Table3 from "./Form2Table3";
 import Form2Table4 from "./Form2Table4";
-import axios from "axios";
-const url = `http://localhost:3001/api/employee`;
+// import axios from "axios";
+// const url = `http://localhost:3001/api/employee`;
 
 function UserForm2() {
-  const { id } = useParams();
+  // const { id } = useParams();
   const formRef = useRef(null);
 
   const LoadData = () => {

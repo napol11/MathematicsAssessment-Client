@@ -187,13 +187,13 @@ const CommitteeMain = () => {
             className="committeeTable mt-4"
             columns={columns}
             dataSource={data}
-            pagination={false}
-            // pagination={{
-            //   defaultPageSize: 10,
-            //   showSizeChanger: true,
-            //   pageSizeOptions: ["10", "20", "30"],
-            //   locale: { items_per_page: "/ หน้า" },
-            // }}
+            // pagination={false}
+            pagination={{
+              defaultPageSize: 10,
+              showSizeChanger: true,
+              pageSizeOptions: ["10", "20", "30"],
+              locale: { items_per_page: "/ หน้า" },
+            }}
             loading={{
               spinning: LoadingTable,
               tip: "กำลังโหลด...",

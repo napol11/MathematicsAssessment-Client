@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Table, Input } from "antd";
+import { Table } from "antd";
 import { date2Thai } from "../CustomFunction";
 import { useHistory } from "react-router-dom";
 
 import "./committee.css";
 
-const { Search } = Input;
-const title = { color: "white", fontWeight: "bold", textAlign: "center" };
+import axios from "axios";
+const url = `http://localhost:3001/api/committee`;
+
+// const { Search } = Input;
+const title = { color: "white", fontWeight: "bold", textAlign: "left" };
 
 const CommitteeMain = () => {
   const history = useHistory();
 
   const [LoadingTable, setLoadingTable] = useState(false);
-  const [LoadingSearch, setLoadingSearch] = useState(false);
+  // const [LoadingSearch, setLoadingSearch] = useState(false);
   const [data, setdata] = useState([]);
-  const [filter, setfilter] = useState([]);
+  // const [filter, setfilter] = useState([]);
   const [Title, setTitle] = useState("");
+  const [TitleTime, setTitleTime] = useState("");
 
   const columns = [
     {
       title: <div style={title}>เลขที่</div>,
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "no",
+      key: "no",
       align: "center",
       width: "80px",
       render: (text, row, index) => {
@@ -64,7 +68,10 @@ const CommitteeMain = () => {
             }}
             className={success ? "btnCommitteeDisable" : "btnCommittee"}
             onClick={
-              success ? null : () => history.push(`/committee/${row.no}`)
+              success
+                ? null
+                : () =>
+                    history.push(`/committee/${row.assessment.id}/${row.id}`)
             }
           >
             {`${success ? "ประเมินแล้ว" : "ประเมิน"}`}
@@ -74,129 +81,103 @@ const CommitteeMain = () => {
     },
   ];
 
-  const search = (value) => {
-    setLoadingSearch(true); // loading ปุ่ม search  // true = โหลดอยู่ , false = เสร็จแล้ว
-    setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
+  // const search = (value) => {
+  //   setLoadingSearch(true); // loading ปุ่ม search  // true = โหลดอยู่ , false = เสร็จแล้ว
+  //   setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
 
-    const regex = new RegExp(value.toString().toUpperCase(), "g");
-    const find = filter.filter(({ name }) => {
-      const upper = name.toString().toUpperCase();
-      return upper.match(regex);
-    });
-    setdata(find); // set Data ใส่ตาราง
-    setLoadingSearch(false);
-    setLoadingTable(false);
-  };
+  //   const regex = new RegExp(value.toString().toUpperCase(), "g");
+  //   const find = filter.filter(({ name }) => {
+  //     const upper = name.toString().toUpperCase();
+  //     return upper.match(regex);
+  //   });
+  //   setdata(find); // set Data ใส่ตาราง
+  //   setLoadingSearch(false);
+  //   setLoadingTable(false);
+  // };
 
   const LoadData = () => {
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
     setLoadingTable(true);
-    // set Data ใส่ตาราง
-    setdata([
-      {
-        no: "1",
-        name: "John Brown",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "2",
-        name: "Jim Green",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "3",
-        name: "Joe Black",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "4",
-        name: "John Brown",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "5",
-        name: "Jim Green",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "6",
-        name: "Joe Black",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "success",
-      },
-    ]);
+    axios.get(`${url}/assessment`).then((res) => {
+      // console.log(res.data.data);
+      const employee = res.data.data.employee;
+      const assessment = res.data.data.time[0];
+      const dataEm = [];
+      for (let i = 0; i < employee.length; i++) {
+        for (let d = 0; d < employee[i].length; d++) {
+          dataEm.push(employee[i][d]);
+        }
+      }
+      const data = dataEm.map((v, i) => ({
+        ...v,
+        no: i + 1,
+        name: v.employee_firstname + " " + v.employee_lastname,
+        position: v.employee_position,
+        level: v.employee_degree,
+        division: v.employee_group,
+        assessment,
+      }));
+      // console.log(data);
+      setdata(data);
+      setTitle(assessment.assessment_name);
+      setTitleTime(
+        `วันเริ่มต้นประเมิน ${date2Thai(
+          new Date(assessment.assessment_endedit)
+        )} - ${date2Thai(new Date(assessment.assessment_end))}`
+      );
+    });
     // set Data ไว้ filter
-    setfilter([
-      {
-        no: "1",
-        name: "John Brown",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "2",
-        name: "Jim Green",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "3",
-        name: "Joe Black",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "4",
-        name: "John Brown",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "5",
-        name: "Jim Green",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "wait",
-      },
-      {
-        no: "6",
-        name: "Joe Black",
-        position: "xxxxxxxxxxx",
-        level: "xxxxxx",
-        division: "xxxxxx",
-        status: "success",
-      },
-    ]);
-    // set Title
-    setTitle(
-      `${date2Thai("2020-01-01", true)} - ${date2Thai("2020-07-01", true)}`
-    );
+    // setfilter([
+    //   {
+    //     no: "1",
+    //     name: "John Brown",
+    //     position: "xxxxxxxxxxx",
+    //     level: "xxxxxx",
+    //     division: "xxxxxx",
+    //     status: "wait",
+    //   },
+    //   {
+    //     no: "2",
+    //     name: "Jim Green",
+    //     position: "xxxxxxxxxxx",
+    //     level: "xxxxxx",
+    //     division: "xxxxxx",
+    //     status: "wait",
+    //   },
+    //   {
+    //     no: "3",
+    //     name: "Joe Black",
+    //     position: "xxxxxxxxxxx",
+    //     level: "xxxxxx",
+    //     division: "xxxxxx",
+    //     status: "wait",
+    //   },
+    //   {
+    //     no: "4",
+    //     name: "John Brown",
+    //     position: "xxxxxxxxxxx",
+    //     level: "xxxxxx",
+    //     division: "xxxxxx",
+    //     status: "wait",
+    //   },
+    //   {
+    //     no: "5",
+    //     name: "Jim Green",
+    //     position: "xxxxxxxxxxx",
+    //     level: "xxxxxx",
+    //     division: "xxxxxx",
+    //     status: "wait",
+    //   },
+    //   {
+    //     no: "6",
+    //     name: "Joe Black",
+    //     position: "xxxxxxxxxxx",
+    //     level: "xxxxxx",
+    //     division: "xxxxxx",
+    //     status: "success",
+    //   },
+    // ]);
+
     setLoadingTable(false);
   };
 
@@ -211,7 +192,8 @@ const CommitteeMain = () => {
           <label
             style={{ fontWeight: "bold", fontSize: "26px", color: "black", marginBottom: "2%" }}
           >
-            การประเมินรอบปีงบประมาณ {Title}
+            การประเมิน {Title} <br />
+            {TitleTime}
           </label>
           <div className="row no-gutter  mb-3">
             <div className="col-sm-6">
@@ -225,7 +207,7 @@ const CommitteeMain = () => {
                 รายชื่อพนักงานที่ต้องประเมิน
               </label>
             </div>
-            <div className="col-sm-6 text-sm-right ">
+            {/* <div className="col-sm-6 text-sm-right ">
               <Search
                 className="committeeInput"
                 placeholder="ค้นหารายชื่อพนักงาน"
@@ -233,7 +215,7 @@ const CommitteeMain = () => {
                 style={{ width: "80%" }}
                 onSearch={search}
               />
-            </div>
+            </div> */}
           </div>
           {/* ********************************** */}
           <Table
@@ -253,7 +235,7 @@ const CommitteeMain = () => {
               size: "large",
             }}
             locale={{ emptyText: "ไม่มีข้อมูล" }}
-            scroll={{ y: 500 }}
+            // scroll={{ y: 500 }}
             size="middle"
           />
         </div>
