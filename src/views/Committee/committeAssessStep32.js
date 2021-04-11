@@ -5,6 +5,7 @@ import { CModal, CModalBody } from "@coreui/react";
 import "./committee.css";
 
 const CommitteAssessStep32 = (props) => {
+  // console.log(props.data.EvaForm32);
   const data = props.data.EvaForm32;
 
   const Employee = () => {
@@ -55,10 +56,10 @@ const CommitteAssessStep32 = (props) => {
             key={`area${index}`}
             onChange={(e) => Comment(e, row, index)}
             className="textarea"
-            style={{width: "100%"}}
+            style={{ width: "100%" }}
             placeholder="     กรุณาแสดงความคิดเห็น"
             rows="8"
-            value={row.comment}
+            // value={row.comment}
           />
         </div>
       );
@@ -70,10 +71,11 @@ const CommitteAssessStep32 = (props) => {
   const Comment = (e, row, index) => {
     const val = [...data.Committee];
     val.splice(index, 1, { ...row, comment: e.target.value });
-    props.setData({
-      ...props.data,
-      EvaForm32: { ...data, Committee: val },
-    });
+    // props.setData({
+    //   ...props.data,
+    //   EvaForm32: { ...data, Committee: val },
+    // });
+    console.log(val);
   };
 
   const [modal, setModal] = useState(false);
