@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { Form } from "antd";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // import { notify } from "../CustomComponent";
 
 import "./App.css";
@@ -15,24 +15,66 @@ import Form2Table4 from "./Form2Table4";
 // const url = `http://localhost:3001/api/employee`;
 
 function UserForm2() {
-  // const { id } = useParams();
+  const { id } = useParams();
   // const formRef = useRef(null);
   const [dataT1, setDataT1] = useState([]);
   const [dataT2, setDataT2] = useState([]);
   const [dataT3, setDataT3] = useState([]);
   const [dataT4, setDataT4] = useState([]);
-  // const [rawData, setRawData] = useState([]);
 
   const LoadData = () => {
     // console.log("123");
   };
 
   const onFinish = () => {
-    console.log(dataT1);
-    console.log(dataT2);
-    console.log(dataT3);
-    console.log(dataT4);
-    // const rawData =
+    let _list = [];
+    dataT1.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "1";
+      f.formtwo_name = v.Table1Activity;
+      f.formtwo_fte = v.Table1FTE;
+      f.formtwo_sucessem = v.Table1Level;
+      f.formtwo_comment = v.Table1Comments;
+      _list.push(f);
+    });
+    dataT2.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "2";
+      f.formtwo_name = v.Table2Activity;
+      f.formtwo_fte = v.Table2FTE;
+      f.formtwo_sucessem = v.Table2Level;
+      f.formtwo_comment = v.Table2Comments;
+      f.formtwo_code = v.Table2Code;
+      _list.push(f);
+    });
+    dataT3.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "3";
+      f.formtwo_name = v.Table3Activity;
+      f.formtwo_fte = v.Table3FTE;
+      f.formtwo_sucessem = v.Table3Level;
+      f.formtwo_comment = v.Table3Comments;
+      f.formtwo_code = v.Table3Code;
+      _list.push(f);
+    });
+    dataT4.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "4";
+      f.formtwo_name = v.Table4Activity;
+      f.formtwo_fte = v.Table4FTE;
+      f.formtwo_sucessem = v.Table4Level;
+      f.formtwo_comment = v.Table4Comments;
+      _list.push(f);
+    });
+    // console.log(_list);
+    const id_assessment = `${id}`;
+    const id_employee = "1";
+    const data = {
+      id_employee,
+      id_assessment,
+      formtwo: _list,
+    };
+    console.log(data);
   };
 
   useEffect(() => {
@@ -73,42 +115,6 @@ function UserForm2() {
             บันทึก
           </button>
         </div>
-        {/* <Form
-          ref={formRef}
-          layout="vertical"
-          name="nest-messages"
-          onFinish={onFinish}
-        >
-          <Form.Item name={["formtwo"]}>
-            <Form2Table1
-              data={dataT1}
-              changeData={(dataT1) => setDataT1(dataT1)}
-            />
-          </Form.Item>
-          <Form.Item name={["formtwo"]}>
-            <Form2Table2
-              data={dataT2}
-              changeData={(dataT2) => setDataT2(dataT2)}
-            />
-          </Form.Item>
-          <Form.Item name={["formtwo"]}>
-            <Form2Table3
-              data={dataT3}
-              changeData={(dataT3) => setDataT3(dataT3)}
-            />
-          </Form.Item>
-          <Form.Item name={["formtwo"]}>
-            <Form2Table4
-              data={dataT4}
-              changeData={(dataT4) => setDataT4(dataT4)}
-            />
-          </Form.Item>
-          <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
-            <button className="btn-modal-confirm" type="submit">
-              บันทึก
-            </button>
-          </div>
-        </Form> */}
       </div>
     </div>
   );

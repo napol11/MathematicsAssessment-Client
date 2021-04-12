@@ -165,8 +165,8 @@ class Form2Table4 extends React.Component {
       },
       {
         title: <div style={title}>{"ความคิดเห็น"}</div>,
-        dataIndex: "Table1Comments",
-        key: "Table1Comments",
+        dataIndex: "Table4Comments",
+        key: "Table4Comments",
         editable: true,
       },
       // {
