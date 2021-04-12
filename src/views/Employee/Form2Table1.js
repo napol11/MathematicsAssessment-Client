@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Button, Popconfirm, Form } from "antd";
+import { Table, Input, Popconfirm, Form } from "antd";
 
 import { MdDelete } from "react-icons/md";
 import "./App.css";
@@ -66,11 +66,16 @@ const EditableCell = ({
         rules={[
           {
             required: true,
-            message: `กรุณาระบุ ${title}!`,
+            message: `กรุณาระบุ !`,
           },
         ]}
       >
-        <Input className="textbox" ref={inputRef} onPressEnter={save} onBlur={save} />
+        <Input
+          className="textbox"
+          ref={inputRef}
+          onPressEnter={save}
+          onBlur={save}
+        />
       </Form.Item>
     ) : (
       <div
@@ -95,53 +100,88 @@ class Form2Table1 extends React.Component {
       {
         title: <div style={title}>{"หัวข้อ"}</div>,
         dataIndex: "Table1No",
+        key: "Table1No",
         editable: true,
         width: "5%",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table1Activity",
+        key: "Table1Activity",
         editable: true,
       },
       {
-        title: <div style={title}>{"%FTE"}</div>,
+        title: <div style={title}>{"%FTE (A)"}</div>,
         dataIndex: "Table1FTE",
+        key: "Table1FTE",
         editable: true,
         width: "10%",
       },
       {
-        title: <div style={title}>{"ระดับความสำเร็จ"}</div>,
+        title: <div style={title}>{"ระดับความสำเร็จ (B)"}</div>,
         dataIndex: "Table1Level",
+        key: "Table1Level",
         editable: true,
         width: "10%",
       },
       {
-        title: <div style={title}>{"คะแนนรวม"}</div>,
+        title: <div style={title}>{"คะแนนรวม (B * C)"}</div>,
         dataIndex: "Table1TotalScore",
+        key: "Table1TotalScore",
         width: "10%",
+        render: (text, row, index) => {
+          return (
+            <div
+              style={{
+                wordWrap: "break-word",
+                wordBreak: "break-word",
+                // textAlign: "center",
+              }}
+            >
+              {row.Table1FTE * row.Table1Level}
+            </div>
+          );
+        },
       },
       {
-        title: <div style={title}>{"คะแนนรวม %"}</div>,
+        title: <div style={title}>{"คะแนนรวม % (C / 4)"}</div>,
         dataIndex: "Table1TotalScorePercent",
+        key: "Table1TotalScorePercent",
         width: "10%",
+        render: (text, row, index) => {
+          return (
+            <div
+              style={{
+                wordWrap: "break-word",
+                wordBreak: "break-word",
+                // textAlign: "center",
+              }}
+            >
+              {/* {row.Table1TotalScore} */}
+              {(row.Table1FTE * row.Table1Level) / 4}
+            </div>
+          );
+        },
       },
       {
         title: <div style={title}>{"ความคิดเห็น"}</div>,
         dataIndex: "Table1Comments",
+        key: "Table1Comments",
         editable: true,
       },
-      {
-        title: " ",
-        dataIndex: "Table1Upload",
-        width: "10%",
-        render: (_, record) =>
-          this.state.dataSource.length >= 1 ? (
-            <Button className="buttons_upload">อัปโหลดเอกสาร</Button>
-          ) : null,
-      },
+      // {
+      //   title: " ",
+      //   dataIndex: "Table1Upload",
+      //   width: "10%",
+      //   render: (_, record) =>
+      //     this.state.dataSource.length >= 1 ? (
+      //       <Button className="buttons_upload">อัปโหลดเอกสาร</Button>
+      //     ) : null,
+      // },
       {
         title: " ",
         dataIndex: "operation",
+        key: "operation",
         width: "10%",
         render: (_, record) =>
           this.state.dataSource.length >= 1 ? (
@@ -172,10 +212,10 @@ class Form2Table1 extends React.Component {
       key: count,
       Table1No: `${count}`,
       Table1Activity: "ระบุชื่อกิจกรรม",
-      Table1FTE: "ระบุค่า FTE",
-      Table1Level: "ระบุระดับ",
-      Table1TotalScore: "",
-      Table1TotalScorePercent: "",
+      Table1FTE: "0",
+      Table1Level: "0",
+      // Table1TotalScore: "0",
+      // Table1TotalScorePercent: "0",
       Table1Comments: "ระบุความคิดเห็น",
     };
     this.setState({
@@ -244,6 +284,7 @@ class Form2Table1 extends React.Component {
           }}
           size="middle"
         />
+        {console.log(dataSource)}
       </>
     );
   }

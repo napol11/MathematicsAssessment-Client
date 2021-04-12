@@ -91,7 +91,12 @@ function UserStep() {
       <div style={{ marginTop: 24, textAlign: "center" }}>
         {current === 1 && (
           <Button
-            style={{ margin: "0 8px", borderColor: "#F6BE32", color: "black" }}
+            style={{
+              margin: "0 8px",
+              borderColor: "#F6BE32",
+              color: "black",
+              marginBottom: "1%",
+            }}
             onClick={() => prev()}
           >
             ย้อนกลับ
@@ -99,7 +104,12 @@ function UserStep() {
         )}
         {current === 2 && (
           <Button
-            style={{ margin: "0 8px", borderColor: "#F6BE32", color: "black" }}
+            style={{
+              margin: "0 8px",
+              borderColor: "#F6BE32",
+              color: "black",
+              marginBottom: "1%",
+            }}
             onClick={() => prev()}
           >
             ย้อนกลับ
@@ -111,6 +121,7 @@ function UserStep() {
               backgroundColor: "#F6BE32",
               borderColor: "#F6BE32",
               color: "black",
+              marginBottom: "1%",
             }}
             onClick={() => next()}
           >
@@ -123,6 +134,7 @@ function UserStep() {
               backgroundColor: "#F6BE32",
               borderColor: "#F6BE32",
               color: "black",
+              marginBottom: "1%",
             }}
             onClick={() => showmodal()}
           >

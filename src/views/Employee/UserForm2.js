@@ -1,8 +1,4 @@
-import React, {
-  // useState,
-  useEffect,
-  useRef,
-} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form } from "antd";
 // import { useParams } from "react-router-dom";
 // import { notify } from "../CustomComponent";
@@ -21,6 +17,10 @@ import Form2Table4 from "./Form2Table4";
 function UserForm2() {
   // const { id } = useParams();
   const formRef = useRef(null);
+  const [dataT1] = useState([]);
+  const [dataT2] = useState([]);
+  const [dataT3] = useState([]);
+  const [dataT4] = useState([]);
 
   const LoadData = () => {
     console.log("123");
@@ -63,19 +63,18 @@ function UserForm2() {
           layout="vertical"
           name="nest-messages"
           onFinish={onFinish}
-          // fields={datala}
         >
           <Form.Item name={["formtwo", "formtwo_T1"]}>
-            <Form2Table1 />
+            <Form2Table1 data={dataT1} />
           </Form.Item>
           <Form.Item name={["formtwo", "formtwo_T2"]}>
-            <Form2Table2 />
+            <Form2Table2 data={dataT2} />
           </Form.Item>
           <Form.Item name={["formtwo", "formtwo_T3"]}>
-            <Form2Table3 />
+            <Form2Table3 data={dataT3} />
           </Form.Item>
           <Form.Item name={["formtwo", "formtwo_T4"]}>
-            <Form2Table4 />
+            <Form2Table4 data={dataT4} />
           </Form.Item>
           <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
             <button className="btn-modal-confirm" type="submit">
