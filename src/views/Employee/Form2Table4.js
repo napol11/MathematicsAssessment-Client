@@ -211,7 +211,7 @@ class Form2Table4 extends React.Component {
     const newData = {
       key: count,
       Table4No: `${count}`,
-      Table1Activity: "ระบุชื่อกิจกรรม",
+      Table4Activity: "ระบุชื่อกิจกรรม",
       Table4FTE: "0",
       Table4Level: "0",
       // Table4TotalScore: "0",
@@ -231,6 +231,8 @@ class Form2Table4 extends React.Component {
     this.setState({
       dataSource: newData,
     });
+    const dataRaw = this.state.dataSource;
+    this.props.changeData(dataRaw);
   };
 
   render() {

@@ -236,6 +236,8 @@ class Form2Table3 extends React.Component {
     this.setState({
       dataSource: newData,
     });
+    const dataRaw = this.state.dataSource;
+    this.props.changeData(dataRaw);
   };
 
   render() {

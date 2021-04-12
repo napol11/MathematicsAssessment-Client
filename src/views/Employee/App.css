@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-} 
+}
 
 .App {
     display: flex;
@@ -151,6 +151,7 @@
     margin-right:auto;
     text-align: center;
     padding:4px 15px;
+    margin-top: 1%;
 }
 
 .buttons_add:hover {

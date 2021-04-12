@@ -157,7 +157,6 @@ class Form2Table1 extends React.Component {
                 // textAlign: "center",
               }}
             >
-              {/* {row.Table1TotalScore} */}
               {(row.Table1FTE * row.Table1Level) / 4}
             </div>
           );
@@ -231,6 +230,8 @@ class Form2Table1 extends React.Component {
     this.setState({
       dataSource: newData,
     });
+    const dataRaw = this.state.dataSource;
+    this.props.changeData(dataRaw);
   };
 
   render() {
@@ -284,7 +285,7 @@ class Form2Table1 extends React.Component {
           }}
           size="middle"
         />
-        {console.log(dataSource)}
+        {/* {console.log(this.props)} */}
       </>
     );
   }
