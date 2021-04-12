@@ -4,6 +4,9 @@ import { Table, Input, Popconfirm, Form } from "antd";
 import { MdDelete } from "react-icons/md";
 import "./App.css";
 
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
+
 const EditableContext = React.createContext(null);
 
 const title = { color: "black", textAlign: "center" };
@@ -197,14 +200,57 @@ class Form2Table4 extends React.Component {
     this.state = {
       dataSource: [],
       count: 1,
+      // dataSource:
+      //   this.props.data.length !== 0
+      //     ? this.props.data.map((v, i) => ({
+      //         key: i + 1,
+      //         Table1No: i + 1,
+      //         Table1Activity: v.formtwo_name,
+      //         Table1FTE: v.formtwo_fte,
+      //         Table1Level: v.formtwo_sucessem,
+      //         Table1Comments: v.formtwo_comment,
+      //       }))
+      //     : [],
+      // count: this.props.data.length !== 0 ? this.props.data.length + 1 : 1,
     };
   }
 
-  handleDelete = (key) => {
-    const dataSource = [...this.state.dataSource];
-    this.setState({
-      dataSource: dataSource.filter((item) => item.key !== key),
+  componentDidMount() {
+    // const { id } = this.props.params;
+    const id_assessment = this.props.path;
+    const id_employee = "1";
+    const data = {
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+    };
+    axios.post(`${url}/dataFormtwo`, data).then((res) => {
+      const data = res.data.data.formtwo;
+      const T4 = data.filter((v) => v.formtwo_table === 4);
+      this.setState({
+        dataSource:
+          T4.length !== 0
+            ? T4.map((v, i) => ({
+                key: i + 1,
+                Table4No: i + 1,
+                Table4Activity: v.formtwo_name,
+                Table4FTE: v.formtwo_fte,
+                Table4Level: v.formtwo_sucessem,
+                Table4Comments: v.formtwo_comment,
+              }))
+            : [],
+        count: T4.length !== 0 ? T4.length + 1 : 1,
+      });
     });
+  }
+
+  handleDelete = (key) => {
+    const newData = [...this.state.dataSource];
+    const index = newData.findIndex((item) => item.key === key);
+    newData.splice(index, 1);
+    this.setState({
+      dataSource: newData,
+    });
+    this.props.changeData(newData);
   };
   handleAdd = () => {
     const { count, dataSource } = this.state;
@@ -231,8 +277,7 @@ class Form2Table4 extends React.Component {
     this.setState({
       dataSource: newData,
     });
-    const dataRaw = this.state.dataSource;
-    this.props.changeData(dataRaw);
+    this.props.changeData(newData);
   };
 
   render() {
@@ -282,10 +327,13 @@ class Form2Table4 extends React.Component {
             </label>
           )}
           size="middle"
-          pagination={{
-            defaultPageSize: 4,
-          }}
+          pagination={false}
+          // pagination={{
+          //   defaultPageSize: 4,
+          // }}
+          scroll={{ y: 200 }}
         />
+        {/* {console.log(this.props.data.length !== 0 ? this.props.data : null)} */}
       </>
     );
   }

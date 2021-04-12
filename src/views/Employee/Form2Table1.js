@@ -4,6 +4,11 @@ import { Table, Input, Popconfirm, Form } from "antd";
 import { MdDelete } from "react-icons/md";
 import "./App.css";
 
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
+
+// import { withRouter } from "react-router-dom";
+
 const title = { color: "black", textAlign: "center" };
 
 const EditableContext = React.createContext(null);
@@ -196,14 +201,57 @@ class Form2Table1 extends React.Component {
     this.state = {
       dataSource: [],
       count: 1,
+      // dataSource:
+      //   this.props.data.length !== 0
+      //     ? this.props.data.map((v, i) => ({
+      //         key: i + 1,
+      //         Table1No: i + 1,
+      //         Table1Activity: v.formtwo_name,
+      //         Table1FTE: v.formtwo_fte,
+      //         Table1Level: v.formtwo_sucessem,
+      //         Table1Comments: v.formtwo_comment,
+      //       }))
+      //     : [],
+      // count: this.props.data.length !== 0 ? this.props.data.length + 1 : 1,
     };
   }
 
-  handleDelete = (key) => {
-    const dataSource = [...this.state.dataSource];
-    this.setState({
-      dataSource: dataSource.filter((item) => item.key !== key),
+  componentDidMount() {
+    // const { id } = this.props.params;
+    const id_assessment = this.props.path;
+    const id_employee = "1";
+    const data = {
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+    };
+    axios.post(`${url}/dataFormtwo`, data).then((res) => {
+      const data = res.data.data.formtwo;
+      const T1 = data.filter((v) => v.formtwo_table === 1);
+      this.setState({
+        dataSource:
+          T1.length !== 0
+            ? T1.map((v, i) => ({
+                key: i + 1,
+                Table1No: i + 1,
+                Table1Activity: v.formtwo_name,
+                Table1FTE: v.formtwo_fte,
+                Table1Level: v.formtwo_sucessem,
+                Table1Comments: v.formtwo_comment,
+              }))
+            : [],
+        count: T1.length !== 0 ? T1.length + 1 : 1,
+      });
     });
+  }
+
+  handleDelete = (key) => {
+    const newData = [...this.state.dataSource];
+    const index = newData.findIndex((item) => item.key === key);
+    newData.splice(index, 1);
+    this.setState({
+      dataSource: newData,
+    });
+    this.props.changeData(newData);
   };
   handleAdd = () => {
     const { count, dataSource } = this.state;
@@ -230,8 +278,7 @@ class Form2Table1 extends React.Component {
     this.setState({
       dataSource: newData,
     });
-    const dataRaw = this.state.dataSource;
-    this.props.changeData(dataRaw);
+    this.props.changeData(newData);
   };
 
   render() {
@@ -280,12 +327,14 @@ class Form2Table1 extends React.Component {
               1. การจัดการงานที่รับผิดชอบ
             </label>
           )}
-          pagination={{
-            defaultPageSize: 4,
-          }}
+          pagination={false}
+          // pagination={{
+          //   defaultPageSize: 4,
+          // }}
+          scroll={{ y: 200 }}
           size="middle"
         />
-        {/* {console.log(this.props)} */}
+        {/* {console.log(this.props.data.length !== 0 ? this.props.data : null)} */}
       </>
     );
   }

@@ -11,8 +11,9 @@ import Form2Table1 from "./Form2Table1";
 import Form2Table2 from "./Form2Table2";
 import Form2Table3 from "./Form2Table3";
 import Form2Table4 from "./Form2Table4";
-// import axios from "axios";
-// const url = `http://localhost:3001/api/employee`;
+import { notify } from "../CustomComponent";
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
 
 function UserForm2() {
   const { id } = useParams();
@@ -22,9 +23,29 @@ function UserForm2() {
   const [dataT3, setDataT3] = useState([]);
   const [dataT4, setDataT4] = useState([]);
 
-  const LoadData = () => {
-    // console.log("123");
-  };
+  // const LoadData = () => {
+  //   // console.log("123");
+  //   const id_assessment = `${id}`;
+  //   const id_employee = "1";
+  //   const data = {
+  //     assessment_id: id_assessment,
+  //     employee_id: id_employee,
+  //   };
+  //   // const result = await axios.post(`${url}/dataFormtwo`, data)
+  //   axios.post(`${url}/dataFormtwo`, data).then((res) => {
+  //     // console.log(res);
+  //     const data = res.data.data.formtwo;
+  //     const T1 = data.filter((v) => v.formtwo_table === 1);
+  //     const T2 = data.filter((v) => v.formtwo_table === 2);
+  //     const T3 = data.filter((v) => v.formtwo_table === 3);
+  //     const T4 = data.filter((v) => v.formtwo_table === 4);
+  //     setDataT1(T1);
+  //     setDataT2(T2);
+  //     setDataT3(T3);
+  //     setDataT4(T4);
+  //     // console.log(dataT1);
+  //   });
+  // };
 
   const onFinish = () => {
     let _list = [];
@@ -70,15 +91,25 @@ function UserForm2() {
     const id_assessment = `${id}`;
     const id_employee = "1";
     const data = {
-      id_employee,
-      id_assessment,
+      assessment_id: id_assessment,
+      employee_id: id_employee,
       formtwo: _list,
     };
     console.log(data);
+    axios
+      .post(`${url}/formtwo`, data)
+      .then((res) => {
+        console.log(res);
+        notify.success("บันทึกสำเร็จ !");
+      })
+      .catch((err) => {
+        console.log(err);
+        notify.error("บันทึกไม่สำเร็จ !");
+      });
   };
 
   useEffect(() => {
-    LoadData();
+    // LoadData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div style={{ width: "100%" }}>
@@ -102,10 +133,26 @@ function UserForm2() {
             </div>
           </div>
         </div>
-        <Form2Table1 data={dataT1} changeData={(dataT1) => setDataT1(dataT1)} />
-        <Form2Table2 data={dataT2} changeData={(dataT2) => setDataT2(dataT2)} />
-        <Form2Table3 data={dataT3} changeData={(dataT3) => setDataT3(dataT3)} />
-        <Form2Table4 data={dataT4} changeData={(dataT4) => setDataT4(dataT4)} />
+        <Form2Table1
+          data={dataT1}
+          changeData={(dataT1) => setDataT1(dataT1)}
+          path={`${id}`}
+        />
+        <Form2Table2
+          data={dataT2}
+          changeData={(dataT2) => setDataT2(dataT2)}
+          path={`${id}`}
+        />
+        <Form2Table3
+          data={dataT3}
+          changeData={(dataT3) => setDataT3(dataT3)}
+          path={`${id}`}
+        />
+        <Form2Table4
+          data={dataT4}
+          changeData={(dataT4) => setDataT4(dataT4)}
+          path={`${id}`}
+        />
         <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
           <button
             className="btn-modal-confirm"

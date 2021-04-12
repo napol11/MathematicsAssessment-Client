@@ -4,6 +4,9 @@ import { Table, Input, Popconfirm, Form } from "antd";
 import { MdDelete } from "react-icons/md";
 import "./App.css";
 
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
+
 const EditableContext = React.createContext(null);
 
 const title = { color: "black", textAlign: "center" };
@@ -202,14 +205,59 @@ class Form2Table3 extends React.Component {
     this.state = {
       dataSource: [],
       count: 1,
+      // dataSource:
+      //   this.props.data.length !== 0
+      //     ? this.props.data.map((v, i) => ({
+      // key: i + 1,
+      // Table2No: i + 1,
+      // Table2Activity: v.formtwo_name,
+      // Table2FTE: v.formtwo_fte,
+      // Table2Level: v.formtwo_sucessem,
+      // Table2Comments: v.formtwo_comment,
+      // Table2Code: v.formtwo_code,
+      //       }))
+      //     : [],
+      // count: this.props.data.length !== 0 ? this.props.data.length + 1 : 1,
     };
   }
 
-  handleDelete = (key) => {
-    const dataSource = [...this.state.dataSource];
-    this.setState({
-      dataSource: dataSource.filter((item) => item.key !== key),
+  componentDidMount() {
+    // const { id } = this.props.params;
+    const id_assessment = this.props.path;
+    const id_employee = "1";
+    const data = {
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+    };
+    axios.post(`${url}/dataFormtwo`, data).then((res) => {
+      const data = res.data.data.formtwo;
+      const T3 = data.filter((v) => v.formtwo_table === 3);
+      this.setState({
+        dataSource:
+          T3.length !== 0
+            ? T3.map((v, i) => ({
+                key: i + 1,
+                Table3No: i + 1,
+                Table3Activity: v.formtwo_name,
+                Table3FTE: v.formtwo_fte,
+                Table3Level: v.formtwo_sucessem,
+                Table3Comments: v.formtwo_comment,
+                Table3Code: v.formtwo_code,
+              }))
+            : [],
+        count: T3.length !== 0 ? T3.length + 1 : 1,
+      });
     });
+  }
+
+  handleDelete = (key) => {
+    const newData = [...this.state.dataSource];
+    const index = newData.findIndex((item) => item.key === key);
+    newData.splice(index, 1);
+    this.setState({
+      dataSource: newData,
+    });
+    this.props.changeData(newData);
   };
   handleAdd = () => {
     const { count, dataSource } = this.state;
@@ -236,8 +284,7 @@ class Form2Table3 extends React.Component {
     this.setState({
       dataSource: newData,
     });
-    const dataRaw = this.state.dataSource;
-    this.props.changeData(dataRaw);
+    this.props.changeData(newData);
   };
 
   render() {
@@ -286,11 +333,14 @@ class Form2Table3 extends React.Component {
               3. การจัดการแบบข้ามสายงาน
             </label>
           )}
-          pagination={{
-            defaultPageSize: 4,
-          }}
+          pagination={false}
+          // pagination={{
+          //   defaultPageSize: 4,
+          // }}
+          scroll={{ y: 200 }}
           size="middle"
         />
+        {/* {console.log(this.props.data.length !== 0 ? this.props.data : null)} */}
       </>
     );
   }
