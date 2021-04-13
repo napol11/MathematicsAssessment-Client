@@ -104,17 +104,15 @@ const CommitteAssessStep32 = (props) => {
       setForm([
         {
           name: ["comone"],
-          value:
-            res.data.data.formfour_comone === null
-              ? " "
-              : res.data.data.formfour_comone,
+          value: res.data.data.formfour_comone
+            ? res.data.data.formfour_comone
+            : "",
         },
         {
           name: ["comtwo"],
-          value:
-            res.data.data.formfour_comtwo === null
-              ? " "
-              : res.data.data.formfour_comtwo,
+          value: res.data.data.formfour_comtwo
+            ? res.data.data.formfour_comtwo
+            : "",
         },
       ]);
     });

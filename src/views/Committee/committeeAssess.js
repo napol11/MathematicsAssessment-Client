@@ -103,74 +103,51 @@ const CommitteeAssess = () => {
           Employee: [
             {
               title: "ท่านขาดรู้ ความชำนาญ ทักษะในเรื่องใดบ้าง",
-              detail: [{ message: form.data.data.formfour.formfour_emone }],
+              detail: [
+                {
+                  message: form.data.data.formfour.formfour_emone
+                    ? form.data.data.formfour.formfour_emone
+                    : "",
+                },
+              ],
             },
             {
               title:
                 "ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ ทักษะดังกล่าวได้โดยวิธีใดบ้าง",
-              detail: [{ message: form.data.data.formfour.formfour_emtwo }],
+              detail: [
+                {
+                  message: form.data.data.formfour.formfour_emtwo
+                    ? form.data.data.formfour.formfour_emtwo
+                    : "",
+                },
+              ],
             },
             {
               title: "ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง",
-              detail: [{ message: form.data.data.formfour.formfour_emthree }],
+              detail: [
+                {
+                  message: form.data.data.formfour.formfour_emthree
+                    ? form.data.data.formfour.formfour_emthree
+                    : "",
+                },
+              ],
             },
             {
               title:
                 "ท่านสนใจการฝึกอบรม หรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ้งขึ้น (เรียงลำดับความสำคัญ 1-5)",
-              detail: [{ message: form.data.data.formfour.formfour_emfour }],
+              detail: [
+                {
+                  message: form.data.data.formfour.formfour_emfour
+                    ? form.data.data.formfour.formfour_emfour
+                    : "",
+                },
+              ],
             },
           ],
         },
       });
     });
     setData({
-      performanceReport: [
-        {
-          head: "1.1",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "success",
-        },
-        {
-          head: "1.2",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "success",
-        },
-        {
-          head: "1.3",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "success",
-        },
-        {
-          head: "1.4",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "success",
-        },
-        {
-          head: "1.5",
-          event: "xxxxxxxxxxxxxxxxxxx",
-          fte: "xx",
-          levelEmployee: "xx",
-          levelCommittee: "xx",
-          comment: "xxxxxxxxxxxx",
-          upload: "wait",
-        },
-      ],
       EvaForm31: [
         {
           id: 1,
@@ -185,24 +162,24 @@ const CommitteeAssess = () => {
           //   point: "", ไม่มีก็ไม่ต้องใส่ ไม่งั้นจะ error เฉพาะ EvaForm31
           //   skill: "", ไม่มีก็ไม่ต้องใส่ ไม่งั้นจะ error เฉพาะ EvaForm31
         },
-        // {
-        //   id: 2,
-        //   title:
-        //     "สามารถพัฒนาการทำงานได้ดีมากและเป็นผู้ริเริ่มหรือมีสว่นริเริ่มสูงในการปฎิบัติงานทั้งที่เป็นงานเดิมและงานใหม่ทำให้เกิดผลในการเพิ่มผลิตภาพของสำนักงานได้เป็นอย่างดีมาก",
-        //   levelStart: 8,
-        //   levelEnd: 10,
-        //   point: "",
-        //   skill: "",
-        // },
-        // {
-        //   id: 3,
-        //   title:
-        //     "สามารถพัฒนาการทำงานได้และมีส่วนริเริ่มและสนับสนุนการปฏิบัติงานเดิมและแนวใหม่ทำให้เกิดผลดีและเพิ่มผลิตภาพของสำนักงานได้อย่างดี",
-        //   levelStart: 6,
-        //   levelEnd: 7,
-        //   point: "",
-        //   skill: "",
-        // },
+        {
+          id: 2,
+          title:
+            "สามารถพัฒนาการทำงานได้ดีมากและเป็นผู้ริเริ่มหรือมีสว่นริเริ่มสูงในการปฎิบัติงานทั้งที่เป็นงานเดิมและงานใหม่ทำให้เกิดผลในการเพิ่มผลิตภาพของสำนักงานได้เป็นอย่างดีมาก",
+          levelStart: 8,
+          levelEnd: 10,
+          point: "",
+          skill: "",
+        },
+        {
+          id: 3,
+          title:
+            "สามารถพัฒนาการทำงานได้และมีส่วนริเริ่มและสนับสนุนการปฏิบัติงานเดิมและแนวใหม่ทำให้เกิดผลดีและเพิ่มผลิตภาพของสำนักงานได้อย่างดี",
+          levelStart: 6,
+          levelEnd: 7,
+          point: "",
+          skill: "",
+        },
         // {
         //   id: 4,
         //   title:
@@ -546,52 +523,6 @@ const CommitteeAssess = () => {
         //   skill: "",
         // },
       ],
-      // EvaForm32: {
-      //   Employee: [
-      //     {
-      //       title: "ท่านขาดรู้ ความชำนาญ ทักษะในเรื่องใดบ้าง",
-      //       detail: [{ message: "คอมพิวเตอร์,โปรแกรม และโฟโต้ช็อป" }],
-      //     },
-      //     {
-      //       title:
-      //         "ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ ทักษะดังกล่าวได้โดยวิธีใดบ้าง",
-      //       detail: [{ message: "คอมพิวเตอร์,โปรแกรม และโฟโต้ช็อป" }],
-      //     },
-      //     {
-      //       title: "ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง",
-      //       detail: [
-      //         { message: "Python" },
-      //         { message: "C" },
-      //         { message: "Data sci" },
-      //         { message: "Softwate engineering" },
-      //         { message: "OOP" },
-      //       ],
-      //     },
-      //     {
-      //       title:
-      //         "ท่านสนใจการฝึกอบรม หรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ้งขึ้น (เรียงลำดับความสำคัญ 1-5)",
-      //       detail: [
-      //         { message: "Python" },
-      //         { message: "C" },
-      //         { message: "Data sci" },
-      //         { message: "Softwate engineering" },
-      //         { message: "OOP" },
-      //       ],
-      //     },
-      //   ],
-      //   Committee: [
-      //     {
-      //       title:
-      //         "ท่านคิดว่าผู้ใใต้บังคับบัญชายังขาดความรู้ ความชำนาญทักษะในเรื่องใดบ้าง",
-      //       comment: "",
-      //     },
-      //     {
-      //       title:
-      //         "ท่านคิดว่าผู้ใใต้บังคับบัญชาหควรจะอบรม หรือต้องการความรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น (เรียงลำดับความสำคัญ 1-5)",
-      //       comment: "",
-      //     },
-      //   ],
-      // },
     });
   };
 
