@@ -6,6 +6,7 @@ import "./committee.css";
 
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
+const urlCOM = `http://localhost:3001/api/committee`;
 
 // import { withRouter } from "react-router-dom";
 
@@ -220,27 +221,49 @@ class Table2 extends React.Component {
   componentDidMount() {
     const id_assessment = this.props.pathAS;
     const id_employee = this.props.pathEM;
+    const id_committee = "1";
     const data = {
       assessment_id: id_assessment,
       employee_id: id_employee,
     };
-    axios.post(`${url}/dataFormtwo`, data).then((res) => {
-      const data = res.data.data.formtwo;
-      const T2 = data.filter((v) => v.formtwo_table === 2);
-      this.setState({
-        dataSource:
-          T2.length !== 0
-            ? T2.map((v, i) => ({
-                key: i + 1,
-                Table2No: i + 1,
-                Table2Activity: v.formtwo_name,
-                Table2FTE: v.formtwo_fte,
-                Table2Level: v.formtwo_sucessem,
-                Table2Comments: v.formtwo_comment,
-                Table2Code: v.formtwo_code,
-              }))
-            : [],
-        count: T2.length !== 0 ? T2.length + 1 : 1,
+    const dataCom = {
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+      committee_id: id_committee,
+    };
+    axios.post(`${url}/dataFormtwo`, data).then((em) => {
+      axios.post(`${urlCOM}/dataFormtwo`, dataCom).then((com) => {
+        const dataEM = em.data.data.formtwo;
+        const dataCOM = com.data.data.formtwoCOM;
+        const T2EM = dataEM.filter((v) => v.formtwo_table === 2);
+        const T2COM = dataCOM.filter((v) => v.formtwo_table === 2);
+        this.setState({
+          dataSource:
+            T2EM.lenght !== 0
+              ? T2COM.lenght !== 0
+                ? T2EM.map((v, i) => ({
+                    key: i + 1,
+                    Table2No: i + 1,
+                    Table2Activity: v.formtwo_name,
+                    Table2FTE: v.formtwo_fte,
+                    Table2Level: v.formtwo_sucessem,
+                    Table2Comments: v.formtwo_comment,
+                    Table2Code: v.formtwo_code,
+                    Table2LevelCom: T2COM[i].formtwo_sucesscom,
+                  }))
+                : T2EM.map((v, i) => ({
+                    key: i + 1,
+                    Table2No: i + 1,
+                    Table2Activity: v.formtwo_name,
+                    Table2FTE: v.formtwo_fte,
+                    Table2Level: v.formtwo_sucessem,
+                    Table2Comments: v.formtwo_comment,
+                    Table2Code: v.formtwo_code,
+                  }))
+              : [],
+        });
+        const rawData = [...this.state.dataSource];
+        this.props.changeData(rawData);
       });
     });
   }
