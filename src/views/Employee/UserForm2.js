@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { Form } from "antd";
 import { useParams } from "react-router-dom";
-// import { notify } from "../CustomComponent";
 
 import "./App.css";
 
@@ -17,35 +15,10 @@ const url = `http://localhost:3001/api/employee`;
 
 function UserForm2() {
   const { id } = useParams();
-  // const formRef = useRef(null);
   const [dataT1, setDataT1] = useState([]);
   const [dataT2, setDataT2] = useState([]);
   const [dataT3, setDataT3] = useState([]);
   const [dataT4, setDataT4] = useState([]);
-
-  // const LoadData = () => {
-  //   // console.log("123");
-  //   const id_assessment = `${id}`;
-  //   const id_employee = "1";
-  //   const data = {
-  //     assessment_id: id_assessment,
-  //     employee_id: id_employee,
-  //   };
-  //   // const result = await axios.post(`${url}/dataFormtwo`, data)
-  //   axios.post(`${url}/dataFormtwo`, data).then((res) => {
-  //     // console.log(res);
-  //     const data = res.data.data.formtwo;
-  //     const T1 = data.filter((v) => v.formtwo_table === 1);
-  //     const T2 = data.filter((v) => v.formtwo_table === 2);
-  //     const T3 = data.filter((v) => v.formtwo_table === 3);
-  //     const T4 = data.filter((v) => v.formtwo_table === 4);
-  //     setDataT1(T1);
-  //     setDataT2(T2);
-  //     setDataT3(T3);
-  //     setDataT4(T4);
-  //     // console.log(dataT1);
-  //   });
-  // };
 
   const onFinish = () => {
     let _list = [];
@@ -88,24 +61,37 @@ function UserForm2() {
       _list.push(f);
     });
     // console.log(_list);
-    const id_assessment = `${id}`;
-    const id_employee = "1";
-    const data = {
-      assessment_id: id_assessment,
-      employee_id: id_employee,
-      formtwo: _list,
-    };
-    console.log(data);
-    axios
-      .post(`${url}/formtwo`, data)
-      .then((res) => {
-        console.log(res);
-        notify.success("บันทึกสำเร็จ !");
-      })
-      .catch((err) => {
-        console.log(err);
-        notify.error("บันทึกไม่สำเร็จ !");
-      });
+    let result = 0;
+    for (let i = 0; i < _list.length; i++) {
+      result += _list[i].formtwo_fte;
+    }
+    // console.log(result);
+    if (result < 100) {
+      console.log("น้อยกว่า 100 ");
+      notify.error("ค่า FTE รวมยังไม่ถึง 100% !");
+    } else if (result > 100) {
+      console.log("มากกว่า 100");
+      notify.error("ค่า FTE รวมเกิน 100% !");
+    } else if (result === 100) {
+      const id_assessment = `${id}`;
+      const id_employee = "1";
+      const data = {
+        assessment_id: id_assessment,
+        employee_id: id_employee,
+        formtwo: _list,
+      };
+      console.log(data);
+      axios
+        .post(`${url}/formtwo`, data)
+        .then((res) => {
+          console.log(res);
+          notify.success("บันทึกสำเร็จ !");
+        })
+        .catch((err) => {
+          console.log(err);
+          notify.error("บันทึกไม่สำเร็จ !");
+        });
+    }
   };
 
   useEffect(() => {
@@ -163,6 +149,7 @@ function UserForm2() {
           </button>
         </div>
       </div>
+      {/* {console.log(dataT1)} */}
     </div>
   );
 }

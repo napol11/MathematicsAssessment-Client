@@ -247,6 +247,8 @@ class Form2Table2 extends React.Component {
             : [],
         count: T2.length !== 0 ? T2.length + 1 : 1,
       });
+      const rawData = [...this.state.dataSource];
+      this.props.changeData(rawData);
     });
   }
 
