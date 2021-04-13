@@ -276,7 +276,11 @@ const CommitteAssessStep32 = (props) => {
         <div className="pl-4 pr-4 mr-4 btnCancel" onClick={props.prev}>
           ย้อนกลับ
         </div>
-        <div className="pl-4 pr-4 mr-4 btnConfirm" onClick={() => showmodal()}>
+        <div
+          className="pl-4 pr-4 mr-4 btnConfirm"
+          // onClick={() => showmodal()}
+          onClick={props.next}
+        >
           ถัดไป
         </div>
       </div>
