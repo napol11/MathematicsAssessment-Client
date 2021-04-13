@@ -1,15 +1,20 @@
-import React from "react";
-import { Table } from "antd";
+import React, { useEffect, useState } from "react";
+import { InputNumber, Table } from "antd";
 
 import "./committee.css";
+
+import { useParams } from "react-router-dom";
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
+
 const title = { color: "black", fontWeight: "bold", textAlign: "center" };
 
-const Table1 = () => {
+const Table1 = (props) => {
   const columns = [
     {
       title: <div style={title}>{"หัวข้อ"}</div>,
-      dataIndex: "head",
-      key: "head",
+      dataIndex: "no",
+      key: "no",
       align: "center",
       width: "80px",
     },
@@ -40,15 +45,20 @@ const Table1 = () => {
       align: "center",
       render: (text, row, index) => {
         return (
-          <input
-            readOnly
+          <InputNumber
+            // readOnly
             value={text}
             style={{
               width: "50px",
               border: "1px solid transparent",
               backgroundColor: "rgba(79, 78, 78, 0.1)",
               borderRadius: "3px",
+              color: "red",
+              textAlign: "center",
             }}
+            onChange={onChange}
+            max={20}
+            min={0}
           />
         );
       },
@@ -59,6 +69,21 @@ const Table1 = () => {
       key: "total",
       width: "80px",
       align: "center",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              // textAlign: "center",
+            }}
+          >
+            {row.fte * row.levelCommittee !== "NaN"
+              ? " "
+              : row.fte * row.levelCommittee}
+          </div>
+        );
+      },
     },
     {
       title: <div style={title}>{"คะแนนรวม %"}</div>,
@@ -66,11 +91,39 @@ const Table1 = () => {
       key: "totalpercen",
       width: "80px",
       align: "center",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              // textAlign: "center",
+            }}
+          >
+            {(row.fte * row.levelCommittee) / 4 !== "NaN"
+              ? " "
+              : (row.fte * row.levelCommittee) / 4}
+          </div>
+        );
+      },
     },
     {
       title: <div style={title}>{"ความคิดเห็น"}</div>,
       dataIndex: "comment",
       key: "comment",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              // textAlign: "center",
+            }}
+          >
+            {row.comment === "ระบุความคิดเห็น" ? " - " : row.comment}
+          </div>
+        );
+      },
     },
     // {
     //   title: <div style={title}>{null}</div>,
@@ -100,11 +153,51 @@ const Table1 = () => {
     //   },
     // },
   ];
-  const data = [];
+  // const data = [];
+  const [data, setData] = useState([]);
+  const { id, assessment } = useParams();
+
+  const LoadData = () => {
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const form = {
+      employee_id: id_employee,
+      assessment_id: id_assessment,
+    };
+    axios.post(`${url}/dataFormtwo`, form).then((res) => {
+      const data = res.data.data.formtwo;
+      const T1 = data.filter((v) => v.formtwo_table === 1);
+      const raw =
+        T1.length !== 0
+          ? T1.map((v, i) => ({
+              no: i + 1,
+              event: v.formtwo_name,
+              fte: v.formtwo_fte,
+              levelEmployee: v.formtwo_sucessem,
+              comment: v.formtwo_comment,
+              // levelCommittee: null,
+            }))
+          : [];
+      setData(raw);
+    });
+  };
+
+  const onChange = (value) => {
+    console.log("changed", value);
+    // setData({ levelCommittee: value });
+  };
+
+  useEffect(() => {
+    LoadData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // useEffect(() => {
+  //   props.changeData(data);
+  // }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div>
       <Table
-        rowKey={"head"} // uniq key หรือ primary key ตัวไม่ซ้ำ
         className="committeeTableAssess2 mt-4"
         columns={columns}
         dataSource={data}
@@ -113,19 +206,9 @@ const Table1 = () => {
             1. การจัดการงานที่รับผิดชอบ
           </label>
         )}
-        pagination={{
-          defaultPageSize: 10,
-          showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30"],
-          locale: { items_per_page: "/ หน้า" },
-        }}
-        // loading={{
-        //   spinning: LoadingTable,
-        //   tip: "กำลังโหลด...",
-        //   size: "large",
-        // }}
+        pagination={false}
+        scroll={{ y: 200 }}
         locale={{ emptyText: "ไม่มีข้อมูล" }}
-        scroll={{ y: 500 }}
         size="middle"
       />
       <div
@@ -135,6 +218,7 @@ const Table1 = () => {
           justifyContent: "center",
         }}
       ></div>
+      {/* {console.log(data)} */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Table } from "antd";
 import "moment/locale/th";
 // import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,10 @@ import Table4 from "../Committee/Table4";
 // const title = { color: "black", fontWeight: "bold", textAlign: "center" };
 
 const CommitteAssessStep2 = (props) => {
+  const [dataT1, setDataT1] = useState([]);
+  const [dataT2, setDataT2] = useState([]);
+  const [dataT3, setDataT3] = useState([]);
+  const [dataT4, setDataT4] = useState([]);
   // const data = props.data;
   // const dispatch = useDispatch();
   // const committeeAss2Modal = useSelector((state) => state.committeeAss2Modal);
@@ -98,6 +102,10 @@ const CommitteAssessStep2 = (props) => {
   //   },
   // ];
 
+  const onFinish = () => {
+    console.log("onFinish");
+  };
+
   return (
     <div>
       <div className="row no-gutter">
@@ -118,10 +126,16 @@ const CommitteAssessStep2 = (props) => {
           </div> */}
         </div>
       </div>
-      <Table1 />
-      <Table2 />
-      <Table3 />
-      <Table4 />
+      <Table1 data={dataT1} changeData={(dataT1) => setDataT1(dataT1)} />
+      <Table2 data={dataT2} changeData={(dataT2) => setDataT2(dataT2)} />
+      <Table3 data={dataT3} changeData={(dataT3) => setDataT3(dataT3)} />
+      <Table4 data={dataT4} changeData={(dataT4) => setDataT4(dataT4)} />
+      <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+        <button className="btn-modal-confirm" type="submit" onClick={onFinish}>
+          บันทึก
+        </button>
+      </div>
+      {console.log("T1", dataT1)}
       {/* <Table
         rowKey={"head"} // uniq key หรือ primary key ตัวไม่ซ้ำ
         className="committeeTableAssess2 mt-4"

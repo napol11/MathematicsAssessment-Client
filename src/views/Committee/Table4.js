@@ -1,15 +1,20 @@
-import React from "react";
-import { Table } from "antd";
+import React, { useState, useEffect } from "react";
+import { Table, InputNumber } from "antd";
 
 import "./committee.css";
+
+import { useParams } from "react-router-dom";
+import axios from "axios";
+const url = `http://localhost:3001/api/employee`;
+
 const title = { color: "black", fontWeight: "bold", textAlign: "center" };
 
 const Table4 = () => {
   const columns = [
     {
       title: <div style={title}>{"หัวข้อ"}</div>,
-      dataIndex: "head",
-      key: "head",
+      dataIndex: "no",
+      key: "no",
       align: "center",
       width: "80px",
     },
@@ -40,15 +45,20 @@ const Table4 = () => {
       align: "center",
       render: (text, row, index) => {
         return (
-          <input
-            readOnly
+          <InputNumber
+            // readOnly
             value={text}
             style={{
               width: "50px",
               border: "1px solid transparent",
               backgroundColor: "rgba(79, 78, 78, 0.1)",
               borderRadius: "3px",
+              color: "red",
+              textAlign: "center",
             }}
+            max={20}
+            min={0}
+            // onPressEnter={onChangeValue()}
           />
         );
       },
@@ -59,6 +69,21 @@ const Table4 = () => {
       key: "total",
       width: "80px",
       align: "center",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              // textAlign: "center",
+            }}
+          >
+            {row.fte * row.levelCommittee !== "NaN"
+              ? " "
+              : row.fte * row.levelCommittee}
+          </div>
+        );
+      },
     },
     {
       title: <div style={title}>{"คะแนนรวม %"}</div>,
@@ -66,11 +91,39 @@ const Table4 = () => {
       key: "totalpercen",
       width: "80px",
       align: "center",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              // textAlign: "center",
+            }}
+          >
+            {(row.fte * row.levelCommittee) / 4 !== "NaN"
+              ? " "
+              : (row.fte * row.levelCommittee) / 4}
+          </div>
+        );
+      },
     },
     {
       title: <div style={title}>{"ความคิดเห็น"}</div>,
       dataIndex: "comment",
       key: "comment",
+      render: (text, row, index) => {
+        return (
+          <div
+            style={{
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+              // textAlign: "center",
+            }}
+          >
+            {row.comment === "ระบุความคิดเห็น" ? " - " : row.comment}
+          </div>
+        );
+      },
     },
     // {
     //   title: <div style={title}>{null}</div>,
@@ -100,7 +153,39 @@ const Table4 = () => {
     //   },
     // },
   ];
-  const data = [];
+  // const data = [];
+  const [data, setData] = useState([]);
+  const { id, assessment } = useParams();
+
+  const LoadData = () => {
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const form = {
+      employee_id: id_employee,
+      assessment_id: id_assessment,
+    };
+    axios.post(`${url}/dataFormtwo`, form).then((res) => {
+      // console.log(res);
+      const data = res.data.data.formtwo;
+      const T4 = data.filter((v) => v.formtwo_table === 4);
+      const raw =
+        T4.length !== 0
+          ? T4.map((v, i) => ({
+              no: i + 1,
+              event: v.formtwo_name,
+              fte: v.formtwo_fte,
+              levelEmployee: v.formtwo_sucessem,
+              comment: v.formtwo_comment,
+            }))
+          : [];
+      // console.log(raw);
+      setData(raw);
+    });
+  };
+
+  useEffect(() => {
+    LoadData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div>
       <Table
@@ -113,19 +198,9 @@ const Table4 = () => {
             4. การพัฒนาตนเอง
           </label>
         )}
-        pagination={{
-          defaultPageSize: 10,
-          showSizeChanger: true,
-          pageSizeOptions: ["10", "20", "30"],
-          locale: { items_per_page: "/ หน้า" },
-        }}
-        // loading={{
-        //   spinning: LoadingTable,
-        //   tip: "กำลังโหลด...",
-        //   size: "large",
-        // }}
+        pagination={false}
+        scroll={{ y: 200 }}
         locale={{ emptyText: "ไม่มีข้อมูล" }}
-        scroll={{ y: 500 }}
         size="middle"
       />
       <div
