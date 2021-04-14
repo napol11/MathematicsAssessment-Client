@@ -60,6 +60,7 @@
   border: 1px solid #f6be32;
   background-color: white;
   cursor: pointer;
+  box-shadow: none !important;
 }
 
 .btnCancel:hover {
@@ -75,6 +76,7 @@
   border: 1px solid white;
   background-color: #f6be32;
   cursor: pointer;
+  box-shadow: none !important;
 }
 
 .btnConfirm:hover {
@@ -141,3 +143,31 @@
   background-color: #f26843;
   color: white;
 }
+
+.textarea {
+    background-color: #E7E5E3;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.textarea:hover {
+    border: 1.5px solid #f26843 !important;
+}
+
+.textarea:focus {
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
+}
+
+.ant-input-number-focused {
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
+}
+
+  

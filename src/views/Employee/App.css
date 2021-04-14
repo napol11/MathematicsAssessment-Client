@@ -220,32 +220,56 @@
     -o-border-radius:20px !important;
 }
 
+.textbox {
+    background-color: #E7E5E3;
+}
+
 .textbox:hover {
-    border: 1.5px solid #f26843 !important;
+    border: 1.5px solid #f26843;
 }
 
 .textbox:focus {
     outline: none !important;
     box-shadow: 0 0 4px #f26843;
     border: 1.5px solid #f26843;
-}
-
-.editable-cell {
-  position: relative;
+    background-color: #E7E5E3;
 }
 
 .editable-cell-value-wrap {
-  padding: 5px 12px;
-  cursor: pointer;
+    position: relative;
+    
 }
 
-.editable-row:hover .editable-cell-value-wrap {
-  padding: 4px 11px;
-  border: 1px solid #f26843;
-  border-radius: 4px;
+.editable-cell-value-wrap:hover {
+    border: 1.5px solid #f26843 !important;
 }
 
-[data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
-  border: 1px solid #434343;
+.editable-row .editable-cell-value-wrap {
+    border-radius: 4px;
+    background-color: #E7E5E3;
+    padding: 5px 12px;
+    cursor: pointer;
 }
+
+.ant-btn-sm {
+    border: #FDC331 solid 1.5px !important; 
+ }
+ 
+ .ant-btn-sm:hover {
+     color: black;
+     border: #f26843 solid 1.5px !important;
+  }
+ 
+ .ant-btn-primary {
+   background-color: #FDC331;
+   border: #FDC331 solid 1.5px !important; 
+ }
+ 
+ .ant-btn-primary:hover {
+     background-color: #f26843;
+     border: #f26843 solid 1.5px !important;
+     color: white;
+   }
+
+
 

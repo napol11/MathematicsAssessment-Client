@@ -195,7 +195,7 @@ class Form2Table1 extends React.Component {
               title="คุณแน่ใจว่าจะลบกิจกรรมนี้ ?"
               onConfirm={() => this.handleDelete(record.key)}
             >
-              <MdDelete size="25px" color="red" cursor="pointer" />
+              <MdDelete size="25px" cursor="pointer" />
             </Popconfirm>
           ) : null,
       },

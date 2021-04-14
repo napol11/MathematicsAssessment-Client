@@ -296,7 +296,7 @@ const HistoryEmployee = () => {
                           </CInputGroupText>
                         </CInputGroupPrepend>
                         <CInput
-                          style={{ borderLeft: "none" }}
+                          style={{ borderLeft: "none", boxShadow:"none", borderBlockColor:"lightgrey" }}
                           type={showPass ? "text" : "password"}
                           placeholder="ระบุรหัสผ่านใหม่"
                           name="reset"
@@ -322,11 +322,11 @@ const HistoryEmployee = () => {
                   </div>
                 </CModalBody>
                 <CModalFooter>
-                  <CButton color="primary" onClick={resetPassword}>
+                  <CButton className="btnConfirm" onClick={resetPassword}>
                     ตกลง
                   </CButton>{" "}
                   <CButton
-                    color="secondary"
+                    className="btnCancel"
                     onClick={() => setVisible(!visible)}
                   >
                     ยกเลิก

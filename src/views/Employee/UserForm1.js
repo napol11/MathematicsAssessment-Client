@@ -369,12 +369,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
-                  style={{
-                    width: "100px",
-                    border: "1px solid transparent",
-                    backgroundColor: "rgba(79, 78, 78, 0.1)",
-                    borderRadius: "3px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
                 />
               </Form.Item>
@@ -387,12 +383,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
-                  style={{
-                    width: "100px",
-                    border: "1px solid transparent",
-                    backgroundColor: "rgba(79, 78, 78, 0.1)",
-                    borderRadius: "3px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
                 />
               </Form.Item>
@@ -406,12 +398,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
-                  style={{
-                    width: "100px",
-                    border: "1px solid transparent",
-                    backgroundColor: "rgba(79, 78, 78, 0.1)",
-                    borderRadius: "3px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
                 />
               </Form.Item>
@@ -425,12 +413,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
-                  style={{
-                    width: "100px",
-                    border: "1px solid transparent",
-                    backgroundColor: "rgba(79, 78, 78, 0.1)",
-                    borderRadius: "3px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
                 />
               </Form.Item>
@@ -446,12 +430,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
-                  style={{
-                    width: "100px",
-                    border: "1px solid transparent",
-                    backgroundColor: "rgba(79, 78, 78, 0.1)",
-                    borderRadius: "3px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
                 />
               </Form.Item>
@@ -465,12 +445,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
-                  style={{
-                    width: "100px",
-                    border: "1px solid transparent",
-                    backgroundColor: "rgba(79, 78, 78, 0.1)",
-                    borderRadius: "3px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
                 />
               </Form.Item>
@@ -484,12 +460,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
-                  style={{
-                    width: "100px",
-                    border: "1px solid transparent",
-                    backgroundColor: "rgba(79, 78, 78, 0.1)",
-                    borderRadius: "3px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
                 />
               </Form.Item>
@@ -503,12 +475,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
-                  style={{
-                    width: "100px",
-                    border: "1px solid transparent",
-                    backgroundColor: "rgba(79, 78, 78, 0.1)",
-                    borderRadius: "3px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
                 />
               </Form.Item>
@@ -535,7 +503,7 @@ function UserProfile() {
                 </label>
               </div>
             </div>
-            <div className="row no-gutter pl-4 pr-4 mt-2">
+            <div className="mt-2">
               {/* {salaryHistory()} */}
               <Form.Item
                 style={{ marginBottom: "10px" }}
@@ -544,13 +512,8 @@ function UserProfile() {
                 // rules={[{ required: true }]}
               >
                 <textarea
-                  // value={text}
-                  style={{
-                    width: "100%",
-                    backgroundColor: "#E7E5E3",
-                    border: "1px solid transparent",
-                    borderRadius: "10px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100%" }}
                 />
               </Form.Item>
             </div>
@@ -576,19 +539,14 @@ function UserProfile() {
                 </label>
               </div>
             </div>
-            <div className="row no-gutter pl-4 pr-4 mt-2">
+            <div className="mt-2">
               <Form.Item
                 style={{ marginBottom: "10px" }}
                 name={["formone_historypunish"]}
               >
                 <textarea
-                  // value={text}
-                  style={{
-                    width: "100%",
-                    backgroundColor: "#E7E5E3",
-                    border: "1px solid transparent",
-                    borderRadius: "10px",
-                  }}
+                  className="textarea"
+                  style={{ width: "100%"}}
                 />
               </Form.Item>
             </div>

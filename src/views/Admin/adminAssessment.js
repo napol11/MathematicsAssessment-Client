@@ -106,7 +106,7 @@ const AdminAssessment = () => {
             <Popconfirm
               style={{ border: "1px solid black", padding: 10 }}
               placement="topRight"
-              title={`คุณต้องการรอบการประเมินเลขที่ ${row.no} หรือไม่?`}
+              title={`คุณต้องการลบรอบการประเมินเลขที่ ${row.no} หรือไม่?`}
               onConfirm={() => deleteStaff(row)}
               okText="ตกลง"
               cancelText="ยกเลิก"
