@@ -118,3 +118,23 @@
   border-color: #f26843 !important;
   box-shadow: 0 0 4px #f26843 !important;
 }
+
+.ant-btn-sm {
+   border: #FDC331 solid 1.5px !important; 
+}
+
+.ant-btn-sm:hover {
+    color: black;
+    border: #f26843 solid 1.5px !important;
+ }
+
+.ant-btn-primary {
+  background-color: #FDC331;
+  border: #FDC331 solid 1.5px !important; 
+}
+
+.ant-btn-primary:hover {
+    background-color: #f26843;
+    border: #f26843 solid 1.5px !important;
+    color: white;
+  }
