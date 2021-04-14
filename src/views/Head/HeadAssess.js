@@ -5,6 +5,7 @@ import HeadAssessStep2 from "./HeadAssessStep2";
 import HeadAssessStep31 from "./HeadAssessStep31";
 import HeadAssessStep32 from "./HeadAssessStep32";
 import HeadAssessStep4 from "./HeadAssessStep4";
+import HeadResult from "./HeadResult";
 // import ModalComAssess2 from "./modalComAssess2";
 
 import { useParams } from "react-router-dom";
@@ -24,6 +25,7 @@ const HeadAssess = () => {
   // const [data, setData] = useState([]);
   const [current, setCurrent] = React.useState(0);
   const [step3, setStep3] = useState(0);
+  const [step4, setStep4] = useState(0);
 
   const { id, assessment } = useParams();
 
@@ -1010,18 +1012,21 @@ const HeadAssess = () => {
                 <HeadAssessStep32
                   data={dataStape32}
                   prev={() => setStep3(step3 - 1)}
-                  next={() => setCurrent(4)}
+                  next={() => setCurrent(3)}
                   // setData={setValues}
                 />
               )
             ) : current === 3 ? (
-              <HeadAssessStep4
-              // data={data}
-              />
-            ) : current === 4 ? (
-              <HeadAssessStep4
-              // data={data}
-              />
+              step4 === 0 ? (
+                <HeadResult
+                  prev={() => setCurrent(current - 1)}
+                  next={() => setStep4(step4 + 1)}
+                />
+              ) : (
+                <HeadAssessStep4
+                // data={data}
+                />
+              )
             ) : null}
           </div>
           {/* *************************************************************** */}
