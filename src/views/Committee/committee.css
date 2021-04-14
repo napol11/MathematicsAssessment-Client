@@ -198,21 +198,37 @@
   border: 1px solid transparent;
   background-color: #f26843;
   color: white;
+} 
+
+.textbox {
+    background-color: #E7E5E3;
 }
 
-.editable-cell {
-  position: relative;
+.textbox:hover {
+    border: 1.5px solid #f26843;
+    background-color: #E7E5E3;
+}
+
+.textbox:focus {
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
+    background-color: #E7E5E3;
 }
 
 .editable-cell-value-wrap {
-  padding: 5px 12px;
-  cursor: pointer;
+    position: relative;
 }
 
-.editable-row:hover .editable-cell-value-wrap {
-  padding: 4px 11px;
-  border: 1px solid #f26843;
-  border-radius: 4px;
+.editable-cell-value-wrap:hover {
+    border: 1.5px solid #f26843 !important;
+}
+
+.editable-row .editable-cell-value-wrap {
+    border-radius: 4px;
+    background-color: #E7E5E3;
+    padding: 5px 12px;
+    cursor: pointer;
 }
 
 [data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
