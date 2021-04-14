@@ -295,7 +295,7 @@ export default function ModalStaff(props) {
                 </div>
               </div>
               <div className="row no-gutter">
-                <div className="col-sm-6">
+                <div className="col-sm-12">
                   <Form.Item
                     style={{ marginBottom: "10px" }}
                     name={["start"]}
@@ -313,7 +313,7 @@ export default function ModalStaff(props) {
                       displayFormat={"DD MMM YY"}
                       inputStyle={{
                         color: "black",
-                        width: 370,
+                        width: 765,
                       }}
                       clearable={true}
                     />
