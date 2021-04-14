@@ -204,6 +204,7 @@ const AdminCommittee = () => {
               <Button
                 shape="round"
                 size={"large"}
+                disabled={dataCommittee.length < 6 ? false : true}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
                 onClick={() => openModal("add", "committee")}
