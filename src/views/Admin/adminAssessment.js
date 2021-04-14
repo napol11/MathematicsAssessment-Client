@@ -168,19 +168,19 @@ const AdminAssessment = () => {
           >
             การประเมิน
           </label>
-          <div className="row no-gutter  mb-3">
+          <div className="row mb-4">
             <div className="col-sm-6">
               <Search
                 className="adminButton"
                 placeholder="ค้นหา ก่ารประเมิน"
-                style={{ width: 300 }}
+                style={{ width: 500 }}
                 size="large"
                 // value={q}
                 // onChange={(e) => setQ(e.target.value)}
                 onSearch={onSearch}
               />
             </div>
-            <div className="col-sm-6  d-sm-flex align-items-sm-end justify-content-sm-end mt-2 ">
+            <div className="col-sm-6 d-sm-flex align-items-sm-end justify-content-sm-end">
               <Button
                 shape="round"
                 size={"large"}

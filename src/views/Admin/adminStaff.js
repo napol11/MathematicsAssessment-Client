@@ -185,12 +185,12 @@ const AdminStaff = () => {
           >
             รายชื่อพนักงาน
           </label>
-          <div className="row no-gutter  mb-3">
+          <div className="row mb-4">
             <div className="col-sm-6">
               <Search
                 className="adminButton"
                 placeholder="ค้นหา พนักงาน"
-                style={{ width: 300 }}
+                style={{ width: 500 }}
                 size="large"
                 // value={q}
                 // onChange={(e) => setQ(e.target.value)}
