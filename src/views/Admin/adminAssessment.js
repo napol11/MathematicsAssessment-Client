@@ -91,7 +91,7 @@ const AdminAssessment = () => {
       title: <div style={title}>{null}</div>,
       dataIndex: "delete",
       key: "delete",
-      width: "50px",
+      width: "10px",
       render: (text, row, index) => {
         return (
           <div
@@ -121,7 +121,7 @@ const AdminAssessment = () => {
       title: <div style={title}>{null}</div>,
       dataIndex: "edit",
       key: "edit",
-      width: "50px",
+      width: "100px",
       render: (text, row, index) => {
         return (
           <div

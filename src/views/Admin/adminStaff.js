@@ -29,7 +29,7 @@ const AdminStaff = () => {
       dataIndex: "no",
       key: "no",
       align: "center",
-      width: "80px",
+      width: "100px",
       render: (text, row, index) => {
         return index + 1;
       },
@@ -38,6 +38,7 @@ const AdminStaff = () => {
       title: <div style={title}>ชื่อ-นามสกุล</div>,
       dataIndex: "name",
       key: "name",
+      width: "500px",
       // render: (text, row, index) => {
       //   return `${row.firstname} ${row.lastname}`;
       // },
@@ -46,11 +47,16 @@ const AdminStaff = () => {
       title: <div style={title}>ตำแหน่ง</div>,
       dataIndex: "position",
       key: "position",
+      width: "150px",
     },
     {
       title: <div style={title}>เบอร์โทร</div>,
       dataIndex: "tel",
       key: "tel",
+      width: "150px",
+    },
+    {
+
     },
     // {
     //   title: <div style={title}>อีเมล</div>,
@@ -61,7 +67,7 @@ const AdminStaff = () => {
       title: <div style={title}>{null}</div>,
       dataIndex: "delete",
       key: "delete",
-      width: "50px",
+      width: "10px",
       render: (text, row, index) => {
         return (
           <div
@@ -91,7 +97,7 @@ const AdminStaff = () => {
       title: <div style={title}>{null}</div>,
       dataIndex: "edit",
       key: "edit",
-      width: "50px",
+      width: "100px",
       render: (text, row, index) => {
         return (
           <div
