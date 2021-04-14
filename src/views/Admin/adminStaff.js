@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Popconfirm } from "antd";
+import { Button, Table, Popconfirm, Input } from "antd";
 import { notify } from "../CustomComponent";
 import ModalStaff from "./ModalStaff";
 
@@ -9,7 +9,7 @@ import "./admin.css";
 import axios from "axios";
 const url = `http://localhost:3001/api/admin`;
 
-// const { Search } = Input;
+const { Search } = Input;
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
 const AdminStaff = () => {
@@ -19,6 +19,7 @@ const AdminStaff = () => {
   const [datastaff, setdatastaff] = useState([]);
   // const [filterstaff, setfilterstaff] = useState([]);
   const [SendData, setSendData] = useState([]);
+  const [filter, setFilter] = useState([]);
   // const [show, setshow] = useState(false);
   const dispatch = useDispatch();
 
@@ -37,9 +38,9 @@ const AdminStaff = () => {
       title: <div style={title}>ชื่อ-นามสกุล</div>,
       dataIndex: "name",
       key: "name",
-      render: (text, row, index) => {
-        return `${row.firstname} ${row.lastname}`;
-      },
+      // render: (text, row, index) => {
+      //   return `${row.firstname} ${row.lastname}`;
+      // },
     },
     {
       title: <div style={title}>ตำแหน่ง</div>,
@@ -133,18 +134,15 @@ const AdminStaff = () => {
     LoadData();
   };
 
-  // const search = (value) => {
-  //   setLoadingSearch(true); // loading ปุ่ม search  // true = โหลดอยู่ , false = เสร็จแล้ว
-  //   setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
-  //   const regex = new RegExp(value.toString().toUpperCase(), "g");
-  //   const find = filterstaff.filter(({ name }) => {
-  //     const upper = name.toString().toUpperCase();
-  //     return upper.match(regex);
-  //   });
-  //   setdatastaff(find); // set Data ใส่ตาราง
-  //   setLoadingSearch(false);
-  //   setLoadingTable(false);
-  // };
+  const onSearch = (value) => {
+    const regex = new RegExp(value.toString().toUpperCase(), "g");
+    const find = filter.filter(({ name }) => {
+      const upper = name.toString().toUpperCase();
+      return upper.match(regex);
+    });
+    setdatastaff(find);
+    console.log(find);
+  };
 
   const LoadData = () => {
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
@@ -158,8 +156,10 @@ const AdminStaff = () => {
         lastname: v.employee_lastname,
         position: v.employee_position,
         tel: v.employee_tel,
+        name: v.employee_firstname + " " + v.employee_lastname,
       }));
       setdatastaff(data);
+      setFilter(data);
       // setfilterstaff(data);
     });
     // set Data ไว้ filter
@@ -180,16 +180,18 @@ const AdminStaff = () => {
             รายชื่อพนักงาน
           </label>
           <div className="row no-gutter  mb-3">
-            {/* <div className="col-sm-6">
+            <div className="col-sm-6">
               <Search
                 className="adminButton"
-                placeholder="ค้นหารายชื่อพนักงาน"
-                loading={LoadingSearch}
-                style={{ width: "80%" }}
-                onSearch={search}
+                placeholder="ค้นหา พนักงาน"
+                style={{ width: 300 }}
+                size="large"
+                // value={q}
+                // onChange={(e) => setQ(e.target.value)}
+                onSearch={onSearch}
               />
-            </div> */}
-            <div className="col-sm-12 text-sm-right ">
+            </div>
+            <div className="col-sm-6 text-sm-right ">
               <Button
                 shape="round"
                 size={"large"}

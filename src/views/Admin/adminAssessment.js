@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table, Popconfirm } from "antd";
+import { Button, Table, Popconfirm, Input } from "antd";
 // import { WatDatePicker } from "thaidatepicker-react";
 import { notify } from "../CustomComponent";
 // import { date2Thai } from "../CustomFunction";
@@ -13,8 +13,11 @@ const url = `http://localhost:3001/api/admin`;
 
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
+const { Search } = Input;
+
 const AdminAssessment = () => {
   const dispatch = useDispatch();
+  const [filter, setFilter] = useState([]);
 
   const [Hover, setHover] = useState(false);
   // const [selectedDateStart, setSelectedDateStart] = useState("");
@@ -37,47 +40,12 @@ const AdminAssessment = () => {
         name: v.assessment_name,
       }));
       setdata(data);
+      setFilter(data);
     });
 
     setLoadingTable(true);
-    // setdata([
-    //   // custom ใน column
-    //   {
-    //     no: "1",
-    //     // round: "วว ดด ปป - วว ดด ปป",
-    //     start: "2021-02-01", // yyyy-mm-dd
-    //     end: "2021-02-20", // yyyy-mm-dd
-    //   },
-    //   {
-    //     no: "2",
-    //     // round: "วว ดด ปป - วว ดด ปป",
-    //     start: "2021-02-20", // yyyy-mm-dd
-    //     end: "2021-02-22", // yyyy-mm-dd
-    //   },
-    //   {
-    //     no: "3",
-    //     // round: "วว ดด ปป - วว ดด ปป",
-    //     start: "2021-02-22", // yyyy-mm-dd
-    //     end: "2021-02-25", // yyyy-mm-dd
-    //   },
-    // ]);
     setLoadingTable(false);
   };
-
-  // const closeModal = () => {
-  //   setshow(false);
-  // };
-
-  // const openModal = (type) => {
-  //   const list = "รายการประเมิน";
-  //   if (type === "add") {
-  //     setModalTitle({ name: `เพิ่ม${list}`, type: "add" });
-  //     setshow(true);
-  //   } else {
-  //     setModalTitle({ name: `แก้ไข${list}`, type: "edit" });
-  //     setshow(true);
-  //   }
-  // };
   const openModal = (type, page) => {
     dispatch({
       type: "set",
@@ -94,57 +62,6 @@ const AdminAssessment = () => {
     axios.delete(`${url}/assessment/` + row.id);
     LoadData();
   };
-
-  // const filterData = (s, e) => {
-  //   setLoadingTable(true); // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
-  //   const find = filter.filter(({ start, end }) => {
-  //     return start >= s && end <= e;
-  //   });
-  //   setdata(find); // set Data ใส่ตาราง
-  //   setLoadingTable(false);
-  // };
-
-  // const handleDatePickerStart = (christDate, buddhistDate) => {
-  //   setSelectedDateStart(christDate);
-  //   // setSelectedDateStartTH(buddhistDate); วันที่ไทย
-  //   if (christDate !== "" && selectedDateEnd !== "") {
-  //     //   notify.success("filter");
-  //     filterData(christDate, selectedDateEnd);
-  //   } else {
-  //     LoadData();
-  //   }
-  // };
-
-  // const handleDatePickerEnd = (christDate, buddhistDate) => {
-  //   setSelectedDateEnd(christDate);
-  //   // setSelectedDateEndTH(buddhistDate); วันที่ไทย
-  //   if (christDate !== "" && selectedDateStart !== "") {
-  //     //   notify.success("filter");
-  //     filterData(selectedDateStart, christDate);
-  //   } else {
-  //     LoadData();
-  //   }
-  // };
-
-  // const dateText = (begin, finish) => {
-  //   const len = date2Thai(begin).toString().length;
-  //   const lend = date2Thai(finish).toString().length;
-  //   const ystart = date2Thai(begin)
-  //     .toString()
-  //     .substring(len - 2, len); // ตัดจาก 2564 เป็น 64
-  //   const dMstart = date2Thai(begin)
-  //     .toString()
-  //     .substring(0, len - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ.
-  //   const start = dMstart + ystart; // รวม  01 ก.พ. 64
-  //   const yend = date2Thai(finish)
-  //     .toString()
-  //     .substring(lend - 2, lend); // ตัดจาก 2564 เป็น 64
-  //   const dMend = date2Thai(finish)
-  //     .toString()
-  //     .substring(0, lend - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ
-  //   const end = dMend + yend; // รวม  01 ก.พ. 64
-  //   return `${start} - ${end}`;
-  // };
 
   const columns = [
     {
@@ -229,6 +146,15 @@ const AdminAssessment = () => {
     },
   ];
 
+  const onSearch = (value) => {
+    const regex = new RegExp(value.toString().toUpperCase(), "g");
+    const find = filter.filter(({ name }) => {
+      const upper = name.toString().toUpperCase();
+      return upper.match(regex);
+    });
+    setdata(find);
+  };
+
   useEffect(() => {
     LoadData();
   }, []);
@@ -243,64 +169,18 @@ const AdminAssessment = () => {
             การประเมิน
           </label>
           <div className="row no-gutter  mb-3">
-            {/* <div className="col-sm-6">
-              <label style={{ color: "#c3c9d2" }}>ค้นหารอบการประเมิน</label>
-              <Input.Group compact>
-                <WatDatePicker
-                  value={selectedDateStart}
-                  onChange={handleDatePickerStart}
-                  placeholder={"เริ่มวันที่"}
-                  dateFormat={"yyyy-MM-dd"}
-                  displayFormat={"DD MMM YY"}
-                  inputStyle={{
-                    color: "black",
-                    borderRight: "none",
-                    width: 120,
-                  }}
-                  maxDate={selectedDateEnd}
-                  clearable={true}
-                />
-                <Input
-                  className="site-input-split"
-                  style={{
-                    width: 30,
-                    borderLeft: 0,
-                    borderRight: 0,
-                    pointerEvents: "none",
-                    backgroundColor: "white",
-                  }}
-                  placeholder={`~`}
-                  disabled
-                />
-                <WatDatePicker
-                  onChange={handleDatePickerEnd}
-                  placeholder={"สิ้นสุดวันที่"}
-                  dateFormat={"yyyy-MM-dd"}
-                  displayFormat={"DD MMM YY"}
-                  inputStyle={{
-                    color: "black",
-                    borderLeft: "none",
-                    width: 120,
-                  }}
-                  minDate={selectedDateStart}
-                  clearable={true}
-                />
-                <Input
-                  className="site-input-split"
-                  style={{
-                    width: 30,
-                    borderLeft: 0,
-
-                    pointerEvents: "none",
-                    backgroundColor: "white",
-                  }}
-                  placeholder={`~`}
-                  disabled
-                  prefix={<i className="fas fa-calendar-alt" />}
-                />
-              </Input.Group>
-            </div> */}
-            <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2 ">
+            <div className="col-sm-6">
+              <Search
+                className="adminButton"
+                placeholder="ค้นหา ก่ารประเมิน"
+                style={{ width: 300 }}
+                size="large"
+                // value={q}
+                // onChange={(e) => setQ(e.target.value)}
+                onSearch={onSearch}
+              />
+            </div>
+            <div className="col-sm-6  d-sm-flex align-items-sm-end justify-content-sm-end mt-2 ">
               <Button
                 shape="round"
                 size={"large"}

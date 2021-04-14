@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, Popconfirm } from "antd";
+import { Button, Table, Popconfirm, Input } from "antd";
 import { notify } from "../CustomComponent";
 import { useDispatch } from "react-redux";
 import ModalCommittee from "./ModalCommittee";
@@ -8,6 +8,8 @@ import "./admin.css";
 import axios from "axios";
 const url = `http://localhost:3001/api/admin`;
 
+const { Search } = Input;
+
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
 const AdminCommittee = () => {
@@ -15,6 +17,7 @@ const AdminCommittee = () => {
   const [LoadingTable, setLoadingTable] = useState(true);
   const [dataCommittee, setdataCommittee] = useState([]);
   const [SendData, setSendData] = useState([]);
+  const [filter, setFilter] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -33,9 +36,9 @@ const AdminCommittee = () => {
       title: <div style={title}>ชื่อ-นามสกุล</div>,
       dataIndex: "name",
       key: "name",
-      render: (text, row, index) => {
-        return `${row.firstname} ${row.lastname}`;
-      },
+      // render: (text, row, index) => {
+      //   return `${row.firstname} ${row.lastname}`;
+      // },
     },
     {
       title: <div style={title}>ตำแหน่ง</div>,
@@ -142,9 +145,10 @@ const AdminCommittee = () => {
         lastname: v.committee_lastname,
         position: v.committee_position,
         tel: v.committee_tel,
+        name: v.committee_firstname + " " + v.committee_lastname,
       }));
       setdataCommittee(data);
-      console.log(data);
+      setFilter(data);
     });
 
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
@@ -153,6 +157,20 @@ const AdminCommittee = () => {
     //  set dataCommittee
     // position lead = "หัวหน้า"
     // position committee = "กรรมการ"
+  };
+
+  // function search(rows) {
+  //   return rows.filter((row) => row.name.toUpperCase().indexOf(q) > -1);
+  // }
+
+  const onSearch = (value) => {
+    const regex = new RegExp(value.toString().toUpperCase(), "g");
+    const find = filter.filter(({ name }) => {
+      const upper = name.toString().toUpperCase();
+      return upper.match(regex);
+    });
+    setdataCommittee(find);
+    console.log(find);
   };
 
   useEffect(() => {
@@ -170,7 +188,17 @@ const AdminCommittee = () => {
           </label>
 
           <div className="row no-gutter  mb-3">
-            <div className="col-sm-6" />
+            <div className="col-sm-6">
+              <Search
+                className="adminButton"
+                placeholder="ค้นหา กรรมการ"
+                style={{ width: 300 }}
+                size="large"
+                // value={q}
+                // onChange={(e) => setQ(e.target.value)}
+                onSearch={onSearch}
+              />
+            </div>
 
             <div className="col-sm-6 text-sm-right ">
               <Button
@@ -206,6 +234,8 @@ const AdminCommittee = () => {
             className="adminTable"
             columns={columnsCommittee}
             dataSource={dataCommittee}
+            // dataSource={search(dataCommittee)}
+            // data={search(dataCommittee)}
             pagination={false}
             // pagination={{
             //   defaultPageSize: 10,
