@@ -26,28 +26,28 @@ const CommitteAssessStep2 = (props) => {
     dataT1.forEach((v) => {
       let f = {};
       f.formtwo_table = "1";
-      f.formtwo_sucesscom = v.Table1LevelCom;
+      f.formtwo_sucesscom = v.Table1LevelHead;
       _list.push(f);
     });
     dataT2.forEach((v) => {
       let f = {};
       f.formtwo_table = "2";
-      f.formtwo_sucesscom = v.Table2LevelCom;
+      f.formtwo_sucesscom = v.Table2LevelHead;
       _list.push(f);
     });
     dataT3.forEach((v) => {
       let f = {};
       f.formtwo_table = "3";
-      f.formtwo_sucesscom = v.Table3LevelCom;
+      f.formtwo_sucesscom = v.Table3LevelHead;
       _list.push(f);
     });
     dataT4.forEach((v) => {
       let f = {};
       f.formtwo_table = "4";
-      f.formtwo_sucesscom = v.Table4LevelCom;
+      f.formtwo_sucesscom = v.Table4LevelHead;
       _list.push(f);
     });
-    // console.log(_list);
+    // console.log(dataT1);
     const id_assessment = `${assessment}`;
     const id_employee = `${id}`;
     const id_committee = Cookies.get(token.userId);
@@ -57,7 +57,7 @@ const CommitteAssessStep2 = (props) => {
       committee_id: id_committee,
       formtwo: _list,
     };
-    console.log(data);
+    // console.log(data);
     axios
       .post(`${url}/formtwo`, data)
       .then((res) => {

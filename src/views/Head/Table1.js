@@ -135,28 +135,28 @@ class Table1 extends React.Component {
         title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 1)"}</div>,
         dataIndex: "Table1LevelCOM1",
         key: "Table1LevelCOM1",
-        width: "80px",
+        width: "90px",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 2)"}</div>,
         dataIndex: "Table1LevelCOM2",
         key: "Table1LevelCOM2",
-        width: "80px",
+        width: "90px",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 3)"}</div>,
         dataIndex: "Table1LevelCOM3",
         key: "Table1LevelCOM3",
-        width: "80px",
+        width: "90px",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 4)"}</div>,
         dataIndex: "Table1LevelCOM4",
         key: "Table1LevelCOM4",
-        width: "80px",
+        width: "90px",
         align: "center",
       },
       {
@@ -196,7 +196,7 @@ class Table1 extends React.Component {
         title: <div style={title}>{"คะแนนรวม %"}</div>,
         dataIndex: "Table1TotalScorePercent",
         key: "Table1TotalScorePercent",
-        width: "80px",
+        width: "90px",
         render: (text, row, index) => {
           return (
             <div
@@ -256,45 +256,50 @@ class Table1 extends React.Component {
     };
     axios.post(`${url}/dataFormtwo`, data).then((em) => {
       axios.post(`${urlCOM}/dataFormtwo`, dataCom).then((com) => {
-        const dataEM = em.data.data.formtwo;
-        const dataCOM = com.data.data.formtwoCOM;
-        const T1EM = dataEM.filter((v) => v.formtwo_table === 1);
-        const T1COM = dataCOM.filter((v) => v.formtwo_table === 1);
-        console.log(dataCOM);
-        this.setState({
-          dataSource:
-            dataCOM.lenght > 0
-              ? T1EM.lenght !== 0
-                ? T1COM.lenght !== 0
-                  ? T1EM.map((v, i) => ({
-                      key: i + 1,
-                      Table1No: i + 1,
-                      Table1Activity: v.formtwo_name,
-                      Table1FTE: v.formtwo_fte,
-                      Table1Level: v.formtwo_sucessem,
-                      Table1Comments: v.formtwo_comment,
-                      Table1LevelHead: T1COM[i].formtwo_sucesscom,
-                    }))
-                  : T1EM.map((v, i) => ({
-                      key: i + 1,
-                      Table1No: i + 1,
-                      Table1Activity: v.formtwo_name,
-                      Table1FTE: v.formtwo_fte,
-                      Table1Level: v.formtwo_sucessem,
-                      Table1Comments: v.formtwo_comment,
-                    }))
-                : []
-              : T1EM.map((v, i) => ({
-                  key: i + 1,
-                  Table1No: i + 1,
-                  Table1Activity: v.formtwo_name,
-                  Table1FTE: v.formtwo_fte,
-                  Table1Level: v.formtwo_sucessem,
-                  Table1Comments: v.formtwo_comment,
-                })),
+        axios.post(`${urlCOM}/dataFormtwoAll`, data).then((comAll) => {
+          const dataEM = em.data.data.formtwo;
+          const dataCOM = com.data.data.formtwoCOM;
+          const dataCOMALL = comAll.data.data;
+          const T1EM = dataEM.filter((v) => v.formtwo_table === 1);
+          const T1COM = dataCOM.filter((v) => v.formtwo_table === 1);
+          const T1COMALL = dataCOMALL.filter((v) => v.formtwo_table === 1);
+          const T1COMID = T1COMALL.map((e) => e.fk_committee_id);
+          const T1COM1 = T1COMALL.filter(
+            (e) => e.fk_committee_id === T1COMID[0]
+          );
+          const T1COM2 = T1COMALL.filter(
+            (e) => e.fk_committee_id === T1COMID[1]
+          );
+          const T1COM3 = T1COMALL.filter(
+            (e) => e.fk_committee_id === T1COMID[2]
+          );
+          const T1COM4 = T1COMALL.filter(
+            (e) => e.fk_committee_id === T1COMID[3]
+          );
+          console.log(T1COM);
+          this.setState({
+            dataSource: T1EM.map((v, i) => ({
+              key: i + 1,
+              Table1No: i + 1,
+              Table1Activity: v.formtwo_name,
+              Table1FTE: v.formtwo_fte,
+              Table1Level: v.formtwo_sucessem,
+              Table1Comments: v.formtwo_comment,
+              Table1LevelCOM1:
+                T1COM1.length !== 0 ? T1COM1[i].formtwo_sucesscom : "ยังไม่มี",
+              Table1LevelCOM2:
+                T1COM2.length !== 0 ? T1COM2[i].formtwo_sucesscom : "ยังไม่มี",
+              Table1LevelCOM3:
+                T1COM3.length !== 0 ? T1COM3[i].formtwo_sucesscom : "ยังไม่มี",
+              Table1LevelCOM4:
+                T1COM4.length !== 0 ? T1COM4[i].formtwo_sucesscom : "ยังไม่มี",
+              Table1LevelHead:
+                T1COM.length !== 0 ? T1COM[i].formtwo_sucesscom : " ",
+            })),
+          });
+          const rawData = [...this.state.dataSource];
+          this.props.changeData(rawData);
         });
-        const rawData = [...this.state.dataSource];
-        this.props.changeData(rawData);
       });
     });
   }

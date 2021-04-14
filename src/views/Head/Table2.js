@@ -131,34 +131,34 @@ class Table2 extends React.Component {
         width: "80px",
         align: "center",
       },
-      // {
-      //   title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 1)"}</div>,
-      //   dataIndex: "Table2LevelCOM1",
-      //   key: "Table2LevelCOM1",
-      //   width: "80px",
-      //   align: "center",
-      // },
-      // {
-      //   title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 2)"}</div>,
-      //   dataIndex: "Table2LevelCOM2",
-      //   key: "Table2LevelCOM2",
-      //   width: "80px",
-      //   align: "center",
-      // },
-      // {
-      //   title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 3)"}</div>,
-      //   dataIndex: "Table2LevelCOM3",
-      //   key: "Table2LevelCOM3",
-      //   width: "80px",
-      //   align: "center",
-      // },
-      // {
-      //   title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 4)"}</div>,
-      //   dataIndex: "Table2LevelCOM4",
-      //   key: "Table2LevelCOM4",
-      //   width: "80px",
-      //   align: "center",
-      // },
+      {
+        title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 1)"}</div>,
+        dataIndex: "Table2LevelCOM1",
+        key: "Table2LevelCOM1",
+        width: "90px",
+        align: "center",
+      },
+      {
+        title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 2)"}</div>,
+        dataIndex: "Table2LevelCOM2",
+        key: "Table2LevelCOM2",
+        width: "90px",
+        align: "center",
+      },
+      {
+        title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 3)"}</div>,
+        dataIndex: "Table2LevelCOM3",
+        key: "Table2LevelCOM3",
+        width: "90px",
+        align: "center",
+      },
+      {
+        title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 4)"}</div>,
+        dataIndex: "Table2LevelCOM4",
+        key: "Table2LevelCOM4",
+        width: "90px",
+        align: "center",
+      },
       {
         title: (
           <div style={(title, { color: "red" })}>
@@ -263,47 +263,50 @@ class Table2 extends React.Component {
     };
     axios.post(`${url}/dataFormtwo`, data).then((em) => {
       axios.post(`${urlCOM}/dataFormtwo`, dataCom).then((com) => {
-        const dataEM = em.data.data.formtwo;
-        const dataCOM = com.data.data.formtwoCOM;
-        const T2EM = dataEM.filter((v) => v.formtwo_table === 2);
-        const T2COM = dataCOM.filter((v) => v.formtwo_table === 2);
-        this.setState({
-          dataSource:
-            dataCOM.lenght > 0
-              ? T2EM.lenght !== 0
-                ? T2COM.lenght !== 0
-                  ? T2EM.map((v, i) => ({
-                      key: i + 1,
-                      Table2No: i + 1,
-                      Table2Activity: v.formtwo_name,
-                      Table2FTE: v.formtwo_fte,
-                      Table2Level: v.formtwo_sucessem,
-                      Table2Comments: v.formtwo_comment,
-                      Table2Code: v.formtwo_code,
-                      Table2LevelHead: T2COM[i].formtwo_sucesscom,
-                    }))
-                  : T2EM.map((v, i) => ({
-                      key: i + 1,
-                      Table2No: i + 1,
-                      Table2Activity: v.formtwo_name,
-                      Table2FTE: v.formtwo_fte,
-                      Table2Level: v.formtwo_sucessem,
-                      Table2Comments: v.formtwo_comment,
-                      Table2Code: v.formtwo_code,
-                    }))
-                : []
-              : T2EM.map((v, i) => ({
-                  key: i + 1,
-                  Table2No: i + 1,
-                  Table2Activity: v.formtwo_name,
-                  Table2FTE: v.formtwo_fte,
-                  Table2Level: v.formtwo_sucessem,
-                  Table2Comments: v.formtwo_comment,
-                  Table2Code: v.formtwo_code,
-                })),
+        axios.post(`${urlCOM}/dataFormtwoAll`, data).then((comAll) => {
+          const dataEM = em.data.data.formtwo;
+          const dataCOM = com.data.data.formtwoCOM;
+          const dataCOMALL = comAll.data.data;
+          const T2EM = dataEM.filter((v) => v.formtwo_table === 2);
+          const T2COM = dataCOM.filter((v) => v.formtwo_table === 2);
+          const T2COMALL = dataCOMALL.filter((v) => v.formtwo_table === 2);
+          const T2COMID = T2COMALL.map((e) => e.fk_committee_id);
+          const T2COM1 = T2COMALL.filter(
+            (e) => e.fk_committee_id === T2COMID[0]
+          );
+          const T2COM2 = T2COMALL.filter(
+            (e) => e.fk_committee_id === T2COMID[1]
+          );
+          const T2COM3 = T2COMALL.filter(
+            (e) => e.fk_committee_id === T2COMID[2]
+          );
+          const T2COM4 = T2COMALL.filter(
+            (e) => e.fk_committee_id === T2COMID[3]
+          );
+          this.setState({
+            dataSource: T2EM.map((v, i) => ({
+              key: i + 1,
+              Table2No: i + 1,
+              Table2Activity: v.formtwo_name,
+              Table2FTE: v.formtwo_fte,
+              Table2Level: v.formtwo_sucessem,
+              Table2Comments: v.formtwo_comment,
+              Table2Code: v.formtwo_code,
+              Table2LevelCOM1:
+                T2COM2.length !== 0 ? T2COM1[i].formtwo_sucesscom : "ยังไม่มี",
+              Table2LevelCOM2:
+                T2COM2.length !== 0 ? T2COM2[i].formtwo_sucesscom : "ยังไม่มี",
+              Table2LevelCOM3:
+                T2COM3.length !== 0 ? T2COM3[i].formtwo_sucesscom : "ยังไม่มี",
+              Table2LevelCOM4:
+                T2COM4.length !== 0 ? T2COM4[i].formtwo_sucesscom : "ยังไม่มี",
+              Table2LevelHead:
+                T2COM.length !== 0 ? T2COM[i].formtwo_sucesscom : " ",
+            })),
+          });
+          const rawData = [...this.state.dataSource];
+          this.props.changeData(rawData);
         });
-        const rawData = [...this.state.dataSource];
-        this.props.changeData(rawData);
       });
     });
   }
