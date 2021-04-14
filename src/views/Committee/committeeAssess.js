@@ -12,6 +12,8 @@ import { useParams } from "react-router-dom";
 import "./committee.css";
 import "./step.css";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
 const urlCOM = `http://localhost:3001/api/committee`;
@@ -408,7 +410,7 @@ const CommitteeAssess = () => {
     // console.log(id, assessment);
     const id_assessment = `${assessment}`;
     const id_employee = `${id}`;
-    const id_committee = "1";
+    const id_committee = Cookies.get(token.userId);
     const form = {
       employee_id: id_employee,
       assessment_id: id_assessment,

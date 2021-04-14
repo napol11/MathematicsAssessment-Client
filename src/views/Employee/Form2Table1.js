@@ -4,6 +4,8 @@ import { Table, Input, Popconfirm, Form } from "antd";
 import { MdDelete } from "react-icons/md";
 import "./App.css";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
 
@@ -219,7 +221,7 @@ class Form2Table1 extends React.Component {
   componentDidMount() {
     // const { id } = this.props.params;
     const id_assessment = this.props.path;
-    const id_employee = "1";
+    const id_employee = Cookies.get(token.userId);
     const data = {
       assessment_id: id_assessment,
       employee_id: id_employee,

@@ -11,6 +11,8 @@ import Form2 from "./UserForm2";
 import Form3 from "./UserForm3";
 import Success from "./UserSuccess";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
@@ -51,7 +53,7 @@ function UserStep() {
 
   const handleOk = () => {
     const id_assessment = `${id}`;
-    const id_employee = "1";
+    const id_employee = Cookies.get(token.userId);
     const data = {
       assessment_id: id_assessment,
       employee_id: id_employee,

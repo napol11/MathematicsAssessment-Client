@@ -9,6 +9,8 @@ import Table3 from "../Committee/Table3";
 import Table4 from "../Committee/Table4";
 import { notify } from "../CustomComponent";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import axios from "axios";
 const url = `http://localhost:3001/api/committee`;
 
@@ -48,7 +50,7 @@ const CommitteAssessStep2 = (props) => {
     // console.log(_list);
     const id_assessment = `${assessment}`;
     const id_employee = `${id}`;
-    const id_committee = "1";
+    const id_committee = Cookies.get(token.userId);
     const data = {
       assessment_id: id_assessment,
       employee_id: id_employee,

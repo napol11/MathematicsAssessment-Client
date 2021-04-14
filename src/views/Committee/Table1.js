@@ -4,6 +4,8 @@ import { Table, Input, Form } from "antd";
 // import "./App.css";
 import "./committee.css";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
 const urlCOM = `http://localhost:3001/api/committee`;
@@ -214,7 +216,7 @@ class Table1 extends React.Component {
   componentDidMount() {
     const id_assessment = this.props.pathAS;
     const id_employee = this.props.pathEM;
-    const id_committee = "1";
+    const id_committee = Cookies.get(token.userId);
     const data = {
       assessment_id: id_assessment,
       employee_id: id_employee,
@@ -230,28 +232,38 @@ class Table1 extends React.Component {
         const dataCOM = com.data.data.formtwoCOM;
         const T1EM = dataEM.filter((v) => v.formtwo_table === 1);
         const T1COM = dataCOM.filter((v) => v.formtwo_table === 1);
+        console.log(T1COM);
         this.setState({
           dataSource:
-            T1EM.lenght !== 0
-              ? T1COM.lenght !== 0
-                ? T1EM.map((v, i) => ({
-                    key: i + 1,
-                    Table1No: i + 1,
-                    Table1Activity: v.formtwo_name,
-                    Table1FTE: v.formtwo_fte,
-                    Table1Level: v.formtwo_sucessem,
-                    Table1Comments: v.formtwo_comment,
-                    Table1LevelCom: T1COM[i].formtwo_sucesscom,
-                  }))
-                : T1EM.map((v, i) => ({
-                    key: i + 1,
-                    Table1No: i + 1,
-                    Table1Activity: v.formtwo_name,
-                    Table1FTE: v.formtwo_fte,
-                    Table1Level: v.formtwo_sucessem,
-                    Table1Comments: v.formtwo_comment,
-                  }))
-              : [],
+            dataCOM.lenght > 0
+              ? T1EM.lenght !== 0
+                ? T1COM.lenght !== 0
+                  ? T1EM.map((v, i) => ({
+                      key: i + 1,
+                      Table1No: i + 1,
+                      Table1Activity: v.formtwo_name,
+                      Table1FTE: v.formtwo_fte,
+                      Table1Level: v.formtwo_sucessem,
+                      Table1Comments: v.formtwo_comment,
+                      Table1LevelCom: T1COM[i].formtwo_sucesscom,
+                    }))
+                  : T1EM.map((v, i) => ({
+                      key: i + 1,
+                      Table1No: i + 1,
+                      Table1Activity: v.formtwo_name,
+                      Table1FTE: v.formtwo_fte,
+                      Table1Level: v.formtwo_sucessem,
+                      Table1Comments: v.formtwo_comment,
+                    }))
+                : []
+              : T1EM.map((v, i) => ({
+                  key: i + 1,
+                  Table1No: i + 1,
+                  Table1Activity: v.formtwo_name,
+                  Table1FTE: v.formtwo_fte,
+                  Table1Level: v.formtwo_sucessem,
+                  Table1Comments: v.formtwo_comment,
+                })),
         });
         const rawData = [...this.state.dataSource];
         this.props.changeData(rawData);

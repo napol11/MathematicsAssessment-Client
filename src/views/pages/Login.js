@@ -16,46 +16,71 @@ import Cookies from "js-cookie";
 
 import "./login.css";
 
+import axios from "axios";
+const url = `http://localhost:3001/api/auth`;
+
 const Login = () => {
   const [showPass, setshowPass] = useState(false);
   const inputUsername = useRef(null);
   const inputPassword = useRef(null);
+  const [userData, setUserData] = useState(null);
 
   const submitLogin = (e) => {
     e.preventDefault();
     const username = inputUsername.current.value; // ค่า username
     const password = inputPassword.current.value; // ค่า password
+    const login = {
+      username: username,
+      password: password,
+    };
+    axios.post(`${url}/login`, login).then((res) => {
+      const data = res.data;
+      setUserData(data);
+    });
+    if (userData != null) {
+      if (userData.data.role === 2) {
+        Cookies.set(token.type, 1);
+        Cookies.set(token.token, "kmuttTest");
+        Cookies.set(token.userId, userData.data.profile.id);
+        window.location.replace("/employee/history");
+      } else if (
+        userData.data.role === 1 &&
+        userData.data.profile.committee_status === 0
+      ) {
+        Cookies.set(token.type, 2);
+        Cookies.set(token.token, "kmuttTest");
+        Cookies.set(token.userId, userData.data.profile.id);
+        window.location.replace("/committee");
+      } else if (
+        userData.data.role === 1 &&
+        userData.data.profile.committee_status === 1
+      ) {
+        Cookies.set(token.type, 4);
+        Cookies.set(token.token, "kmuttTest");
+        Cookies.set(token.userId, userData.data.profile.id);
+        window.location.replace("/head");
+      } else if (userData.data.role === 0) {
+        // user: admin pass: 0846438474
+        Cookies.set(token.type, 3);
+        Cookies.set(token.token, "kmuttTest");
+        window.location.replace("/administrator/committee");
+      }
+    }
+
     // set cookie token.type ไว้ทำสิทธิ์หน้าเมนู
     // set cookie token.token สิทธ์เข้าถึงหน้าเมนู
     // token.type 1 Employee
     // token.type 2 Head / Committee
     // token.type 3 Admin
     // ******************** ไว้เปลี่ยน token.type _nav.js ********************
-    if (Number(username) === 1 && Number(password) === 123) {
-      Cookies.set(token.type, 1);
-      Cookies.set(token.token, "kmuttTest");
-      window.location.replace("/employee/history");
-    } else if (Number(username) === 2 && Number(password) === 123) {
-      Cookies.set(token.type, 2);
-      Cookies.set(token.token, "kmuttTest");
-      window.location.replace("/committee");
-    } else if (Number(username) === 3 && Number(password) === 123) {
-      Cookies.set(token.type, 3);
-      Cookies.set(token.token, "kmuttTest");
-      window.location.replace("/administrator/committee");
-    } else if (Number(username) === 4 && Number(password) === 123) {
-      Cookies.set(token.type, 4);
-      Cookies.set(token.token, "kmuttTest");
-      window.location.replace("/head");
-    }
     // window.location.replace("/"); // Login เสร็จต้องไปหน้าหลัก ห้ามใช้ history.push เฉพาะอันนี้
   };
 
-  const resetPassword = () => {
-    // const username = inputUsername.current.value;
-    // รีเซ็ตรหัส
-    console.log("reset password");
-  };
+  // const resetPassword = () => {
+  //   // const username = inputUsername.current.value;
+  //   // รีเซ็ตรหัส
+  //   console.log("reset password");
+  // };
 
   return (
     <div className="maincontainer">
@@ -173,14 +198,14 @@ const Login = () => {
                         </CInputGroup>
                       </div>
 
-                      <div className="text-right">
+                      {/* <div className="text-right">
                         <label
                           className="mr-4 text-reset-password"
                           onClick={resetPassword}
                         >
                           ลืมรหัสผ่าน
                         </label>
-                      </div>
+                      </div> */}
                       <button
                         type="submit"
                         className="submitYellow btn-block text-uppercase mb-2 rounded-pill shadow-sm"

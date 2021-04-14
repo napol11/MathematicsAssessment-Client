@@ -26,7 +26,6 @@ const CommitteeAssess = React.lazy(() =>
 
 //หัวหน้า
 const HeadMain = React.lazy(() => import("./views/Head/headMain"));
-const HeadCommittee = React.lazy(() => import("./views/Head/headCommittee"));
 const HeadAssess = React.lazy(() => import("./views/Head/HeadAssess"));
 
 const routes = [
@@ -94,13 +93,7 @@ const routes = [
     component: HeadMain,
   },
   {
-    path: "/head/committee/:id",
-    exact: true,
-    name: "รายการกรรมการ",
-    component: HeadCommittee,
-  },
-  {
-    path: "/head/:id",
+    path: "/head/:assessment/:id",
     exact: true,
     name: "การประเมินพนักงาน",
     component: HeadAssess,

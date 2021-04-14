@@ -9,6 +9,9 @@ import Form2Table1 from "./Form2Table1";
 import Form2Table2 from "./Form2Table2";
 import Form2Table3 from "./Form2Table3";
 import Form2Table4 from "./Form2Table4";
+
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import { notify } from "../CustomComponent";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
@@ -60,12 +63,13 @@ function UserForm2() {
       f.formtwo_comment = v.Table4Comments;
       _list.push(f);
     });
-    // console.log(_list);
+    console.log(_list);
+    console.log(dataT1);
     let result = 0;
     for (let i = 0; i < _list.length; i++) {
-      result += _list[i].formtwo_fte;
+      result += parseInt(_list[i].formtwo_fte);
     }
-    // console.log(result);
+    console.log(result);
     if (result < 100) {
       console.log("น้อยกว่า 100 ");
       notify.error("ค่า FTE รวมยังไม่ถึง 100% !");
@@ -74,7 +78,7 @@ function UserForm2() {
       notify.error("ค่า FTE รวมเกิน 100% !");
     } else if (result === 100) {
       const id_assessment = `${id}`;
-      const id_employee = "1";
+      const id_employee = Cookies.get(token.userId);
       const data = {
         assessment_id: id_assessment,
         employee_id: id_employee,

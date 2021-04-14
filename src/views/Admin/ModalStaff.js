@@ -22,8 +22,8 @@ export default function ModalStaff(props) {
 
   const [Loading, setLoading] = useState(false);
   const [Title, setTitle] = useState(null);
-  const [Level, setLevel] = useState(null);
-  const [Division, setDivision] = useState(null);
+  // const [Level, setLevel] = useState(null);
+  // const [Division, setDivision] = useState(null);
 
   // const close = () => {
   //   formRef.current.resetFields();
@@ -37,47 +37,47 @@ export default function ModalStaff(props) {
 
   const LoadData = () => {
     // ex option level
-    const dataLevel = [
-      {
-        id: 1,
-        levelName: "ระดับ 1",
-        level: "1",
-      },
-      {
-        id: 2,
-        levelName: "ระดับ 2",
-        level: "2",
-      },
-    ];
+    // const dataLevel = [
+    //   {
+    //     id: 1,
+    //     levelName: "ระดับ 1",
+    //     level: "1",
+    //   },
+    //   {
+    //     id: 2,
+    //     levelName: "ระดับ 2",
+    //     level: "2",
+    //   },
+    // ];
 
-    // ex option division
+    // // ex option division
 
-    const dataDiv = [
-      {
-        id: 1,
-        divName: "สังกัด 1",
-        div: "1",
-      },
-      {
-        id: 2,
-        divName: "สังกัด 2",
-        div: "2",
-      },
-    ];
-    const divisions = dataDiv.map((r, i) => {
-      return (
-        <Option key={i} value={r.div}>
-          {r.divName}
-        </Option>
-      );
-    });
-    const levels = dataLevel.map((r, i) => {
-      return (
-        <Option key={i} value={r.level}>
-          {r.levelName}
-        </Option>
-      );
-    });
+    // const dataDiv = [
+    //   {
+    //     id: 1,
+    //     divName: "สังกัด 1",
+    //     div: "1",
+    //   },
+    //   {
+    //     id: 2,
+    //     divName: "สังกัด 2",
+    //     div: "2",
+    //   },
+    // ];
+    // const divisions = dataDiv.map((r, i) => {
+    //   return (
+    //     <Option key={i} value={r.div}>
+    //       {r.divName}
+    //     </Option>
+    //   );
+    // });
+    // const levels = dataLevel.map((r, i) => {
+    //   return (
+    //     <Option key={i} value={r.level}>
+    //       {r.levelName}
+    //     </Option>
+    //   );
+    // });
     setLoading(true);
     // Title
     let title = "รายชื่อพนักงาน";
@@ -102,8 +102,8 @@ export default function ModalStaff(props) {
       });
     }
     // map ระดับ สังกัด
-    setLevel(levels);
-    setDivision(divisions);
+    // setLevel(levels);
+    // setDivision(divisions);
 
     setLoading(false);
   };
@@ -272,7 +272,8 @@ export default function ModalStaff(props) {
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุระดับ"
                     >
-                      {Level}
+                      <Option value="‎ระบุระดับ 1">‎ระดับ 1</Option>
+                      <Option value="‎ระบุระดับ 2">‎ระดับ 2</Option>
                     </Select>
                   </Form.Item>
                 </div>
@@ -287,7 +288,8 @@ export default function ModalStaff(props) {
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุสังกัด"
                     >
-                      {Division}
+                      <Option value="‎สังกัด 1">‎สังกัด 1</Option>
+                      <Option value="‎สังกัด 2">‎สังกัด 2</Option>
                     </Select>
                   </Form.Item>
                 </div>

@@ -3,6 +3,8 @@ import { Table, Cascader } from "antd";
 
 import "./committee.css";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import { notify } from "../CustomComponent";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -149,7 +151,7 @@ const CommitteAssessStep31 = (props) => {
     });
     const id_assessment = `${assessment}`;
     const id_employee = `${id}`;
-    const id_committee = "1";
+    const id_committee = Cookies.get(token.userId);
     const senddata = {
       assessment_id: id_assessment,
       employee_id: id_employee,

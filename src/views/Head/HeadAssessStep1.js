@@ -9,73 +9,73 @@ const CommitteAssessStep1 = (props) => {
   const data = props.data;
   const history = useHistory();
 
-  const salaryHistory = () => {
-    if (data.salaryHistory !== undefined) {
-      if (data.salaryHistory.length) {
-        return (
-          <div className="col-sm-12">
-            <label
-              className="m-0"
-              style={{ color: "#5f5f5f", fontSize: "14px" }}
-            >
-              ปีงบประมาณ
-            </label>
-            {data.salaryHistory.map((r, i) => {
-              return (
-                <p
-                  key={i}
-                  className="m-0"
-                  style={{ color: "black", fontSize: "16px" }}
-                >
-                  {`${r.start ? date2Thai(r.start, true) : null} - ${
-                    r.end ? date2Thai(r.end, true) : null
-                  }`}
-                </p>
-              );
-            })}
-          </div>
-        );
-      } else {
-        return "-";
-      }
-    } else {
-      return "-";
-    }
-  };
-  const punishHistory = () => {
-    if (data.punishHistory !== undefined) {
-      if (data.punishHistory.length > 0) {
-        return (
-          <div className="col-sm-12">
-            <label
-              className="m-0"
-              style={{ color: "#5f5f5f", fontSize: "14px" }}
-            >
-              ปีงบประมาณ
-            </label>
+  // const salaryHistory = () => {
+  //   if (data.salaryHistory !== undefined) {
+  //     if (data.salaryHistory.length) {
+  //       return (
+  //         <div className="col-sm-12">
+  //           <label
+  //             className="m-0"
+  //             style={{ color: "#5f5f5f", fontSize: "14px" }}
+  //           >
+  //             ปีงบประมาณ
+  //           </label>
+  //           {data.salaryHistory.map((r, i) => {
+  //             return (
+  //               <p
+  //                 key={i}
+  //                 className="m-0"
+  //                 style={{ color: "black", fontSize: "16px" }}
+  //               >
+  //                 {`${r.start ? date2Thai(r.start, true) : null} - ${
+  //                   r.end ? date2Thai(r.end, true) : null
+  //                 }`}
+  //               </p>
+  //             );
+  //           })}
+  //         </div>
+  //       );
+  //     } else {
+  //       return "-";
+  //     }
+  //   } else {
+  //     return "-";
+  //   }
+  // };
+  // const punishHistory = () => {
+  //   if (data.punishHistory !== undefined) {
+  //     if (data.punishHistory.length > 0) {
+  //       return (
+  //         <div className="col-sm-12">
+  //           <label
+  //             className="m-0"
+  //             style={{ color: "#5f5f5f", fontSize: "14px" }}
+  //           >
+  //             ปีงบประมาณ
+  //           </label>
 
-            {data.punishHistory.map((r, i) => {
-              return (
-                <p
-                  key={i}
-                  className="m-0"
-                  style={{ color: "black", fontSize: "16px" }}
-                >
-                  {`${r.start ? date2Thai(r.start, true) : null} - ${
-                    r.end ? date2Thai(r.end, true) : null
-                  }`}
-                </p>
-              );
-            })}
-          </div>
-        );
-      } else {
-        return "-";
-      }
-    } else {
-      return "-";
-    }
-  };
+  //           {data.punishHistory.map((r, i) => {
+  //             return (
+  //               <p
+  //                 key={i}
+  //                 className="m-0"
+  //                 style={{ color: "black", fontSize: "16px" }}
+  //               >
+  //                 {`${r.start ? date2Thai(r.start, true) : null} - ${
+  //                   r.end ? date2Thai(r.end, true) : null
+  //                 }`}
+  //               </p>
+  //             );
+  //           })}
+  //         </div>
+  //       );
+  //     } else {
+  //       return "-";
+  //     }
+  //   } else {
+  //     return "-";
+  //   }
+  // };
   return (
     <div>
       <label style={{ fontWeight: "bold", fontSize: "24px", color: "black" }}>
@@ -273,7 +273,7 @@ const CommitteAssessStep1 = (props) => {
             </label>
           </div>
         </div>
-        <div className="row no-gutter pl-4 pr-4">
+        {/* <div className="row no-gutter pl-4 pr-4">
           <div className="col-sm-12">
             <label
               className="m-0"
@@ -286,8 +286,8 @@ const CommitteAssessStep1 = (props) => {
               {`${data.leaveHistory ? data.leaveHistory.studieLeave : null}`}
             </label>
           </div>
-        </div>
-        <div className="row no-gutter pl-4 pr-4 mt-2">
+        </div> */}
+        {/* <div className="row no-gutter pl-4 pr-4 mt-2">
           <div className="col-sm-12">
             <label
               className="m-0"
@@ -311,7 +311,7 @@ const CommitteAssessStep1 = (props) => {
                   `}
             </label>
           </div>
-        </div>
+        </div> */}
         <div className="row no-gutter pl-4 pr-4 mt-2">
           <div className="col-sm-3">
             <label
@@ -482,7 +482,19 @@ const CommitteAssessStep1 = (props) => {
             </label>
           </div>
         </div>
-        <div className="row no-gutter pl-4 pr-4 mt-2">{salaryHistory()}</div>
+        <div className="row no-gutter pl-4 pr-4 mt-2">
+          {/* {salaryHistory()} */}
+          <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
+            {/* {`${data.salaryHistory ? data.salaryHistory.text : null}`} */}
+            {`${
+              data.salaryHistory
+                ? data.salaryHistory.text === ""
+                  ? "-"
+                  : `${data.salaryHistory.text}`
+                : "-"
+            }`}
+          </label>
+        </div>
       </div>
 
       <div
@@ -506,7 +518,17 @@ const CommitteAssessStep1 = (props) => {
             </label>
           </div>
         </div>
-        <div className="row no-gutter pl-4 pr-4 mt-2">{punishHistory()}</div>
+        <div className="row no-gutter pl-4 pr-4 mt-2">
+          {/* {punishHistory()} */}
+          {/* {`${data.punishHistory ? data.punishHistory.text : null}`} */}
+          {`${
+            data.punishHistory
+              ? data.punishHistory.text === ""
+                ? "-"
+                : `${data.punishHistory.text}`
+              : "-"
+          }`}
+        </div>
       </div>
 
       <div

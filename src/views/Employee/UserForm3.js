@@ -7,6 +7,8 @@ import { Form, Input } from "antd";
 
 import "./App.css";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
 
@@ -37,7 +39,7 @@ function UserFrom3() {
 
   const LoadData = () => {
     const id_assessment = `${id}`;
-    const id_employee = "1";
+    const id_employee = Cookies.get(token.userId);
     const assessment = {
       employee_id: id_employee,
       assessment_id: id_assessment,
@@ -80,7 +82,7 @@ function UserFrom3() {
   const onFinish = (values) => {
     console.log(values);
     const id_assessment = `${id}`;
-    const id_employee = "1";
+    const id_employee = Cookies.get(token.userId);
     const data = {
       ...values,
       assessment_id: id_assessment,

@@ -3,9 +3,18 @@ import { Table, Cascader } from "antd";
 
 import "./head.css";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
+import { notify } from "../CustomComponent";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+const url = `http://localhost:3001/api/committee`;
+
 const title = { color: "black", fontWeight: "bold", textAlign: "center" };
 
 const CommitteAssessStep31 = (props) => {
+  // console.log(props);
+  const { id, assessment } = useParams();
   const { data, setData } = props;
   const [diss, setDiss] = useState(true);
 
@@ -120,7 +129,7 @@ const CommitteAssessStep31 = (props) => {
               onChange={(value) => inputSkill(value, row, index)}
               value={text}
               className="textarea"
-              style={{width: "90%"}}
+              style={{ width: "90%" }}
             ></textarea>
           );
         } else {
@@ -129,6 +138,37 @@ const CommitteAssessStep31 = (props) => {
       },
     },
   ];
+
+  const onFinish = () => {
+    let _list = [];
+    const filterData = data.EvaForm31.filter((e) => e.point);
+    filterData.forEach((v, i) => {
+      let f = {};
+      f.formthree_score = v.point;
+      f.formthree_num = i + 1;
+      f.formthree_comment = v.skill;
+      _list.push(f);
+    });
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const id_committee = Cookies.get(token.userId);
+    const senddata = {
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+      committee_id: id_committee,
+      formthree: _list,
+    };
+    axios
+      .post(`${url}/formthree`, senddata)
+      .then((res) => {
+        console.log(res);
+        notify.success("บันทึกสำเร็จ !");
+      })
+      .catch((err) => {
+        console.log(err);
+        notify.error("บันทึกไม่สำเร็จ !");
+      });
+  };
 
   return (
     <div>
@@ -177,6 +217,11 @@ const CommitteAssessStep31 = (props) => {
         scroll={{ y: 500 }}
         size="middle"
       />
+      <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+        <button className="btn-modal-confirm" type="submit" onClick={onFinish}>
+          บันทึก
+        </button>
+      </div>
       <div
         className="mt-3 mb-4"
         style={{

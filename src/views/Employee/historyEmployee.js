@@ -14,6 +14,8 @@ import {
   CButton,
 } from "@coreui/react";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import { date2Thai } from "../CustomFunction";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
@@ -50,7 +52,7 @@ const HistoryEmployee = () => {
   // };
 
   const LoadData = () => {
-    const id_employee = 1;
+    const id_employee = Cookies.get(token.userId);
     axios.get(`${url}/employee/` + id_employee).then((res) => {
       const startWork = date2Thai(res.data.data.employee_start);
       const start = new Date(res.data.data.employee_start);

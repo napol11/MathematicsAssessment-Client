@@ -1,7 +1,15 @@
-import React, { useState } from "react";
-import { Button, Row } from "antd";
+import React, { useState, useRef, useEffect } from "react";
+import { Button, Row, Form, Input } from "antd";
 import { CModal, CModalBody } from "@coreui/react";
+import { useParams } from "react-router-dom";
+import { notify } from "../CustomComponent";
+
 import "./head.css";
+
+import Cookies from "js-cookie";
+import { token } from "../../config";
+import axios from "axios";
+const url = `http://localhost:3001/api/committee`;
 
 const CommitteAssessStep32 = (props) => {
   const data = props.data.EvaForm32;
@@ -49,40 +57,92 @@ const CommitteAssessStep32 = (props) => {
     setModal(false);
   };
 
-  const Committee = () => {
-    const styleTitle = { marginBottom: 0 };
-    const value = data.Committee.map((row, index) => {
-      return (
-        <div>
-          <p
-            key={`p${index}`}
-            className={index !== 0 ? "mt-5 mb-2" : "mb-2"}
-            style={styleTitle}
-          >{`${index + 1}. ${row.title}`}</p>
-          <textarea
-            key={`area${index}`}
-            onChange={(e) => Comment(e, row, index)}
-            className="textarea"
-            style={{ width: "100%" }}
-            placeholder="     กรุณาแสดงความคิดเห็น"
-            rows="8"
-            value={row.comment}
-          />
-        </div>
-      );
-    });
+  const { id, assessment } = useParams();
+  const formRef = useRef(null);
+  const { TextArea } = Input;
 
-    return value;
+  const onFinish = (values) => {
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const id_committee = Cookies.get(token.userId);
+    const form = {
+      ...values,
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+      committee_id: id_committee,
+    };
+    axios
+      .post(`${url}/formfour`, form)
+      .then((res) => {
+        console.log(res);
+        notify.success("บันทึกสำเร็จ !");
+      })
+      .catch((err) => {
+        console.log(err);
+        // notify.error("บันทึกไม่สำเร็จ !");
+      });
+  };
+  const [form, setForm] = useState([
+    {
+      name: ["comone"],
+      value: "",
+    },
+    {
+      name: ["comtwo"],
+      value: "",
+    },
+  ]);
+
+  const [datacom1, setDataCom1] = useState([]);
+  const [datacom2, setDataCom2] = useState([]);
+
+  const LoadData = () => {
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const id_committee = Cookies.get(token.userId);
+    const form = {
+      employee_id: id_employee,
+      assessment_id: id_assessment,
+      committee_id: id_committee,
+    };
+    axios.post(`${url}/dataFormfourById`, form).then((res) => {
+      const data = res.data.data;
+      // console.log(data.length);
+      if (data !== null) {
+        setForm([
+          {
+            name: ["comone"],
+            value: res.data.data.formfour_comone || "",
+          },
+          {
+            name: ["comtwo"],
+            value: res.data.data.formfour_comtwo || "",
+          },
+        ]);
+      }
+    });
+    const formCom = {
+      employee_id: id_employee,
+      assessment_id: id_assessment,
+    };
+    axios.post(`${url}/dataFormfour`, formCom).then((res) => {
+      console.log(res.data.data.formfour_committee);
+      const data1 = res.data.data.formfour_committee.map((v, i) => ({
+        committee: "กรรมการคนที่ " + (i + 1),
+        comone: v.formfour_comone,
+      }));
+      const data2 = res.data.data.formfour_committee.map((v, i) => ({
+        committee: "กรรมการคนที่ " + (i + 1),
+        comtwo: v.formfour_comtwo,
+      }));
+      setDataCom2(data2);
+      setDataCom1(data1);
+    });
   };
 
-  const Comment = (e, row, index) => {
-    const val = [...data.Committee];
-    val.splice(index, 1, { ...row, comment: e.target.value });
-    props.setData({
-      ...props.data,
-      EvaForm32: { ...data, Committee: val },
-    });
-  };
+  useEffect(() => {
+    LoadData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -138,7 +198,59 @@ const CommitteAssessStep32 = (props) => {
               padding: "3%",
             }}
           >
-            {Committee()}
+            {/* {Committee()} */}
+            <Form
+              ref={formRef}
+              layout="vertical"
+              name="nest-messages"
+              onFinish={onFinish}
+              fields={form}
+            >
+              <p>
+                1. ท่านคิดว่าผู้ใใต้บังคับบัญชายังขาดความรู้
+                ความชำนาญทักษะในเรื่องใดบ้าง
+              </p>
+              {datacom1.map((v) => {
+                return (
+                  <p style={{ marginLeft: "5%" }}>
+                    {v.committee} {v.comone}
+                  </p>
+                );
+              })}
+              <Form.Item name={["comone"]}>
+                <TextArea
+                  className="textarea"
+                  style={{ width: "100%" }}
+                  placeholder="     กรุณาแสดงความคิดเห็น"
+                  rows="5"
+                />
+              </Form.Item>
+              <p>
+                2. ท่านคิดว่าผู้ใใต้บังคับบัญชาหควรจะอบรม
+                หรือต้องการความรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
+                (เรียงลำดับความสำคัญ 1-5)
+              </p>
+              {datacom2.map((v) => {
+                return (
+                  <p style={{ marginLeft: "5%" }}>
+                    {v.committee} {v.comtwo}
+                  </p>
+                );
+              })}
+              <Form.Item name={["comtwo"]}>
+                <TextArea
+                  className="textarea"
+                  style={{ width: "100%" }}
+                  placeholder="     กรุณาแสดงความคิดเห็น"
+                  rows="5"
+                />
+              </Form.Item>
+              <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+                <button className="btn-modal-confirm" type="submit">
+                  บันทึก
+                </button>
+              </div>
+            </Form>
           </div>
         </div>
       </div>
@@ -200,7 +312,11 @@ const CommitteAssessStep32 = (props) => {
         <div className="pl-4 pr-4 mr-4 btnCancel" onClick={props.prev}>
           ย้อนกลับ
         </div>
-        <div className="pl-4 pr-4 mr-4 btnConfirm" onClick={() => showmodal()}>
+        <div
+          className="pl-4 pr-4 mr-4 btnConfirm"
+          // onClick={() => showmodal()}
+          onClick={props.next}
+        >
           ถัดไป
         </div>
       </div>

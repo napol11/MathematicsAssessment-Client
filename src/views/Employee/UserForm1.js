@@ -6,6 +6,8 @@ import "antd/dist/antd.css";
 // import { date2Thai } from "../CustomFunction";
 // import moment from "moment";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import "./employee.css";
 import { date2Thai } from "../CustomFunction";
 import axios from "axios";
@@ -26,7 +28,7 @@ function UserProfile() {
   });
 
   const LoadData = () => {
-    const id_employee = "1";
+    const id_employee = Cookies.get(token.userId);
     axios.get(`${url}/employee/` + id_employee).then((res) => {
       const startWork = date2Thai(res.data.data.employee_start);
       const start = new Date(res.data.data.employee_start);
@@ -128,7 +130,7 @@ function UserProfile() {
 
   const onFinish = (values) => {
     const id_assessment = `${id}`;
-    const id_employee = "1";
+    const id_employee = Cookies.get(token.userId);
     const data = {
       ...values,
       assessment_id: id_assessment,

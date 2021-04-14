@@ -6,6 +6,8 @@ import { notify } from "../CustomComponent";
 
 import "./committee.css";
 
+import Cookies from "js-cookie";
+import { token } from "../../config";
 import axios from "axios";
 const url = `http://localhost:3001/api/committee`;
 
@@ -62,7 +64,7 @@ const CommitteAssessStep32 = (props) => {
   const onFinish = (values) => {
     const id_assessment = `${assessment}`;
     const id_employee = `${id}`;
-    const id_committee = "1";
+    const id_committee = Cookies.get(token.userId);
     const form = {
       ...values,
       assessment_id: id_assessment,
@@ -94,27 +96,27 @@ const CommitteAssessStep32 = (props) => {
   const LoadData = () => {
     const id_assessment = `${assessment}`;
     const id_employee = `${id}`;
-    const id_committee = "1";
+    const id_committee = Cookies.get(token.userId);
     const form = {
       employee_id: id_employee,
       assessment_id: id_assessment,
       committee_id: id_committee,
     };
     axios.post(`${url}/dataFormfourById`, form).then((res) => {
-      setForm([
-        {
-          name: ["comone"],
-          value: res.data.data.formfour_comone
-            ? res.data.data.formfour_comone
-            : "",
-        },
-        {
-          name: ["comtwo"],
-          value: res.data.data.formfour_comtwo
-            ? res.data.data.formfour_comtwo
-            : "",
-        },
-      ]);
+      const data = res.data.data;
+      // console.log(data.length);
+      if (data !== null) {
+        setForm([
+          {
+            name: ["comone"],
+            value: res.data.data.formfour_comone || "",
+          },
+          {
+            name: ["comtwo"],
+            value: res.data.data.formfour_comtwo || "",
+          },
+        ]);
+      }
     });
   };
 
