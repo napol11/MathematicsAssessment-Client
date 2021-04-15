@@ -15,7 +15,7 @@ const CommitteAssessStep4 = (props) => {
   const [sumForm3Per, setSumForm3Per] = useState("");
   const [total, setTotle] = useState("");
 
-  const LoadData = () => {
+  const LoadData = async () => {
     const id_assessment = `${assessment}`;
     const id_employee = `${id}`;
     const data = {
@@ -208,14 +208,20 @@ const CommitteAssessStep4 = (props) => {
       setSumForm3Per(form3persent.toFixed(2));
     });
 
-    const total = parseFloat(sumForm3Per) + parseFloat(sumForm2Per);
-    // console.log(total);
-    setTotle(total.toFixed(2));
+    // const totalSum = parseFloat(sumForm3Per) + parseFloat(sumForm2Per);
+    // console.log(totalSum);
+    // setTotle(total.toFixed(2));
   };
 
   useEffect(() => {
     LoadData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const totalSum = parseFloat(sumForm3Per) + parseFloat(sumForm2Per);
+    setTotle(totalSum.toFixed(2));
+    console.log(total);
+  }, [total, sumForm3Per, sumForm2Per]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div>
       {/* {console.log(formtwo)} */}
