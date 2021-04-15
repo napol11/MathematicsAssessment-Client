@@ -170,4 +170,13 @@
     border: 1.5px solid #f26843;
 }
 
+.ant-input-affix-wrapper:hover {
+    border: 1.5px solid #f26843 !important;
+}
+
+.ant-input-affix-wrapper-focused {
+    outline: none !important;
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843;
+}
   

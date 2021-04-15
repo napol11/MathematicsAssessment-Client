@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { CModal, CModalHeader, CModalTitle, CModalBody } from "@coreui/react";
-import { Form, Input } from "antd";
+import { Form, Input, Button } from "antd";
 
+import "./employee.css";
 import { notify } from "../CustomComponent";
 import Cookies from "js-cookie";
 import { token } from "../../config";
@@ -77,43 +78,43 @@ const HistoryEmployee = () => {
     <div className="justify-center align-center">
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12 ">
+          <div className="mb-3">  
           <label
+            className="col-xs-10 col-sm-10"
             style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
           >
             ประวัติพนักงาน
           </label>
 
-          <div
+          <Button
+            className="ml-5"
+            shape="round"
+            size={"large"}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             onClick={() => setVisible(true)}
             type="submit"
-            className="text-uppercase mb-2 rounded-pill shadow-sm align-items-sm-end"
             style={
               hover
                 ? {
-                    color: "white",
-                    padding: "10px",
-                    marginLeft: "90%",
                     backgroundColor: "#f6be32",
                     border: "2px solid #f6be32",
-                    fontSize: "15px",
-                    textAlign: "center",
-                    width: "10%",
+                    color: "white",
+                    paddingLeft: "50px",
+                    paddingRight: "50px",
+                    
                   }
                 : {
-                    color: "black",
-                    padding: "10px",
-                    marginLeft: "90%",
                     backgroundColor: "white",
                     border: "2px solid #f6be32",
-                    fontSize: "15px",
-                    textAlign: "center",
-                    width: "10%",
+                    color: "black",
+                    paddingLeft: "50px",
+                    paddingRight: "50px",
                   }
             }
           >
             เปลี่ยนรหัสผ่าน
+          </Button>
           </div>
 
           <div className="container-fluid ">
@@ -288,13 +289,12 @@ const HistoryEmployee = () => {
                       }}
                     >
                       <button
-                        className="btn-modal-cancel"
                         type="button"
                         onClick={close}
                         style={{
                           borderRadius: "20px",
                           padding: "5px 25px",
-                          border: "1px solid #f26843",
+                          border: "1px solid #FDC331",
                           backgroundColor: "transparent",
                           marginRight: "10px",
                           outline: "none",
@@ -303,7 +303,6 @@ const HistoryEmployee = () => {
                         ยกเลิก
                       </button>
                       <button
-                        className="btn-modal-confirm"
                         type="submit"
                         style={{
                           borderRadius: "20px",
