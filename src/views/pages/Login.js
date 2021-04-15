@@ -11,6 +11,7 @@ import {
 import imgHeader from "./logo.png";
 import picture from "./login.png";
 
+import { notify } from "../CustomComponent";
 import { token } from "../../config";
 import Cookies from "js-cookie";
 
@@ -33,10 +34,16 @@ const Login = () => {
       username: username,
       password: password,
     };
-    axios.post(`${url}/login`, login).then((res) => {
-      const data = res.data;
-      setUserData(data);
-    });
+    axios
+      .post(`${url}/login`, login)
+      .then((res) => {
+        const data = res.data;
+        setUserData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        notify.error("ชื่อผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง !");
+      });
     if (userData != null) {
       if (userData.data.role === 2) {
         Cookies.set(token.type, 1);

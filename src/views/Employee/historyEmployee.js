@@ -1,28 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  // CImg,
-  CInputGroup,
-  CInputGroupPrepend,
-  CInputGroupText,
-  CInput,
-  CInputGroupAppend,
-  CModal,
-  CModalHeader,
-  CModalTitle,
-  CModalBody,
-  CModalFooter,
-  CButton,
-} from "@coreui/react";
+import { CModal, CModalHeader, CModalTitle, CModalBody } from "@coreui/react";
+import { Form, Input } from "antd";
 
+import { notify } from "../CustomComponent";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import { date2Thai } from "../CustomFunction";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
+const urlauth = `http://localhost:3001/api/auth`;
 
 const HistoryEmployee = () => {
-  const inputReset = useRef(null);
-  const [showPass, setshowPass] = useState(false);
   const [visible, setVisible] = useState(false);
   const [hover, setHover] = useState(false);
   const [data, setData] = useState({
@@ -34,22 +22,7 @@ const HistoryEmployee = () => {
     start: null,
     times: null,
   });
-
-  const resetPassword = () => {
-    console.log("success");
-  };
-
-  // const dateText = (begin) => {
-  //   const len = date2Thai(begin).toString().length;
-  //   const ystart = date2Thai(begin)
-  //     .toString()
-  //     .substring(len - 2, len); // ตัดจาก 2564 เป็น 64
-  //   const dMstart = date2Thai(begin)
-  //     .toString()
-  //     .substring(0, len - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ.
-  //   const start = dMstart + ystart; // รวม  01 ก.พ. 64
-  //   return `${start}`;
-  // };
+  const formRef = useRef(null);
 
   const LoadData = () => {
     const id_employee = Cookies.get(token.userId);
@@ -73,18 +46,32 @@ const HistoryEmployee = () => {
     });
   };
 
+  const onFinish = (values) => {
+    close();
+    const data = {
+      ...values,
+      employee_id: Cookies.get(token.userId),
+    };
+    console.log(data);
+    axios
+      .put(`${urlauth}/changepass`, data)
+      .then((res) => {
+        console.log(res);
+        notify.success("บันทึกสำเร็จ !");
+      })
+      .catch((err) => {
+        console.log(err);
+        notify.error("บันทึกไม่สำเร็จ !");
+      });
+  };
+
+  const close = () => {
+    formRef.current.resetFields();
+    setVisible(!visible);
+  };
+
   useEffect(() => {
     LoadData();
-
-    // setData({
-    //   name: "สโรชา สังข์บูญ",
-    //   position: "บาริสต้า",
-    //   number: 49,
-    //   level: "เชี่ยวชาญ",
-    //   group: "ดุสิต",
-    //   start: "วันที่ 10  เดือน กรกฎาคม พ.ศ. 2552",
-    //   times: "11 ปี 6 เดือน 22 วัน",
-    // });
   }, []);
   return (
     <div className="justify-center align-center">
@@ -129,15 +116,11 @@ const HistoryEmployee = () => {
             เปลี่ยนรหัสผ่าน
           </div>
 
-          <div
-            className="container-fluid "
-            // style={{ paddingTop: "10px" }}
-          >
+          <div className="container-fluid ">
             <div className="row no-gutter">
               <div
                 className="col-12 mt-2"
                 style={{
-                  //   border: "1px solid black",
                   minHeight: "100px",
                   backgroundColor: "#f8f8f8",
                   borderRadius: "10px",
@@ -265,7 +248,6 @@ const HistoryEmployee = () => {
                   </div>
                 </div>
               </div>
-
               <CModal
                 show={visible}
                 onClose={() => setVisible(!visible)}
@@ -276,62 +258,66 @@ const HistoryEmployee = () => {
                     {<i class="fas fa-exchange-alt"> เปลี่ยนรหัสผ่าน</i>}
                   </CModalTitle>
                 </CModalHeader>
-                <CModalBody>
-                  <div className="row no-gutter">
-                    <div className="col-md-12">
-                      <label
-                        className="m-0"
-                        style={{ color: "#5f5f5f", fontSize: "14px" }}
-                      >
-                        รหัสผ่าน
-                      </label>
-                      <br />
-                      <CInputGroup>
-                        <CInputGroupPrepend>
-                          <CInputGroupText
-                            className={"bg-white text-black"}
-                            style={{ borderRight: "none" }}
-                          >
-                            <i className="fas fa-key" />
-                          </CInputGroupText>
-                        </CInputGroupPrepend>
-                        <CInput
-                          style={{ borderLeft: "none", boxShadow:"none", borderBlockColor:"lightgrey" }}
-                          type={showPass ? "text" : "password"}
-                          placeholder="ระบุรหัสผ่านใหม่"
-                          name="reset"
-                          autoComplete="off"
-                          innerRef={inputReset}
-                        />
-                        <CInputGroupAppend
-                          onClick={() => setshowPass(!showPass)}
+                <Form
+                  layout="vertical"
+                  name="nest-messages"
+                  onFinish={onFinish}
+                  ref={formRef}
+                >
+                  <CModalBody>
+                    <div className="row no-gutter">
+                      <div className="col-md-12">
+                        <Form.Item
+                          label="ระบุรหัสผ่านใหม่"
+                          name="password"
+                          rules={[
+                            {
+                              required: true,
+                              message: "ระบุรหัสผ่านใหม่",
+                            },
+                          ]}
                         >
-                          <CInputGroupText
-                            className={"bg-white text-black"}
-                            style={{ borderLeft: "none" }}
-                          >
-                            {showPass ? (
-                              <i className="fas fa-eye-slash"></i>
-                            ) : (
-                              <i className="fas fa-eye" />
-                            )}
-                          </CInputGroupText>
-                        </CInputGroupAppend>
-                      </CInputGroup>
+                          <Input.Password />
+                        </Form.Item>
+                      </div>
                     </div>
-                  </div>
-                </CModalBody>
-                <CModalFooter>
-                  <CButton className="btnConfirm" onClick={resetPassword}>
-                    ตกลง
-                  </CButton>{" "}
-                  <CButton
-                    className="btnCancel"
-                    onClick={() => setVisible(!visible)}
-                  >
-                    ยกเลิก
-                  </CButton>
-                </CModalFooter>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <button
+                        className="btn-modal-cancel"
+                        type="button"
+                        onClick={close}
+                        style={{
+                          borderRadius: "20px",
+                          padding: "5px 25px",
+                          border: "1px solid #f26843",
+                          backgroundColor: "transparent",
+                          marginRight: "10px",
+                          outline: "none",
+                        }}
+                      >
+                        ยกเลิก
+                      </button>
+                      <button
+                        className="btn-modal-confirm"
+                        type="submit"
+                        style={{
+                          borderRadius: "20px",
+                          padding: "5px 25px",
+                          border: "1px solid #FDC331",
+                          backgroundColor: "#FDC331",
+                          outline: "none",
+                        }}
+                      >
+                        ยืนยัน
+                      </button>
+                    </div>
+                  </CModalBody>
+                </Form>
               </CModal>
             </div>
           </div>
