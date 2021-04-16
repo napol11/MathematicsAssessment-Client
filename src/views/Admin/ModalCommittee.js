@@ -20,6 +20,7 @@ const ModalCommittee = (props) => {
   const [Loading, setLoading] = useState(false);
 
   const LoadData = () => {
+    console.log(props);
     setLoading(true);
 
     let title = "รายชื่อกรรมการ";
@@ -28,7 +29,7 @@ const ModalCommittee = (props) => {
       setTitle(`เพิ่ม${title}`);
     } else {
       setTitle(`แก้ไข${title}`);
-      console.log(props);
+      console.log(props.data.tel);
       ///  set values เซ็ทค่าในฟอร์ม
       // จะเอามาจาก props หรือ Axios ก็ได้
       formRef.current.setFieldsValue({
@@ -36,7 +37,7 @@ const ModalCommittee = (props) => {
         lastname: props.data.lastname,
         position: props.data.position,
         email: props.data.email,
-        tal: props.data.tel,
+        tel: props.data.tel,
       });
     }
     // formRef.current.setFieldsValue({ user: { position: null } });

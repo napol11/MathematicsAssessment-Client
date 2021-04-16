@@ -22,13 +22,6 @@ export default function ModalStaff(props) {
 
   const [Loading, setLoading] = useState(false);
   const [Title, setTitle] = useState(null);
-  // const [Level, setLevel] = useState(null);
-  // const [Division, setDivision] = useState(null);
-
-  // const close = () => {
-  //   formRef.current.resetFields();
-  //   closeModal();
-  // };
 
   const close = () => {
     formRef.current.resetFields();
@@ -36,48 +29,7 @@ export default function ModalStaff(props) {
   };
 
   const LoadData = () => {
-    // ex option level
-    // const dataLevel = [
-    //   {
-    //     id: 1,
-    //     levelName: "ระดับ 1",
-    //     level: "1",
-    //   },
-    //   {
-    //     id: 2,
-    //     levelName: "ระดับ 2",
-    //     level: "2",
-    //   },
-    // ];
-
-    // // ex option division
-
-    // const dataDiv = [
-    //   {
-    //     id: 1,
-    //     divName: "สังกัด 1",
-    //     div: "1",
-    //   },
-    //   {
-    //     id: 2,
-    //     divName: "สังกัด 2",
-    //     div: "2",
-    //   },
-    // ];
-    // const divisions = dataDiv.map((r, i) => {
-    //   return (
-    //     <Option key={i} value={r.div}>
-    //       {r.divName}
-    //     </Option>
-    //   );
-    // });
-    // const levels = dataLevel.map((r, i) => {
-    //   return (
-    //     <Option key={i} value={r.level}>
-    //       {r.levelName}
-    //     </Option>
-    //   );
-    // });
+    console.log(props.data.employee_start);
     setLoading(true);
     // Title
     let title = "รายชื่อพนักงาน";
@@ -94,7 +46,7 @@ export default function ModalStaff(props) {
         lastname: props.data.lastname,
         position: props.data.position,
         email: props.data.email,
-        tal: props.data.employee_tel,
+        tel: props.data.employee_tel,
         number: props.data.no,
         degree: props.data.employee_degree,
         group: props.data.employee_group,

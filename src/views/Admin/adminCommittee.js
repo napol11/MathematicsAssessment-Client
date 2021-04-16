@@ -17,7 +17,7 @@ const AdminCommittee = () => {
   const [LoadingTable, setLoadingTable] = useState(true);
   const [dataCommittee, setdataCommittee] = useState([]);
   const [SendData, setSendData] = useState([]);
-//   const [filter, setFilter] = useState([]);
+  //   const [filter, setFilter] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -56,9 +56,7 @@ const AdminCommittee = () => {
       key: "tel",
       width: "150px",
     },
-    {
-
-    },
+    {},
     // {
     //   title: <div style={title}>อีเมล</div>,
     //   dataIndex: "email",
@@ -154,7 +152,7 @@ const AdminCommittee = () => {
         name: v.committee_firstname + " " + v.committee_lastname,
       }));
       setdataCommittee(data);
-    //   setFilter(data);
+      //   setFilter(data);
     });
 
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
@@ -169,15 +167,15 @@ const AdminCommittee = () => {
   //   return rows.filter((row) => row.name.toUpperCase().indexOf(q) > -1);
   // }
 
-//   const onSearch = (value) => {
-//     const regex = new RegExp(value.toString().toUpperCase(), "g");
-//     const find = filter.filter(({ name }) => {
-//       const upper = name.toString().toUpperCase();
-//       return upper.match(regex);
-//     });
-//     setdataCommittee(find);
-//     console.log(find);
-//   };
+  //   const onSearch = (value) => {
+  //     const regex = new RegExp(value.toString().toUpperCase(), "g");
+  //     const find = filter.filter(({ name }) => {
+  //       const upper = name.toString().toUpperCase();
+  //       return upper.match(regex);
+  //     });
+  //     setdataCommittee(find);
+  //     console.log(find);
+  //   };
 
   useEffect(() => {
     LoadData();
@@ -187,41 +185,41 @@ const AdminCommittee = () => {
     <div className="justify-center align-center">
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12">
-        <div className="mb-3">
-          <label
-            className="col-xs-10 col-sm-10"
-            style={{ fontWeight: "bold", fontSize: "36px", color: "black" }}
-          >
-            รายชื่อกรรมการ
-          </label>
-              <Button
-                className="ml-5"
-                shape="round"
-                size={"large"}
-                disabled={dataCommittee.length < 6 ? false : true}
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
-                onClick={() => openModal("add", "committee")}
-                style={
-                  hover
-                    ? {
-                        backgroundColor: "#f6be32",
-                        border: "2px solid #f6be32",
-                        color: "white",
-                        paddingLeft: "50px",
-                        paddingRight: "50px",
-                      }
-                    : {
-                        backgroundColor: "white",
-                        border: "2px solid #f6be32",
-                        color: "black",
-                        paddingLeft: "50px",
-                        paddingRight: "50px",
-                      }
-                }
-              >
-                เพิ่มกรรมการ
-              </Button>
+          <div className="mb-3">
+            <label
+              className="col-xs-10 col-sm-10"
+              style={{ fontWeight: "bold", fontSize: "36px", color: "black" }}
+            >
+              รายชื่อกรรมการ
+            </label>
+            <Button
+              className="ml-5"
+              shape="round"
+              size={"large"}
+              disabled={dataCommittee.length >= 5 ? false : true}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+              onClick={() => openModal("add", "committee")}
+              style={
+                hover
+                  ? {
+                      backgroundColor: "#f6be32",
+                      border: "2px solid #f6be32",
+                      color: "white",
+                      paddingLeft: "50px",
+                      paddingRight: "50px",
+                    }
+                  : {
+                      backgroundColor: "white",
+                      border: "2px solid #f6be32",
+                      color: "black",
+                      paddingLeft: "50px",
+                      paddingRight: "50px",
+                    }
+              }
+            >
+              เพิ่มกรรมการ
+            </Button>
           </div>
           <Table
             rowKey={"no"} // uniq key หรือ primary key ตัวไม่ซ้ำ

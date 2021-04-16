@@ -120,6 +120,7 @@ const ModalAssess = (props) => {
   };
 
   const LoadData = () => {
+    console.log(props.data);
     setLoading(true);
     // console.log("start", props.data.start);
     // if (props.title.type === "edit") {

@@ -4,6 +4,7 @@ import { Button, Table, Popconfirm, Input } from "antd";
 import { notify } from "../CustomComponent";
 // import { date2Thai } from "../CustomFunction";
 import ModalAssess from "./ModalAssess";
+import { date2Thai } from "../CustomFunction";
 
 import { useDispatch } from "react-redux";
 
@@ -31,6 +32,18 @@ const AdminAssessment = () => {
   // const [ModalTitle, setModalTitle] = useState("");
   const [SendData, setSendData] = useState([]);
 
+  const dateText = (date) => {
+    const len = date2Thai(date).toString().length;
+    const ystart = date2Thai(date)
+      .toString()
+      .substring(len - 2, len); // ตัดจาก 2564 เป็น 64
+    const dMstart = date2Thai(date)
+      .toString()
+      .substring(0, len - 4); // 01 ก.พ. 2564 เป็น 01 ก.พ.
+    const start = dMstart + ystart; // รวม  01 ก.พ. 64
+    return `${start}`;
+  };
+
   const LoadData = () => {
     axios.get(`${url}/assessment`).then((res) => {
       // console.log(res);
@@ -38,8 +51,12 @@ const AdminAssessment = () => {
         ...v,
         no: i + 1,
         name: v.assessment_name,
+        start: v.assessment_start,
+        end: v.assessment_end,
+        edit: v.assessment_endedit,
       }));
       setdata(data);
+      console.log(data);
       setFilter(data);
     });
 
@@ -86,6 +103,30 @@ const AdminAssessment = () => {
       //   // ห้ามเป็น null
       //   return dateText(row.start, row.end);
       // },
+    },
+    {
+      title: <div style={title}>วันเริ่มประเมิน</div>,
+      dataIndex: "start",
+      key: "start",
+      render: (text, row, index) => {
+        return dateText(row.start);
+      },
+    },
+    {
+      title: <div style={title}>วันสิ้นสุดส่งแบบฟอร์ม</div>,
+      dataIndex: "edit",
+      key: "edit",
+      render: (text, row, index) => {
+        return dateText(row.edit);
+      },
+    },
+    {
+      title: <div style={title}>วันสิ้นสุดประเมิน</div>,
+      dataIndex: "end",
+      key: "end",
+      render: (text, row, index) => {
+        return dateText(row.end);
+      },
     },
     {
       title: <div style={title}>{null}</div>,
