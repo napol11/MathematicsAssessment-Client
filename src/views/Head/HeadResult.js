@@ -373,20 +373,19 @@ const CommitteAssessStep4 = (props) => {
                 {`(30%)`}
               </label>
             </div>
-            <div className="col-sm-2">
+            <div className="col-sm-8">
               <label
                 style={{
                   fontWeight: "normal",
                   fontSize: "18px",
                   color: "black",
-                  marginLeft: "40%",
-                  marginTop: "2%",
+                  marginLeft: "9%",
                 }}
               >
                 {`รวม`}
               </label>
             </div>
-            <div className="col-sm-8 text-sm-right">
+            <div className="col-sm-2">
               <label
                 style={{
                   fontWeight: "normal",
