@@ -98,85 +98,42 @@ const CommitteeMain = () => {
   const LoadData = () => {
     // loading table  // true = โหลดอยู่ , false = เสร็จแล้ว
     setLoadingTable(true);
-    axios.get(`${url}/assessment`).then((res) => {
-      // console.log(res.data.data);
-      const employee = res.data.data.employee;
-      const assessment = res.data.data.time[0];
-      const dataEm = [];
-      for (let i = 0; i < employee.length; i++) {
-        for (let d = 0; d < employee[i].length; d++) {
-          dataEm.push(employee[i][d]);
+    axios
+      .get(`${url}/assessment`)
+      .then((res) => {
+        console.log(res.data.data);
+        const employee = res.data.data.employee;
+        const assessment = res.data.data.time[0];
+        const dataEm = [];
+        for (let i = 0; i < employee.length; i++) {
+          for (let d = 0; d < employee[i].length; d++) {
+            dataEm.push(employee[i][d]);
+          }
         }
-      }
-      const data = dataEm.map((v, i) => ({
-        ...v,
-        no: i + 1,
-        name: v.employee_firstname + " " + v.employee_lastname,
-        position: v.employee_position,
-        level: v.employee_degree,
-        division: v.employee_group,
-        assessment,
-      }));
-      // console.log(data);
-      setdata(data);
-      setTitle(assessment.assessment_name);
-      setTitleTime(
-        `วันเริ่มต้นประเมิน ${date2Thai(
-          new Date(assessment.assessment_endedit)
-        )} - ${date2Thai(new Date(assessment.assessment_end))}`
-      );
-    });
-    // set Data ไว้ filter
-    // setfilter([
-    //   {
-    //     no: "1",
-    //     name: "John Brown",
-    //     position: "xxxxxxxxxxx",
-    //     level: "xxxxxx",
-    //     division: "xxxxxx",
-    //     status: "wait",
-    //   },
-    //   {
-    //     no: "2",
-    //     name: "Jim Green",
-    //     position: "xxxxxxxxxxx",
-    //     level: "xxxxxx",
-    //     division: "xxxxxx",
-    //     status: "wait",
-    //   },
-    //   {
-    //     no: "3",
-    //     name: "Joe Black",
-    //     position: "xxxxxxxxxxx",
-    //     level: "xxxxxx",
-    //     division: "xxxxxx",
-    //     status: "wait",
-    //   },
-    //   {
-    //     no: "4",
-    //     name: "John Brown",
-    //     position: "xxxxxxxxxxx",
-    //     level: "xxxxxx",
-    //     division: "xxxxxx",
-    //     status: "wait",
-    //   },
-    //   {
-    //     no: "5",
-    //     name: "Jim Green",
-    //     position: "xxxxxxxxxxx",
-    //     level: "xxxxxx",
-    //     division: "xxxxxx",
-    //     status: "wait",
-    //   },
-    //   {
-    //     no: "6",
-    //     name: "Joe Black",
-    //     position: "xxxxxxxxxxx",
-    //     level: "xxxxxx",
-    //     division: "xxxxxx",
-    //     status: "success",
-    //   },
-    // ]);
+        const data = dataEm.map((v, i) => ({
+          ...v,
+          no: i + 1,
+          name: v.employee_firstname + " " + v.employee_lastname,
+          position: v.employee_position,
+          level: v.employee_degree,
+          division: v.employee_group,
+          assessment,
+        }));
+        // console.log(data);
+        setdata(data);
+        setTitle(assessment.assessment_name);
+        setTitleTime(
+          `วันเริ่มต้นประเมิน ${date2Thai(
+            new Date(assessment.assessment_endedit)
+          )} - ${date2Thai(new Date(assessment.assessment_end))}`
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+        setdata([]);
+        setTitle("ยังไม่มีรอบการประเมินที่เปิด");
+        setTitleTime("ยังไม่มีรอบการประเมินที่เปิด");
+      });
 
     setLoadingTable(false);
   };
@@ -190,7 +147,12 @@ const CommitteeMain = () => {
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12">
           <label
-            style={{ fontWeight: "bold", fontSize: "26px", color: "black", marginBottom: "2%" }}
+            style={{
+              fontWeight: "bold",
+              fontSize: "26px",
+              color: "black",
+              marginBottom: "2%",
+            }}
           >
             การประเมิน {Title} <br />
             {TitleTime}

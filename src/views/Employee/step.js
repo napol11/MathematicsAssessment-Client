@@ -138,9 +138,10 @@ function UserStep() {
               color: "black",
               marginBottom: "1%",
             }}
-            onClick={() => showmodal()}
+            // onClick={() => showmodal()}
+            onClick={() => next()}
           >
-            ส่ง
+            ถัดไป
           </Button>
         )}
       </div>
