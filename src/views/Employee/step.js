@@ -70,9 +70,9 @@ function UserStep() {
     next();
   };
 
-  const handleCancel = () => {
-    setModal(false);
-  };
+  // const handleCancel = () => {
+  //   setModal(false);
+  // };
 
   return (
     <div>
@@ -138,8 +138,8 @@ function UserStep() {
               color: "black",
               marginBottom: "1%",
             }}
-            // onClick={() => showmodal()}
-            onClick={() => next()}
+            onClick={() => showmodal()}
+            // onClick={() => next()}
           >
             ถัดไป
           </Button>
@@ -157,15 +157,13 @@ function UserStep() {
             }}
           />
           <Row justify="center">
-            <h4>หากท่านเลือก</h4>
-            <h4 style={{ color: "red" }}> "ยืนยัน" </h4>
-            <h4>จะไม่สามารถกลับมาแก้ไขแบบประเมินได้อีก</h4>
+            <h4>หากท่านเลือก ‘ยืนยัน’ ท่านสามารถกลับมาแก้ไขแบบประเมินได้อีก</h4>
           </Row>
           <Row justify="center">
-            <h4>ท่านต้องการส่งแบบประเมินหรือไม่</h4>
+            <h4>จนกว่าจะครบกำหนดวันส่งแบบประเมินวันสุดท้าย</h4>
           </Row>
 
-          <Button
+          {/* <Button
             style={{
               marginTop: "3%",
               marginRight: "2%",
@@ -176,7 +174,7 @@ function UserStep() {
             onClick={() => handleCancel()}
           >
             ยกเลิก
-          </Button>
+          </Button> */}
           <Button
             style={{
               marginTop: "3%",

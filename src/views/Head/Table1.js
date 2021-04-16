@@ -277,6 +277,8 @@ class Table1 extends React.Component {
             (e) => e.fk_committee_id === T1COMID[3]
           );
           console.log(T1COM);
+          console.log(T1COMID);
+          console.log(T1COMALL);
           this.setState({
             dataSource: T1EM.map((v, i) => ({
               key: i + 1,

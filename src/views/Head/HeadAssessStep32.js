@@ -212,9 +212,12 @@ const CommitteAssessStep32 = (props) => {
               </p>
               {datacom1.map((v) => {
                 return (
-                  <p style={{ marginLeft: "5%" }}>
-                    {v.committee} {v.comone}
-                  </p>
+                  <div className="col-12">
+                    <p style={{ marginLeft: "3%" }}>{v.committee}</p>
+                    <p style={{ marginLeft: "3%", fontWeight: "bold" }}>
+                      {v.comone}
+                    </p>
+                  </div>
                 );
               })}
               <Form.Item name={["comone"]}>
@@ -222,7 +225,7 @@ const CommitteAssessStep32 = (props) => {
                   className="textarea"
                   style={{ width: "100%" }}
                   placeholder="     กรุณาแสดงความคิดเห็น"
-                  rows="5"
+                  rows="3"
                 />
               </Form.Item>
               <p>
@@ -232,9 +235,12 @@ const CommitteAssessStep32 = (props) => {
               </p>
               {datacom2.map((v) => {
                 return (
-                  <p style={{ marginLeft: "5%" }}>
-                    {v.committee} {v.comtwo}
-                  </p>
+                  <div className="col-12">
+                    <p style={{ marginLeft: "3%" }}>{v.committee}</p>
+                    <p style={{ marginLeft: "3%", fontWeight: "bold" }}>
+                      {v.comtwo}
+                    </p>
+                  </div>
                 );
               })}
               <Form.Item name={["comtwo"]}>
@@ -242,7 +248,7 @@ const CommitteAssessStep32 = (props) => {
                   className="textarea"
                   style={{ width: "100%" }}
                   placeholder="     กรุณาแสดงความคิดเห็น"
-                  rows="5"
+                  rows="3"
                 />
               </Form.Item>
               <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">

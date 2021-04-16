@@ -406,7 +406,7 @@ const CommitteeAssess = () => {
     ],
   });
 
-  const LoadData = () => {
+  const LoadData = async () => {
     // console.log(id, assessment);
     const id_assessment = `${assessment}`;
     const id_employee = `${id}`;
@@ -482,7 +482,6 @@ const CommitteeAssess = () => {
       });
     });
     axios.post(`${url}/dataFormfour`, form).then((form) => {
-      // console.log(form);
       setDataStape32({
         EvaForm32: {
           Employee: [
@@ -532,11 +531,11 @@ const CommitteeAssess = () => {
         },
       });
     });
-    axios.post(`${urlCOM}/dataFromthreeById`, form3).then((res) => {
-      const data = res.data.data;
-      console.log(data);
-      if (data.length > 0) {
+    await axios.post(`${urlCOM}/dataFromthreeById`, form3).then((res) => {
+      const dataRaw = res.data.data;
+      if (dataRaw.length > 0) {
         let i = 0;
+        const data = dataRaw.sort(compare);
         setDataStape31({
           EvaForm31: [
             {
@@ -916,6 +915,10 @@ const CommitteeAssess = () => {
       }
     });
   };
+
+  function compare(a, b) {
+    return a.formthree_num - b.formthree_num;
+  }
 
   const setValues = (data) => {
     setDataStape31(data);

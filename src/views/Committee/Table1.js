@@ -234,36 +234,16 @@ class Table1 extends React.Component {
         const T1COM = dataCOM.filter((v) => v.formtwo_table === 1);
         console.log(T1COM);
         this.setState({
-          dataSource:
-            dataCOM.lenght > 0
-              ? T1EM.lenght !== 0
-                ? T1COM.lenght !== 0
-                  ? T1EM.map((v, i) => ({
-                      key: i + 1,
-                      Table1No: i + 1,
-                      Table1Activity: v.formtwo_name,
-                      Table1FTE: v.formtwo_fte,
-                      Table1Level: v.formtwo_sucessem,
-                      Table1Comments: v.formtwo_comment,
-                      Table1LevelCom: T1COM[i].formtwo_sucesscom,
-                    }))
-                  : T1EM.map((v, i) => ({
-                      key: i + 1,
-                      Table1No: i + 1,
-                      Table1Activity: v.formtwo_name,
-                      Table1FTE: v.formtwo_fte,
-                      Table1Level: v.formtwo_sucessem,
-                      Table1Comments: v.formtwo_comment,
-                    }))
-                : []
-              : T1EM.map((v, i) => ({
-                  key: i + 1,
-                  Table1No: i + 1,
-                  Table1Activity: v.formtwo_name,
-                  Table1FTE: v.formtwo_fte,
-                  Table1Level: v.formtwo_sucessem,
-                  Table1Comments: v.formtwo_comment,
-                })),
+          dataSource: T1EM.map((v, i) => ({
+            key: i + 1,
+            Table1No: i + 1,
+            Table1Activity: v.formtwo_name,
+            Table1FTE: v.formtwo_fte,
+            Table1Level: v.formtwo_sucessem,
+            Table1Comments: v.formtwo_comment,
+            Table1LevelCom:
+              T1COM.length !== 0 ? T1COM[i].formtwo_sucesscom : " ",
+          })),
         });
         const rawData = [...this.state.dataSource];
         this.props.changeData(rawData);

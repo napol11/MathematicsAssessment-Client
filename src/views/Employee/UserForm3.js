@@ -124,12 +124,12 @@ function UserFrom3() {
           <Form.Item
             // id="form3employees1"
             name={["empne"]}
-            rules={[
-              {
-                required: true,
-                message: "กรุณากรอกข้อความ!",
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: "กรุณากรอกข้อความ!",
+            //   },
+            // ]}
           >
             <TextArea className="textbox" rows={4} />
           </Form.Item>
@@ -140,12 +140,12 @@ function UserFrom3() {
           <Form.Item
             id="form3employees2"
             name={["emtwo"]}
-            rules={[
-              {
-                required: true,
-                message: "กรุณากรอกข้อความ!",
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: "กรุณากรอกข้อความ!",
+            //   },
+            // ]}
           >
             <TextArea className="textbox" rows={4} />
           </Form.Item>
@@ -153,12 +153,12 @@ function UserFrom3() {
           <Form.Item
             id="form3employees3"
             name={["emthree"]}
-            rules={[
-              {
-                required: true,
-                message: "กรุณากรอกข้อความ!",
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: "กรุณากรอกข้อความ!",
+            //   },
+            // ]}
           >
             <TextArea className="textbox" rows={4} />
           </Form.Item>
@@ -170,12 +170,12 @@ function UserFrom3() {
           <Form.Item
             id="form3employees4"
             name={["emfour"]}
-            rules={[
-              {
-                required: true,
-                message: "กรุณากรอกข้อความ!",
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: "กรุณากรอกข้อความ!",
+            //   },
+            // ]}
           >
             <TextArea className="textbox" rows={4} />
           </Form.Item>

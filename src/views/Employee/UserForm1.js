@@ -511,10 +511,7 @@ function UserProfile() {
                 // label="ประวัติการเลื่อนขั้นเงินเดือน"
                 // rules={[{ required: true }]}
               >
-                <textarea
-                  className="textarea"
-                  style={{ width: "100%" }}
-                />
+                <textarea className="textarea" style={{ width: "100%" }} />
               </Form.Item>
             </div>
           </div>
@@ -544,10 +541,7 @@ function UserProfile() {
                 style={{ marginBottom: "10px" }}
                 name={["formone_historypunish"]}
               >
-                <textarea
-                  className="textarea"
-                  style={{ width: "100%"}}
-                />
+                <textarea className="textarea" style={{ width: "100%" }} />
               </Form.Item>
             </div>
           </div>
