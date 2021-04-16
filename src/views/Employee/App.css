@@ -144,6 +144,7 @@
 }
 
 .buttons_add {
+    outline: none !important;
     background: white;
     border: 2px solid #F6BE32;
     font-size: 15px;
@@ -156,7 +157,6 @@
 
 .buttons_add:hover {
     background: #F6BE32;
-    color: white;
 }
 
 .buttons_upload {
@@ -177,7 +177,8 @@
 }
 
 .buttons_form2_1 {
-    background: white;
+    outline: none !important;
+    background: #F6BE32;
     border: 2px solid #F6BE32;
     font-size: 15px;
     border-radius:20px;
@@ -186,12 +187,12 @@
 }
 
 .buttons_form2_1:hover {
-    background: #F6BE32;
-    color: white;
+    background: white;
 }
 
 .buttons_form2_2 {
-    background: white;
+    outline: none !important;
+    background: #F6BE32;
     border: 2px solid #F6BE32;
     font-size: 15px;
     border-radius:20px;
@@ -200,8 +201,7 @@
 }
 
 .buttons_form2_2:hover {
-    background: #F6BE32;
-    color: white;
+    background: white;
 }
 
 .control-buttons {

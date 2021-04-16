@@ -109,33 +109,38 @@ class Form2Table1 extends React.Component {
         dataIndex: "Table1No",
         key: "Table1No",
         editable: true,
-        width: "5%",
+        align: "center",
+        width: "80px",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table1Activity",
         key: "Table1Activity",
         editable: true,
+        width: "400px",
       },
       {
         title: <div style={title}>{"%FTE (A)"}</div>,
         dataIndex: "Table1FTE",
         key: "Table1FTE",
         editable: true,
-        width: "10%",
+        align: "center",
+        width: "100px",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (B)"}</div>,
         dataIndex: "Table1Level",
         key: "Table1Level",
         editable: true,
-        width: "10%",
+        align: "center",
+        width: "100px",
       },
       {
         title: <div style={title}>{"คะแนนรวม (B * C)"}</div>,
         dataIndex: "Table1TotalScore",
         key: "Table1TotalScore",
-        width: "10%",
+        align: "center",
+        width: "100px",
         render: (text, row, index) => {
           return (
             <div
@@ -154,7 +159,8 @@ class Form2Table1 extends React.Component {
         title: <div style={title}>{"คะแนนรวม % (C / 4)"}</div>,
         dataIndex: "Table1TotalScorePercent",
         key: "Table1TotalScorePercent",
-        width: "10%",
+        align: "center",
+        width: "100px",
         render: (text, row, index) => {
           return (
             <div
@@ -174,6 +180,7 @@ class Form2Table1 extends React.Component {
         dataIndex: "Table1Comments",
         key: "Table1Comments",
         editable: true,
+        width: "500px",
       },
       // {
       //   title: " ",
@@ -188,7 +195,7 @@ class Form2Table1 extends React.Component {
         title: " ",
         dataIndex: "operation",
         key: "operation",
-        width: "10%",
+        width: "100px",
         render: (_, record) =>
           this.state.dataSource.length >= 1 ? (
             <Popconfirm

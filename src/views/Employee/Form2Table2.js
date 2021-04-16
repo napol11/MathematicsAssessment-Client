@@ -107,33 +107,38 @@ class Form2Table2 extends React.Component {
         dataIndex: "Table2No",
         key: "Table2No",
         editable: true,
-        width: "5%",
+        align: "center",
+        width: "80px",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table2Activity",
         key: "Table2Activity",
         editable: true,
+        width: "400px",
       },
       {
         title: <div style={title}>{"%FTE (A)"}</div>,
         dataIndex: "Table2FTE",
         key: "Table2FTE",
         editable: true,
-        width: "10%",
+        align: "center",
+        width: "100px",
       },
       {
-        title: <div style={title}>{"ะดับความสำเร็จ (B)"}</div>,
+        title: <div style={title}>{"ระดับความสำเร็จ (B)"}</div>,
         dataIndex: "Table2Level",
         key: "Table2Level",
         editable: true,
-        width: "10%",
+        align: "center",
+        width: "100px",
       },
       {
         title: <div style={title}>{"คะแนนรวม (B * C)"}</div>,
         dataIndex: "Table2TotalScore",
         key: "Table2TotalScore",
-        width: "10%",
+        align: "center",
+        width: "100px",
         render: (text, row, index) => {
           return (
             <div
@@ -152,7 +157,8 @@ class Form2Table2 extends React.Component {
         title: <div style={title}>{"คะแนนรวม % (C / 4)"}</div>,
         dataIndex: "Table2TotalScorePercent",
         key: "Table2TotalScorePercent",
-        width: "10%",
+        align: "center",
+        width: "100px",
         render: (text, row, index) => {
           return (
             <div
@@ -172,12 +178,15 @@ class Form2Table2 extends React.Component {
         dataIndex: "Table2Comments",
         key: "Table2Comments",
         editable: true,
+        width: "400px",
       },
       {
         title: <div style={title}>{"รหัสกลยุทธ์"}</div>,
         dataIndex: "Table2Code",
         key: "Table2Code",
         editable: true,
+        align: "center",
+        width: "100px",
       },
       // {
       //   title: " ",
@@ -192,7 +201,7 @@ class Form2Table2 extends React.Component {
         title: " ",
         dataIndex: "operation",
         key: "operation",
-        width: "10%",
+        width: "100px",
         render: (_, record) =>
           this.state.dataSource.length >= 1 ? (
             <Popconfirm

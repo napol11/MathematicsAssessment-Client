@@ -107,33 +107,38 @@ class Form2Table3 extends React.Component {
         dataIndex: "Table3No",
         key: "Table3No",
         editable: true,
-        width: "5%",
+        align: "center",
+        width: "80px",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table3Activity",
         key: "Table3Activity",
         editable: true,
+        width: "400px",
       },
       {
         title: <div style={title}>{"%FTE (A)"}</div>,
         dataIndex: "Table3FTE",
         key: "Table3FTE",
         editable: true,
-        width: "10%",
+        align: "center",
+        width: "100px",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (B)"}</div>,
         dataIndex: "Table3Level",
         key: "Table3Level",
         editable: true,
-        width: "10%",
+        align: "center",
+        width: "100px",
       },
       {
         title: <div style={title}>{"คะแนนรวม (B * C)"}</div>,
         dataIndex: "Table3TotalScore",
         key: "Table3TotalScore",
-        width: "10%",
+        align: "center",
+        width: "100px",
         render: (text, row, index) => {
           return (
             <div
@@ -152,7 +157,8 @@ class Form2Table3 extends React.Component {
         title: <div style={title}>{"คะแนนรวม % (C / 4)"}</div>,
         dataIndex: "Table3TotalScorePercent",
         key: "Table3TotalScorePercent",
-        width: "10%",
+        align: "center",
+        width: "100px",
         render: (text, row, index) => {
           return (
             <div
@@ -172,12 +178,15 @@ class Form2Table3 extends React.Component {
         dataIndex: "Table3Comments",
         key: "Table3Comments",
         editable: true,
+        width: "400px",
       },
       {
         title: <div style={title}>{"รหัสกลยุทธ์"}</div>,
         dataIndex: "Table3Code",
         key: "Table3Code",
         editable: true,
+        align: "center",
+        width: "100px",
       },
       // {
       //   title: " ",
@@ -192,7 +201,7 @@ class Form2Table3 extends React.Component {
         title: " ",
         dataIndex: "operation",
         key: "operation",
-        width: "10%",
+        width: "100px",
         render: (_, record) =>
           this.state.dataSource.length >= 1 ? (
             <Popconfirm

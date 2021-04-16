@@ -137,6 +137,7 @@
 }
 
 .btn-modal-confirm {
+  outline: none !important;
   border-radius: 20px;
   padding: 5px 25px;
   border: 1px solid transparent;
