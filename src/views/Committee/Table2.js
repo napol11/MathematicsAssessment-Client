@@ -240,39 +240,17 @@ class Table2 extends React.Component {
         const T2EM = dataEM.filter((v) => v.formtwo_table === 2);
         const T2COM = dataCOM.filter((v) => v.formtwo_table === 2);
         this.setState({
-          dataSource:
-            dataCOM.lenght > 0
-              ? T2EM.lenght !== 0
-                ? T2COM.lenght !== 0
-                  ? T2EM.map((v, i) => ({
-                      key: i + 1,
-                      Table2No: i + 1,
-                      Table2Activity: v.formtwo_name,
-                      Table2FTE: v.formtwo_fte,
-                      Table2Level: v.formtwo_sucessem,
-                      Table2Comments: v.formtwo_comment,
-                      Table2Code: v.formtwo_code,
-                      Table2LevelCom: T2COM[i].formtwo_sucesscom,
-                    }))
-                  : T2EM.map((v, i) => ({
-                      key: i + 1,
-                      Table2No: i + 1,
-                      Table2Activity: v.formtwo_name,
-                      Table2FTE: v.formtwo_fte,
-                      Table2Level: v.formtwo_sucessem,
-                      Table2Comments: v.formtwo_comment,
-                      Table2Code: v.formtwo_code,
-                    }))
-                : []
-              : T2EM.map((v, i) => ({
-                  key: i + 1,
-                  Table2No: i + 1,
-                  Table2Activity: v.formtwo_name,
-                  Table2FTE: v.formtwo_fte,
-                  Table2Level: v.formtwo_sucessem,
-                  Table2Comments: v.formtwo_comment,
-                  Table2Code: v.formtwo_code,
-                })),
+          dataSource: T2EM.map((v, i) => ({
+            key: i + 1,
+            Table2No: i + 1,
+            Table2Activity: v.formtwo_name,
+            Table2FTE: v.formtwo_fte,
+            Table2Level: v.formtwo_sucessem,
+            Table2Comments: v.formtwo_comment,
+            Table2Code: v.formtwo_code,
+            Table2LevelCom:
+              T2COM.length !== 0 ? T2COM[i].formtwo_sucesscom : " ",
+          })),
         });
         const rawData = [...this.state.dataSource];
         this.props.changeData(rawData);

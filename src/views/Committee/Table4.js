@@ -233,36 +233,16 @@ class Table1 extends React.Component {
         const T4EM = dataEM.filter((v) => v.formtwo_table === 4);
         const T4COM = dataCOM.filter((v) => v.formtwo_table === 4);
         this.setState({
-          dataSource:
-            dataCOM.lenght > 0
-              ? T4EM.lenght !== 0
-                ? T4COM.lenght !== 0
-                  ? T4EM.map((v, i) => ({
-                      key: i + 1,
-                      Table4No: i + 1,
-                      Table4Activity: v.formtwo_name,
-                      Table4FTE: v.formtwo_fte,
-                      Table4Level: v.formtwo_sucessem,
-                      Table4Comments: v.formtwo_comment,
-                      Table4LevelCom: T4COM[i].formtwo_sucesscom,
-                    }))
-                  : T4EM.map((v, i) => ({
-                      key: i + 1,
-                      Table4No: i + 1,
-                      Table4Activity: v.formtwo_name,
-                      Table4FTE: v.formtwo_fte,
-                      Table4Level: v.formtwo_sucessem,
-                      Table4Comments: v.formtwo_comment,
-                    }))
-                : []
-              : T4EM.map((v, i) => ({
-                  key: i + 1,
-                  Table4No: i + 1,
-                  Table4Activity: v.formtwo_name,
-                  Table4FTE: v.formtwo_fte,
-                  Table4Level: v.formtwo_sucessem,
-                  Table4Comments: v.formtwo_comment,
-                })),
+          dataSource: T4EM.map((v, i) => ({
+            key: i + 1,
+            Table4No: i + 1,
+            Table4Activity: v.formtwo_name,
+            Table4FTE: v.formtwo_fte,
+            Table4Level: v.formtwo_sucessem,
+            Table4Comments: v.formtwo_comment,
+            Table4LevelCom:
+              T4COM.length !== 0 ? T4COM[i].formtwo_sucesscom : " ",
+          })),
         });
         const rawData = [...this.state.dataSource];
         this.props.changeData(rawData);

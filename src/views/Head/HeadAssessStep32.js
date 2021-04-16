@@ -127,11 +127,17 @@ const CommitteAssessStep32 = (props) => {
     };
     axios.post(`${url}/dataFormfour`, formCom).then((res) => {
       console.log(res.data.data.formfour_committee);
-      const data1 = res.data.data.formfour_committee.map((v, i) => ({
+      const data = res.data.data.formfour_committee;
+      const filterData = data.filter(
+        (e) => parseInt(id_committee) !== e.fk_committee_id
+      );
+      console.log(filterData);
+      console.log(id_committee);
+      const data1 = filterData.map((v, i) => ({
         committee: "กรรมการคนที่ " + (i + 1),
         comone: v.formfour_comone,
       }));
-      const data2 = res.data.data.formfour_committee.map((v, i) => ({
+      const data2 = filterData.map((v, i) => ({
         committee: "กรรมการคนที่ " + (i + 1),
         comtwo: v.formfour_comtwo,
       }));
@@ -212,9 +218,12 @@ const CommitteAssessStep32 = (props) => {
               </p>
               {datacom1.map((v) => {
                 return (
-                  <p style={{ marginLeft: "5%" }}>
-                    {v.committee} {v.comone}
-                  </p>
+                  <div className="col-12">
+                    <p style={{ marginLeft: "3%" }}>{v.committee}</p>
+                    <p style={{ marginLeft: "3%", fontWeight: "bold" }}>
+                      {v.comone}
+                    </p>
+                  </div>
                 );
               })}
               <Form.Item name={["comone"]}>
@@ -222,7 +231,7 @@ const CommitteAssessStep32 = (props) => {
                   className="textarea"
                   style={{ width: "100%" }}
                   placeholder="     กรุณาแสดงความคิดเห็น"
-                  rows="5"
+                  rows="3"
                 />
               </Form.Item>
               <p>
@@ -232,9 +241,12 @@ const CommitteAssessStep32 = (props) => {
               </p>
               {datacom2.map((v) => {
                 return (
-                  <p style={{ marginLeft: "5%" }}>
-                    {v.committee} {v.comtwo}
-                  </p>
+                  <div className="col-12">
+                    <p style={{ marginLeft: "3%" }}>{v.committee}</p>
+                    <p style={{ marginLeft: "3%", fontWeight: "bold" }}>
+                      {v.comtwo}
+                    </p>
+                  </div>
                 );
               })}
               <Form.Item name={["comtwo"]}>
@@ -242,7 +254,7 @@ const CommitteAssessStep32 = (props) => {
                   className="textarea"
                   style={{ width: "100%" }}
                   placeholder="     กรุณาแสดงความคิดเห็น"
-                  rows="5"
+                  rows="3"
                 />
               </Form.Item>
               <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">

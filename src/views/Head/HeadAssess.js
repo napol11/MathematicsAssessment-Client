@@ -535,10 +535,10 @@ const HeadAssess = () => {
       });
     });
     axios.post(`${urlCOM}/dataFromthreeById`, form3).then((res) => {
-      const data = res.data.data;
-      console.log(data);
-      if (data.length > 0) {
+      const dataRaw = res.data.data;
+      if (dataRaw.length > 0) {
         let i = 0;
+        const data = dataRaw.sort(compare);
         setDataStape31({
           EvaForm31: [
             {
@@ -918,6 +918,10 @@ const HeadAssess = () => {
       }
     });
   };
+
+  function compare(a, b) {
+    return a.formthree_num - b.formthree_num;
+  }
 
   const setValues = (data) => {
     setDataStape31(data);

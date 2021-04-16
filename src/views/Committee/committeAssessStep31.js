@@ -158,6 +158,7 @@ const CommitteAssessStep31 = (props) => {
       committee_id: id_committee,
       formthree: _list,
     };
+    console.log(senddata);
     axios
       .post(`${url}/formthree`, senddata)
       .then((res) => {

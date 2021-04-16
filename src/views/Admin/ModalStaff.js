@@ -192,9 +192,6 @@ export default function ModalStaff(props) {
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุตำแหน่ง"
                     >
-                      <Option value="นักบริหารงานทั้วไป">
-                        นักบริหารงานทั้วไป
-                      </Option>
                       <Option value="นักคอมพิวเตอร์">นักคอมพิวเตอร์</Option>
                       <Option value="ครูปฏิบัติการ"> ครูปฏิบัติการ</Option>
                       <Option value="นักบริหารงานทั่วไป">
