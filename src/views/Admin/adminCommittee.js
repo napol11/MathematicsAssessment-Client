@@ -196,7 +196,7 @@ const AdminCommittee = () => {
               className="ml-5"
               shape="round"
               size={"large"}
-              disabled={dataCommittee.length >= 5 ? false : true}
+              disabled={dataCommittee.length > 5 ? false : true}
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}
               onClick={() => openModal("add", "committee")}
