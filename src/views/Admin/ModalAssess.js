@@ -16,26 +16,23 @@ const ModalAssess = (props) => {
   const [Loading, setLoading] = useState(false);
   const [selectedDateStart, setSelectedDateStart] = useState("");
   const [selectedDateEnd, setSelectedDateEnd] = useState("");
-  // const [selectedDateStartR, setSelectedDateStartR] = useState("");
-  // const [selectedDateEndR, setSelectedDateEndR] = useState("");
+  const [selectedDateEdit, setSelectedDateEdit] = useState("");
+
   const formRef = useRef(null);
 
   const handleDatePickerStart = (christDate, buddhistDate) => {
     setSelectedDateStart(christDate);
-    // console.log(formRef.current.getFieldValue("start"));
+    console.log(christDate);
   };
 
   const handleDatePickerEnd = (christDate, buddhistDate) => {
     setSelectedDateEnd(christDate);
   };
 
-  // const handleDatePickerStartR = (christDate, buddhistDate) => {
-  //   setSelectedDateStartR(christDate);
-  // };
+  const handleDatePickerEdit = (christDate, buddhistDate) => {
+    setSelectedDateEdit(christDate);
+  };
 
-  // const handleDatePickerEndR = (christDate, buddhistDate) => {
-  //   setSelectedDateEndR(christDate);
-  // // };
   const addAssessment = (values) => {
     axios
       .post(`${url}/assessment`, values)
@@ -58,10 +55,6 @@ const ModalAssess = (props) => {
       });
   };
 
-  // const save = (values) => {
-  //   addAssessment(values);
-  // };
-
   const save = (values) => {
     setLoading(true);
     close();
@@ -79,36 +72,10 @@ const ModalAssess = (props) => {
     setLoading(false);
     sditAssessment(values);
   };
-
-  // const close = () => {
-  //   formRef.current.resetFields();
-  //   reset();
-  //   props.close();
-  // };
-
   const close = () => {
     formRef.current.resetFields();
     dispatch({ type: "set", adminModal: { ...adminModal, show: false } });
   };
-
-  // const reset = () => {
-  //   setSelectedDateStart("");
-  //   setSelectedDateEnd("");
-  //   // setSelectedDateStartR("");
-  //   // setSelectedDateEndR("");
-  // };
-
-  // const onFinish = (values) => {
-  //   if (props.title.type === "edit") {
-  //     close();
-  //     console.log("data editt", values);
-  //     notify.success("แก้ไขรายการประเมินเรียบร้อย!");
-  //   } else {
-  //     close();
-  //     notify.success("บันทึกรายการประเมินเรียบร้อย!");
-  //     save(values);
-  //   }
-  // };
 
   const onFinish = (values) => {
     // console.log(values);
@@ -120,30 +87,18 @@ const ModalAssess = (props) => {
   };
 
   const LoadData = () => {
-    console.log(props.data);
     setLoading(true);
-    // console.log("start", props.data.start);
-    // if (props.title.type === "edit") {
-    //   setSelectedDateStart(props.data.start);
-    //   setSelectedDateEnd(props.data.end);
-    // } else {
-    //   setSelectedDateStart("");
-    //   setSelectedDateEnd("");
-    // }
     let title = "การประเมิน";
 
     if (adminModal.type === "add") {
       setTitle(`เพิ่ม${title}`);
     } else {
       setTitle(`แก้ไข${title}`);
-      // console.log(props);
-      ///  set values เซ็ทค่าในฟอร์ม
-      // จะเอามาจาก props หรือ Axios ก็ได้
       formRef.current.setFieldsValue({
         name: props.data.assessment_name,
-        start: props.data.assessment_start,
-        end: props.data.assessment_end,
-        endedit: props.data.assessment_endedit,
+        start: handleDatePickerStart(props.data.assessment_start),
+        end: handleDatePickerEnd(props.data.assessment_end),
+        endedit: handleDatePickerEdit(props.data.assessment_endedit),
       });
     }
 
@@ -203,49 +158,8 @@ const ModalAssess = (props) => {
                     autoComplete="off"
                     className="input-modal"
                   />
-                  {/* <WatDatePicker
-                    value={selectedDateStartR}
-                    onChange={handleDatePickerStartR}
-                    placeholder={"ระบุวันที่เริ่มรอบการประเมิน"}
-                    dateFormat={"yyyy-MM-dd"}
-                    displayFormat={"DD MMM YY"}
-                    inputStyle={{
-                      color: "black",
-                      //   borderRight: "none",
-                      width: 350,
-                    }}
-                    maxDate={selectedDateEndR}
-                    clearable={true}
-                  /> */}
                 </Form.Item>
               </div>
-              {/* <div className="col-sm-6">
-                <Form.Item
-                  style={{ marginBottom: "10px" }}
-                  name={"roundEnd"}
-                  label="รอบการประเมิน ถึง"
-                  rules={[
-                    {
-                      required: true,
-                      message: "กรุณาระบุ รอบการประเมิน",
-                    },
-                  ]}
-                >
-                  <WatDatePicker
-                    onChange={handleDatePickerEndR}
-                    placeholder={"ระบุวันที่สิ้นสุดรอบการประเมิน"}
-                    dateFormat={"yyyy-MM-dd"}
-                    displayFormat={"DD MMM YY"}
-                    inputStyle={{
-                      color: "black",
-                      //   borderLeft: "none",
-                      width: 350,
-                    }}
-                    minDate={selectedDateStartR}
-                    clearable={true}
-                  />
-                </Form.Item>
-              </div> */}
             </div>
             <div className="row no-gutter">
               <div className="col-sm-6">
@@ -270,7 +184,6 @@ const ModalAssess = (props) => {
                       color: "black",
                       width: 370,
                     }}
-                    // maxDate={selectedDateEnd}
                     clearable={true}
                   />
                 </Form.Item>
@@ -317,6 +230,8 @@ const ModalAssess = (props) => {
                   ]}
                 >
                   <WatDatePicker
+                    value={selectedDateEdit}
+                    onChange={handleDatePickerEdit}
                     placeholder={"ระบุวันที่สิ้นสุดการกรอกแบบประเมิน"}
                     dateFormat={"yyyy-MM-dd"}
                     displayFormat={`DD MMM YY`}
