@@ -9,7 +9,7 @@ import axios from "axios";
 const url = `http://localhost:3001/api/committee`;
 
 // const { Search } = Input;
-const title = { color: "white", fontWeight: "bold", textAlign: "left" };
+const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
 const CommitteeMain = () => {
   const history = useHistory();
@@ -27,7 +27,7 @@ const CommitteeMain = () => {
       dataIndex: "no",
       key: "no",
       align: "center",
-      width: "80px",
+      width: "100px",
       render: (text, row, index) => {
         return index + 1;
       },
@@ -36,27 +36,37 @@ const CommitteeMain = () => {
       title: <div style={title}>ชื่อ-นามสกุล</div>,
       dataIndex: "name",
       key: "name",
+      width: "500px",
     },
     {
       title: <div style={title}>ตำแหน่ง</div>,
       dataIndex: "position",
       key: "position",
+      align: "center",
+      width: "150px",
     },
     {
       title: <div style={title}>ระดับ</div>,
       dataIndex: "level",
       key: "level",
+      align: "center",
+      width: "150px",
     },
     {
       title: <div style={title}>สังกัด</div>,
       dataIndex: "division",
       key: "division",
+      align: "center",
+      width: "150px",
+    },
+    {
+
     },
     {
       title: <div style={title}>{null}</div>,
       dataIndex: "status",
       key: "status",
-      //   width: "50px",
+      width: "15%",
       render: (text, row, index) => {
         const success = row.status === "success" ? true : false;
         return (

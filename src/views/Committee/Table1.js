@@ -110,25 +110,26 @@ class Table1 extends React.Component {
         dataIndex: "Table1No",
         key: "Table1No",
         align: "center",
-        width: "80px",
+        width: "10%",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table1Activity",
         key: "Table1Activity",
+        width: "40%",
       },
       {
         title: <div style={title}>{"%FTE"}</div>,
         dataIndex: "Table1FTE",
         key: "Table1FTE",
-        width: "50px",
+        width: "10%",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (พนักงาน)"}</div>,
         dataIndex: "Table1Level",
         key: "Table1Level",
-        width: "80px",
+        width: "10%",
         align: "center",
       },
       {
@@ -139,7 +140,7 @@ class Table1 extends React.Component {
         ),
         dataIndex: "Table1LevelCom",
         key: "Table1LevelCom",
-        width: "80px",
+        width: "10%",
         editable: true,
         align: "center",
       },
@@ -147,7 +148,7 @@ class Table1 extends React.Component {
         title: <div style={title}>{"คะแนนรวม "}</div>,
         dataIndex: "Table1TotalScore",
         key: "Table1TotalScore",
-        width: "80px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -168,7 +169,7 @@ class Table1 extends React.Component {
         title: <div style={title}>{"คะแนนรวม %"}</div>,
         dataIndex: "Table1TotalScorePercent",
         key: "Table1TotalScorePercent",
-        width: "80px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -189,6 +190,7 @@ class Table1 extends React.Component {
         title: <div style={title}>{"ความคิดเห็น"}</div>,
         dataIndex: "Table1Comments",
         align: "center",
+        width: "40%",
         key: "Table1Comments",
         render: (text, row, index) => {
           return (

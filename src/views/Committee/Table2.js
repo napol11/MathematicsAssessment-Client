@@ -110,25 +110,26 @@ class Table2 extends React.Component {
         dataIndex: "Table2No",
         key: "Table2No",
         align: "center",
-        width: "80px",
+        width: "10%",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table2Activity",
         key: "Table2Activity",
+        width: "40%",
       },
       {
         title: <div style={title}>{"%FTE"}</div>,
         dataIndex: "Table2FTE",
         key: "Table2FTE",
-        width: "50px",
+        width: "10%",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (พนักงาน)"}</div>,
         dataIndex: "Table2Level",
         key: "Table2Level",
-        width: "80px",
+        width: "10%",
         align: "center",
       },
       {
@@ -139,7 +140,7 @@ class Table2 extends React.Component {
         ),
         dataIndex: "Table2LevelCom",
         key: "Table2LevelCom",
-        width: "80px",
+        width: "10%",
         editable: true,
         align: "center",
       },
@@ -147,7 +148,7 @@ class Table2 extends React.Component {
         title: <div style={title}>{"คะแนนรวม "}</div>,
         dataIndex: "Table2TotalScore",
         key: "Table2TotalScore",
-        width: "80px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -168,7 +169,7 @@ class Table2 extends React.Component {
         title: <div style={title}>{"คะแนนรวม %"}</div>,
         dataIndex: "Table2TotalScorePercent",
         key: "Table2TotalScorePercent",
-        width: "80px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -190,6 +191,7 @@ class Table2 extends React.Component {
         dataIndex: "Table2Comments",
         align: "center",
         key: "Table2Comments",
+        width: "30%",
         render: (text, row, index) => {
           return (
             <div
@@ -210,7 +212,7 @@ class Table2 extends React.Component {
         title: <div style={title}>{"รหัสกลยุทธ์"}</div>,
         dataIndex: "Table2Code",
         key: "Table2Code",
-        width: "90px",
+        width: "10%",
         align: "center",
       },
     ];

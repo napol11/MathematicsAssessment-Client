@@ -110,14 +110,14 @@ class Form2Table1 extends React.Component {
         key: "Table1No",
         editable: true,
         align: "center",
-        width: "80px",
+        width: "10%",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table1Activity",
         key: "Table1Activity",
         editable: true,
-        width: "400px",
+        width: "40%",
       },
       {
         title: <div style={title}>{"%FTE (A)"}</div>,
@@ -125,7 +125,7 @@ class Form2Table1 extends React.Component {
         key: "Table1FTE",
         editable: true,
         align: "center",
-        width: "100px",
+        width: "10%",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (B)"}</div>,
@@ -133,14 +133,14 @@ class Form2Table1 extends React.Component {
         key: "Table1Level",
         editable: true,
         align: "center",
-        width: "100px",
+        width: "10%",
       },
       {
         title: <div style={title}>{"คะแนนรวม (B * C)"}</div>,
         dataIndex: "Table1TotalScore",
         key: "Table1TotalScore",
         align: "center",
-        width: "100px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -160,7 +160,7 @@ class Form2Table1 extends React.Component {
         dataIndex: "Table1TotalScorePercent",
         key: "Table1TotalScorePercent",
         align: "center",
-        width: "100px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -180,7 +180,7 @@ class Form2Table1 extends React.Component {
         dataIndex: "Table1Comments",
         key: "Table1Comments",
         editable: true,
-        width: "500px",
+        width: "50%",
       },
       // {
       //   title: " ",
@@ -195,7 +195,7 @@ class Form2Table1 extends React.Component {
         title: " ",
         dataIndex: "operation",
         key: "operation",
-        width: "100px",
+        width: "10%",
         render: (_, record) =>
           this.state.dataSource.length >= 1 ? (
             <Popconfirm

@@ -110,53 +110,54 @@ class Table1 extends React.Component {
         dataIndex: "Table4No",
         key: "Table4No",
         align: "center",
-        width: "80px",
+        width: "10%",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table4Activity",
         key: "Table4Activity",
+        width: "40%",
       },
       {
         title: <div style={title}>{"%FTE"}</div>,
         dataIndex: "Table4FTE",
         key: "Table4FTE",
-        width: "50px",
+        width: "10%",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (พนักงาน)"}</div>,
         dataIndex: "Table4Level",
         key: "Table4Level",
-        width: "80px",
+        width: "10%",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 1)"}</div>,
         dataIndex: "Table4LevelCOM1",
         key: "Table4LevelCOM1",
-        width: "90px",
+        width: "10%",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 2)"}</div>,
         dataIndex: "Table4LevelCOM2",
         key: "Table4LevelCOM2",
-        width: "90px",
+        width: "10%",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 3)"}</div>,
         dataIndex: "Table4LevelCOM3",
         key: "Table4LevelCOM3",
-        width: "90px",
+        width: "10%",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (กรรมการ 4)"}</div>,
         dataIndex: "Table4LevelCOM4",
         key: "Table4LevelCOM4",
-        width: "90px",
+        width: "10%",
         align: "center",
       },
       {
@@ -167,7 +168,7 @@ class Table1 extends React.Component {
         ),
         dataIndex: "Table4LevelHead",
         key: "Table4LevelHead",
-        width: "80px",
+        width: "10%",
         editable: true,
         align: "center",
       },
@@ -175,7 +176,7 @@ class Table1 extends React.Component {
         title: <div style={title}>{"คะแนนรวม "}</div>,
         dataIndex: "Table4TotalScore",
         key: "Table4TotalScore",
-        width: "80px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -196,7 +197,7 @@ class Table1 extends React.Component {
         title: <div style={title}>{"คะแนนรวม %"}</div>,
         dataIndex: "Table4TotalScorePercent",
         key: "Table4TotalScorePercent",
-        width: "80px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -217,6 +218,7 @@ class Table1 extends React.Component {
         title: <div style={title}>{"ความคิดเห็น"}</div>,
         dataIndex: "Table4Comments",
         align: "center",
+        width: "40%",
         key: "Table4Comments",
         render: (text, row, index) => {
           return (

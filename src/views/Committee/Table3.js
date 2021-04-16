@@ -110,25 +110,26 @@ class Table2 extends React.Component {
         dataIndex: "Table3No",
         key: "Table3No",
         align: "center",
-        width: "80px",
+        width: "10%",
       },
       {
         title: <div style={title}>{"กิจกรรม"}</div>,
         dataIndex: "Table3Activity",
         key: "Table3Activity",
+        width: "40%",
       },
       {
         title: <div style={title}>{"%FTE"}</div>,
         dataIndex: "Table3FTE",
         key: "Table3FTE",
-        width: "50px",
+        width: "10%",
         align: "center",
       },
       {
         title: <div style={title}>{"ระดับความสำเร็จ (พนักงาน)"}</div>,
         dataIndex: "Table3Level",
         key: "Table3Level",
-        width: "80px",
+        width: "10%",
         align: "center",
       },
       {
@@ -139,7 +140,7 @@ class Table2 extends React.Component {
         ),
         dataIndex: "Table3LevelCom",
         key: "Table3LevelCom",
-        width: "80px",
+        width: "10%",
         editable: true,
         align: "center",
       },
@@ -147,7 +148,7 @@ class Table2 extends React.Component {
         title: <div style={title}>{"คะแนนรวม "}</div>,
         dataIndex: "Table3TotalScore",
         key: "Table3TotalScore",
-        width: "80px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -168,7 +169,7 @@ class Table2 extends React.Component {
         title: <div style={title}>{"คะแนนรวม %"}</div>,
         dataIndex: "Table3TotalScorePercent",
         key: "Table3TotalScorePercent",
-        width: "80px",
+        width: "10%",
         render: (text, row, index) => {
           return (
             <div
@@ -190,6 +191,7 @@ class Table2 extends React.Component {
         dataIndex: "Table3Comments",
         align: "center",
         key: "Table3Comments",
+        width: "30%",
         render: (text, row, index) => {
           return (
             <div
@@ -210,7 +212,7 @@ class Table2 extends React.Component {
         title: <div style={title}>{"รหัสกลยุทธ์"}</div>,
         dataIndex: "Table3Code",
         key: "Table3Code",
-        width: "90px",
+        width: "10%",
         align: "center",
       },
     ];
