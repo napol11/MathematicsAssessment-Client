@@ -7,7 +7,7 @@ import "./employee.css";
 import axios from "axios";
 const url = `http://localhost:3001/api/employee`;
 
-const title = { color: "white", fontWeight: "bold", textAlign: "left" };
+const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
 const CommitteeMain = () => {
   const history = useHistory();
@@ -34,8 +34,8 @@ const CommitteeMain = () => {
       title: <div style={title}>เลขที่</div>,
       dataIndex: "no",
       key: "no",
-      // align: "center",
-      width: "10%",
+      align: "center",
+      width: "100px",
       render: (text, row, index) => {
         return index + 1;
       },
@@ -44,13 +44,14 @@ const CommitteeMain = () => {
       title: <div style={title}>รอบการประเมิน</div>,
       dataIndex: "name",
       key: "name",
-      // width: "50%",
+      width: "500px",
     },
     {
       title: <div style={title}>วันเริ่มประเมิน</div>,
       dataIndex: "start",
       key: "start",
-      // width: "75%",
+      align: "center",
+      width: "150px",
       render: (text, row, index) => {
         // ห้ามเป็น null
         return dateText(row.start);
@@ -60,10 +61,15 @@ const CommitteeMain = () => {
       title: <div style={title}>วันสิ้นสุดส่งแบบฟอร์ม</div>,
       dataIndex: "end",
       key: "end",
+      align: "center",
+      width: "150px",
       render: (text, row, index) => {
         // ห้ามเป็น null
         return dateText(row.end);
       },
+    },
+    {
+
     },
     {
       title: <div style={title}>{null}</div>,

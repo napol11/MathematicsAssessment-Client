@@ -313,24 +313,22 @@ class Form2Table1 extends React.Component {
     return (
       <>
         <div
-          className="col-sm-12 text-sm-right align-self-sm-end"
-          style={{ marginTop: "1%" }}
-        >
+          className="Row col-sm-12 mt-4"
+          style={{ backgroundColor:"#E7E5E3" }}
+        > 
+          <label className="col-sm-11" style={{ fontSize: "16px", fontWeight: "bold"  }}>
+              1. การจัดการงานที่รับผิดชอบ
+          </label>  
           <button className="buttons_add" onClick={this.handleAdd}>
             เพิ่มแถวตาราง
           </button>
         </div>
         <Table
-          className="committeeTableAssess2 mt-4"
+          className="committeeTableAssess2"
           components={components}
           rowClassName={() => "editable-row"}
           dataSource={dataSource}
           columns={columns}
-          title={() => (
-            <label style={{ fontSize: "16px", fontWeight: "bold" }}>
-              1. การจัดการงานที่รับผิดชอบ
-            </label>
-          )}
           pagination={false}
           // pagination={{
           //   defaultPageSize: 4,

@@ -143,7 +143,7 @@ function UserForm2() {
           changeData={(dataT4) => setDataT4(dataT4)}
           path={`${id}`}
         />
-        <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+        <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-4">
           <button
             className="btn-modal-confirm"
             type="submit"

@@ -11,7 +11,7 @@ export default class form extends Component {
         <div className="userform">
           <h1>แบบประเมิน</h1>
         </div>
-        <div style={{ margin: "2%" }}>
+        <div>
           <UserStep />
         </div>
       </div>

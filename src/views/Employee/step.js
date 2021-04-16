@@ -76,14 +76,19 @@ function UserStep() {
 
   return (
     <div>
-      <div className="userform">
+      <div className="userform mb-5">
         <h1>แบบประเมิน</h1>
       </div>
-      <Steps current={current}>
+      <center>
+      <Steps 
+        className="mb-5"
+        style={{ width:"75%" }}
+        current={current}>
         {steps.map((item) => (
           <Step key={item.title} title={item.title} />
         ))}
       </Steps>
+      </center>
       <div>
         {current === 0 && [<Form1 />]}
         {current === 1 && [<Form2 />]}

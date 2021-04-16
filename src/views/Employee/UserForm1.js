@@ -200,6 +200,7 @@ function UserProfile() {
         {`ส่วนที่ 1 ข้อมูลทั่วไปเกี่ยวกับพนักงาน`}
       </label>
       <div
+        className="mt-3"
         style={{
           padding: "14px",
           borderRadius: "4px",
