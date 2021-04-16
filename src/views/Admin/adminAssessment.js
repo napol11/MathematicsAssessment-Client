@@ -86,19 +86,20 @@ const AdminAssessment = () => {
       dataIndex: "no",
       key: "no",
       align: "center",
-      width: "80px",
+      width: "100px",
       render: (text, row, index) => {
         return index + 1;
       },
     },
     {
       title: (
-        <div style={{ color: "white", fontWeight: "bold", textAlign: "left" }}>
+        <div style={title}>
           รอบการประเมิน
         </div>
       ),
       dataIndex: "name", //ตั้งไม่ซ้ำ กับฟิลด์ดาต้า
       key: "name", //ตั้งไม่ซ้ำ กับฟิลด์ดาต้า
+      width: "500px",
       // render: (text, row, index) => {
       //   // ห้ามเป็น null
       //   return dateText(row.start, row.end);
@@ -108,6 +109,8 @@ const AdminAssessment = () => {
       title: <div style={title}>วันเริ่มประเมิน</div>,
       dataIndex: "start",
       key: "start",
+      align: "center",
+      width: "150px",
       render: (text, row, index) => {
         return dateText(row.start);
       },
@@ -116,6 +119,8 @@ const AdminAssessment = () => {
       title: <div style={title}>วันสิ้นสุดส่งแบบฟอร์ม</div>,
       dataIndex: "edit",
       key: "edit",
+      align: "center",
+      width: "150px",
       render: (text, row, index) => {
         return dateText(row.edit);
       },
@@ -124,9 +129,14 @@ const AdminAssessment = () => {
       title: <div style={title}>วันสิ้นสุดประเมิน</div>,
       dataIndex: "end",
       key: "end",
+      align: "center",
+      width: "150px",
       render: (text, row, index) => {
         return dateText(row.end);
       },
+    },
+    {
+
     },
     {
       title: <div style={title}>{null}</div>,

@@ -47,12 +47,14 @@ const AdminStaff = () => {
       title: <div style={title}>ตำแหน่ง</div>,
       dataIndex: "position",
       key: "position",
+      align: "center",
       width: "150px",
     },
     {
       title: <div style={title}>เบอร์โทร</div>,
       dataIndex: "tel",
       key: "tel",
+      align: "center",
       width: "150px",
     },
     {

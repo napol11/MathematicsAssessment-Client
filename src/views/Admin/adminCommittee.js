@@ -45,6 +45,7 @@ const AdminCommittee = () => {
       title: <div style={title}>ตำแหน่ง</div>,
       dataIndex: "position",
       key: "position",
+      align: "center",
       width: "150px",
       //   render: (text, row, index) => {
       //     return `${text === "lead" ? "หัวหน้า" : "กรรมการ"}`;
@@ -54,6 +55,7 @@ const AdminCommittee = () => {
       title: <div style={title}>เบอร์โทร</div>,
       dataIndex: "tel",
       key: "tel",
+      align: "center",
       width: "150px",
     },
     {},
