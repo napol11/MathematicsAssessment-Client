@@ -192,8 +192,15 @@ export default function ModalStaff(props) {
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุตำแหน่ง"
                     >
-                      <Option value="กรรมการ">กรรมการ</Option>
-                      <Option value="หัวหน้า">หัวหน้า</Option>
+                      <Option value="นักบริหารงานทั้วไป">
+                        นักบริหารงานทั้วไป
+                      </Option>
+                      <Option value="นักคอมพิวเตอร์">นักคอมพิวเตอร์</Option>
+                      <Option value="ครูปฏิบัติการ"> ครูปฏิบัติการ</Option>
+                      <Option value="นักบริหารงานทั่วไป">
+                        {" "}
+                        นักบริหารงานทั่วไป
+                      </Option>
                     </Select>
                   </Form.Item>
                 </div>
@@ -224,8 +231,8 @@ export default function ModalStaff(props) {
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุระดับ"
                     >
-                      <Option value="‎ระบุระดับ 1">‎ระดับ 1</Option>
-                      <Option value="‎ระบุระดับ 2">‎ระดับ 2</Option>
+                      <Option value="‎ระดับ 1">‎ระดับ 1</Option>
+                      <Option value="‎ระดับ 2">‎ระดับ 2</Option>
                     </Select>
                   </Form.Item>
                 </div>
@@ -240,8 +247,9 @@ export default function ModalStaff(props) {
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุสังกัด"
                     >
-                      <Option value="‎สังกัด 1">‎สังกัด 1</Option>
-                      <Option value="‎สังกัด 2">‎สังกัด 2</Option>
+                      <Option value="‎ภาควิชาคณิตศาสตร์">
+                        ‎ภาควิชาคณิตศาสตร์
+                      </Option>
                     </Select>
                   </Form.Item>
                 </div>
