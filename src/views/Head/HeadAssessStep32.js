@@ -127,11 +127,17 @@ const CommitteAssessStep32 = (props) => {
     };
     axios.post(`${url}/dataFormfour`, formCom).then((res) => {
       console.log(res.data.data.formfour_committee);
-      const data1 = res.data.data.formfour_committee.map((v, i) => ({
+      const data = res.data.data.formfour_committee;
+      const filterData = data.filter(
+        (e) => parseInt(id_committee) !== e.fk_committee_id
+      );
+      console.log(filterData);
+      console.log(id_committee);
+      const data1 = filterData.map((v, i) => ({
         committee: "กรรมการคนที่ " + (i + 1),
         comone: v.formfour_comone,
       }));
-      const data2 = res.data.data.formfour_committee.map((v, i) => ({
+      const data2 = filterData.map((v, i) => ({
         committee: "กรรมการคนที่ " + (i + 1),
         comtwo: v.formfour_comtwo,
       }));
