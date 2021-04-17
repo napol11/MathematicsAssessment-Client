@@ -238,7 +238,9 @@ const CommitteAssessStep31 = (props) => {
           ย้อนกลับ
         </div>
         <div
-          className={`pl-4 pr-4 mr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
+          className={`pl-4 pr-4 mr-4 ${
+            diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"
+          }`}
           onClick={diss ? null : props.next}
         >
           ถัดไป

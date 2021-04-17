@@ -272,17 +272,20 @@ class Table2 extends React.Component {
           const T2EM = dataEM.filter((v) => v.formtwo_table === 2);
           const T2COM = dataCOM.filter((v) => v.formtwo_table === 2);
           const T2COMALL = dataCOMALL.filter((v) => v.formtwo_table === 2);
-          const T2COMID = T2COMALL.map((e) => e.fk_committee_id);
-          const T2COM1 = T2COMALL.filter(
+          const T2COMFILTER = T2COMALL.filter(
+            (e) => parseInt(id_committee) !== e.fk_committee_id
+          );
+          const T2COMID = T2COMFILTER.map((e) => e.fk_committee_id);
+          const T2COM1 = T2COMFILTER.filter(
             (e) => e.fk_committee_id === T2COMID[0]
           );
-          const T2COM2 = T2COMALL.filter(
+          const T2COM2 = T2COMFILTER.filter(
             (e) => e.fk_committee_id === T2COMID[1]
           );
-          const T2COM3 = T2COMALL.filter(
+          const T2COM3 = T2COMFILTER.filter(
             (e) => e.fk_committee_id === T2COMID[2]
           );
-          const T2COM4 = T2COMALL.filter(
+          const T2COM4 = T2COMFILTER.filter(
             (e) => e.fk_committee_id === T2COMID[3]
           );
           this.setState({

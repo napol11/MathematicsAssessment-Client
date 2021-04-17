@@ -265,22 +265,22 @@ class Table1 extends React.Component {
           const T1EM = dataEM.filter((v) => v.formtwo_table === 1);
           const T1COM = dataCOM.filter((v) => v.formtwo_table === 1);
           const T1COMALL = dataCOMALL.filter((v) => v.formtwo_table === 1);
-          const T1COMID = T1COMALL.map((e) => e.fk_committee_id);
-          const T1COM1 = T1COMALL.filter(
+          const T1COMFILTER = T1COMALL.filter(
+            (e) => parseInt(id_committee) !== e.fk_committee_id
+          );
+          const T1COMID = T1COMFILTER.map((e) => e.fk_committee_id);
+          const T1COM1 = T1COMFILTER.filter(
             (e) => e.fk_committee_id === T1COMID[0]
           );
-          const T1COM2 = T1COMALL.filter(
+          const T1COM2 = T1COMFILTER.filter(
             (e) => e.fk_committee_id === T1COMID[1]
           );
-          const T1COM3 = T1COMALL.filter(
+          const T1COM3 = T1COMFILTER.filter(
             (e) => e.fk_committee_id === T1COMID[2]
           );
-          const T1COM4 = T1COMALL.filter(
+          const T1COM4 = T1COMFILTER.filter(
             (e) => e.fk_committee_id === T1COMID[3]
           );
-          console.log(T1COM);
-          console.log(T1COMID);
-          console.log(T1COMALL);
           this.setState({
             dataSource: T1EM.map((v, i) => ({
               key: i + 1,

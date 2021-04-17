@@ -220,6 +220,18 @@
   color: white;
 }
 
+.btn-modal-confirm-Dis {
+  border-radius: 20px;
+  padding: 5px 25px;
+  border: 1px solid #c6c6c6;
+  background-color: #c6c6c6;
+  color: white;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
 .textbox {
     background-color: #E7E5E3;
 }

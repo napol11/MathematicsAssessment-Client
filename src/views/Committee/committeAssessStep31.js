@@ -220,7 +220,9 @@ const CommitteAssessStep31 = (props) => {
       />
       <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
         <button
-          className={`pl-4 pr-4 mr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
+          className={`pl-4 pr-4 mr-4 ${
+            diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"
+          }`}
           type="submit"
           onClick={diss ? null : onFinish}
         >
