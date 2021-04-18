@@ -187,7 +187,7 @@ const CommitteAssessStep32 = (props) => {
               fields={form}
             >
               <p>
-                1. ท่านคิดว่าผู้ใใต้บังคับบัญชายังขาดความรู้
+                1. ท่านคิดว่าผู้ใต้บังคับบัญชายังขาดความรู้
                 ความชำนาญทักษะในเรื่องใดบ้าง
               </p>
               <Form.Item name={["comone"]}>
@@ -199,7 +199,7 @@ const CommitteAssessStep32 = (props) => {
                 />
               </Form.Item>
               <p>
-                2. ท่านคิดว่าผู้ใใต้บังคับบัญชาหควรจะอบรม
+                2. ท่านคิดว่าผู้ใต้บังคับบัญชาควรจะอบรม
                 หรือต้องการความรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
                 (เรียงลำดับความสำคัญ 1-5)
               </p>
@@ -211,11 +211,6 @@ const CommitteAssessStep32 = (props) => {
                   rows="5"
                 />
               </Form.Item>
-              <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
-                <button className="btn-modal-confirm" type="submit">
-                  บันทึก
-                </button>
-              </div>
             </Form>
           </div>
         </div>
@@ -268,24 +263,23 @@ const CommitteAssessStep32 = (props) => {
         </CModalBody>
       </CModal>
 
-      <div
-        className="mt-3 mb-4"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div className="pl-4 pr-4 mr-4 btnCancel" onClick={props.prev}>
+      <div className="row no-gutter mt-4 mb-4">
+        <div className="col-sm-8">
+        <button className="btn-modal-confirm" type="submit" onClick={onFinish}>
+          บันทึก
+        </button>
+        </div>
+
+        <div className="col-sm-4" style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
           ย้อนกลับ
         </div>
-        <div
-          className="pl-4 pr-4 mr-4 btnConfirm"
-          // onClick={() => showmodal()}
-          onClick={props.next}
-        >
+        <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
           ถัดไป
         </div>
+        </div>
       </div>
+
     </div>
   );
 };

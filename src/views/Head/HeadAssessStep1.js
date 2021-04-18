@@ -521,6 +521,7 @@ const CommitteAssessStep1 = (props) => {
         <div className="row no-gutter pl-4 pr-4 mt-2">
           {/* {punishHistory()} */}
           {/* {`${data.punishHistory ? data.punishHistory.text : null}`} */}
+          <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
           {`${
             data.punishHistory
               ? data.punishHistory.text === ""
@@ -528,6 +529,7 @@ const CommitteAssessStep1 = (props) => {
                 : `${data.punishHistory.text}`
               : "-"
           }`}
+          </label>
         </div>
       </div>
 
@@ -535,7 +537,7 @@ const CommitteAssessStep1 = (props) => {
         className="mt-3 mb-4"
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "flex-end",
         }}
       >
         <div
@@ -544,7 +546,7 @@ const CommitteAssessStep1 = (props) => {
         >
           ยกเลิก
         </div>
-        <div className="pl-4 pr-4 mr-4 btnConfirm" onClick={props.next}>
+        <div className="pl-4 pr-4 btnCancel" onClick={props.next}>
           ถัดไป
         </div>
       </div>

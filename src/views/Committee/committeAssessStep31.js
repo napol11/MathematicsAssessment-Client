@@ -218,34 +218,31 @@ const CommitteAssessStep31 = (props) => {
         scroll={{ y: 500 }}
         size="middle"
       />
-      <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+
+      <div className="row no-gutter mt-4 mb-4">
+        <div className="col-sm-8">
         <button
-          className={`pl-4 pr-4 mr-4 ${
-            diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"
-          }`}
+          className={`${diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"}`}
           type="submit"
           onClick={diss ? null : onFinish}
         >
           บันทึก
         </button>
-      </div>
-      <div
-        className="mt-3 mb-4"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div className="pl-4 pr-4 mr-4 btnCancel" onClick={props.prev}>
+        </div>
+
+        <div className="col-sm-4" style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
           ย้อนกลับ
         </div>
         <div
-          className={`pl-4 pr-4 mr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
+          className={`pl-4 pr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
           onClick={diss ? null : props.next}
         >
           ถัดไป
         </div>
+        </div>
       </div>
+
     </div>
   );
 };

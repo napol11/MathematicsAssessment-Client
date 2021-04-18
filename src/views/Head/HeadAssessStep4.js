@@ -33,7 +33,7 @@ const CommitteAssessStep4 = () => {
             paddingTop: "5px",
             paddingBottom: "5px",
           }}
-          className="btnConfirm"
+          className="mt-3 btn-modal-confirm"
           onClick={() => history.push("/head")}
         >
           กลับสู่หน้าหลัก

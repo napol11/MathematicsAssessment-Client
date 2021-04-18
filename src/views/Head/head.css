@@ -107,8 +107,8 @@
 .btnConfirm {
   padding: 5px;
   border-radius: 20px;
-  border: 1px solid white;
-  background-color: #f6be32;
+  border: 1px solid #f6be32;
+  background-color: white;
   cursor: pointer;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -213,11 +213,18 @@
 }
 
 .btn-modal-confirm {
+  outline: none !important;
   border-radius: 20px;
   padding: 5px 25px;
   border: 1px solid transparent;
-  background-color: #f26843;
-  color: white;
+  background-color: #f6be32;
+  color: black;
+  cursor: pointer;
+}
+
+.btn-modal-confirm:hover {
+    border: 1px solid #f6be32;
+    background-color: white;
 }
 
 .btn-modal-confirm-Dis {
