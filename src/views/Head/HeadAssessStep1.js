@@ -484,7 +484,13 @@ const CommitteAssessStep1 = (props) => {
         </div>
         <div className="row no-gutter pl-4 pr-4 mt-2">
           {/* {salaryHistory()} */}
-          <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
+          <label className="m-0" 
+                 style={{ 
+                        color: "black", 
+                        fontSize: "16px", 
+                        wordWrap: "break-word",
+                        wordBreak: "break-word", 
+                 }}>
             {/* {`${data.salaryHistory ? data.salaryHistory.text : null}`} */}
             {`${
               data.salaryHistory
@@ -521,7 +527,13 @@ const CommitteAssessStep1 = (props) => {
         <div className="row no-gutter pl-4 pr-4 mt-2">
           {/* {punishHistory()} */}
           {/* {`${data.punishHistory ? data.punishHistory.text : null}`} */}
-          <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
+          <label className="m-0" 
+                 style={{ 
+                        color: "black", 
+                        fontSize: "16px", 
+                        wordWrap: "break-word",
+                        wordBreak: "break-word", 
+                 }}>
           {`${
             data.punishHistory
               ? data.punishHistory.text === ""

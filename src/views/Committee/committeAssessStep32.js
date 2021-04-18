@@ -15,11 +15,13 @@ const CommitteAssessStep32 = (props) => {
   const data = props.data.EvaForm32;
 
   const Employee = () => {
-    const styleTile = { marginLeft: "10%" };
+    const styleTile = { marginLeft: "2%" };
     const styleDetail = {
       fontWeight: "bold",
-      marginLeft: "20%",
+      marginLeft: "5%",
       marginBottom: 0,
+      wordWrap: "break-word",
+      wordBreak: "break-word",
     };
     const values = data.Employee.map((r, i) => {
       const detail = r.detail.map((row, index) => {

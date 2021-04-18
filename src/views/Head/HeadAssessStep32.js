@@ -15,11 +15,13 @@ const CommitteAssessStep32 = (props) => {
   const data = props.data.EvaForm32;
 
   const Employee = () => {
-    const styleTile = { marginLeft: "10%" };
+    const styleTile = { marginLeft: "2%" };
     const styleDetail = {
       fontWeight: "bold",
-      marginLeft: "20%",
+      marginLeft: "5%",
       marginBottom: 0,
+      wordWrap: "break-word",
+      wordBreak: "break-word",
     };
     const values = data.Employee.map((r, i) => {
       const detail = r.detail.map((row, index) => {
@@ -218,11 +220,19 @@ const CommitteAssessStep32 = (props) => {
               </p>
               {datacom1.map((v) => {
                 return (
-                  <div className="col-12">
-                    <p style={{ marginLeft: "3%" }}>{v.committee}</p>
-                    <p style={{ marginLeft: "3%", fontWeight: "bold" }}>
+                  <div className="row no-gutter mb-3">
+                    <div className="col-2">
+                        {v.committee}
+                    </div>
+                    <div
+                        className="col-10" 
+                        style={{  
+                                fontWeight: "bold",
+                                wordWrap: "break-word",
+                                wordBreak: "break-word", 
+                              }}>
                       {v.comone}
-                    </p>
+                    </div>
                   </div>
                 );
               })}
@@ -241,11 +251,19 @@ const CommitteAssessStep32 = (props) => {
               </p>
               {datacom2.map((v) => {
                 return (
-                  <div className="col-12">
-                    <p style={{ marginLeft: "3%" }}>{v.committee}</p>
-                    <p style={{ marginLeft: "3%", fontWeight: "bold" }}>
+                    <div className="row no-gutter mb-3">
+                    <div className="col-2">
+                        {v.committee}
+                    </div>
+                    <div
+                        className="col-10" 
+                        style={{  
+                                fontWeight: "bold",
+                                wordWrap: "break-word",
+                                wordBreak: "break-word", 
+                              }}>
                       {v.comtwo}
-                    </p>
+                    </div>
                   </div>
                 );
               })}
