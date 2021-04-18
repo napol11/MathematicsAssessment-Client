@@ -29,7 +29,7 @@ export default function ModalStaff(props) {
   };
 
   const LoadData = () => {
-    console.log(props.data.employee_start);
+    console.log(props);
     setLoading(true);
     // Title
     let title = "รายชื่อพนักงาน";
@@ -47,7 +47,7 @@ export default function ModalStaff(props) {
         position: props.data.position,
         email: props.data.email,
         tel: props.data.employee_tel,
-        number: props.data.no,
+        number: props.data.number,
         degree: props.data.employee_degree,
         group: props.data.employee_group,
         start: props.data.employee_start,

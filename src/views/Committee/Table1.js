@@ -319,7 +319,6 @@ class Table1 extends React.Component {
           scroll={{ y: 200 }}
           size="middle"
         />
-        {/* {console.log(this.props.data.length !== 0 ? this.props.data : null)} */}
       </>
     );
   }

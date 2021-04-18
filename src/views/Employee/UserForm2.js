@@ -63,13 +63,10 @@ function UserForm2() {
       f.formtwo_comment = v.Table4Comments;
       _list.push(f);
     });
-    console.log(_list);
-    console.log(dataT1);
     let result = 0;
     for (let i = 0; i < _list.length; i++) {
       result += parseInt(_list[i].formtwo_fte);
     }
-    console.log(result);
     if (result < 100) {
       console.log("น้อยกว่า 100 ");
       notify.error("ค่า FTE รวมยังไม่ถึง 100% !");

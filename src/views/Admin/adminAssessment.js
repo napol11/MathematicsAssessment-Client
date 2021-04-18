@@ -92,11 +92,7 @@ const AdminAssessment = () => {
       },
     },
     {
-      title: (
-        <div style={title}>
-          รอบการประเมิน
-        </div>
-      ),
+      title: <div style={title}>รอบการประเมิน</div>,
       dataIndex: "name", //ตั้งไม่ซ้ำ กับฟิลด์ดาต้า
       key: "name", //ตั้งไม่ซ้ำ กับฟิลด์ดาต้า
       width: "500px",
@@ -135,9 +131,7 @@ const AdminAssessment = () => {
         return dateText(row.end);
       },
     },
-    {
-
-    },
+    {},
     {
       title: <div style={title}>{null}</div>,
       dataIndex: "delete",
@@ -223,7 +217,7 @@ const AdminAssessment = () => {
             <div className="col-sm-6">
               <Search
                 className="adminButton"
-                placeholder="ค้นหา ก่ารประเมิน"
+                placeholder="ค้นหาการประเมิน"
                 style={{ width: 500 }}
                 size="large"
                 // value={q}

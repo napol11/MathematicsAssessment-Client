@@ -57,9 +57,7 @@ const AdminStaff = () => {
       align: "center",
       width: "150px",
     },
-    {
-
-    },
+    {},
     // {
     //   title: <div style={title}>อีเมล</div>,
     //   dataIndex: "email",
@@ -157,6 +155,7 @@ const AdminStaff = () => {
     setLoadingTable(true);
     // set Data ใส่ตาราง
     axios.get(`${url}/employee`).then((res) => {
+      console.log(res);
       const data = res.data.data.map((v, i) => ({
         ...v,
         no: i + 1,
@@ -165,6 +164,7 @@ const AdminStaff = () => {
         position: v.employee_position,
         tel: v.employee_tel,
         name: v.employee_firstname + " " + v.employee_lastname,
+        number: v.employee_number,
       }));
       setdatastaff(data);
       setFilter(data);
@@ -191,7 +191,7 @@ const AdminStaff = () => {
             <div className="col-sm-6">
               <Search
                 className="adminButton"
-                placeholder="ค้นหา พนักงาน"
+                placeholder="ค้นหาพนักงาน"
                 style={{ width: 500 }}
                 size="large"
                 // value={q}

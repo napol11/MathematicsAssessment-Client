@@ -178,7 +178,8 @@
 
 .buttons_form2_1 {
     outline: none !important;
-    background: #F6BE32;
+    /* background: #F6BE32; */
+    background-color: white;
     border: 2px solid #F6BE32;
     font-size: 15px;
     border-radius:20px;
@@ -187,12 +188,14 @@
 }
 
 .buttons_form2_1:hover {
-    background: white;
+    /* background: white; */
+    background: #F6BE32;
 }
 
 .buttons_form2_2 {
     outline: none !important;
-    background: #F6BE32;
+    /* background: #F6BE32; */
+    background-color: white;
     border: 2px solid #F6BE32;
     font-size: 15px;
     border-radius:20px;
@@ -201,7 +204,8 @@
 }
 
 .buttons_form2_2:hover {
-    background: white;
+    /* background: white; */
+    background: #F6BE32;
 }
 
 .control-buttons {
@@ -237,7 +241,7 @@
 
 .editable-cell-value-wrap {
     position: relative;
-    
+
 }
 
 .editable-cell-value-wrap:hover {
@@ -252,19 +256,19 @@
 }
 
 .ant-btn-sm {
-    border: #FDC331 solid 1.5px !important; 
+    border: #FDC331 solid 1.5px !important;
  }
- 
+
  .ant-btn-sm:hover {
      color: black;
      border: #f26843 solid 1.5px !important;
   }
- 
+
  .ant-btn-primary {
    background-color: #FDC331;
-   border: #FDC331 solid 1.5px !important; 
+   border: #FDC331 solid 1.5px !important;
  }
- 
+
  .ant-btn-primary:hover {
      background-color: #f26843;
      border: #f26843 solid 1.5px !important;

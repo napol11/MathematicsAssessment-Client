@@ -269,18 +269,20 @@ class Table1 extends React.Component {
             (e) => parseInt(id_committee) !== e.fk_committee_id
           );
           const T4COMID = T4COMFILTER.map((e) => e.fk_committee_id);
+          const duplicateID = [...new Set(T4COMID)];
           const T4COM1 = T4COMFILTER.filter(
-            (e) => e.fk_committee_id === T4COMID[0]
+            (e) => e.fk_committee_id === duplicateID[0]
           );
           const T4COM2 = T4COMFILTER.filter(
-            (e) => e.fk_committee_id === T4COMID[1]
+            (e) => e.fk_committee_id === duplicateID[1]
           );
           const T4COM3 = T4COMFILTER.filter(
-            (e) => e.fk_committee_id === T4COMID[2]
+            (e) => e.fk_committee_id === duplicateID[2]
           );
           const T4COM4 = T4COMFILTER.filter(
-            (e) => e.fk_committee_id === T4COMID[3]
+            (e) => e.fk_committee_id === duplicateID[3]
           );
+          console.log(T4COMFILTER);
           this.setState({
             dataSource: T4EM.map((v, i) => ({
               key: i + 1,

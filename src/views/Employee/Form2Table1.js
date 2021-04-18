@@ -108,7 +108,7 @@ class Form2Table1 extends React.Component {
         title: <div style={title}>{"หัวข้อ"}</div>,
         dataIndex: "Table1No",
         key: "Table1No",
-        editable: true,
+        // editable: true,
         align: "center",
         width: "10%",
       },
@@ -321,11 +321,14 @@ class Form2Table1 extends React.Component {
       <>
         <div
           className="Row col-sm-12 mt-4"
-          style={{ backgroundColor:"#E7E5E3" }}
-        > 
-          <label className="col-sm-11" style={{ fontSize: "16px", fontWeight: "bold"  }}>
-              1. การจัดการงานที่รับผิดชอบ
-          </label>  
+          style={{ backgroundColor: "#E7E5E3" }}
+        >
+          <label
+            className="col-sm-11"
+            style={{ fontSize: "16px", fontWeight: "bold" }}
+          >
+            1. การจัดการงานที่รับผิดชอบ
+          </label>
           <button className="buttons_add" onClick={this.handleAdd}>
             เพิ่มแถวตาราง
           </button>

@@ -80,14 +80,11 @@ function UserStep() {
         <h1>แบบประเมิน</h1>
       </div>
       <center>
-      <Steps 
-        className="mb-5"
-        style={{ width:"75%" }}
-        current={current}>
-        {steps.map((item) => (
-          <Step key={item.title} title={item.title} />
-        ))}
-      </Steps>
+        <Steps className="mb-5" style={{ width: "75%" }} current={current}>
+          {steps.map((item) => (
+            <Step key={item.title} title={item.title} />
+          ))}
+        </Steps>
       </center>
       <div>
         {current === 0 && [<Form1 />]}
@@ -162,7 +159,7 @@ function UserStep() {
             }}
           />
           <Row justify="center">
-            <h4>หากท่านเลือก ‘ยืนยัน’ ท่านสามารถกลับมาแก้ไขแบบประเมินได้อีก</h4>
+            <h4>ท่านสามารถกลับมาแก้ไขแบบประเมินได้อีก</h4>
           </Row>
           <Row justify="center">
             <h4>จนกว่าจะครบกำหนดวันส่งแบบประเมินวันสุดท้าย</h4>
@@ -190,7 +187,7 @@ function UserStep() {
             }}
             onClick={() => handleOk()}
           >
-            ยืนยัน
+            ตกลง
           </Button>
         </CModalBody>
       </CModal>
