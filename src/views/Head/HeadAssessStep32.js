@@ -163,6 +163,13 @@ const CommitteAssessStep32 = (props) => {
           </label>
         </div>
       </div>
+      <Form
+              ref={formRef}
+              layout="vertical"
+              name="nest-messages"
+              onFinish={onFinish}
+              fields={form}
+      >
       <div className="row no-gutter mt-2">
         <div
           className="col-sm-6 p-0"
@@ -207,13 +214,6 @@ const CommitteAssessStep32 = (props) => {
             }}
           >
             {/* {Committee()} */}
-            <Form
-              ref={formRef}
-              layout="vertical"
-              name="nest-messages"
-              onFinish={onFinish}
-              fields={form}
-            >
               <p>
                 1. ท่านคิดว่าผู้ใต้บังคับบัญชายังขาดความรู้
                 ความชำนาญทักษะในเรื่องใดบ้าง
@@ -275,10 +275,27 @@ const CommitteAssessStep32 = (props) => {
                   rows="3"
                 />
               </Form.Item>
-            </Form>
           </div>
         </div>
       </div>
+
+      <div className="row no-gutter mt-4 mb-4">
+        <div className="col-sm-8">
+        <button className="btn-modal-confirm" type="submit" onClick={onFinish}>
+          บันทึก
+        </button>
+        </div>
+
+        <div className="col-sm-4" style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
+          ย้อนกลับ
+        </div>
+        <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+          ถัดไป
+        </div>
+        </div>
+      </div>
+      </Form>
 
       <CModal show={modal} size="lg" style={{ textAlign: "center" }}>
         <CModalBody>
@@ -326,23 +343,6 @@ const CommitteAssessStep32 = (props) => {
           </Button>
         </CModalBody>
       </CModal>
-
-      <div className="row no-gutter mt-4 mb-4">
-        <div className="col-sm-8">
-        <button className="btn-modal-confirm" type="submit" onClick={onFinish}>
-          บันทึก
-        </button>
-        </div>
-
-        <div className="col-sm-4" style={{ display: "flex", justifyContent: "flex-end" }}>
-        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
-          ย้อนกลับ
-        </div>
-        <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
-          ถัดไป
-        </div>
-        </div>
-      </div>
 
     </div>
   );
