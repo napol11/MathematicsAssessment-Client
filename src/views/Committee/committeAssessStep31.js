@@ -218,9 +218,18 @@ const CommitteAssessStep31 = (props) => {
         scroll={{ y: 500 }}
         size="middle"
       />
-
-      <div className="row no-gutter mt-4 mb-4">
-        <div className="col-sm-8">
+    
+    <div
+        className="mt-4 mb-4"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
+          ย้อนกลับ
+        </div>
+        <div className="mr-4">
         <button
           className={`${diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"}`}
           type="submit"
@@ -229,17 +238,9 @@ const CommitteAssessStep31 = (props) => {
           บันทึก
         </button>
         </div>
-
-        <div className="col-sm-4" style={{ display: "flex", justifyContent: "flex-end" }}>
-        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
-          ย้อนกลับ
-        </div>
-        <div
-          className={`pl-4 pr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
-          onClick={diss ? null : props.next}
-        >
+        <div className={`pl-4 pr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
+          onClick={diss ? null : props.next}>
           ถัดไป
-        </div>
         </div>
       </div>
 

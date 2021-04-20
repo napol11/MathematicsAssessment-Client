@@ -549,7 +549,7 @@ const CommitteAssessStep1 = (props) => {
         className="mt-4 mb-4"
         style={{
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "center",
         }}
       >
         <div

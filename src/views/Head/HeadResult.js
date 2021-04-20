@@ -414,13 +414,13 @@ const CommitteAssessStep4 = (props) => {
       </div>
 
       <div
-        className="mt-3 mb-4"
+        className="mt-4 mb-4"
         style={{
           display: "flex",
           justifyContent: "center",
         }}
       >
-        <div className="pl-4 pr-4 mr-4 btnCancel" onClick={props.prev}>
+        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
           ย้อนกลับ
         </div>
         <div className="pl-4 pr-4 mr-4 btnConfirm" onClick={props.next}>

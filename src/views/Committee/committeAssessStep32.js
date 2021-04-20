@@ -218,20 +218,23 @@ const CommitteAssessStep32 = (props) => {
         </div>
       </div>
 
-      <div className="row no-gutter mt-4 mb-4">
-        <div className="col-sm-8">
-        <button className="btn-modal-confirm" type="submit" onClick={onFinish}>
-          บันทึก
-        </button>
-        </div>
-
-        <div className="col-sm-4" style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div
+        className="mt-4 mb-4"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
           ย้อนกลับ
         </div>
+        <div className="mr-4">
+          <button className="btn-modal-confirm" type="submit">
+            บันทึก
+          </button>
+        </div>
         <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
           ถัดไป
-        </div>
         </div>
       </div>
       </Form>
