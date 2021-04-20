@@ -105,24 +105,30 @@ const CommitteAssessStep2 = (props) => {
         pathEM={`${id}`}
         pathAS={`${assessment}`}
       />
-      
+
       <div className="row no-gutter mt-4 mb-4">
         <div className="col-sm-8">
-        <button className="btn-modal-confirm" type="submit" onClick={onFinish}>
-          บันทึก
-        </button>
+          <button
+            className="btn-modal-confirm2"
+            type="submit"
+            onClick={onFinish}
+          >
+            บันทึก
+          </button>
         </div>
 
-        <div className="col-sm-4" style={{ display: "flex", justifyContent: "flex-end" }}>
-        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
-          ย้อนกลับ
-        </div>
-        <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
-          ถัดไป
-        </div>
+        <div
+          className="col-sm-4"
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
+          <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
+            ย้อนกลับ
+          </div>
+          <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+            ถัดไป
+          </div>
         </div>
       </div>
-
     </div>
   );
 };

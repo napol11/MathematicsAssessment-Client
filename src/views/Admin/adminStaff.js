@@ -24,14 +24,24 @@ const AdminStaff = () => {
   const dispatch = useDispatch();
 
   const columnsstaff = [
+    // {
+    //   title: <div style={title}>ลำดับที่</div>,
+    //   dataIndex: "no",
+    //   key: "no",
+    //   align: "center",
+    //   width: "100px",
+    //   render: (text, row, index) => {
+    //     return index + 1;
+    //   },
+    // },
     {
       title: <div style={title}>เลขที่</div>,
-      dataIndex: "no",
-      key: "no",
+      dataIndex: "number",
+      key: "number",
       align: "center",
-      width: "100px",
-      render: (text, row, index) => {
-        return index + 1;
+      width: "150px",
+      sorter: {
+        compare: (a, b) => a.number - b.number,
       },
     },
     {
@@ -41,6 +51,9 @@ const AdminStaff = () => {
       width: "500px",
       // render: (text, row, index) => {
       //   return `${row.firstname} ${row.lastname}`;
+      // },
+      // sorter: {
+      //   compare: (a, b) => a.name - b.name,
       // },
     },
     {
@@ -57,6 +70,7 @@ const AdminStaff = () => {
       align: "center",
       width: "150px",
     },
+
     {},
     // {
     //   title: <div style={title}>อีเมล</div>,

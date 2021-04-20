@@ -82,7 +82,7 @@ const AdminAssessment = () => {
 
   const columns = [
     {
-      title: <div style={title}>เลขที่</div>,
+      title: <div style={title}>ลำดับที่</div>,
       dataIndex: "no",
       key: "no",
       align: "center",
@@ -110,6 +110,9 @@ const AdminAssessment = () => {
       render: (text, row, index) => {
         return dateText(row.start);
       },
+      // sorter: {
+      //   compare: (a, b) => a.start - b.start,
+      // },
     },
     {
       title: <div style={title}>วันสิ้นสุดส่งแบบฟอร์ม</div>,
@@ -120,6 +123,9 @@ const AdminAssessment = () => {
       render: (text, row, index) => {
         return dateText(row.edit);
       },
+      // sorter: {
+      //   compare: (a, b) => a.edit - b.edit,
+      // },
     },
     {
       title: <div style={title}>วันสิ้นสุดประเมิน</div>,
@@ -130,6 +136,9 @@ const AdminAssessment = () => {
       render: (text, row, index) => {
         return dateText(row.end);
       },
+      // sorter: {
+      //   compare: (a, b) => a.end - b.end,
+      // },
     },
     {},
     {
