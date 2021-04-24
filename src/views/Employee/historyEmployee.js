@@ -85,7 +85,6 @@ const HistoryEmployee = () => {
           >
             ประวัติพนักงาน
           </label>
-
           <Button
             className="ml-5"
             shape="round"

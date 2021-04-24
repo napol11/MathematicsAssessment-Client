@@ -273,3 +273,13 @@
 [data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
   border: 1px solid #434343;
 }
+
+.userguide_button, .userguide_button:focus  {
+    border: grey solid 1.5px !important;
+    color: grey;
+}
+
+.userguide_button:hover {
+    border: #f26843 solid 1.5px !important;
+    color: #f26843;
+}

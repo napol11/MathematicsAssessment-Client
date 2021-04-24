@@ -284,3 +284,13 @@
   color: white;
   cursor: pointer;
 }
+
+.userguide_button, .userguide_button:focus  {
+    border: grey solid 1.5px !important;
+    color: grey;
+}
+
+.userguide_button:hover {
+    border: #f26843 solid 1.5px !important;
+    color: #f26843;
+}
