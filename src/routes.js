@@ -8,6 +8,7 @@ const HistoryEmployee = React.lazy(() =>
 );
 const Employee = React.lazy(() => import("./views/Employee/employeeMain"));
 const EmployeeAssess = React.lazy(() => import("./views/Employee/step"));
+const EmployeeUserGuide= React.lazy(() => import("./views/Employee/UserGuideem"));
 
 //แอดมิน
 const AdminAssessment = React.lazy(() =>
@@ -15,6 +16,7 @@ const AdminAssessment = React.lazy(() =>
 );
 const AdminStaff = React.lazy(() => import("./views/Admin/adminStaff"));
 const AdminCommittee = React.lazy(() => import("./views/Admin/adminCommittee"));
+const AdminUserGuide = React.lazy(() => import("./views/Admin/UserGuideadmin"));
 
 //กรรมการ
 const CommitteeMain = React.lazy(() =>
@@ -23,10 +25,16 @@ const CommitteeMain = React.lazy(() =>
 const CommitteeAssess = React.lazy(() =>
   import("./views/Committee/committeeAssess")
 );
+const CommitteeUserGuide = React.lazy(() =>
+import("./views/Committee/UserGuidecom")
+);
 
 //หัวหน้า
 const HeadMain = React.lazy(() => import("./views/Head/headMain"));
 const HeadAssess = React.lazy(() => import("./views/Head/HeadAssess"));
+const HeadUserGuide = React.lazy(() =>
+import("./views/Head/UserGuidehead")
+);
 
 const routes = [
   { path: "/", exact: true, name: "หน้าหลัก", component: Main },
@@ -50,6 +58,12 @@ const routes = [
     name: "การประเมินพนักงาน",
     component: EmployeeAssess,
   },
+  {
+    path: "/employee/userguide",
+    exact: true,
+    name: "วิธีใช้งานสำหรับพนักงาน",
+    component: EmployeeUserGuide,
+  },
 
   // ****************************************************  แอดมิน  ***********************************************************************************************
   {
@@ -70,6 +84,12 @@ const routes = [
     name: "กรรมการ",
     component: AdminCommittee,
   },
+  {
+    path: "/administrator/userguide",
+    exact: true,
+    name: "วิธีใช้งานสำหรับผู้ดูแลระบบ",
+    component: AdminUserGuide,
+  },
 
   // ****************************************************  กรรมการ  ***********************************************************************************************
   {
@@ -84,6 +104,12 @@ const routes = [
     name: "การประเมินพนักงาน",
     component: CommitteeAssess,
   },
+  {
+    path: "/committee/userguide",
+    exact: true,
+    name: "วิธีใช้งานสำหรับกรรมการ",
+    component: CommitteeUserGuide,
+  },
 
   // ****************************************************  หัวหน้า  ***********************************************************************************************
   {
@@ -97,6 +123,12 @@ const routes = [
     exact: true,
     name: "การประเมินพนักงาน",
     component: HeadAssess,
+  },
+  {
+    path: "/head/userguide",
+    exact: true,
+    name: "วิธีใช้งานสำหรับหัวหน้ากรรมการ",
+    component: HeadUserGuide,
   },
 ];
 

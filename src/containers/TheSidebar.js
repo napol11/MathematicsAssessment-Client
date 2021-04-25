@@ -17,6 +17,7 @@ import {
 
 // sidebar nav config
 import navigation from "./_nav";
+import navigationug from "./_navUserGuide";
 import "./_nav.css";
 
 // remove cookies
@@ -70,6 +71,18 @@ const TheSidebar = () => {
       <CSidebarNav style={{ background: bg }}>
         <CCreateElement
           items={navigation}
+          components={{
+            CSidebarNavDivider,
+            CSidebarNavDropdown,
+            CSidebarNavItem,
+            CSidebarNavTitle,
+          }}
+        />
+        <hr 
+            style={{ backgroundColor: "white", width: "90%" }}
+        />
+        <CCreateElement
+          items={navigationug}
           components={{
             CSidebarNavDivider,
             CSidebarNavDropdown,
