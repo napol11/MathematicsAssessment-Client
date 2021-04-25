@@ -2,7 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Button } from "antd";
 
-import { CModal, CModalBody } from "@coreui/react";
+import { CModal, CModalBody, CModalHeader } from "@coreui/react";
 import { BsQuestion } from "react-icons/bs";
 
 import logo from "../pages/employee.PNG";
@@ -42,6 +42,20 @@ class UserGuideem extends React.Component {
           />
         </div>
         <CModal show={this.state.visible} onClose={this.showModal} size="xl">
+          <CModalHeader>
+            <h3>วิธีใช้งานสำหรับพนักงาน</h3>
+            <div className="text-right">
+              <i
+                onClick={this.showModal}
+                className="fas fa-times-circle"
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                  fontSize: 20,
+                }}
+              />
+            </div>
+          </CModalHeader>
           <CModalBody>
             <div className="text-right">
               <i

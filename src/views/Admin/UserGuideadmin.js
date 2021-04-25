@@ -2,7 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Button } from "antd";
 
-import { CModal, CModalBody } from "@coreui/react";
+import { CModal, CModalBody, CModalHeader } from "@coreui/react";
 import { BsQuestion } from "react-icons/bs";
 
 import logo from "../pages/admin.PNG";
@@ -42,7 +42,8 @@ class UserGuideadmin extends React.Component {
           />
         </div>
         <CModal show={this.state.visible} onClose={this.showModal} size="xl">
-          <CModalBody>
+          <CModalHeader>
+            <h3>วิธีใช้งานสำหรับผู้ดูแลระบบ</h3>
             <div className="text-right">
               <i
                 onClick={this.showModal}
@@ -54,6 +55,8 @@ class UserGuideadmin extends React.Component {
                 }}
               />
             </div>
+          </CModalHeader>
+          <CModalBody>
             <img src={logo} alt="userguideadmin" style={{ width: "100%" }} />
           </CModalBody>
         </CModal>
