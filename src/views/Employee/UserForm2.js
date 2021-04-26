@@ -22,6 +22,9 @@ function UserForm2() {
   const [dataT2, setDataT2] = useState([]);
   const [dataT3, setDataT3] = useState([]);
   const [dataT4, setDataT4] = useState([]);
+  const [total, setTotal] = useState("");
+  const [totalpercen, setTotalpercen] = useState("");
+  const [fte, setFte] = useState("");
 
   const onFinish = () => {
     let _list = [];
@@ -81,7 +84,6 @@ function UserForm2() {
         employee_id: id_employee,
         formtwo: _list,
       };
-      console.log(data);
       axios
         .post(`${url}/formtwo`, data)
         .then((res) => {
@@ -96,8 +98,55 @@ function UserForm2() {
   };
 
   useEffect(() => {
-    // LoadData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    let _list = [];
+    dataT1.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "1";
+      f.formtwo_fte = v.Table1FTE;
+      f.totle = v.Table1FTE * v.Table1Level;
+      f.totlepercen = (v.Table1FTE * v.Table1Level) / 4;
+      _list.push(f);
+    });
+    dataT2.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "2";
+      f.totle = v.Table2FTE * v.Table2Level;
+      f.formtwo_fte = v.Table2FTE;
+      f.totlepercen = (v.Table2FTE * v.Table2Level) / 4;
+      _list.push(f);
+    });
+    dataT3.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "3";
+      f.formtwo_fte = v.Table3FTE;
+      f.totle = v.Table3FTE * v.Table3Level;
+      f.totlepercen = (v.Table3FTE * v.Table3Level) / 4;
+      _list.push(f);
+    });
+    dataT4.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "4";
+      f.formtwo_fte = v.Table4FTE;
+      f.totle = v.Table4FTE * v.Table4Level;
+      f.totlepercen = (v.Table4FTE * v.Table4Level) / 4;
+      _list.push(f);
+    });
+    let result = 0;
+    for (let i = 0; i < _list.length; i++) {
+      result += parseInt(_list[i].totle);
+    }
+    let resultpercen = 0;
+    for (let i = 0; i < _list.length; i++) {
+      resultpercen += parseInt(_list[i].totlepercen);
+    }
+    let fte = 0;
+    for (let i = 0; i < _list.length; i++) {
+      fte += parseInt(_list[i].formtwo_fte);
+    }
+    setFte(fte);
+    setTotalpercen(resultpercen);
+    setTotal(result);
+  }, [dataT1, dataT2, dataT3, dataT4]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div style={{ width: "100%" }}>
       <div className="userform2">
@@ -140,6 +189,7 @@ function UserForm2() {
           changeData={(dataT4) => setDataT4(dataT4)}
           path={`${id}`}
         />
+        <div>{`รวม FTE ${fte} คะแนนรวม ${total} คะแนนรวม % ${totalpercen} %`}</div>
         <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-4">
           <button
             className="btn-modal-confirm"
@@ -150,7 +200,6 @@ function UserForm2() {
           </button>
         </div>
       </div>
-      {/* {console.log(dataT1)} */}
     </div>
   );
 }
