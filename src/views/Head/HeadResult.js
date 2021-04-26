@@ -30,11 +30,22 @@ const CommitteAssessStep4 = (props) => {
         const T1EM = dataEM.filter((v) => v.formtwo_table === 1);
         const T1COMALL = dataCOMALL.filter((v) => v.formtwo_table === 1);
         const T1COMID = T1COMALL.map((e) => e.fk_committee_id);
-        const T1COM1 = T1COMALL.filter((e) => e.fk_committee_id === T1COMID[0]);
-        const T1COM2 = T1COMALL.filter((e) => e.fk_committee_id === T1COMID[1]);
-        const T1COM3 = T1COMALL.filter((e) => e.fk_committee_id === T1COMID[2]);
-        const T1COM4 = T1COMALL.filter((e) => e.fk_committee_id === T1COMID[3]);
-        const T1COM5 = T1COMALL.filter((e) => e.fk_committee_id === T1COMID[4]);
+        const duplicateID = [...new Set(T1COMID)];
+        const T1COM1 = T1COMALL.filter(
+          (e) => e.fk_committee_id === duplicateID[0]
+        );
+        const T1COM2 = T1COMALL.filter(
+          (e) => e.fk_committee_id === duplicateID[1]
+        );
+        const T1COM3 = T1COMALL.filter(
+          (e) => e.fk_committee_id === duplicateID[2]
+        );
+        const T1COM4 = T1COMALL.filter(
+          (e) => e.fk_committee_id === duplicateID[3]
+        );
+        const T1COM5 = T1COMALL.filter(
+          (e) => e.fk_committee_id === duplicateID[4]
+        );
         const T1 = T1EM.map((v, i) => ({
           emFTE: v.formtwo_fte,
           emLevel: v.formtwo_sucessem,
@@ -46,13 +57,8 @@ const CommitteAssessStep4 = (props) => {
         }));
         const resultT1 = T1.map((v, i) => ({
           result:
-            (((T1[i].com1 +
-              T1[i].com2 +
-              T1[i].com3 +
-              T1[i].com4 +
-              T1[i].com5 +
-              T1[i].emLevel) /
-              6) *
+            (((T1[i].com1 + T1[i].com2 + T1[i].com3 + T1[i].com4 + T1[i].com5) /
+              5) *
               T1[i].emFTE) /
             4,
         }));
@@ -61,11 +67,22 @@ const CommitteAssessStep4 = (props) => {
         const T2EM = dataEM.filter((v) => v.formtwo_table === 2);
         const T2COMALL = dataCOMALL.filter((v) => v.formtwo_table === 2);
         const T2COMID = T2COMALL.map((e) => e.fk_committee_id);
-        const T2COM1 = T2COMALL.filter((e) => e.fk_committee_id === T2COMID[0]);
-        const T2COM2 = T2COMALL.filter((e) => e.fk_committee_id === T2COMID[1]);
-        const T2COM3 = T2COMALL.filter((e) => e.fk_committee_id === T2COMID[2]);
-        const T2COM4 = T2COMALL.filter((e) => e.fk_committee_id === T2COMID[3]);
-        const T2COM5 = T2COMALL.filter((e) => e.fk_committee_id === T2COMID[4]);
+        const duplicate2ID = [...new Set(T2COMID)];
+        const T2COM1 = T2COMALL.filter(
+          (e) => e.fk_committee_id === duplicate2ID[0]
+        );
+        const T2COM2 = T2COMALL.filter(
+          (e) => e.fk_committee_id === duplicate2ID[1]
+        );
+        const T2COM3 = T2COMALL.filter(
+          (e) => e.fk_committee_id === duplicate2ID[2]
+        );
+        const T2COM4 = T2COMALL.filter(
+          (e) => e.fk_committee_id === duplicate2ID[3]
+        );
+        const T2COM5 = T2COMALL.filter(
+          (e) => e.fk_committee_id === duplicate2ID[4]
+        );
         const T2 = T2EM.map((v, i) => ({
           emFTE: v.formtwo_fte,
           emLevel: v.formtwo_sucessem,
@@ -77,13 +94,8 @@ const CommitteAssessStep4 = (props) => {
         }));
         const resultT2 = T2.map((v, i) => ({
           result:
-            (((T2[i].com1 +
-              T2[i].com2 +
-              T2[i].com3 +
-              T2[i].com4 +
-              T2[i].com5 +
-              T2[i].emLevel) /
-              6) *
+            (((T2[i].com1 + T2[i].com2 + T2[i].com3 + T2[i].com4 + T2[i].com5) /
+              5) *
               T2[i].emFTE) /
             4,
         }));
@@ -92,11 +104,22 @@ const CommitteAssessStep4 = (props) => {
         const T3EM = dataEM.filter((v) => v.formtwo_table === 3);
         const T3COMALL = dataCOMALL.filter((v) => v.formtwo_table === 3);
         const T3COMID = T3COMALL.map((e) => e.fk_committee_id);
-        const T3COM1 = T3COMALL.filter((e) => e.fk_committee_id === T3COMID[0]);
-        const T3COM2 = T3COMALL.filter((e) => e.fk_committee_id === T3COMID[1]);
-        const T3COM3 = T3COMALL.filter((e) => e.fk_committee_id === T3COMID[2]);
-        const T3COM4 = T3COMALL.filter((e) => e.fk_committee_id === T3COMID[3]);
-        const T3COM5 = T3COMALL.filter((e) => e.fk_committee_id === T3COMID[4]);
+        const duplicate3ID = [...new Set(T3COMID)];
+        const T3COM1 = T3COMALL.filter(
+          (e) => e.fk_committee_id === duplicate3ID[0]
+        );
+        const T3COM2 = T3COMALL.filter(
+          (e) => e.fk_committee_id === duplicate3ID[1]
+        );
+        const T3COM3 = T3COMALL.filter(
+          (e) => e.fk_committee_id === duplicate3ID[2]
+        );
+        const T3COM4 = T3COMALL.filter(
+          (e) => e.fk_committee_id === duplicate3ID[3]
+        );
+        const T3COM5 = T3COMALL.filter(
+          (e) => e.fk_committee_id === duplicate3ID[4]
+        );
         const T3 = T3EM.map((v, i) => ({
           emFTE: v.formtwo_fte,
           emLevel: v.formtwo_sucessem,
@@ -108,13 +131,8 @@ const CommitteAssessStep4 = (props) => {
         }));
         const resultT3 = T3.map((v, i) => ({
           result:
-            (((T3[i].com1 +
-              T3[i].com2 +
-              T3[i].com3 +
-              T3[i].com4 +
-              T3[i].com5 +
-              T3[i].emLevel) /
-              6) *
+            (((T3[i].com1 + T3[i].com2 + T3[i].com3 + T3[i].com4 + T3[i].com5) /
+              5) *
               T3[i].emFTE) /
             4,
         }));
@@ -123,11 +141,22 @@ const CommitteAssessStep4 = (props) => {
         const T4EM = dataEM.filter((v) => v.formtwo_table === 4);
         const T4COMALL = dataCOMALL.filter((v) => v.formtwo_table === 4);
         const T4COMID = T4COMALL.map((e) => e.fk_committee_id);
-        const T4COM1 = T4COMALL.filter((e) => e.fk_committee_id === T4COMID[0]);
-        const T4COM2 = T4COMALL.filter((e) => e.fk_committee_id === T4COMID[1]);
-        const T4COM3 = T4COMALL.filter((e) => e.fk_committee_id === T4COMID[2]);
-        const T4COM4 = T4COMALL.filter((e) => e.fk_committee_id === T4COMID[3]);
-        const T4COM5 = T4COMALL.filter((e) => e.fk_committee_id === T4COMID[4]);
+        const duplicate4ID = [...new Set(T4COMID)];
+        const T4COM1 = T4COMALL.filter(
+          (e) => e.fk_committee_id === duplicate4ID[0]
+        );
+        const T4COM2 = T4COMALL.filter(
+          (e) => e.fk_committee_id === duplicate4ID[1]
+        );
+        const T4COM3 = T4COMALL.filter(
+          (e) => e.fk_committee_id === duplicate4ID[2]
+        );
+        const T4COM4 = T4COMALL.filter(
+          (e) => e.fk_committee_id === duplicate4ID[3]
+        );
+        const T4COM5 = T4COMALL.filter(
+          (e) => e.fk_committee_id === duplicate4ID[4]
+        );
         const T4 = T4EM.map((v, i) => ({
           emFTE: v.formtwo_fte,
           emLevel: v.formtwo_sucessem,
@@ -139,13 +168,8 @@ const CommitteAssessStep4 = (props) => {
         }));
         const resultT4 = T4.map((v, i) => ({
           result:
-            (((T4[i].com1 +
-              T4[i].com2 +
-              T4[i].com3 +
-              T4[i].com4 +
-              T4[i].com5 +
-              T4[i].emLevel) /
-              6) *
+            (((T4[i].com1 + T4[i].com2 + T4[i].com3 + T4[i].com4 + T4[i].com5) /
+              5) *
               T4[i].emFTE) /
             4,
         }));

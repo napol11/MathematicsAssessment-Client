@@ -186,9 +186,13 @@ class Table1 extends React.Component {
                 textAlign: "center",
               }}
             >
-              {row.Table4FTE * row.Table4LevelHead === "NaN"
-                ? ""
-                : row.Table4FTE * row.Table4LevelHead}
+              {((parseInt(row.Table4LevelCOM1) +
+                parseInt(row.Table4LevelCOM2) +
+                parseInt(row.Table4LevelCOM3) +
+                parseInt(row.Table4LevelCOM4) +
+                parseInt(row.Table4LevelHead)) /
+                5) *
+                parseInt(row.Table4FTE)}
             </div>
           );
         },
@@ -207,9 +211,14 @@ class Table1 extends React.Component {
                 textAlign: "center",
               }}
             >
-              {(row.Table4FTE * row.Table4LevelHead) / 4 === "NaN"
-                ? "  "
-                : (row.Table4FTE * row.Table4LevelHead) / 4}
+              {(((parseInt(row.Table4LevelCOM1) +
+                parseInt(row.Table4LevelCOM2) +
+                parseInt(row.Table4LevelCOM3) +
+                parseInt(row.Table4LevelCOM4) +
+                parseInt(row.Table4LevelHead)) /
+                5) *
+                parseInt(row.Table4FTE)) /
+                4}
             </div>
           );
         },
@@ -292,13 +301,13 @@ class Table1 extends React.Component {
               Table4Level: v.formtwo_sucessem,
               Table4Comments: v.formtwo_comment,
               Table4LevelCOM1:
-                T4COM1.length !== 0 ? T4COM1[i].formtwo_sucesscom : "ยังไม่มี",
+                T4COM1.length !== 0 ? T4COM1[i].formtwo_sucesscom : 0,
               Table4LevelCOM2:
-                T4COM2.length !== 0 ? T4COM2[i].formtwo_sucesscom : "ยังไม่มี",
+                T4COM2.length !== 0 ? T4COM2[i].formtwo_sucesscom : 0,
               Table4LevelCOM3:
-                T4COM3.length !== 0 ? T4COM3[i].formtwo_sucesscom : "ยังไม่มี",
+                T4COM3.length !== 0 ? T4COM3[i].formtwo_sucesscom : 0,
               Table4LevelCOM4:
-                T4COM4.length !== 0 ? T4COM4[i].formtwo_sucesscom : "ยังไม่มี",
+                T4COM4.length !== 0 ? T4COM4[i].formtwo_sucesscom : 0,
               Table4LevelHead:
                 T4COM.length !== 0 ? T4COM[i].formtwo_sucesscom : " ",
             })),

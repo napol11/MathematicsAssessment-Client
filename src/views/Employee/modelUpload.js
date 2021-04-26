@@ -3,12 +3,19 @@ import { CModal, CModalBody, CModalHeader } from "@coreui/react";
 // import { sizeFile, ellipsisText } from "../CustomFunction";
 
 import "./App.css";
-import { Upload, message } from "antd";
+import { Upload, Button } from "antd";
 import "antd/dist/antd.css";
+import { notify } from "../CustomComponent";
+
+import Cookies from "js-cookie";
+import { token } from "../../config";
+import { useParams } from "react-router-dom";
 
 const UploadFile = () => {
+  const { id } = useParams();
   const [show, setShow] = useState(false);
   const [fileList, setFileList] = useState([]);
+  // const [uploading, setUploading] = useState(false);
 
   const showModal = () => {
     setShow(true);
@@ -24,9 +31,41 @@ const UploadFile = () => {
 
   const beforeUpload = (file) => {
     if (file.type !== "application/pdf") {
-      message.error(`${file.name} is not a pdf file`);
+      notify.error(`${file.name} is not a pdf file`);
+    } else {
+      // setFileList(fileList, file);
+      return false;
+      // const id_assessment = `${id}`;
+      // const id_employee = Cookies.get(token.userId);
+      // const formData = new FormData();
+      // fileList.forEach((file) => {
+      //   formData.append("file", file, id_assessment, id_employee);
+      // });
     }
-    return file.type === "application/pdf" ? true : Upload.LIST_IGNORE;
+    // return file.type === "application/pdf" ? true : Upload.LIST_IGNORE;
+  };
+
+  const handleUpload = () => {
+    const id_assessment = `${id}`;
+    const id_employee = Cookies.get(token.userId);
+    const formData = new FormData();
+    const user = {
+      id_assessment: id_assessment,
+      id_employee: id_employee,
+    };
+    // fileList.forEach((file) => {
+    formData.append("file", fileList, user);
+    // });
+    // setUploading(true);
+    console.log(formData);
+  };
+
+  const onRemove = (file) => {
+    const data = fileList;
+    const index = data.indexOf(file);
+    const newFileList = data.slice();
+    newFileList.splice(index, 1);
+    setFileList(newFileList);
   };
 
   return (
@@ -58,19 +97,28 @@ const UploadFile = () => {
         <CModalBody>
           <Upload
             name="files"
-            action="http://localhost:3001/api/employee/upload"
+            // action="http://localhost:3001/api/employee/upload"
             multiple={true}
             listType="picture-card"
             fileList={fileList}
             onChange={onChange}
             maxCount={5}
             beforeUpload={beforeUpload}
+            onRemove={onRemove}
           >
             {fileList.length < 5 && "+ Upload"}
           </Upload>
+          <Button
+            type="primary"
+            onClick={handleUpload}
+            disabled={fileList.length === 0}
+            style={{ marginTop: 16, backgroundColor: "white", color: "black" }}
+          >
+            {/* {uploading ? "Uploading" : "Start Upload"} */}
+            Start Upload
+          </Button>
         </CModalBody>
       </CModal>
-      {console.log(fileList)}
     </>
   );
 };
