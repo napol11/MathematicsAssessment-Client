@@ -58,7 +58,8 @@ const ModalCommittee = (props) => {
     axios
       .post(`${url}/committee`, data)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
+        window.location.replace("/administrator/committee");
       })
       .catch((err) => {
         console.log(err);
@@ -76,6 +77,7 @@ const ModalCommittee = (props) => {
       .put(`${url}/committee/` + props.data.id, data)
       .then((res) => {
         console.log(res);
+        window.location.replace("/administrator/committee");
       })
       .catch((err) => {
         console.log(err);
