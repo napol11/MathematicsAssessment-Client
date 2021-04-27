@@ -37,7 +37,8 @@ const ModalAssess = (props) => {
     axios
       .post(`${url}/assessment`, values)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
+        window.location.replace("/administrator/assessment");
       })
       .catch((err) => {
         console.log(err);
@@ -48,7 +49,8 @@ const ModalAssess = (props) => {
     axios
       .put(`${url}/assessment/` + props.data.id, values)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
+        window.location.replace("/administrator/assessment");
       })
       .catch((err) => {
         console.log(err);

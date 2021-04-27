@@ -67,7 +67,8 @@ export default function ModalStaff(props) {
     axios
       .post(`${url}/employee`, data)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
+        window.location.replace("/administrator/staff");
       })
       .catch((err) => {
         console.log(err);
@@ -78,7 +79,8 @@ export default function ModalStaff(props) {
     axios
       .put(`${url}/employee/` + props.data.id, values)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
+        window.location.replace("/administrator/staff");
       })
       .catch((err) => {
         console.log(err);
