@@ -189,7 +189,26 @@ function UserForm2() {
           changeData={(dataT4) => setDataT4(dataT4)}
           path={`${id}`}
         />
-        <div>{`รวม FTE ${fte} คะแนนรวม ${total} คะแนนรวม % ${totalpercen} %`}</div>
+        <div className="col-sm-12 mt-4">
+            <label
+                className="col-sm-4"
+                style={{ fontWeight: "bold", fontSize: "16px", color: "black", textAlign:"center"  }}
+            >
+                {`รวม`}
+            </label>
+            <label
+                className="col-sm-1"
+                style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
+            >
+                {`%FTE = ${fte}`}
+            </label>
+            <label
+                className="col-sm-4"
+                style={{ fontWeight: "bold", fontSize: "16px", color: "black", marginLeft:"5%" }}
+            >
+                {`คะแนนรวม % = ${totalpercen} คะแนน (คะแนนเต็ม 100 คะแนน)`}
+            </label>
+        </div>
         <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-4">
           <button
             className="btn-modal-confirm"
