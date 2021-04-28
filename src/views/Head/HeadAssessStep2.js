@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "moment/locale/th";
 
 import { useParams } from "react-router-dom";
@@ -20,6 +20,9 @@ const CommitteAssessStep2 = (props) => {
   const [dataT2, setDataT2] = useState([]);
   const [dataT3, setDataT3] = useState([]);
   const [dataT4, setDataT4] = useState([]);
+  // const [total, setTotal] = useState("");
+  const [totalpercen, setTotalpercen] = useState("");
+  const [fte, setFte] = useState("");
 
   const onFinish = () => {
     let _list = [];
@@ -70,6 +73,118 @@ const CommitteAssessStep2 = (props) => {
       });
   };
 
+  useEffect(() => {
+    let _list = [];
+    dataT1.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "1";
+      f.formtwo_fte = v.Table1FTE;
+      f.totle =
+        ((v.Table1LevelCOM1 +
+          v.Table1LevelCOM2 +
+          v.Table1LevelCOM3 +
+          v.Table1LevelCOM4 +
+          parseInt(v.Table1LevelHead)) /
+          5) *
+        v.Table1FTE;
+      f.totlepercen =
+        (((v.Table1LevelCOM1 +
+          v.Table1LevelCOM2 +
+          v.Table1LevelCOM3 +
+          v.Table1LevelCOM4 +
+          parseInt(v.Table1LevelHead)) /
+          5) *
+          v.Table1FTE) /
+        4;
+      _list.push(f);
+    });
+    dataT2.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "2";
+      f.formtwo_fte = v.Table2FTE;
+      f.totle =
+        ((v.Table2LevelCOM1 +
+          v.Table2LevelCOM2 +
+          v.Table2LevelCOM3 +
+          v.Table2LevelCOM4 +
+          parseInt(v.Table2LevelHead)) /
+          5) *
+        v.Table2FTE;
+      f.totlepercen =
+        (((v.Table2LevelCOM1 +
+          v.Table2LevelCOM2 +
+          v.Table2LevelCOM3 +
+          v.Table2LevelCOM4 +
+          parseInt(v.Table2LevelHead)) /
+          5) *
+          v.Table2FTE) /
+        4;
+      _list.push(f);
+    });
+    dataT3.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "3";
+      f.formtwo_fte = v.Table3FTE;
+      f.totle =
+        ((v.Table3LevelCOM1 +
+          v.Table3LevelCOM2 +
+          v.Table3LevelCOM3 +
+          v.Table3LevelCOM4 +
+          parseInt(v.Table3LevelHead)) /
+          5) *
+        v.Table3FTE;
+      f.totlepercen =
+        (((v.Table3LevelCOM1 +
+          v.Table3LevelCOM2 +
+          v.Table3LevelCOM3 +
+          v.Table3LevelCOM4 +
+          parseInt(v.Table3LevelHead)) /
+          5) *
+          v.Table3FTE) /
+        4;
+      _list.push(f);
+    });
+    dataT4.forEach((v) => {
+      let f = {};
+      f.formtwo_table = "4";
+      f.formtwo_fte = v.Table4FTE;
+      f.totle =
+        ((v.Table4LevelCOM1 +
+          v.Table4LevelCOM2 +
+          v.Table4LevelCOM3 +
+          v.Table4LevelCOM4 +
+          parseInt(v.Table4LevelHead)) /
+          5) *
+        v.Table4FTE;
+      f.totlepercen =
+        (((v.Table4LevelCOM1 +
+          v.Table4LevelCOM2 +
+          v.Table4LevelCOM3 +
+          v.Table4LevelCOM4 +
+          parseInt(v.Table4LevelHead)) /
+          5) *
+          v.Table4FTE) /
+        4;
+      _list.push(f);
+    });
+    // let result = 0;
+    // for (let i = 0; i < _list.length; i++) {
+    //   result += parseInt(_list[i].totle);
+    // }
+    let resultpercen = 0;
+    for (let i = 0; i < _list.length; i++) {
+      resultpercen += parseFloat(_list[i].totlepercen);
+    }
+    let fte = 0;
+    for (let i = 0; i < _list.length; i++) {
+      fte += parseInt(_list[i].formtwo_fte);
+    }
+    setFte(fte);
+    setTotalpercen(resultpercen);
+    console.log(resultpercen);
+    // setTotal(result);
+  }, [dataT1, dataT2, dataT3, dataT4]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div>
       <div className="row no-gutter">
@@ -105,7 +220,36 @@ const CommitteAssessStep2 = (props) => {
         pathEM={`${id}`}
         pathAS={`${assessment}`}
       />
-
+      <div className="col-sm-12 mt-4">
+        <label
+          className="col-sm-4"
+          style={{
+            fontWeight: "bold",
+            fontSize: "16px",
+            color: "black",
+            textAlign: "center",
+          }}
+        >
+          {`รวม`}
+        </label>
+        <label
+          className="col-sm-1"
+          style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
+        >
+          {`%FTE = ${fte}`}
+        </label>
+        <label
+          className="col-sm-4"
+          style={{
+            fontWeight: "bold",
+            fontSize: "16px",
+            color: "black",
+            marginLeft: "5%",
+          }}
+        >
+          {`คะแนนรวม % = ${totalpercen} คะแนน (คะแนนเต็ม 100 คะแนน)`}
+        </label>
+      </div>
       <div
         className="mt-4 mb-4"
         style={{
@@ -117,7 +261,11 @@ const CommitteAssessStep2 = (props) => {
           ย้อนกลับ
         </div>
         <div className="mr-4">
-          <button className="btn-modal-confirm" type="submit" onClick={onFinish}>
+          <button
+            className="btn-modal-confirm"
+            type="submit"
+            onClick={onFinish}
+          >
             บันทึก
           </button>
         </div>
@@ -125,7 +273,6 @@ const CommitteAssessStep2 = (props) => {
           ถัดไป
         </div>
       </div>
-      
     </div>
   );
 };

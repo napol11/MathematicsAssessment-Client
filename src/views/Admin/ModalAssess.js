@@ -22,7 +22,6 @@ const ModalAssess = (props) => {
 
   const handleDatePickerStart = (christDate, buddhistDate) => {
     setSelectedDateStart(christDate);
-    console.log(christDate);
   };
 
   const handleDatePickerEnd = (christDate, buddhistDate) => {
@@ -98,9 +97,9 @@ const ModalAssess = (props) => {
       setTitle(`แก้ไข${title}`);
       formRef.current.setFieldsValue({
         name: props.data.assessment_name,
-        start: handleDatePickerStart(props.data.assessment_start),
-        end: handleDatePickerEnd(props.data.assessment_end),
-        endedit: handleDatePickerEdit(props.data.assessment_endedit),
+        start: setSelectedDateStart(props.data.start),
+        end: setSelectedDateEnd(props.data.assessment_end),
+        endedit: setSelectedDateEdit(props.data.assessment_endedit),
       });
     }
 

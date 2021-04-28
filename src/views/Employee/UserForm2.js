@@ -22,7 +22,7 @@ function UserForm2() {
   const [dataT2, setDataT2] = useState([]);
   const [dataT3, setDataT3] = useState([]);
   const [dataT4, setDataT4] = useState([]);
-  const [total, setTotal] = useState("");
+  // const [total, setTotal] = useState("");
   const [totalpercen, setTotalpercen] = useState("");
   const [fte, setFte] = useState("");
 
@@ -131,13 +131,13 @@ function UserForm2() {
       f.totlepercen = (v.Table4FTE * v.Table4Level) / 4;
       _list.push(f);
     });
-    let result = 0;
-    for (let i = 0; i < _list.length; i++) {
-      result += parseInt(_list[i].totle);
-    }
+    // let result = 0;
+    // for (let i = 0; i < _list.length; i++) {
+    //   result += parseInt(_list[i].totle);
+    // }
     let resultpercen = 0;
     for (let i = 0; i < _list.length; i++) {
-      resultpercen += parseInt(_list[i].totlepercen);
+      resultpercen += parseFloat(_list[i].totlepercen);
     }
     let fte = 0;
     for (let i = 0; i < _list.length; i++) {
@@ -145,7 +145,7 @@ function UserForm2() {
     }
     setFte(fte);
     setTotalpercen(resultpercen);
-    setTotal(result);
+    // setTotal(result);
   }, [dataT1, dataT2, dataT3, dataT4]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div style={{ width: "100%" }}>
@@ -190,24 +190,34 @@ function UserForm2() {
           path={`${id}`}
         />
         <div className="col-sm-12 mt-4">
-            <label
-                className="col-sm-4"
-                style={{ fontWeight: "bold", fontSize: "16px", color: "black", textAlign:"center"  }}
-            >
-                {`รวม`}
-            </label>
-            <label
-                className="col-sm-1"
-                style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
-            >
-                {`%FTE = ${fte}`}
-            </label>
-            <label
-                className="col-sm-4"
-                style={{ fontWeight: "bold", fontSize: "16px", color: "black", marginLeft:"5%" }}
-            >
-                {`คะแนนรวม % = ${totalpercen} คะแนน (คะแนนเต็ม 100 คะแนน)`}
-            </label>
+          <label
+            className="col-sm-4"
+            style={{
+              fontWeight: "bold",
+              fontSize: "16px",
+              color: "black",
+              textAlign: "center",
+            }}
+          >
+            {`รวม`}
+          </label>
+          <label
+            className="col-sm-1"
+            style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
+          >
+            {`%FTE = ${fte}`}
+          </label>
+          <label
+            className="col-sm-4"
+            style={{
+              fontWeight: "bold",
+              fontSize: "16px",
+              color: "black",
+              marginLeft: "5%",
+            }}
+          >
+            {`คะแนนรวม % = ${totalpercen} คะแนน (คะแนนเต็ม 100 คะแนน)`}
+          </label>
         </div>
         <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-4">
           <button

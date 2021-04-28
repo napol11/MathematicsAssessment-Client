@@ -211,9 +211,14 @@ class Table2 extends React.Component {
                 textAlign: "center",
               }}
             >
-              {(row.Table2FTE * row.Table2LevelHead) / 4 === "NaN"
-                ? "  "
-                : (row.Table2FTE * row.Table2LevelHead) / 4}
+              {(((parseInt(row.Table2LevelCOM1) +
+                parseInt(row.Table2LevelCOM2) +
+                parseInt(row.Table2LevelCOM3) +
+                parseInt(row.Table2LevelCOM4) +
+                parseInt(row.Table2LevelHead)) /
+                5) *
+                parseInt(row.Table2FTE)) /
+                4}
             </div>
           );
         },
