@@ -22,7 +22,7 @@ export default function ModalStaff(props) {
 
   const [Loading, setLoading] = useState(false);
   const [Title, setTitle] = useState(null);
-
+  const [listdegree, setListdegree] = useState([]);
   const close = () => {
     formRef.current.resetFields();
     dispatch({ type: "set", adminModal: { ...adminModal, show: false } });
@@ -58,6 +58,16 @@ export default function ModalStaff(props) {
     // setDivision(divisions);
 
     setLoading(false);
+  };
+
+  const onChangeDegree = (value) => {
+    if (value === "นักบริหารงานทั่วไป") {
+      const degreedata = ["จ.1", "จ.2", "จ.3", "จ.4"];
+      setListdegree(degreedata);
+    } else {
+      const degreedata = ["สว.1", "สว.2", "สว.3", "สว.4"];
+      setListdegree(degreedata);
+    }
   };
 
   const addEmployee = (values) => {
@@ -193,11 +203,11 @@ export default function ModalStaff(props) {
                     <Select
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุตำแหน่ง"
+                      onChange={onChangeDegree}
                     >
                       <Option value="นักคอมพิวเตอร์">นักคอมพิวเตอร์</Option>
                       <Option value="ครูปฏิบัติการ"> ครูปฏิบัติการ</Option>
                       <Option value="นักบริหารงานทั่วไป">
-                        {" "}
                         นักบริหารงานทั่วไป
                       </Option>
                     </Select>
@@ -230,8 +240,17 @@ export default function ModalStaff(props) {
                       className="select-modal"
                       placeholder=" ‎‏‏‎ ‎ระบุระดับ"
                     >
-                      <Option value="‎ระดับ 1">‎ระดับ 1</Option>
-                      <Option value="‎ระดับ 2">‎ระดับ 2</Option>
+                      {/* <Option value="จ.1">จ.1</Option>
+                      <Option value="จ.2">จ.2</Option>
+                      <Option value="จ.3">จ.3</Option>
+                      <Option value="จ.4">จ.4</Option>
+                      <Option value="สว.1">สว.1</Option>
+                      <Option value="สว.2">สว.2</Option>
+                      <Option value="สว.3">สว.3</Option>
+                      <Option value="สว.4">สว.4</Option> */}
+                      {listdegree.map((listdegree) => (
+                        <Option key={listdegree}>{listdegree}</Option>
+                      ))}
                     </Select>
                   </Form.Item>
                 </div>
