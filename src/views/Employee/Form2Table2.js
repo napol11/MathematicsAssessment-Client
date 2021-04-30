@@ -4,6 +4,7 @@ import { Table, Input, Popconfirm, Form } from "antd";
 import { MdDelete } from "react-icons/md";
 import "./App.css";
 
+import UploadFile from "./modelUpload";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
@@ -332,7 +333,7 @@ class Form2Table2 extends React.Component {
           style={{ backgroundColor: "#E7E5E3" }}
         >
           <label
-            className="col-sm-11"
+            className="col-sm-10"
             style={{ fontSize: "16px", fontWeight: "bold" }}
           >
             2. การบริหารนโยบาย
@@ -340,6 +341,7 @@ class Form2Table2 extends React.Component {
           <button className="buttons_add" onClick={this.handleAdd}>
             เพิ่มแถวตาราง
           </button>
+          <UploadFile table={2} />
         </div>
         <Table
           className="committeeTableAssess2"

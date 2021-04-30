@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { CModal, CModalBody, CModalHeader } from "@coreui/react";
 // import { sizeFile, ellipsisText } from "../CustomFunction";
+// import reqwest from "reqwest";
+import axios from "axios";
 
 import "./App.css";
 import { Upload, Button } from "antd";
@@ -11,11 +13,11 @@ import Cookies from "js-cookie";
 import { token } from "../../config";
 import { useParams } from "react-router-dom";
 
-const UploadFile = () => {
+const UploadFile = (props) => {
   const { id } = useParams();
   const [show, setShow] = useState(false);
   const [fileList, setFileList] = useState([]);
-  // const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const showModal = () => {
     setShow(true);
@@ -25,39 +27,42 @@ const UploadFile = () => {
     setShow(false);
   };
 
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
-
   const beforeUpload = (file) => {
     if (file.type !== "application/pdf") {
       notify.error(`${file.name} is not a pdf file`);
     } else {
-      // setFileList(fileList, file);
+      setFileList((fileList) => [...fileList, file]);
       return false;
-      // const id_assessment = `${id}`;
-      // const id_employee = Cookies.get(token.userId);
-      // const formData = new FormData();
-      // fileList.forEach((file) => {
-      //   formData.append("file", file, id_assessment, id_employee);
-      // });
     }
-    // return file.type === "application/pdf" ? true : Upload.LIST_IGNORE;
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     const id_assessment = `${id}`;
     const id_employee = Cookies.get(token.userId);
-    const formData = new FormData();
-    const user = {
-      id_assessment: id_assessment,
-      id_employee: id_employee,
-    };
-    // fileList.forEach((file) => {
-    formData.append("file", fileList, user);
-    // });
-    // setUploading(true);
-    console.log(formData);
+    const table = props.table;
+
+    setUploading(true);
+
+    const data = new FormData();
+    fileList.forEach((File) => {
+      data.append("files", File, File.name);
+    });
+    data.append("id_assessment", id_assessment);
+    data.append("id_employee", id_employee);
+    data.append("table", table);
+    await axios
+      .post("http://localhost:3001/api/employee/upload", data)
+      .then((res) => {
+        notify.success("อับโหลดได้");
+        setUploading(false);
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+        notify.error("อับโหลดไม่ได้");
+        setUploading(false);
+        // setFileList([]);
+      });
   };
 
   const onRemove = (file) => {
@@ -71,7 +76,7 @@ const UploadFile = () => {
   return (
     <>
       <button className="buttons_add" onClick={showModal}>
-        อัปโหลดเอกสาร
+        {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"}
       </button>
       <CModal show={show} closeOnBackdrop={false} centered>
         <CModalHeader>
@@ -101,7 +106,6 @@ const UploadFile = () => {
             multiple={true}
             listType="picture-card"
             fileList={fileList}
-            onChange={onChange}
             maxCount={5}
             beforeUpload={beforeUpload}
             onRemove={onRemove}
@@ -113,9 +117,10 @@ const UploadFile = () => {
             onClick={handleUpload}
             disabled={fileList.length === 0}
             style={{ marginTop: 16, backgroundColor: "white", color: "black" }}
+            // loading={uploading}
           >
-            {/* {uploading ? "Uploading" : "Start Upload"} */}
-            Start Upload
+            {uploading ? "Uploading" : "Start Upload"}
+            {/* Start Upload */}
           </Button>
         </CModalBody>
       </CModal>
