@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { CModal, CModalBody, CModalHeader } from "@coreui/react";
-// import { sizeFile, ellipsisText } from "../CustomFunction";
-// import reqwest from "reqwest";
 import axios from "axios";
 
 import "./App.css";
@@ -13,6 +11,8 @@ import Cookies from "js-cookie";
 import { token } from "../../config";
 import { useParams } from "react-router-dom";
 
+const url = `http://localhost:3001/api/employee`;
+
 const UploadFile = (props) => {
   const { id } = useParams();
   const [show, setShow] = useState(false);
@@ -21,10 +21,12 @@ const UploadFile = (props) => {
 
   const showModal = () => {
     setShow(true);
+    LoadData();
   };
 
   const close = () => {
     setShow(false);
+    setFileList([]);
   };
 
   const beforeUpload = (file) => {
@@ -42,6 +44,7 @@ const UploadFile = (props) => {
     const table = props.table;
 
     setUploading(true);
+    // console.log(fileList);
 
     const data = new FormData();
     fileList.forEach((File) => {
@@ -51,7 +54,7 @@ const UploadFile = (props) => {
     data.append("id_employee", id_employee);
     data.append("table", table);
     await axios
-      .post("http://localhost:3001/api/employee/upload", data)
+      .post(`${url}/upload`, data)
       .then((res) => {
         notify.success("อับโหลดได้");
         setUploading(false);
@@ -71,12 +74,55 @@ const UploadFile = (props) => {
     const newFileList = data.slice();
     newFileList.splice(index, 1);
     setFileList(newFileList);
+
+    const id_assessment = `${id}`;
+    const id_employee = Cookies.get(token.userId);
+    const user = {
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+    };
+    axios.patch(`${url}/file/` + file.id, user).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const LoadData = () => {
+    const id_assessment = `${id}`;
+    const id_employee = Cookies.get(token.userId);
+    const data = {
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+    };
+    axios.post(`${url}/file`, data).then((res) => {
+      const data = res.data.data;
+      const table = props.table;
+      console.log(data);
+      if (data === "not found file") {
+        setFileList([]);
+      } else {
+        const file = data.filter((v) => v.table === table);
+        // console.log(file);
+        if (file.length > 0) {
+          const list = file.map((v, i) => ({
+            ...v,
+            uid: i + 1,
+            name: v.doc_originalname,
+            url: "http://localhost:3001/api/employee/file/" + v.doc_name,
+          }));
+          console.log(list);
+          setFileList(list);
+        } else {
+          setFileList([]);
+        }
+      }
+    });
   };
 
   return (
     <>
       <button className="buttons_add" onClick={showModal}>
-        {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"}
+        {/* {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"} */}
+        เอกสาร
       </button>
       <CModal show={show} closeOnBackdrop={false} centered>
         <CModalHeader>
@@ -84,7 +130,7 @@ const UploadFile = (props) => {
             className="m-0"
             style={{ color: "black", fontWeight: "bold", fontSize: 20 }}
           >
-            เอกสารประกอบการประเมิน (สูงสุด 5 ไฟล์)
+            เอกสารประกอบการประเมิน (สามารถอัปโหลดได้แค่ 1 ไฟล์)
           </label>
 
           <div className="col-2 text-right">
@@ -104,18 +150,20 @@ const UploadFile = (props) => {
             name="files"
             // action="http://localhost:3001/api/employee/upload"
             multiple={true}
-            listType="picture-card"
+            listType="picture"
             fileList={fileList}
-            maxCount={5}
+            maxCount={1}
             beforeUpload={beforeUpload}
             onRemove={onRemove}
+            // iconRender= {}
+            showUploadList={{ showPreviewIcon: true }}
           >
-            {fileList.length < 5 && "+ Upload"}
+            {fileList.length < 1 && "+ Upload"}
           </Upload>
           <Button
             type="primary"
             onClick={handleUpload}
-            disabled={fileList.length === 0}
+            disabled={fileList.length === 0 || fileList.length === 2}
             style={{ marginTop: 16, backgroundColor: "white", color: "black" }}
             // loading={uploading}
           >
