@@ -6,6 +6,7 @@ import { notify } from "../CustomComponent";
 
 import "./head.css";
 
+import UploadFile from "./modelUpload";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
@@ -38,11 +39,10 @@ const CommitteAssessStep32 = (props) => {
 
       return (
         <div>
-          <p
-            key={`T${i}`}
-            className={i !== 0 ? "mt-5" : ""}
-            style={styleTile}
-          >{`${i + 1}. ${r.title}`}</p>
+          <p key={`T${i}`} className={i !== 0 ? "mt-5" : ""} style={styleTile}>
+            {`${i + 1}. ${r.title}`}
+            <UploadFile table={`${i + 1}`} form={3} />
+          </p>
           {detail}
         </div>
       );
@@ -164,56 +164,59 @@ const CommitteAssessStep32 = (props) => {
         </div>
       </div>
       <Form
-              ref={formRef}
-              layout="vertical"
-              name="nest-messages"
-              onFinish={onFinish}
-              fields={form}
+        ref={formRef}
+        layout="vertical"
+        name="nest-messages"
+        onFinish={onFinish}
+        fields={form}
       >
-      <div className="row no-gutter mt-2">
-        <div
-          className="col-sm-6 p-0"
-          style={{ borderRight: "4px solid white" }}
-        >
+        <div className="row no-gutter mt-2">
           <div
-            style={{
-              height: "36px",
-              backgroundColor: "#fbdb8a",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            className="col-sm-6 p-0"
+            style={{ borderRight: "4px solid white" }}
           >
-            พนักงาน
+            <div
+              style={{
+                height: "36px",
+                backgroundColor: "#fbdb8a",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              พนักงาน
+            </div>
+            <div
+              style={{
+                backgroundColor: "#F8F6F3",
+                padding: "3%",
+              }}
+            >
+              {Employee()}
+            </div>
           </div>
           <div
-            style={{
-              backgroundColor: "#F8F6F3",
-              padding: "3%",
-            }}
+            className="col-sm-6 p-0"
+            style={{ borderLeft: "4px solid white" }}
           >
-            {Employee()}
-          </div>
-        </div>
-        <div className="col-sm-6 p-0" style={{ borderLeft: "4px solid white" }}>
-          <div
-            style={{
-              height: "36px",
-              backgroundColor: "#fbdb8a",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            ผู้ประเมิน
-          </div>
-          <div
-            style={{
-              backgroundColor: "#F8F6F3",
-              padding: "3%",
-            }}
-          >
-            {/* {Committee()} */}
+            <div
+              style={{
+                height: "36px",
+                backgroundColor: "#fbdb8a",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              ผู้ประเมิน
+            </div>
+            <div
+              style={{
+                backgroundColor: "#F8F6F3",
+                padding: "3%",
+              }}
+            >
+              {/* {Committee()} */}
               <p>
                 1. ท่านคิดว่าผู้ใต้บังคับบัญชายังขาดความรู้
                 ความชำนาญทักษะในเรื่องใดบ้าง
@@ -221,16 +224,15 @@ const CommitteAssessStep32 = (props) => {
               {datacom1.map((v) => {
                 return (
                   <div className="row no-gutter mb-3">
-                    <div className="col-2">
-                        {v.committee}
-                    </div>
+                    <div className="col-2">{v.committee}</div>
                     <div
-                        className="col-10" 
-                        style={{  
-                                fontWeight: "bold",
-                                wordWrap: "break-word",
-                                wordBreak: "break-word", 
-                              }}>
+                      className="col-10"
+                      style={{
+                        fontWeight: "bold",
+                        wordWrap: "break-word",
+                        wordBreak: "break-word",
+                      }}
+                    >
                       {v.comone}
                     </div>
                   </div>
@@ -251,17 +253,16 @@ const CommitteAssessStep32 = (props) => {
               </p>
               {datacom2.map((v) => {
                 return (
-                    <div className="row no-gutter mb-3">
-                    <div className="col-2">
-                        {v.committee}
-                    </div>
+                  <div className="row no-gutter mb-3">
+                    <div className="col-2">{v.committee}</div>
                     <div
-                        className="col-10" 
-                        style={{  
-                                fontWeight: "bold",
-                                wordWrap: "break-word",
-                                wordBreak: "break-word", 
-                              }}>
+                      className="col-10"
+                      style={{
+                        fontWeight: "bold",
+                        wordWrap: "break-word",
+                        wordBreak: "break-word",
+                      }}
+                    >
                       {v.comtwo}
                     </div>
                   </div>
@@ -275,29 +276,29 @@ const CommitteAssessStep32 = (props) => {
                   rows="3"
                 />
               </Form.Item>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div
-        className="mt-4 mb-4"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
-          ย้อนกลับ
+        <div
+          className="mt-4 mb-4"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
+            ย้อนกลับ
+          </div>
+          <div className="mr-4">
+            <button className="btn-modal-confirm" type="submit">
+              บันทึก
+            </button>
+          </div>
+          <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+            ถัดไป
+          </div>
         </div>
-        <div className="mr-4">
-          <button className="btn-modal-confirm" type="submit">
-            บันทึก
-          </button>
-        </div>
-        <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
-          ถัดไป
-        </div>
-      </div>
       </Form>
 
       <CModal show={modal} size="lg" style={{ textAlign: "center" }}>
@@ -346,7 +347,6 @@ const CommitteAssessStep32 = (props) => {
           </Button>
         </CModalBody>
       </CModal>
-
     </div>
   );
 };

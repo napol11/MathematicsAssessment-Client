@@ -156,7 +156,7 @@ const UploadFile = (props) => {
           <Upload
             name="files"
             // action="http://localhost:3001/api/employee/upload"
-            multiple={true}
+            multiple={false}
             listType="picture"
             fileList={fileList}
             maxCount={1}

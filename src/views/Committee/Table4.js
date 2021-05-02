@@ -4,6 +4,7 @@ import { Table, Input, Form } from "antd";
 // import "./App.css";
 import "./committee.css";
 
+import UploadFile from "./modelUpload";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
@@ -191,7 +192,7 @@ class Table1 extends React.Component {
         dataIndex: "Table4Comments",
         align: "center",
         key: "Table4Comments",
-        width:"40%",
+        width: "40%",
         render: (text, row, index) => {
           return (
             <div
@@ -300,6 +301,7 @@ class Table1 extends React.Component {
 
     return (
       <>
+        <UploadFile table={4} form={2} />
         <Table
           className="committeeTableAssess2 mt-4"
           components={components}

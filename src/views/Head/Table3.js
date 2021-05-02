@@ -4,6 +4,7 @@ import { Table, Input, Form } from "antd";
 // import "./App.css";
 import "./head.css";
 
+import UploadFile from "./modelUpload";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
@@ -364,6 +365,7 @@ class Table2 extends React.Component {
 
     return (
       <>
+        <UploadFile table={3} form={2} />
         <Table
           className="committeeTableAssess2 mt-4"
           components={components}
