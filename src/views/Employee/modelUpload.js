@@ -42,6 +42,7 @@ const UploadFile = (props) => {
     const id_assessment = `${id}`;
     const id_employee = Cookies.get(token.userId);
     const table = props.table;
+    const form = props.form;
 
     setUploading(true);
     // console.log(fileList);
@@ -53,6 +54,7 @@ const UploadFile = (props) => {
     data.append("id_assessment", id_assessment);
     data.append("id_employee", id_employee);
     data.append("table", table);
+    data.append("form", form);
     await axios
       .post(`${url}/upload`, data)
       .then((res) => {
@@ -96,21 +98,26 @@ const UploadFile = (props) => {
     axios.post(`${url}/file`, data).then((res) => {
       const data = res.data.data;
       const table = props.table;
+      const fileform = props.form;
       console.log(data);
       if (data === "not found file") {
         setFileList([]);
       } else {
-        const file = data.filter((v) => v.table === table);
-        // console.log(file);
-        if (file.length > 0) {
-          const list = file.map((v, i) => ({
-            ...v,
-            uid: i + 1,
-            name: v.doc_originalname,
-            url: "http://localhost:3001/api/employee/file/" + v.doc_name,
-          }));
-          console.log(list);
-          setFileList(list);
+        const form = data.filter((v) => v.form === fileform);
+        if (form.length > 0) {
+          const file = form.filter((v) => v.table === table);
+          if (file.length > 0) {
+            const list = file.map((v, i) => ({
+              ...v,
+              uid: i + 1,
+              name: v.doc_originalname,
+              url: "http://localhost:3001/api/employee/file/" + v.doc_name,
+            }));
+            console.log(list);
+            setFileList(list);
+          } else {
+            setFileList([]);
+          }
         } else {
           setFileList([]);
         }
@@ -120,10 +127,10 @@ const UploadFile = (props) => {
 
   return (
     <>
-      <button className="buttons_add" onClick={showModal}>
+      <p className="buttons_add" onClick={showModal}>
         {/* {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"} */}
         เอกสาร
-      </button>
+      </p>
       <CModal show={show} closeOnBackdrop={false} centered>
         <CModalHeader>
           <label

@@ -332,7 +332,7 @@ class Form2Table4 extends React.Component {
           <button className="buttons_add" onClick={this.handleAdd}>
             เพิ่มแถวตาราง
           </button>
-          <UploadFile table={4} />
+          <UploadFile table={4} form={2} />
         </div>
         <Table
           className="committeeTableAssess2"

@@ -7,6 +7,7 @@ import { Form, Input } from "antd";
 
 import "./App.css";
 
+import UploadFile from "./modelUpload";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
@@ -113,6 +114,7 @@ function UserFrom3() {
             {` ส่วนที่ 2.2 แบบประเมินคุณลักษณะการปฏิบัติงานและคุณสมบัติเฉพาะตัวสำหรับพนักงานระดับปฏิบัติการ`}
           </label>
         </div>
+
         <Form
           ref={formRef}
           layout="vertical"
@@ -121,6 +123,7 @@ function UserFrom3() {
           fields={form}
         >
           <p>1. ท่านขาดความรู้ ความชำนาญ ทักษะในเรื่องใดบ้าง</p>
+          <UploadFile table={1} form={3} />
           <Form.Item
             // id="form3employees1"
             name={["empne"]}
@@ -137,6 +140,7 @@ function UserFrom3() {
             2. ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ
             ทักษะดังกล่าวได้โดยวิธีใดบ้าง
           </p>
+          <UploadFile table={2} form={3} />
           <Form.Item
             id="form3employees2"
             name={["emtwo"]}
@@ -150,6 +154,7 @@ function UserFrom3() {
             <TextArea className="textbox" rows={4} />
           </Form.Item>
           <p>3. ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง</p>
+          <UploadFile table={3} form={3} />
           <Form.Item
             id="form3employees3"
             name={["emthree"]}
@@ -167,6 +172,7 @@ function UserFrom3() {
             หรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
             (เรียงลำดับความสำคัญ 1-5){" "}
           </p>
+          <UploadFile table={4} form={3} />
           <Form.Item
             id="form3employees4"
             name={["emfour"]}
