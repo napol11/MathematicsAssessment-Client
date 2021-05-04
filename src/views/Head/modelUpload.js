@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CModal, CModalBody, CModalHeader } from "@coreui/react";
 import axios from "axios";
 
@@ -16,12 +16,12 @@ const UploadFile = (props) => {
 
   const showModal = () => {
     setShow(true);
-    LoadData();
+    // LoadData();
   };
 
   const close = () => {
     setShow(false);
-    setFileList([]);
+    // setFileList([]);
   };
 
   const LoadData = () => {
@@ -63,11 +63,15 @@ const UploadFile = (props) => {
     });
   };
 
+  useEffect(() => {
+    LoadData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <>
       <p className="buttons_add" onClick={showModal}>
-        {/* {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"} */}
-        เอกสาร
+        {fileList.length > 0 ? "มีเอกสาร" : "ไม่มีเอกสาร"}
+        {/* เอกสาร */}
       </p>
       <CModal show={show} closeOnBackdrop={false} centered>
         <CModalHeader>
@@ -75,7 +79,7 @@ const UploadFile = (props) => {
             className="m-0"
             style={{ color: "black", fontWeight: "bold", fontSize: 20 }}
           >
-            เอกสารประกอบการประเมิน (สามารถอัปโหลดได้แค่ 1 ไฟล์)
+            เอกสารประกอบการประเมิน
           </label>
 
           <div className="col-2 text-right">

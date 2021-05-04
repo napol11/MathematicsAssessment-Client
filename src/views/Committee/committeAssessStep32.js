@@ -6,7 +6,7 @@ import { notify } from "../CustomComponent";
 
 import "./committee.css";
 
-import UploadFile from "./modelUpload";
+// import UploadFile from "./modelUpload";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
@@ -41,7 +41,7 @@ const CommitteAssessStep32 = (props) => {
         <div>
           <p key={`T${i}`} className={i !== 0 ? "mt-5" : ""} style={styleTile}>
             {`${i + 1}. ${r.title}`}
-            <UploadFile table={`${i + 1}`} form={3} />
+            {/* <UploadFile table={`${i + 1}`} form={3} /> */}
           </p>
           {detail}
         </div>
