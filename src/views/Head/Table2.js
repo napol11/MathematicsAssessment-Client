@@ -370,18 +370,24 @@ class Table2 extends React.Component {
 
     return (
       <>
-        <UploadFile table={2} form={2} />
+        <div
+          className="Row col-sm-12 mt-4"
+          style={{ backgroundColor: "#E7E5E3" }}
+        >
+          <label
+            className="col-sm-11"
+            style={{ fontSize: "16px", fontWeight: "bold" }}
+          >
+            2. การบริหารนโยบาย
+          </label>
+          <UploadFile table={2} form={2} />
+        </div>
         <Table
-          className="committeeTableAssess2 mt-4"
+          className="committeeTableAssess2"
           components={components}
           rowClassName={() => "editable-row"}
           dataSource={dataSource}
           columns={columns}
-          title={() => (
-            <label style={{ fontSize: "16px", fontWeight: "bold" }}>
-              2. การบริหารนโยบาย
-            </label>
-          )}
           pagination={false}
           // pagination={{
           //   defaultPageSize: 4,

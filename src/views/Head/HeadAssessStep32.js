@@ -39,10 +39,10 @@ const CommitteAssessStep32 = (props) => {
 
       return (
         <div>
-          <p key={`T${i}`} className={i !== 0 ? "mt-5" : ""} style={styleTile}>
+          <label key={`T${i}`} className={i !== 0 ? "mt-5 col-sm-9" : "col-sm-9"} style={styleTile}>
             {`${i + 1}. ${r.title}`}
-            <UploadFile table={`${i + 1}`} form={3} />
-          </p>
+          </label>
+          <UploadFile table={`${i + 1}`} form={3} />
           {detail}
         </div>
       );

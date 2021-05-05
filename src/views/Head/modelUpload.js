@@ -69,10 +69,13 @@ const UploadFile = (props) => {
 
   return (
     <>
-      <p className="buttons_add" onClick={showModal}>
+      <button 
+        className={`ml-3 ${fileList.length > 0  ? "buttons_add" : "buttons_disable"}`} 
+        onClick={showModal}
+      >
         {fileList.length > 0 ? "มีเอกสาร" : "ไม่มีเอกสาร"}
         {/* เอกสาร */}
-      </p>
+      </button>
       <CModal show={show} closeOnBackdrop={false} centered>
         <CModalHeader>
           <label

@@ -131,19 +131,18 @@ const UploadFile = (props) => {
 
   return (
     <>
-      <p className="buttons_add" onClick={showModal}>
+      <button className="buttons_add ml-3" onClick={showModal}>
         {/* {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"} */}
-        เอกสาร
-      </p>
+        แนบเอกสาร
+      </button>
       <CModal show={show} closeOnBackdrop={false} centered>
         <CModalHeader>
           <label
             className="m-0"
             style={{ color: "black", fontWeight: "bold", fontSize: 20 }}
           >
-            เอกสารประกอบการประเมิน (สามารถอัปโหลดได้แค่ 1 ไฟล์)
+            เอกสารประกอบการประเมิน (สามารถแนบไฟล์สกุล PDF ได้เพียง 1 ไฟล์)
           </label>
-
           <div className="col-2 text-right">
             <i
               onClick={close}
@@ -169,8 +168,9 @@ const UploadFile = (props) => {
             // iconRender= {}
             showUploadList={{ showPreviewIcon: true }}
           >
-            {fileList.length < 1 && "+ Upload"}
+            {fileList.length < 1 && "+ เพิ่มเอกสาร"}
           </Upload>
+          <center>
           <Button
             type="primary"
             onClick={handleUpload}
@@ -178,9 +178,10 @@ const UploadFile = (props) => {
             style={{ marginTop: 16, backgroundColor: "white", color: "black" }}
             // loading={uploading}
           >
-            {uploading ? "Uploading" : "Start Upload"}
+            {uploading ? "กำลังอัปโหลด" : "แนบเอกสาร"}
             {/* Start Upload */}
           </Button>
+          </center>
         </CModalBody>
       </CModal>
     </>

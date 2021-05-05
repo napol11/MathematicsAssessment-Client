@@ -22,6 +22,18 @@ p {
   background: #F6BE32;
 }
 
+.buttons_disable {
+    pointer-events: none;
+    outline: none !important;
+    background: none;
+    border: none;
+    font-size: 15px;
+    margin-right:auto;
+    text-align: center;
+    padding:4px 15px;
+    margin-top: 1%;
+}
+
 /* Table Ant design Committee */
 .committeeTable .ant-table thead > tr > th {
   background-color: #f26843 !important;
