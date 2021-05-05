@@ -18,6 +18,7 @@ const UploadFile = (props) => {
   const [show, setShow] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [disable, setDisable] = useState(true);
 
   const showModal = () => {
     setShow(true);
@@ -34,6 +35,7 @@ const UploadFile = (props) => {
       notify.error(`${file.name} is not a pdf file`);
     } else {
       setFileList((fileList) => [...fileList, file]);
+      setDisable(false);
       return false;
     }
   };
@@ -61,10 +63,12 @@ const UploadFile = (props) => {
         notify.success("อับโหลดได้");
         setUploading(false);
         console.log(res);
+        setDisable(true);
       })
       .catch((e) => {
         console.log(e);
         notify.error("อับโหลดไม่ได้");
+        setDisable(true);
         setUploading(false);
         // setFileList([]);
       });
@@ -155,7 +159,7 @@ const UploadFile = (props) => {
         <CModalBody>
           <Upload
             name="files"
-            // action="http://localhost:3001/api/employee/upload"
+            action={handleUpload}
             multiple={false}
             listType="picture"
             fileList={fileList}
@@ -170,7 +174,7 @@ const UploadFile = (props) => {
           <Button
             type="primary"
             onClick={handleUpload}
-            disabled={fileList.length === 0 || fileList.length === 2}
+            disabled={fileList.length === 0 || disable ? true : false}
             style={{ marginTop: 16, backgroundColor: "white", color: "black" }}
             // loading={uploading}
           >
