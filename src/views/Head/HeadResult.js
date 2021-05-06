@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import "./head.css";
 
+import { Radio, Form, Select } from "antd";
+
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { token } from "../../config";
+import { notify } from "../CustomComponent";
 const url = `http://localhost:3001/api/committee`;
 const urlEM = `http://localhost:3001/api/employee`;
 
@@ -14,6 +19,24 @@ const CommitteAssessStep4 = (props) => {
   const [sumForm3, setSumForm3] = useState("");
   const [sumForm3Per, setSumForm3Per] = useState("");
   const [total, setTotle] = useState("");
+
+  const formRef = useRef(null);
+  const { Option } = Select;
+
+  const [data, setData] = useState([
+    {
+      name: ["grad"],
+      value: "",
+    },
+    {
+      name: ["pass"],
+      value: "",
+    },
+    {
+      name: ["salary"],
+      value: "",
+    },
+  ]);
 
   const LoadData = async () => {
     const id_assessment = `${assessment}`;
@@ -232,9 +255,50 @@ const CommitteAssessStep4 = (props) => {
       setSumForm3Per(form3persent.toFixed(2));
     });
 
+    axios.post(`${url}/dataresulthead`, data).then((res) => {
+      console.log(res);
+      setData([
+        {
+          name: ["grad"],
+          value: res.data.data.grad || "",
+        },
+        {
+          name: ["pass"],
+          value: res.data.data.pass || "",
+        },
+        {
+          name: ["salary"],
+          value: res.data.data.salary || "",
+        },
+      ]);
+    });
+
     // const totalSum = parseFloat(sumForm3Per) + parseFloat(sumForm2Per);
     // console.log(totalSum);
     // setTotle(total.toFixed(2));
+  };
+
+  const onFinish = (values) => {
+    const id_assessment = `${assessment}`;
+    const id_employee = `${id}`;
+    const id_committee = Cookies.get(token.userId);
+    const data = {
+      ...values,
+      assessment_id: id_assessment,
+      employee_id: id_employee,
+      committee_id: id_committee,
+    };
+    axios
+      .post(`${url}/resulthead`, data)
+      .then((res) => {
+        console.log(res);
+        notify.success("บันทึกสำเร็จ !");
+      })
+      .catch((err) => {
+        console.log(err);
+        notify.error("บันทึกไม่สำเร็จ !");
+      });
+    console.log(data);
   };
 
   useEffect(() => {
@@ -432,6 +496,113 @@ const CommitteAssessStep4 = (props) => {
               >
                 {`(100%)`}
               </label>
+            </div>
+            <div className="col-sm-12 ">
+              <label
+                style={{
+                  fontWeight: "normal",
+                  fontSize: "18px",
+                  color: "black",
+                  marginLeft: "6%",
+                  marginTop: "2%",
+                }}
+              >
+                {`คะแนนการประเมินผลการปฏิบัติงานเป็นเพียงคะแนนส่วนบุคคลที่ใช้ประกอบการประเมินผลการปฏิบัติงานในเบื้องต้น`}
+              </label>
+            </div>
+            <div className="col-sm-12 ">
+              <label
+                style={{
+                  fontWeight: "normal",
+                  fontSize: "18px",
+                  color: "black",
+                  marginLeft: "6%",
+                }}
+              >
+                {`ทั้งนี้  ผลการประเมินและระดับผลงานขึ้นอยู่กับผลงานในภาพรวมประกอบกับดุลยพินิจของผู้บังคับบัญชา`}
+              </label>
+            </div>
+            <div className="col-sm-12 ">
+              <label
+                style={{
+                  fontWeight: "normal",
+                  fontSize: "18px",
+                  color: "black",
+                  marginLeft: "6%",
+                }}
+              >
+                {`พนักงานระดับปฏิบัติการ : เกณฑ์ผ่านรวมไม่ต่ำกว่าร้อยละ 60`}
+              </label>
+            </div>
+            <div className="col-sm-5 ">
+              <label
+                style={{
+                  fontWeight: "normal",
+                  fontSize: "18px",
+                  color: "black",
+                  marginLeft: "6%",
+                  marginTop: "1%",
+                }}
+              >
+                {`สรุป`}
+              </label>
+              <Form
+                ref={formRef}
+                layout="inline"
+                name="nest-messages"
+                onFinish={onFinish}
+                fields={data}
+              >
+                <Form.Item
+                  name={["pass"]}
+                  style={{ marginBottom: "10px" }}
+                  className="col-sm-12"
+                >
+                  <Radio.Group>
+                    <Radio value="ผ่านการประเมิน">ผ่านการประเมิน</Radio>
+                    <Radio value="ไม่ผ่านการประเมิน">ไม่ผ่านการประเมิน</Radio>
+                  </Radio.Group>
+                </Form.Item>
+
+                <Form.Item
+                  style={{ marginBottom: "10px" }}
+                  name={["grad"]}
+                  label="ผลงานระดับ"
+                  className="col-sm-12"
+                >
+                  <Select
+                    className="select-modal"
+                    placeholder=" ‎‏‏‎ ผลงานระดับ"
+                    style={{ width: 100 }}
+                    // onChange={onChangePosition}
+                  >
+                    <Option value="A">A</Option>
+                    <Option value="B">B</Option>
+                    <Option value="B-">B-</Option>
+                    <Option value="C">C</Option>
+                    <Option value="C">C-</Option>
+                    <Option value="D">D</Option>
+                    <Option value="D-">D-</Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  name={["salary"]}
+                  style={{ marginBottom: "10px" }}
+                  className="col-sm-12"
+                >
+                  <Radio.Group>
+                    <Radio value="เห็นสมควรให้ขึ้นเงินเดือน">
+                      {`เห็นสมควรให้ขึ้นเงินเดือน ${total} %`}
+                    </Radio>
+                    <Radio value="ไม่เห็นสมควรให้ขึ้นเงินเดือน">
+                      ไม่เห็นสมควรให้ขึ้นเงินเดือน
+                    </Radio>
+                  </Radio.Group>
+                </Form.Item>
+                <button className="btn-modal-confirm" type="submit">
+                  ยืนยัน
+                </button>
+              </Form>
             </div>
           </div>
         </div>
