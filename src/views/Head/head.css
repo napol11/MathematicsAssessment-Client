@@ -315,3 +315,31 @@ p {
     border: #f26843 solid 1.5px !important;
     color: #f26843;
 }
+
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:hover,
+.ant-select-open .ant-select-selector {
+  border-color: #f26843 !important;
+}
+
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+  border-color: #f26843 !important;
+  box-shadow: 0 0 4px #f26843 !important;
+}
+
+.ant-radio-checked .ant-radio-inner{
+    border-color: #f26843 !important ;
+    box-shadow: 0 0 4px #f26843 !important;
+  }
+  
+  .ant-radio-checked .ant-radio-inner:after{
+    background-color: #f26843;
+    box-shadow: 0 0 4px #f26843 !important;
+  }
+  
+  .ant-radio:hover .ant-radio-inner {
+    border-color: #f26843 ;
+  }

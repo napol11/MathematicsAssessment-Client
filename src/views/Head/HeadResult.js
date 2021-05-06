@@ -312,6 +312,12 @@ const CommitteAssessStep4 = (props) => {
   }, [total, sumForm3Per, sumForm2Per]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div>
+        <Form
+                ref={formRef}
+                name="nest-messages"
+                onFinish={onFinish}
+                fields={data}
+              >
       {/* {console.log(formtwo)} */}
       <div className="row no-gutter">
         <div className="col-sm-6">
@@ -332,7 +338,7 @@ const CommitteAssessStep4 = (props) => {
             <div className="col-sm-12">
               <label
                 style={{
-                  fontWeight: "normal",
+                  fontWeight: "bold",
                   fontSize: "18px",
                   color: "black",
                   margin: "1%",
@@ -464,7 +470,7 @@ const CommitteAssessStep4 = (props) => {
             <div className="col-sm-8">
               <label
                 style={{
-                  fontWeight: "normal",
+                  fontWeight: "bold",
                   fontSize: "18px",
                   color: "black",
                   marginLeft: "9%",
@@ -497,14 +503,13 @@ const CommitteAssessStep4 = (props) => {
                 {`(100%)`}
               </label>
             </div>
-            <div className="col-sm-12 ">
+            <div className="col-sm-12 mt-4">
               <label
                 style={{
                   fontWeight: "normal",
-                  fontSize: "18px",
+                  fontSize: "16px",
                   color: "black",
                   marginLeft: "6%",
-                  marginTop: "2%",
                 }}
               >
                 {`คะแนนการประเมินผลการปฏิบัติงานเป็นเพียงคะแนนส่วนบุคคลที่ใช้ประกอบการประเมินผลการปฏิบัติงานในเบื้องต้น`}
@@ -514,7 +519,7 @@ const CommitteAssessStep4 = (props) => {
               <label
                 style={{
                   fontWeight: "normal",
-                  fontSize: "18px",
+                  fontSize: "16px",
                   color: "black",
                   marginLeft: "6%",
                 }}
@@ -526,7 +531,7 @@ const CommitteAssessStep4 = (props) => {
               <label
                 style={{
                   fontWeight: "normal",
-                  fontSize: "18px",
+                  fontSize: "16px",
                   color: "black",
                   marginLeft: "6%",
                 }}
@@ -534,94 +539,85 @@ const CommitteAssessStep4 = (props) => {
                 {`พนักงานระดับปฏิบัติการ : เกณฑ์ผ่านรวมไม่ต่ำกว่าร้อยละ 60`}
               </label>
             </div>
-            <div className="col-sm-5 ">
+            <div className="col-sm-8 mt-4">
               <label
                 style={{
-                  fontWeight: "normal",
+                  fontWeight: "bold",
                   fontSize: "18px",
                   color: "black",
-                  marginLeft: "6%",
-                  marginTop: "1%",
+                  marginLeft: "9%",
                 }}
               >
                 {`สรุป`}
               </label>
-              <Form
-                ref={formRef}
-                layout="inline"
-                name="nest-messages"
-                onFinish={onFinish}
-                fields={data}
-              >
                 <Form.Item
                   name={["pass"]}
-                  style={{ marginBottom: "10px" }}
-                  className="col-sm-12"
+                  className="col-sm-12 mb-4"
                 >
-                  <Radio.Group>
+                  <Radio.Group style={{ marginLeft:"25%" }}>
                     <Radio value="ผ่านการประเมิน">ผ่านการประเมิน</Radio>
-                    <Radio value="ไม่ผ่านการประเมิน">ไม่ผ่านการประเมิน</Radio>
+                    <Radio style={{ marginLeft: 300 }} value="ไม่ผ่านการประเมิน">ไม่ผ่านการประเมิน</Radio>
                   </Radio.Group>
                 </Form.Item>
-
                 <Form.Item
-                  style={{ marginBottom: "10px" }}
                   name={["grad"]}
                   label="ผลงานระดับ"
-                  className="col-sm-12"
+                  className=" mb-3"
+                  style={{ marginLeft: "25%" }}
                 >
                   <Select
                     className="select-modal"
                     placeholder=" ‎‏‏‎ ผลงานระดับ"
-                    style={{ width: 100 }}
+                    style={{ width: "40%" }}
                     // onChange={onChangePosition}
                   >
                     <Option value="A">A</Option>
-                    <Option value="B">B</Option>
-                    <Option value="B-">B-</Option>
+                    <Option value="B">B+</Option>
+                    <Option value="B-">B</Option>
+                    <Option value="C">C+</Option>
                     <Option value="C">C</Option>
-                    <Option value="C">C-</Option>
-                    <Option value="D">D</Option>
-                    <Option value="D-">D-</Option>
+                    <Option value="D">D+</Option>
+                    <Option value="D-">D</Option>
                   </Select>
                 </Form.Item>
                 <Form.Item
                   name={["salary"]}
-                  style={{ marginBottom: "10px" }}
-                  className="col-sm-12"
+                  className="col-sm-12 mb-3"
                 >
-                  <Radio.Group>
+                  <Radio.Group style={{ marginLeft:"25%" }}>
                     <Radio value="เห็นสมควรให้ขึ้นเงินเดือน">
                       {`เห็นสมควรให้ขึ้นเงินเดือน ${total} %`}
                     </Radio>
-                    <Radio value="ไม่เห็นสมควรให้ขึ้นเงินเดือน">
+                    <Radio style={{ marginLeft: 204 }} value="ไม่เห็นสมควรให้ขึ้นเงินเดือน">
                       ไม่เห็นสมควรให้ขึ้นเงินเดือน
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
-                <button className="btn-modal-confirm" type="submit">
-                  ยืนยัน
-                </button>
-              </Form>
             </div>
           </div>
         </div>
       </div>
 
       <div
-        className="mt-4 mb-4"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
-          ย้อนกลับ
+          className="mt-4 mb-4"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
+            ย้อนกลับ
+          </div>
+          <div className="mr-4">
+            <button className="btn-modal-confirm" type="submit">
+              บันทึก
+            </button>
+          </div>
+          <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+            ถัดไป
+          </div>
         </div>
-        <div className="pl-4 pr-4 mr-4 btnConfirm" onClick={props.next}>
-          ถัดไป
-        </div>
-      </div>
+      </Form>
     </div>
   );
 };
