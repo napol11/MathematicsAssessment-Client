@@ -32,7 +32,7 @@ const UploadFile = (props) => {
 
   const beforeUpload = (file) => {
     if (file.type !== "application/pdf") {
-      notify.error(`${file.name} is not a pdf file`);
+      notify.error(`${file.name} สามารถแนบเอกสารที่เป็น PDF เท่านั้น`);
     } else {
       setFileList((fileList) => [...fileList, file]);
       setDisable(false);
@@ -131,10 +131,14 @@ const UploadFile = (props) => {
 
   return (
     <>
-      <button className="buttons_add ml-3" onClick={showModal}>
+      <b
+        className="buttons_add ml-3"
+        onClick={showModal}
+        style={{ fontWeight: "normal" }}
+      >
         {/* {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"} */}
         แนบเอกสาร
-      </button>
+      </b>
       <CModal show={show} closeOnBackdrop={false} centered>
         <CModalHeader>
           <label
@@ -171,16 +175,20 @@ const UploadFile = (props) => {
             {fileList.length < 1 && "+ เพิ่มเอกสาร"}
           </Upload>
           <center>
-          <Button
-            type="primary"
-            onClick={handleUpload}
-            disabled={fileList.length === 0 || disable ? true : false}
-            style={{ marginTop: 16, backgroundColor: "white", color: "black" }}
-            // loading={uploading}
-          >
-            {uploading ? "กำลังอัปโหลด" : "แนบเอกสาร"}
-            {/* Start Upload */}
-          </Button>
+            <Button
+              type="primary"
+              onClick={handleUpload}
+              disabled={fileList.length === 0 || disable ? true : false}
+              style={{
+                marginTop: 16,
+                backgroundColor: "white",
+                color: "black",
+              }}
+              // loading={uploading}
+            >
+              {uploading ? "กำลังอัปโหลด" : "แนบเอกสาร"}
+              {/* Start Upload */}
+            </Button>
           </center>
         </CModalBody>
       </CModal>

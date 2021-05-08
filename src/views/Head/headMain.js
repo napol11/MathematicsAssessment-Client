@@ -52,16 +52,14 @@ const CommitteeMain = () => {
       align: "center",
       width: "150px",
     },
-    {
-      title: <div style={title}>สังกัด</div>,
-      dataIndex: "division",
-      key: "division",
-      align: "center",
-      width: "150px",
-    },
-    {
-
-    },
+    // {
+    //   title: <div style={title}>สังกัด</div>,
+    //   dataIndex: "division",
+    //   key: "division",
+    //   align: "center",
+    //   width: "150px",
+    // },
+    {},
     {
       title: <div style={title}>{null}</div>,
       dataIndex: "status",

@@ -80,7 +80,11 @@ const CommitteAssessStep4 = (props) => {
         }));
         const resultT1 = T1.map((v, i) => ({
           result:
-            (((T1[i].com1 + T1[i].com2 + T1[i].com3 + T1[i].com4 + T1[i].com5) /
+            (((parseFloat(T1[i].com1) +
+              parseFloat(T1[i].com2) +
+              parseFloat(T1[i].com3) +
+              parseFloat(T1[i].com4) +
+              parseFloat(T1[i].com5)) /
               5) *
               T1[i].emFTE) /
             4,
@@ -117,7 +121,11 @@ const CommitteAssessStep4 = (props) => {
         }));
         const resultT2 = T2.map((v, i) => ({
           result:
-            (((T2[i].com1 + T2[i].com2 + T2[i].com3 + T2[i].com4 + T2[i].com5) /
+            (((parseFloat(T2[i].com1) +
+              parseFloat(T2[i].com2) +
+              parseFloat(T2[i].com3) +
+              parseFloat(T2[i].com4) +
+              parseFloat(T2[i].com5)) /
               5) *
               T2[i].emFTE) /
             4,
@@ -154,7 +162,11 @@ const CommitteAssessStep4 = (props) => {
         }));
         const resultT3 = T3.map((v, i) => ({
           result:
-            (((T3[i].com1 + T3[i].com2 + T3[i].com3 + T3[i].com4 + T3[i].com5) /
+            (((parseFloat(T3[i].com1) +
+              parseFloat(T3[i].com2) +
+              parseFloat(T3[i].com3) +
+              parseFloat(T3[i].com4) +
+              parseFloat(T3[i].com5)) /
               5) *
               T3[i].emFTE) /
             4,
@@ -191,7 +203,11 @@ const CommitteAssessStep4 = (props) => {
         }));
         const resultT4 = T4.map((v, i) => ({
           result:
-            (((T4[i].com1 + T4[i].com2 + T4[i].com3 + T4[i].com4 + T4[i].com5) /
+            (((parseFloat(T4[i].com1) +
+              parseFloat(T4[i].com2) +
+              parseFloat(T4[i].com3) +
+              parseFloat(T4[i].com4) +
+              parseFloat(T4[i].com5)) /
               5) *
               T4[i].emFTE) /
             4,
@@ -312,210 +328,213 @@ const CommitteAssessStep4 = (props) => {
   }, [total, sumForm3Per, sumForm2Per]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div>
-        <Form
-                ref={formRef}
-                name="nest-messages"
-                onFinish={onFinish}
-                fields={data}
-              >
-      {/* {console.log(formtwo)} */}
-      <div className="row no-gutter">
-        <div className="col-sm-6">
-          <label
-            style={{ fontWeight: "bold", fontSize: "24px", color: "black" }}
-          >
-            {`ส่วนที่ 4 สรุปผลการประเมิน`}
-          </label>
+      <Form
+        ref={formRef}
+        name="nest-messages"
+        onFinish={onFinish}
+        fields={data}
+      >
+        {/* {console.log(formtwo)} */}
+        <div className="row no-gutter">
+          <div className="col-sm-6">
+            <label
+              style={{ fontWeight: "bold", fontSize: "24px", color: "black" }}
+            >
+              {`ส่วนที่ 4 สรุปผลการประเมิน`}
+            </label>
+          </div>
         </div>
-      </div>
-      <div className="col-sm-12 p-0" style={{ borderRight: "4px solid white" }}>
         <div
-          style={{
-            backgroundColor: "#F8F6F3",
-          }}
+          className="col-sm-12 p-0"
+          style={{ borderRight: "4px solid white" }}
         >
-          <div className="row no-gutter">
-            <div className="col-sm-12">
-              <label
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "18px",
-                  color: "black",
-                  margin: "1%",
-                }}
-              >
-                {`รวมคะแนนการประเมิน`}
-              </label>
-            </div>
-            <div className="col-sm-2">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "40%",
-                }}
-              >
-                {`ส่วนที่ 2.1`}
-              </label>
-            </div>
-            <div className="col-sm-3">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "1%",
-                }}
-              >
-                {`ประเมินผลงาน`}
-              </label>
-            </div>
-            <div className="col-sm-3">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "50%",
-                }}
-              >
-                {`${sumForm2} คะแนน`}
-              </label>
-            </div>
-            <div className="col-sm-2">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "1%",
-                }}
-              >
-                {`คิดเป็น ${sumForm2Per} คะแนน`}
-              </label>
-            </div>
-            <div className="col-sm-2">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "1%",
-                }}
-              >
-                {`(70%)`}
-              </label>
-            </div>
-            <div className="col-sm-2">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "40%",
-                }}
-              >
-                {`ส่วนที่ 2.2`}
-              </label>
-            </div>
-            <div className="col-sm-3">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "1%",
-                }}
-              >
-                {`ประเมินคุณลักษณะในการปฏิบัติงานและคุณสมบัติเฉพาะตัว `}
-              </label>
-            </div>
-            <div className="col-sm-3">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "50%",
-                }}
-              >
-                {`${sumForm3} คะแนน `}
-              </label>
-            </div>
-            <div className="col-sm-2">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "1%",
-                }}
-              >
-                {`คิดเป็น ${sumForm3Per}  คะแนน`}
-              </label>
-            </div>
-            <div className="col-sm-2">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "1%",
-                }}
-              >
-                {`(30%)`}
-              </label>
-            </div>
-            <div className="col-sm-8">
-              <label
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "9%",
-                }}
-              >
-                {`รวม`}
-              </label>
-            </div>
-            <div className="col-sm-2">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "1%",
-                }}
-              >
-                {`คิดเป็น ${total} คะแนน`}
-              </label>
-            </div>
-            <div className="col-sm-2 ">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "1%",
-                }}
-              >
-                {`(100%)`}
-              </label>
-            </div>
-            <div className="col-sm-12 mt-4">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                  color: "black",
-                  marginLeft: "6%",
-                }}
-              >
-                {`คะแนนการประเมินผลการปฏิบัติงานเป็นเพียงคะแนนส่วนบุคคลที่ใช้ประกอบการประเมินผลการปฏิบัติงานในเบื้องต้น`}
-              </label>
-            </div>
-            <div className="col-sm-12 ">
+          <div
+            style={{
+              backgroundColor: "#F8F6F3",
+            }}
+          >
+            <div className="row no-gutter">
+              <div className="col-sm-12">
+                <label
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "18px",
+                    color: "black",
+                    margin: "1%",
+                  }}
+                >
+                  {`รวมคะแนนการประเมิน`}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "40%",
+                  }}
+                >
+                  {`ส่วนที่ 2.1`}
+                </label>
+              </div>
+              <div className="col-sm-3">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "1%",
+                  }}
+                >
+                  {`ประเมินผลงาน`}
+                </label>
+              </div>
+              <div className="col-sm-3">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "50%",
+                  }}
+                >
+                  {`${sumForm2} คะแนน`}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "1%",
+                  }}
+                >
+                  {`คิดเป็น ${sumForm2Per} คะแนน`}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "1%",
+                  }}
+                >
+                  {`(70%)`}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "40%",
+                  }}
+                >
+                  {`ส่วนที่ 2.2`}
+                </label>
+              </div>
+              <div className="col-sm-3">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "1%",
+                  }}
+                >
+                  {`ประเมินคุณลักษณะในการปฏิบัติงานและคุณสมบัติเฉพาะตัว `}
+                </label>
+              </div>
+              <div className="col-sm-3">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "50%",
+                  }}
+                >
+                  {`${sumForm3} คะแนน `}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "1%",
+                  }}
+                >
+                  {`คิดเป็น ${sumForm3Per}  คะแนน`}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "1%",
+                  }}
+                >
+                  {`(30%)`}
+                </label>
+              </div>
+              <div className="col-sm-8">
+                <label
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "9%",
+                  }}
+                >
+                  {`รวม`}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "1%",
+                  }}
+                >
+                  {`คิดเป็น ${total} คะแนน`}
+                </label>
+              </div>
+              <div className="col-sm-2 ">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "1%",
+                  }}
+                >
+                  {`(100%)`}
+                </label>
+              </div>
+              <div className="col-sm-12 mt-4">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "16px",
+                    color: "black",
+                    marginLeft: "6%",
+                  }}
+                >
+                  {`คะแนนการประเมินผลการปฏิบัติงานเป็นเพียงคะแนนส่วนบุคคลที่ใช้ประกอบการประเมินผลการปฏิบัติงานในเบื้องต้น ทั้งนี้  ผลการประเมินและระดับผลงานขึ้นอยู่กับผลงานในภาพรวมประกอบกับดุลยพินิจของผู้บังคับบัญชา`}
+                </label>
+              </div>
+              {/* <div className="col-sm-12 ">
               <label
                 style={{
                   fontWeight: "normal",
@@ -526,37 +545,39 @@ const CommitteAssessStep4 = (props) => {
               >
                 {`ทั้งนี้  ผลการประเมินและระดับผลงานขึ้นอยู่กับผลงานในภาพรวมประกอบกับดุลยพินิจของผู้บังคับบัญชา`}
               </label>
-            </div>
-            <div className="col-sm-12 ">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                  color: "black",
-                  marginLeft: "6%",
-                }}
-              >
-                {`พนักงานระดับปฏิบัติการ : เกณฑ์ผ่านรวมไม่ต่ำกว่าร้อยละ 60`}
-              </label>
-            </div>
-            <div className="col-sm-8 mt-4">
-              <label
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "18px",
-                  color: "black",
-                  marginLeft: "9%",
-                }}
-              >
-                {`สรุป`}
-              </label>
-                <Form.Item
-                  name={["pass"]}
-                  className="col-sm-12 mb-4"
+            </div> */}
+              <div className="col-sm-12 ">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "16px",
+                    color: "black",
+                    marginLeft: "6%",
+                  }}
                 >
-                  <Radio.Group style={{ marginLeft:"25%" }}>
+                  {`พนักงานระดับปฏิบัติการ : เกณฑ์ผ่านรวมไม่ต่ำกว่าร้อยละ 60`}
+                </label>
+              </div>
+              <div className="col-sm-8 mt-4">
+                <label
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "18px",
+                    color: "black",
+                    marginLeft: "9%",
+                  }}
+                >
+                  {`สรุป`}
+                </label>
+                <Form.Item name={["pass"]} className="col-sm-12 mb-4">
+                  <Radio.Group style={{ marginLeft: "25%" }}>
                     <Radio value="ผ่านการประเมิน">ผ่านการประเมิน</Radio>
-                    <Radio style={{ marginLeft: 300 }} value="ไม่ผ่านการประเมิน">ไม่ผ่านการประเมิน</Radio>
+                    <Radio
+                      style={{ marginLeft: 300 }}
+                      value="ไม่ผ่านการประเมิน"
+                    >
+                      ไม่ผ่านการประเมิน
+                    </Radio>
                   </Radio.Group>
                 </Form.Item>
                 <Form.Item
@@ -580,25 +601,25 @@ const CommitteAssessStep4 = (props) => {
                     <Option value="D-">D</Option>
                   </Select>
                 </Form.Item>
-                <Form.Item
-                  name={["salary"]}
-                  className="col-sm-12 mb-3"
-                >
-                  <Radio.Group style={{ marginLeft:"25%" }}>
+                <Form.Item name={["salary"]} className="col-sm-12 mb-3">
+                  <Radio.Group style={{ marginLeft: "25%" }}>
                     <Radio value="เห็นสมควรให้ขึ้นเงินเดือน">
                       {`เห็นสมควรให้ขึ้นเงินเดือน ${total} %`}
                     </Radio>
-                    <Radio style={{ marginLeft: 204 }} value="ไม่เห็นสมควรให้ขึ้นเงินเดือน">
+                    <Radio
+                      style={{ marginLeft: 204 }}
+                      value="ไม่เห็นสมควรให้ขึ้นเงินเดือน"
+                    >
                       ไม่เห็นสมควรให้ขึ้นเงินเดือน
                     </Radio>
                   </Radio.Group>
                 </Form.Item>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div
+        <div
           className="mt-4 mb-4"
           style={{
             display: "flex",

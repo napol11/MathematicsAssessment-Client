@@ -137,7 +137,7 @@ class Form2Table1 extends React.Component {
         width: "10%",
       },
       {
-        title: <div style={title}>{"คะแนนรวม (B * C)"}</div>,
+        title: <div style={title}>{"คะแนนรวม (A * B)"}</div>,
         dataIndex: "Table1TotalScore",
         key: "Table1TotalScore",
         align: "center",

@@ -80,19 +80,19 @@ const CommitteAssessStep2 = (props) => {
       f.formtwo_table = "1";
       f.formtwo_fte = v.Table1FTE;
       f.totle =
-        ((v.Table1LevelCOM1 +
-          v.Table1LevelCOM2 +
-          v.Table1LevelCOM3 +
-          v.Table1LevelCOM4 +
-          parseInt(v.Table1LevelHead)) /
+        ((parseFloat(v.Table1LevelCOM1) +
+          parseFloat(v.Table1LevelCOM2) +
+          parseFloat(v.Table1LevelCOM3) +
+          parseFloat(v.Table1LevelCOM4) +
+          parseFloat(v.Table1LevelHead)) /
           5) *
         v.Table1FTE;
       f.totlepercen =
-        (((v.Table1LevelCOM1 +
-          v.Table1LevelCOM2 +
-          v.Table1LevelCOM3 +
-          v.Table1LevelCOM4 +
-          parseInt(v.Table1LevelHead)) /
+        (((parseFloat(v.Table1LevelCOM1) +
+          parseFloat(v.Table1LevelCOM2) +
+          parseFloat(v.Table1LevelCOM3) +
+          parseFloat(v.Table1LevelCOM4) +
+          parseFloat(v.Table1LevelHead)) /
           5) *
           v.Table1FTE) /
         4;
@@ -103,19 +103,19 @@ const CommitteAssessStep2 = (props) => {
       f.formtwo_table = "2";
       f.formtwo_fte = v.Table2FTE;
       f.totle =
-        ((v.Table2LevelCOM1 +
-          v.Table2LevelCOM2 +
-          v.Table2LevelCOM3 +
-          v.Table2LevelCOM4 +
-          parseInt(v.Table2LevelHead)) /
+        ((parseFloat(v.Table2LevelCOM1) +
+          parseFloat(v.Table2LevelCOM2) +
+          parseFloat(v.Table2LevelCOM3) +
+          parseFloat(v.Table2LevelCOM4) +
+          parseFloat(v.Table2LevelHead)) /
           5) *
         v.Table2FTE;
       f.totlepercen =
-        (((v.Table2LevelCOM1 +
-          v.Table2LevelCOM2 +
-          v.Table2LevelCOM3 +
-          v.Table2LevelCOM4 +
-          parseInt(v.Table2LevelHead)) /
+        (((parseFloat(v.Table2LevelCOM1) +
+          parseFloat(v.Table2LevelCOM2) +
+          parseFloat(v.Table2LevelCOM3) +
+          parseFloat(v.Table2LevelCOM4) +
+          parseFloat(v.Table2LevelHead)) /
           5) *
           v.Table2FTE) /
         4;
@@ -126,19 +126,19 @@ const CommitteAssessStep2 = (props) => {
       f.formtwo_table = "3";
       f.formtwo_fte = v.Table3FTE;
       f.totle =
-        ((v.Table3LevelCOM1 +
-          v.Table3LevelCOM2 +
-          v.Table3LevelCOM3 +
-          v.Table3LevelCOM4 +
-          parseInt(v.Table3LevelHead)) /
+        ((parseFloat(v.Table3LevelCOM1) +
+          parseFloat(v.Table3LevelCOM2) +
+          parseFloat(v.Table3LevelCOM3) +
+          parseFloat(v.Table3LevelCOM4) +
+          parseFloat(v.Table3LevelHead)) /
           5) *
         v.Table3FTE;
       f.totlepercen =
-        (((v.Table3LevelCOM1 +
-          v.Table3LevelCOM2 +
-          v.Table3LevelCOM3 +
-          v.Table3LevelCOM4 +
-          parseInt(v.Table3LevelHead)) /
+        (((parseFloat(v.Table3LevelCOM1) +
+          parseFloat(v.Table3LevelCOM2) +
+          parseFloat(v.Table3LevelCOM3) +
+          parseFloat(v.Table3LevelCOM4) +
+          parseFloat(v.Table3LevelHead)) /
           5) *
           v.Table3FTE) /
         4;
@@ -149,24 +149,25 @@ const CommitteAssessStep2 = (props) => {
       f.formtwo_table = "4";
       f.formtwo_fte = v.Table4FTE;
       f.totle =
-        ((v.Table4LevelCOM1 +
-          v.Table4LevelCOM2 +
-          v.Table4LevelCOM3 +
-          v.Table4LevelCOM4 +
-          parseInt(v.Table4LevelHead)) /
+        ((parseFloat(v.Table4LevelCOM1) +
+          parseFloat(v.Table4LevelCOM2) +
+          parseFloat(v.Table4LevelCOM3) +
+          parseFloat(v.Table4LevelCOM4) +
+          parseFloat(v.Table4LevelHead)) /
           5) *
         v.Table4FTE;
       f.totlepercen =
-        (((v.Table4LevelCOM1 +
-          v.Table4LevelCOM2 +
-          v.Table4LevelCOM3 +
-          v.Table4LevelCOM4 +
-          parseInt(v.Table4LevelHead)) /
+        (((parseFloat(v.Table4LevelCOM1) +
+          parseFloat(v.Table4LevelCOM2) +
+          parseFloat(v.Table4LevelCOM3) +
+          parseFloat(v.Table4LevelCOM4) +
+          parseFloat(v.Table4LevelHead)) /
           5) *
           v.Table4FTE) /
         4;
       _list.push(f);
     });
+    console.log(_list);
     // let result = 0;
     // for (let i = 0; i < _list.length; i++) {
     //   result += parseInt(_list[i].totle);
@@ -180,7 +181,7 @@ const CommitteAssessStep2 = (props) => {
       fte += parseInt(_list[i].formtwo_fte);
     }
     setFte(fte);
-    setTotalpercen(resultpercen);
+    setTotalpercen(resultpercen.toFixed(2));
     console.log(resultpercen);
     // setTotal(result);
   }, [dataT1, dataT2, dataT3, dataT4]); // eslint-disable-line react-hooks/exhaustive-deps

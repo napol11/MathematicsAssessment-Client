@@ -187,13 +187,13 @@ class Table1 extends React.Component {
                 textAlign: "center",
               }}
             >
-              {((parseInt(row.Table4LevelCOM1) +
-                parseInt(row.Table4LevelCOM2) +
-                parseInt(row.Table4LevelCOM3) +
-                parseInt(row.Table4LevelCOM4) +
-                parseInt(row.Table4LevelHead)) /
+              {((parseFloat(row.Table4LevelCOM1) +
+                parseFloat(row.Table4LevelCOM2) +
+                parseFloat(row.Table4LevelCOM3) +
+                parseFloat(row.Table4LevelCOM4) +
+                parseFloat(row.Table4LevelHead)) /
                 5) *
-                parseInt(row.Table4FTE)}
+                parseFloat(row.Table4FTE)}
             </div>
           );
         },
@@ -212,13 +212,13 @@ class Table1 extends React.Component {
                 textAlign: "center",
               }}
             >
-              {(((parseInt(row.Table4LevelCOM1) +
-                parseInt(row.Table4LevelCOM2) +
-                parseInt(row.Table4LevelCOM3) +
-                parseInt(row.Table4LevelCOM4) +
-                parseInt(row.Table4LevelHead)) /
+              {(((parseFloat(row.Table4LevelCOM1) +
+                parseFloat(row.Table4LevelCOM2) +
+                parseFloat(row.Table4LevelCOM3) +
+                parseFloat(row.Table4LevelCOM4) +
+                parseFloat(row.Table4LevelHead)) /
                 5) *
-                parseInt(row.Table4FTE)) /
+                parseFloat(row.Table4FTE)) /
                 4}
             </div>
           );

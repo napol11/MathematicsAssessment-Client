@@ -249,13 +249,13 @@ const AdminStaff = () => {
             className="adminTable"
             columns={columnsstaff}
             dataSource={datastaff}
-            pagination={false}
-            // pagination={{
-            //   defaultPageSize: 10,
-            //   showSizeChanger: true,
-            //   pageSizeOptions: ["10", "20", "30"],
-            //   locale: { items_per_page: "/ หน้า" },
-            // }}
+            // pagination={false}
+            pagination={{
+              defaultPageSize: 10,
+              showSizeChanger: true,
+              pageSizeOptions: ["10", "20", "30"],
+              locale: { items_per_page: "/ หน้า" },
+            }}
             loading={{
               spinning: LoadingTable,
               tip: "กำลังโหลด...",

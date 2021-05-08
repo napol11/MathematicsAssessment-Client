@@ -187,13 +187,13 @@ class Table2 extends React.Component {
                 textAlign: "center",
               }}
             >
-              {((parseInt(row.Table2LevelCOM1) +
-                parseInt(row.Table2LevelCOM2) +
-                parseInt(row.Table2LevelCOM3) +
-                parseInt(row.Table2LevelCOM4) +
-                parseInt(row.Table2LevelHead)) /
+              {((parseFloat(row.Table2LevelCOM1) +
+                parseFloat(row.Table2LevelCOM2) +
+                parseFloat(row.Table2LevelCOM3) +
+                parseFloat(row.Table2LevelCOM4) +
+                parseFloat(row.Table2LevelHead)) /
                 5) *
-                parseInt(row.Table2FTE)}
+                parseFloat(row.Table2FTE)}
             </div>
           );
         },
@@ -212,13 +212,13 @@ class Table2 extends React.Component {
                 textAlign: "center",
               }}
             >
-              {(((parseInt(row.Table2LevelCOM1) +
-                parseInt(row.Table2LevelCOM2) +
-                parseInt(row.Table2LevelCOM3) +
-                parseInt(row.Table2LevelCOM4) +
-                parseInt(row.Table2LevelHead)) /
+              {(((parseFloat(row.Table2LevelCOM1) +
+                parseFloat(row.Table2LevelCOM2) +
+                parseFloat(row.Table2LevelCOM3) +
+                parseFloat(row.Table2LevelCOM4) +
+                parseFloat(row.Table2LevelHead)) /
                 5) *
-                parseInt(row.Table2FTE)) /
+                parseFloat(row.Table2FTE)) /
                 4}
             </div>
           );
@@ -239,14 +239,9 @@ class Table2 extends React.Component {
                 // textAlign: "center",
               }}
             >
-              {(((parseInt(row.Table1LevelCOM1) +
-                parseInt(row.Table1LevelCOM2) +
-                parseInt(row.Table1LevelCOM3) +
-                parseInt(row.Table1LevelCOM4) +
-                parseInt(row.Table1LevelHead)) /
-                5) *
-                parseInt(row.Table1FTE)) /
-                4}
+              {row.Table2Comments === "ระบุความคิดเห็น"
+                ? " - "
+                : row.Table2Comments}
             </div>
           );
         },
@@ -292,6 +287,7 @@ class Table2 extends React.Component {
           );
           const T2COMID = T2COMFILTER.map((e) => e.fk_committee_id);
           const duplicateID = [...new Set(T2COMID)];
+          console.log(duplicateID);
           const T2COM1 = T2COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[0]
           );
@@ -314,7 +310,7 @@ class Table2 extends React.Component {
               Table2Comments: v.formtwo_comment,
               Table2Code: v.formtwo_code,
               Table2LevelCOM1:
-                T2COM2.length !== 0 ? T2COM1[i].formtwo_sucesscom : 0,
+                T2COM1.length !== 0 ? T2COM1[i].formtwo_sucesscom : 0,
               Table2LevelCOM2:
                 T2COM2.length !== 0 ? T2COM2[i].formtwo_sucesscom : 0,
               Table2LevelCOM3:
