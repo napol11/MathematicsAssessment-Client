@@ -369,6 +369,7 @@ class Table2 extends React.Component {
           className="Row col-sm-12 mt-4"
           style={{ backgroundColor: "#E7E5E3" }}
         >
+          <br/>
           <label
             className="col-sm-11"
             style={{ fontSize: "16px", fontWeight: "bold" }}
