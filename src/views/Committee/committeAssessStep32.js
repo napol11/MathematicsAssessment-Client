@@ -10,7 +10,7 @@ import "./committee.css";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
-const url = `http://localhost:3001/api/committee`;
+const url = `https://database-api-pj.herokuapp.com/api/committee`;
 
 const CommitteAssessStep32 = (props) => {
   const data = props.data.EvaForm32;

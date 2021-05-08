@@ -18,7 +18,7 @@ import Cookies from "js-cookie";
 import "./login.css";
 
 import axios from "axios";
-const url = `http://localhost:3001/api/auth`;
+const url = `https://database-api-pj.herokuapp.com/api/auth`;
 
 const Login = () => {
   const [showPass, setshowPass] = useState(false);

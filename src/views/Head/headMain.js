@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import "./head.css";
 
 import axios from "axios";
-const url = `http://localhost:3001/api/committee`;
+const url = `https://database-api-pj.herokuapp.com/api/committee`;
 
 // const { Search } = Input;
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };

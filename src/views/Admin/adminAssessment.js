@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 
 import "./admin.css";
 import axios from "axios";
-const url = `http://localhost:3001/api/admin`;
+const url = `https://database-api-pj.herokuapp.com/api/admin`;
 
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 

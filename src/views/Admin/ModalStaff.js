@@ -8,7 +8,7 @@ import "./admin.css";
 import { useSelector, useDispatch } from "react-redux";
 
 import axios from "axios";
-const url = `http://localhost:3001/api/admin`;
+const url = `https://database-api-pj.herokuapp.com/api/admin`;
 
 const { Option } = Select;
 

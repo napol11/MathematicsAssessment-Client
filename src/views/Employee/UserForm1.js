@@ -11,7 +11,7 @@ import { token } from "../../config";
 import "./employee.css";
 import { date2Thai } from "../CustomFunction";
 import axios from "axios";
-const url = `http://localhost:3001/api/employee`;
+const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
 function UserProfile() {
   const { id } = useParams();

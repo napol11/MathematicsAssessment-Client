@@ -14,7 +14,7 @@ import Cookies from "js-cookie";
 import { token } from "../../config";
 import { notify } from "../CustomComponent";
 import axios from "axios";
-const url = `http://localhost:3001/api/employee`;
+const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
 function UserForm2() {
   const { id } = useParams();

@@ -8,7 +8,7 @@ import { token } from "../../config";
 import { notify } from "../CustomComponent";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-const url = `http://localhost:3001/api/committee`;
+const url = `https://database-api-pj.herokuapp.com/api/committee`;
 
 const title = { color: "black", fontWeight: "bold", textAlign: "center" };
 
@@ -229,20 +229,23 @@ const CommitteAssessStep31 = (props) => {
           ย้อนกลับ
         </div>
         <div className="mr-4">
-        <button
-          className={`${diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"}`}
-          type="submit"
-          onClick={diss ? null : onFinish}
-        >
-          บันทึก
-        </button>
+          <button
+            className={`${
+              diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"
+            }`}
+            type="submit"
+            onClick={diss ? null : onFinish}
+          >
+            บันทึก
+          </button>
         </div>
-        <div className={`pl-4 pr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
-          onClick={diss ? null : props.next}>
+        <div
+          className={`pl-4 pr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
+          onClick={diss ? null : props.next}
+        >
           ถัดไป
         </div>
       </div>
-      
     </div>
   );
 };

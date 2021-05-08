@@ -15,7 +15,7 @@ import Cookies from "js-cookie";
 import { token } from "../../config";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-const url = `http://localhost:3001/api/employee`;
+const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
 const { Step } = Steps;
 

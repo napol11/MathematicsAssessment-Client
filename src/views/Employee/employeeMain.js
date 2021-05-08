@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import "./employee.css";
 import axios from "axios";
-const url = `http://localhost:3001/api/employee`;
+const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
 const title = { color: "white", fontWeight: "bold", textAlign: "center" };
 
@@ -68,9 +68,7 @@ const CommitteeMain = () => {
         return dateText(row.end);
       },
     },
-    {
-
-    },
+    {},
     {
       title: <div style={title}>{null}</div>,
       dataIndex: "status",

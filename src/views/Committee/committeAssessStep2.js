@@ -12,7 +12,7 @@ import { notify } from "../CustomComponent";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
-const url = `http://localhost:3001/api/committee`;
+const url = `https://database-api-pj.herokuapp.com/api/committee`;
 
 const CommitteAssessStep2 = (props) => {
   const { id, assessment } = useParams();

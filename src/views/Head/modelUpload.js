@@ -7,7 +7,7 @@ import { Upload } from "antd";
 import "antd/dist/antd.css";
 import { useParams } from "react-router-dom";
 
-const url = `http://localhost:3001/api/employee`;
+const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
 const UploadFile = (props) => {
   const { id, assessment } = useParams();
@@ -50,7 +50,9 @@ const UploadFile = (props) => {
               ...v,
               uid: i + 1,
               name: v.doc_originalname,
-              url: "http://localhost:3001/api/employee/file/" + v.doc_name,
+              url:
+                "https://database-api-pj.herokuapp.com/api/employee/file/" +
+                v.doc_name,
             }));
             setFileList(list);
           } else {

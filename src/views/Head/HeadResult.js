@@ -9,8 +9,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import { notify } from "../CustomComponent";
-const url = `http://localhost:3001/api/committee`;
-const urlEM = `http://localhost:3001/api/employee`;
+const url = `https://database-api-pj.herokuapp.com/api/committee`;
+const urlEM = `https://database-api-pj.herokuapp.com/api/employee`;
 
 const CommitteAssessStep4 = (props) => {
   const { id, assessment } = useParams();

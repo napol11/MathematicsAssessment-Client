@@ -11,7 +11,7 @@ import UploadFile from "./modelUpload";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
-const url = `http://localhost:3001/api/employee`;
+const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
 const { TextArea } = Input;
 
@@ -123,8 +123,10 @@ function UserFrom3() {
           fields={form}
         >
           <div className="mb-3">
-              <label className="col-sm-11">1. ท่านขาดความรู้ ความชำนาญ ทักษะในเรื่องใดบ้าง</label>
-              <UploadFile table={1} form={3} />
+            <label className="col-sm-11">
+              1. ท่านขาดความรู้ ความชำนาญ ทักษะในเรื่องใดบ้าง
+            </label>
+            <UploadFile table={1} form={3} />
           </div>
           <Form.Item
             // id="form3employees1"
@@ -139,8 +141,11 @@ function UserFrom3() {
             <TextArea className="textbox" rows={4} />
           </Form.Item>
           <div className="mb-3">
-              <label className="col-sm-11">2. ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ ทักษะดังกล่าวได้โดยวิธีใดบ้าง</label>
-              <UploadFile table={2} form={3} />
+            <label className="col-sm-11">
+              2. ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ
+              ทักษะดังกล่าวได้โดยวิธีใดบ้าง
+            </label>
+            <UploadFile table={2} form={3} />
           </div>
           <Form.Item
             id="form3employees2"
@@ -155,8 +160,10 @@ function UserFrom3() {
             <TextArea className="textbox" rows={4} />
           </Form.Item>
           <div className="mb-3">
-              <label className="col-sm-11">3. ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง</label>
-              <UploadFile table={3} form={3} />
+            <label className="col-sm-11">
+              3. ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง
+            </label>
+            <UploadFile table={3} form={3} />
           </div>
           <Form.Item
             id="form3employees3"
@@ -171,10 +178,12 @@ function UserFrom3() {
             <TextArea className="textbox" rows={4} />
           </Form.Item>
           <div className="mb-3">
-              <label className="col-sm-11">4. ท่านสนใจการฝึกอบรม
-            หรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
-            (เรียงลำดับความสำคัญ 1-5){" "}</label>
-              <UploadFile table={4} form={3} />
+            <label className="col-sm-11">
+              4. ท่านสนใจการฝึกอบรม
+              หรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
+              (เรียงลำดับความสำคัญ 1-5){" "}
+            </label>
+            <UploadFile table={4} form={3} />
           </div>
           <Form.Item
             id="form3employees4"

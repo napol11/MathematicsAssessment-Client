@@ -10,7 +10,7 @@ import UploadFile from "./modelUpload";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import axios from "axios";
-const url = `http://localhost:3001/api/committee`;
+const url = `https://database-api-pj.herokuapp.com/api/committee`;
 
 const CommitteAssessStep32 = (props) => {
   const data = props.data.EvaForm32;
@@ -39,7 +39,11 @@ const CommitteAssessStep32 = (props) => {
 
       return (
         <div>
-          <label key={`T${i}`} className={i !== 0 ? "mt-5 col-sm-9" : "col-sm-9"} style={styleTile}>
+          <label
+            key={`T${i}`}
+            className={i !== 0 ? "mt-5 col-sm-9" : "col-sm-9"}
+            style={styleTile}
+          >
             {`${i + 1}. ${r.title}`}
           </label>
           <UploadFile table={`${i + 1}`} form={3} />

@@ -8,8 +8,8 @@ import Cookies from "js-cookie";
 import { token } from "../../config";
 import { date2Thai } from "../CustomFunction";
 import axios from "axios";
-const url = `http://localhost:3001/api/employee`;
-const urlauth = `http://localhost:3001/api/auth`;
+const url = `https://database-api-pj.herokuapp.com/api/employee`;
+const urlauth = `https://database-api-pj.herokuapp.com/api/auth`;
 
 const HistoryEmployee = () => {
   const [visible, setVisible] = useState(false);
@@ -78,42 +78,41 @@ const HistoryEmployee = () => {
     <div className="justify-center align-center">
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12 ">
-          <div className="mb-3">  
-          <label
-            className="col-xs-10 col-sm-10"
-            style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
-          >
-            ประวัติพนักงาน
-          </label>
-          <Button
-            className="ml-5"
-            shape="round"
-            size={"large"}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-            onClick={() => setVisible(true)}
-            type="submit"
-            style={
-              hover
-                ? {
-                    backgroundColor: "#f6be32",
-                    border: "2px solid #f6be32",
-                    color: "white",
-                    paddingLeft: "50px",
-                    paddingRight: "50px",
-                    
-                  }
-                : {
-                    backgroundColor: "white",
-                    border: "2px solid #f6be32",
-                    color: "black",
-                    paddingLeft: "50px",
-                    paddingRight: "50px",
-                  }
-            }
-          >
-            เปลี่ยนรหัสผ่าน
-          </Button>
+          <div className="mb-3">
+            <label
+              className="col-xs-10 col-sm-10"
+              style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
+            >
+              ประวัติพนักงาน
+            </label>
+            <Button
+              className="ml-5"
+              shape="round"
+              size={"large"}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+              onClick={() => setVisible(true)}
+              type="submit"
+              style={
+                hover
+                  ? {
+                      backgroundColor: "#f6be32",
+                      border: "2px solid #f6be32",
+                      color: "white",
+                      paddingLeft: "50px",
+                      paddingRight: "50px",
+                    }
+                  : {
+                      backgroundColor: "white",
+                      border: "2px solid #f6be32",
+                      color: "black",
+                      paddingLeft: "50px",
+                      paddingRight: "50px",
+                    }
+              }
+            >
+              เปลี่ยนรหัสผ่าน
+            </Button>
           </div>
 
           <div className="container-fluid ">
