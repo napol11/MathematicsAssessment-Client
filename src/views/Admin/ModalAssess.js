@@ -44,6 +44,12 @@ const ModalAssess = (props) => {
       });
   };
 
+  const reset = () => {
+    setSelectedDateStart("");
+    setSelectedDateEnd("");
+    setSelectedDateEdit("");
+  };
+
   const sditAssessment = (values) => {
     axios
       .put(`${url}/assessment/` + props.data.id, values)
@@ -75,6 +81,7 @@ const ModalAssess = (props) => {
   };
   const close = () => {
     formRef.current.resetFields();
+    reset();
     dispatch({ type: "set", adminModal: { ...adminModal, show: false } });
   };
 
@@ -95,14 +102,17 @@ const ModalAssess = (props) => {
       setTitle(`เพิ่ม${title}`);
     } else {
       setTitle(`แก้ไข${title}`);
+      setSelectedDateStart(props.data.start);
+      setSelectedDateEnd(props.data.end);
+      setSelectedDateEdit(props.data.edit);
       formRef.current.setFieldsValue({
         name: props.data.assessment_name,
-        start: setSelectedDateStart(props.data.start),
-        end: setSelectedDateEnd(props.data.assessment_end),
-        endedit: setSelectedDateEdit(props.data.assessment_endedit),
+        // start: setSelectedDateStart(props.data.start),
+        // end: setSelectedDateEnd(props.data.assessment_end),
+        // endedit: setSelectedDateEdit(props.data.assessment_endedit),
       });
+      console.log(selectedDateStart);
     }
-
     setLoading(false);
   };
 
