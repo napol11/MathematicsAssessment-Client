@@ -44,7 +44,7 @@ const AdminAssessment = () => {
     return `${start}`;
   };
 
-  const LoadData = () => {
+  const LoadData = async () => {
     axios.get(`${url}/assessment`).then((res) => {
       // console.log(res);
       const data = res.data.data.map((v, i) => ({

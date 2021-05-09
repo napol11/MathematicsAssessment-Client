@@ -10,6 +10,12 @@ package-lock.json
 # production
 /build
 
+#firebase
+/.firebase
+.firebaserc
+firebase.json
+
+
 # misc
 .eslintcache
 .DS_Store

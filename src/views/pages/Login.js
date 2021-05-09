@@ -24,7 +24,7 @@ const Login = () => {
   const [showPass, setshowPass] = useState(false);
   const inputUsername = useRef(null);
   const inputPassword = useRef(null);
-  const [userData, setUserData] = useState(null);
+  // const [userData, setUserData] = useState(null);
 
   const submitLogin = (e) => {
     e.preventDefault();
@@ -38,41 +38,70 @@ const Login = () => {
       .post(`${url}/login`, login)
       .then((res) => {
         const data = res.data;
-        setUserData(data);
+        // setUserData(data);
+        if (data != null) {
+          if (data.data.role === 2) {
+            Cookies.set(token.type, 1);
+            Cookies.set(token.token, "kmuttTest");
+            Cookies.set(token.userId, data.data.profile.id);
+            window.location.replace("/employee/history");
+          } else if (
+            data.data.role === 1 &&
+            data.data.profile.committee_status === 0
+          ) {
+            Cookies.set(token.type, 2);
+            Cookies.set(token.token, "kmuttTest");
+            Cookies.set(token.userId, data.data.profile.id);
+            window.location.replace("/committee");
+          } else if (
+            data.data.role === 1 &&
+            data.data.profile.committee_status === 1
+          ) {
+            Cookies.set(token.type, 4);
+            Cookies.set(token.token, "kmuttTest");
+            Cookies.set(token.userId, data.data.profile.id);
+            window.location.replace("/head");
+          } else if (data.data.role === 0) {
+            // user: admin pass: 0846438474
+            Cookies.set(token.type, 3);
+            Cookies.set(token.token, "kmuttTest");
+            window.location.replace("/administrator/committee");
+          }
+        }
       })
       .catch((err) => {
         console.log(err);
         notify.error("ชื่อผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง !");
       });
-    if (userData != null) {
-      if (userData.data.role === 2) {
-        Cookies.set(token.type, 1);
-        Cookies.set(token.token, "kmuttTest");
-        Cookies.set(token.userId, userData.data.profile.id);
-        window.location.replace("/employee/history");
-      } else if (
-        userData.data.role === 1 &&
-        userData.data.profile.committee_status === 0
-      ) {
-        Cookies.set(token.type, 2);
-        Cookies.set(token.token, "kmuttTest");
-        Cookies.set(token.userId, userData.data.profile.id);
-        window.location.replace("/committee");
-      } else if (
-        userData.data.role === 1 &&
-        userData.data.profile.committee_status === 1
-      ) {
-        Cookies.set(token.type, 4);
-        Cookies.set(token.token, "kmuttTest");
-        Cookies.set(token.userId, userData.data.profile.id);
-        window.location.replace("/head");
-      } else if (userData.data.role === 0) {
-        // user: admin pass: 0846438474
-        Cookies.set(token.type, 3);
-        Cookies.set(token.token, "kmuttTest");
-        window.location.replace("/administrator/committee");
-      }
-    }
+    // if (userData != null) {
+    //   if (userData.data.role === 2) {
+    //     Cookies.set(token.type, 1);
+    //     Cookies.set(token.token, "kmuttTest");
+    //     Cookies.set(token.userId, userData.data.profile.id);
+    //     window.location.replace("/employee/history");
+    //   } else if (
+    //     userData.data.role === 1 &&
+    //     userData.data.profile.committee_status === 0
+    //   ) {
+    //     Cookies.set(token.type, 2);
+    //     Cookies.set(token.token, "kmuttTest");
+    //     Cookies.set(token.userId, userData.data.profile.id);
+    //     window.location.replace("/committee");
+    //   } else if (
+    //     userData.data.role === 1 &&
+    //     userData.data.profile.committee_status === 1
+    //   ) {
+    //     Cookies.set(token.type, 4);
+    //     Cookies.set(token.token, "kmuttTest");
+    //     Cookies.set(token.userId, userData.data.profile.id);
+    //     window.location.replace("/head");
+    //   } else if (userData.data.role === 0) {
+    //     // user: admin pass: 0846438474
+    //     Cookies.set(token.type, 3);
+    //     Cookies.set(token.token, "kmuttTest");
+    //     window.location.replace("/administrator/committee");
+    //   }
+    // }
 
     // set cookie token.type ไว้ทำสิทธิ์หน้าเมนู
     // set cookie token.token สิทธ์เข้าถึงหน้าเมนู
