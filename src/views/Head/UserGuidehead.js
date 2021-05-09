@@ -14,7 +14,7 @@ const UserGuidehead = () => {
             </label>
         </div>
         <div style={{ justifyContent:"center", display: "flex", }}>
-            <img src={logo} alt="userguidehead" style={{ width: "70%" }} />
+            <img src={logo} alt="userguidehead" style={{ width: "80%" }} />
         </div>
       </div>
     );

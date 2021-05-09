@@ -19,6 +19,7 @@
   background-color: #bd9805;
   color: white;
   border: none;
+  outline: none !important;
 }
 
 .password::placeholder {
@@ -27,4 +28,9 @@
 
 .username::placeholder {
   color: #d4d4d4;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 4px #f26843;
+    border: 1.5px solid #f26843 !important;
 }

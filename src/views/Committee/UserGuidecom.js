@@ -1,6 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import logo from "../pages/committee.PNG";
+import logo from "../pages/head.PNG";
 
 const UserGuidecom = () => {
     return (
@@ -14,7 +14,7 @@ const UserGuidecom = () => {
             </label>
         </div>
         <div style={{ justifyContent:"center", display: "flex", }}>
-            <img src={logo} alt="userguidecom" style={{ width: "70%" }} />
+            <img src={logo} alt="userguidecom" style={{ width: "80%" }} />
         </div>
       </div>
     );

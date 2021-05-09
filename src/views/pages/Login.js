@@ -152,7 +152,7 @@ const Login = () => {
                         <CInputGroup>
                           <CInputGroupPrepend>
                             <CInputGroupText
-                              className={"bg-white text-black"}
+                              className={"login_input bg-white text-black"}
                               style={{ borderRight: "none" }}
                             >
                               <i className="fas fa-user" />
@@ -174,7 +174,7 @@ const Login = () => {
                         <CInputGroup>
                           <CInputGroupPrepend>
                             <CInputGroupText
-                              className={"bg-white text-black"}
+                              className={"login_input bg-white text-black"}
                               style={{ borderRight: "none" }}
                             >
                               <i className="fas fa-key" />
