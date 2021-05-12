@@ -203,7 +203,7 @@ const ModalAssess = (props) => {
                 <Form.Item
                   style={{ marginBottom: "10px" }}
                   name={"end"}
-                  label="วันที่สิ้นสุดการประเมิน"
+                  label="วันที่สิ้นสุดการประเมิน (สำหรับกรรมการ)"
                   rules={[
                     {
                       required: true,
@@ -232,7 +232,7 @@ const ModalAssess = (props) => {
                 <Form.Item
                   style={{ marginBottom: "10px" }}
                   name={"endedit"}
-                  label="วันที่สิ้นสุดการกรอกแบบประเมิน"
+                  label="วันที่สิ้นสุดการกรอกแบบประเมิน (สำหรับพนักงาน)"
                   rules={[
                     {
                       required: true,
