@@ -259,6 +259,17 @@ p {
     cursor: pointer;
 }
 
+.btn-modal-cancel {
+  border-radius: 20px;
+  padding: 5px 25px;
+  border: 1px solid #f26843;
+  background-color: transparent;
+}
+
+.btn-modal-cancel:focus {
+  outline: none !important
+}
+
 .ant-btn-sm {
     border: #FDC331 solid 1.5px !important;
  }
