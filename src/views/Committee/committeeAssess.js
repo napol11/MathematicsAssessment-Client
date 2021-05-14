@@ -555,7 +555,8 @@ const CommitteeAssess = () => {
                 "สามารถพัฒนาการทำงานได้ดีมากและเป็นผู้ริเริ่มหรือมีสว่นริเริ่มสูงในการปฎิบัติงานทั้งที่เป็นงานเดิมและงานใหม่ทำให้เกิดผลในการเพิ่มผลิตภาพของสำนักงานได้เป็นอย่างดีมาก",
               levelStart: 8,
               levelEnd: 10,
-              point: data[i].formthree_score,
+              point:
+                data[i].formthree_score === "0" ? "" : data[i].formthree_score,
               skill: data[i].formthree_comment,
             },
             {
@@ -564,7 +565,10 @@ const CommitteeAssess = () => {
                 "สามารถพัฒนาการทำงานได้และมีส่วนริเริ่มและสนับสนุนการปฏิบัติงานเดิมและแนวใหม่ทำให้เกิดผลดีและเพิ่มผลิตภาพของสำนักงานได้อย่างดี",
               levelStart: 6,
               levelEnd: 7,
-              point: data[i + 1].formthree_score,
+              point:
+                data[i + 1].formthree_score === "0"
+                  ? ""
+                  : data[i + 1].formthree_score,
               skill: data[i + 1].formthree_comment,
             },
             {
@@ -573,7 +577,10 @@ const CommitteeAssess = () => {
                 "สามารถพัฒนาการทำงานได้บ้างในเรื่องยอมรับการปฏิบัติงานในแนวใหม่ได้บ้างมีส่วนริเริ่มไม่มากนักและไม่ค่อยสามารถคิดหรือปฏิบัติงานในแนวใหม่ได้",
               levelStart: 4,
               levelEnd: 5,
-              point: data[i + 2].formthree_score,
+              point:
+                data[i + 2].formthree_score === "0"
+                  ? ""
+                  : data[i + 2].formthree_score,
               skill: data[i + 2].formthree_comment,
             },
             {
@@ -582,7 +589,10 @@ const CommitteeAssess = () => {
                 "ไม่มีความคิดริเริ่มไม่สามารถพัฒนางานได้ไม่อาจดำเนินงานในแนวใหม่ได้ไม่สามารถร่วมคิดหรือดำเนินงานในแนวใหม่ๆได้",
               levelStart: 0,
               levelEnd: 3,
-              point: data[i + 3].formthree_score,
+              point:
+                data[i + 3].formthree_score === "0"
+                  ? ""
+                  : data[i + 3].formthree_score,
               skill: data[i + 3].formthree_comment,
             },
             {
@@ -603,7 +613,10 @@ const CommitteeAssess = () => {
                 "เข้าใจปัญหาได้ลึกซึ้งดีมากสามารถตัดสินใจเด็ดขาดและมีการวางแนวความคิดอย่างมีระบบทันการและมีวิจารณญาณที่ดี",
               levelStart: 8,
               levelEnd: 10,
-              point: data[i + 4].formthree_score,
+              point:
+                data[i + 4].formthree_score === "0"
+                  ? ""
+                  : data[i + 4].formthree_score,
               skill: data[i + 4].formthree_comment,
             },
             {
@@ -612,7 +625,10 @@ const CommitteeAssess = () => {
                 "เข้าใจปัญหาดีตัดสินใจได้ดีโดยส่วนใหญ่แต่ยังขาดความรอบคอบในการตัดสินใจและการวางแนวความคิดอย่างมีระบบ",
               levelStart: 6,
               levelEnd: 7,
-              point: data[i + 5].formthree_score,
+              point:
+                data[i + 5].formthree_score === "0"
+                  ? ""
+                  : data[i + 5].formthree_score,
               skill: data[i + 5].formthree_comment,
             },
             {
@@ -621,7 +637,10 @@ const CommitteeAssess = () => {
                 "ไม่เข้าใจปัญหาดีนักตัดสินใจค่อนข้างช้าและการวางแนวความคิดยังไม่ค่อยมีระบบดีนัก",
               levelStart: 4,
               levelEnd: 5,
-              point: data[i + 6].formthree_score,
+              point:
+                data[i + 6].formthree_score === "0"
+                  ? ""
+                  : data[i + 6].formthree_score,
               skill: data[i + 6].formthree_comment,
             },
             {
@@ -630,7 +649,10 @@ const CommitteeAssess = () => {
                 "จับประเด็นปัญหาไม่ได้ไม่อาจไว้ใจให้ตัดสินใจและไม่มีการวางแผนความคิดอย่างมีระบบเพิกเฉยไม่ตัดสินใจหรือประเมินข้อเท็จจริงผิด",
               levelStart: 0,
               levelEnd: 3,
-              point: data[i + 7].formthree_score,
+              point:
+                data[i + 7].formthree_score === "0"
+                  ? ""
+                  : data[i + 7].formthree_score,
               skill: data[i + 7].formthree_comment,
             },
             {
@@ -653,7 +675,10 @@ const CommitteeAssess = () => {
                 "รู้ เข้าใจ และสามารถเข้าถึงงานในทุกด้านที่รับผิดชอบได้โดยสมบูรณ์และสามารถดัดแปลงเครื่องมือหรือวิธีการทำงานให้เข้ากับภาระงานใหม่ได้",
               levelStart: 12,
               levelEnd: 15,
-              point: data[i + 8].formthree_score,
+              point:
+                data[i + 8].formthree_score === "0"
+                  ? ""
+                  : data[i + 8].formthree_score,
               skill: data[i + 8].formthree_comment,
             },
             {
@@ -662,7 +687,10 @@ const CommitteeAssess = () => {
                 "มีความรู้ความสามารถและมีความเข้าใจในงานโดยส่วนใหญ่มีความชำนาญในงานของตน",
               levelStart: 8,
               levelEnd: 11,
-              point: data[i + 9].formthree_score,
+              point:
+                data[i + 9].formthree_score === "0"
+                  ? ""
+                  : data[i + 9].formthree_score,
               skill: data[i + 9].formthree_comment,
             },
             {
@@ -671,7 +699,10 @@ const CommitteeAssess = () => {
                 "ไม่มีความรู้ความเข้าใจพอสำหรับงานในความรับผิดชอบบางด้านขาดความชำนาญในงานของตน",
               levelStart: 4,
               levelEnd: 7,
-              point: data[i + 10].formthree_score,
+              point:
+                data[i + 10].formthree_score === "0"
+                  ? ""
+                  : data[i + 10].formthree_score,
               skill: data[i + 10].formthree_comment,
             },
             {
@@ -679,7 +710,10 @@ const CommitteeAssess = () => {
               title: "ต้องพึ่งผู้อื่นเสมอและไม่สามารถใช้อุปกรณ์ได้อย่างถูกต้อง",
               levelStart: 0,
               levelEnd: 3,
-              point: data[i + 11].formthree_score,
+              point:
+                data[i + 11].formthree_score === "0"
+                  ? ""
+                  : data[i + 11].formthree_score,
               skill: data[i + 11].formthree_comment,
             },
             {
@@ -698,7 +732,10 @@ const CommitteeAssess = () => {
                 "มีความกระตือรือล้นในการทำงานที่รับผิดชอบและในงานที่ท้าทายความสามารถมีระเบียบวินัยอย่างพอดี",
               levelStart: 8,
               levelEnd: 10,
-              point: data[i + 12].formthree_score,
+              point:
+                data[i + 12].formthree_score === "0"
+                  ? ""
+                  : data[i + 12].formthree_score,
               skill: data[i + 12].formthree_comment,
             },
             {
@@ -707,7 +744,10 @@ const CommitteeAssess = () => {
                 "ปกติทำตามข้อแนะนำได้ดีและบางครั้งสามารถริเริ่มได้มีระเบียบวินัยในการทำงาน",
               levelStart: 6,
               levelEnd: 7,
-              point: data[i + 13].formthree_score,
+              point:
+                data[i + 13].formthree_score === "0"
+                  ? ""
+                  : data[i + 13].formthree_score,
               skill: data[i + 13].formthree_comment,
             },
             {
@@ -716,7 +756,10 @@ const CommitteeAssess = () => {
                 "ต้องคอยดูแลใกล้ชิดกำหนดวัตถประสงค์มิค่อยได้บางครั้งขาดระเบียบวินัย",
               levelStart: 4,
               levelEnd: 5,
-              point: data[i + 14].formthree_score,
+              point:
+                data[i + 14].formthree_score === "0"
+                  ? ""
+                  : data[i + 14].formthree_score,
               skill: data[i + 14].formthree_comment,
             },
             {
@@ -725,7 +768,10 @@ const CommitteeAssess = () => {
                 "ไม่ชอบให้กำกับแต่ต้องเฝ้าคุมและแนะนำอย่างใกล้ชิดเป็นประจำไม่มีระเบียบวินัย",
               levelStart: 0,
               levelEnd: 3,
-              point: data[i + 15].formthree_score,
+              point:
+                data[i + 15].formthree_score === "0"
+                  ? ""
+                  : data[i + 15].formthree_score,
               skill: data[i + 15].formthree_comment,
             },
             {
@@ -744,7 +790,10 @@ const CommitteeAssess = () => {
                 "มาปฏิบัติงานดีมากและทำงานอย่างสม่ำเสมอโดยนึกถึงภาระงานเป็นหลักมีความอุตสาหะวิริยะและอุทิศตนให้กับงานอย่างดีมาก",
               levelStart: 12,
               levelEnd: 15,
-              point: data[i + 16].formthree_score,
+              point:
+                data[i + 16].formthree_score === "0"
+                  ? ""
+                  : data[i + 16].formthree_score,
               skill: data[i + 16].formthree_comment,
             },
             {
@@ -753,7 +802,10 @@ const CommitteeAssess = () => {
                 "ปฏิบัติงานอย่างสม่ำเสมอจนเสร็จสิ้นภาระงานขาดงานหรือมาสายน้อยมากอุทิศตนให้กับงานโดยมีความขยันหมั่นเพียร",
               levelStart: 8,
               levelEnd: 11,
-              point: data[i + 17].formthree_score,
+              point:
+                data[i + 17].formthree_score === "0"
+                  ? ""
+                  : data[i + 17].formthree_score,
               skill: data[i + 17].formthree_comment,
             },
             {
@@ -762,7 +814,10 @@ const CommitteeAssess = () => {
                 "มีปัญหาบ้างในเรื่องการมาทำงานความตรงต่อเวลาและการใช้เวลาอย่างเหมาะสมอุทิศตนและขยันหมั่นเพียรน้อยกว่าที่ควร",
               levelStart: 4,
               levelEnd: 7,
-              point: data[i + 18].formthree_score,
+              point:
+                data[i + 18].formthree_score === "0"
+                  ? ""
+                  : data[i + 18].formthree_score,
               skill: data[i + 18].formthree_comment,
             },
             {
@@ -771,7 +826,10 @@ const CommitteeAssess = () => {
                 "มีปัญหามากในเรื่องการมาทำงานและความตรงต่อเวลาหรือใช้เวลาอย่างไม่ถูกต้องไม่อุทิศตนให้กับงานไม่มีความขยันหมั่นเพียร",
               levelStart: 0,
               levelEnd: 3,
-              point: data[i + 19].formthree_score,
+              point:
+                data[i + 19].formthree_score === "0"
+                  ? ""
+                  : data[i + 19].formthree_score,
               skill: data[i + 19].formthree_comment,
             },
             {
@@ -790,7 +848,10 @@ const CommitteeAssess = () => {
                 "มีศักยภาพสูงในการพัฒนาของตนและงานของตนให้ดีขึ้นเรื่อยๆปรับตัวให้เข้ากับงานใหม่ๆได้ดีมาก",
               levelStart: 12,
               levelEnd: 15,
-              point: data[i + 20].formthree_score,
+              point:
+                data[i + 20].formthree_score === "0"
+                  ? ""
+                  : data[i + 20].formthree_score,
               skill: data[i + 20].formthree_comment,
             },
             {
@@ -799,7 +860,10 @@ const CommitteeAssess = () => {
                 "พัฒนาตนและงานของตนอย่างสม่ำเสมอปรับตัวให้เข้ากับงานใหม่ๆได้ดี",
               levelStart: 8,
               levelEnd: 11,
-              point: data[i + 21].formthree_score,
+              point:
+                data[i + 21].formthree_score === "0"
+                  ? ""
+                  : data[i + 21].formthree_score,
               skill: data[i + 21].formthree_comment,
             },
             {
@@ -808,7 +872,10 @@ const CommitteeAssess = () => {
                 "ไม่ค่อยมีศักยภาพในการพัฒนาตนเองและงานไม่ค่อยสามารถปรับตัวให้เข้ากับงานใหม่ๆได้",
               levelStart: 4,
               levelEnd: 7,
-              point: data[i + 22].formthree_score,
+              point:
+                data[i + 22].formthree_score === "0"
+                  ? ""
+                  : data[i + 22].formthree_score,
               skill: data[i + 22].formthree_comment,
             },
             {
@@ -816,7 +883,10 @@ const CommitteeAssess = () => {
               title: "ไม่สามารถพัฒนาตนและงานของตนได้ไม่สามารถทำงานใหม่ๆได้",
               levelStart: 0,
               levelEnd: 3,
-              point: data[i + 23].formthree_score,
+              point:
+                data[i + 23].formthree_score === "0"
+                  ? ""
+                  : data[i + 23].formthree_score,
               skill: data[i + 23].formthree_comment,
             },
             {
@@ -835,7 +905,10 @@ const CommitteeAssess = () => {
                 "มีความซื่อสัตย์ต่อองค์กรเป็นที่เชื่อถือและไว้ใจได้มีทัศนคติที่ดีต่อองค์กรเสียสละเพื่อช่วยเสริมให้หน่วยงานเจริญก้าวหน้าและมีจิตสำนึกว่างานขององค์กรเป็นเสมือนงานของตนเอง",
               levelStart: 8,
               levelEnd: 10,
-              point: data[i + 24].formthree_score,
+              point:
+                data[i + 24].formthree_score === "0"
+                  ? ""
+                  : data[i + 24].formthree_score,
               skill: data[i + 24].formthree_comment,
             },
             {
@@ -844,7 +917,10 @@ const CommitteeAssess = () => {
                 "มีความซื่อสัตย์ต่อองค์กรมีทัศนคติที่ดีต่อองค์กรทำให้บังเกิดผลดี",
               levelStart: 6,
               levelEnd: 7,
-              point: data[i + 25].formthree_score,
+              point:
+                data[i + 25].formthree_score === "0"
+                  ? ""
+                  : data[i + 25].formthree_score,
               skill: data[i + 25].formthree_comment,
             },
             {
@@ -853,7 +929,10 @@ const CommitteeAssess = () => {
                 "มีความซื่อสัตย์ต่อองค์กรบ้างและมีทัศนคติที่ดีต่อองค์กรพอสมควรอาจจะต้องแนะนำถึงวิธีที่ควรปฏิบัติให้บ้างเป็นบางครั้ง",
               levelStart: 4,
               levelEnd: 5,
-              point: data[i + 26].formthree_score,
+              point:
+                data[i + 26].formthree_score === "0"
+                  ? ""
+                  : data[i + 26].formthree_score,
               skill: data[i + 26].formthree_comment,
             },
             {
@@ -862,7 +941,10 @@ const CommitteeAssess = () => {
                 "ต้องคอยชี้แนะให้เห็นถึงความสำคัญของความซื่อสัตย์และการสร้างทัศนคติที่ดีต่อองค์กรอยู่เสมอ",
               levelStart: 0,
               levelEnd: 3,
-              point: data[i + 27].formthree_score,
+              point:
+                data[i + 27].formthree_score === "0"
+                  ? ""
+                  : data[i + 27].formthree_score,
               skill: data[i + 27].formthree_comment,
             },
             {
@@ -881,7 +963,10 @@ const CommitteeAssess = () => {
                 "ประพฤติตนเหมาะสมอยู่ในศีลธรรมอันดีมีความซื่อตรงต่อตนเองและผู้อื่นอย่างสม่ำเสมอเป็นแบบอย่างที่ดี",
               levelStart: 8,
               levelEnd: 10,
-              point: data[i + 28].formthree_score,
+              point:
+                data[i + 28].formthree_score === "0"
+                  ? ""
+                  : data[i + 28].formthree_score,
               skill: data[i + 28].formthree_comment,
             },
             {
@@ -889,7 +974,10 @@ const CommitteeAssess = () => {
               title: "ประพฤติตนเหมาะสมอยู่ในศีลธรรมอันดีพอสมควร",
               levelStart: 6,
               levelEnd: 7,
-              point: data[i + 29].formthree_score,
+              point:
+                data[i + 29].formthree_score === "0"
+                  ? ""
+                  : data[i + 29].formthree_score,
               skill: data[i + 29].formthree_comment,
             },
             {
@@ -898,7 +986,10 @@ const CommitteeAssess = () => {
                 "ไม่ประพฤติปฏิบัติตนอยู่ในศีลธรรมบ้างในบางครั้งวุฒิภาวะทางอารมณ์ยังไม่มั่นคง",
               levelStart: 4,
               levelEnd: 5,
-              point: data[i + 30].formthree_score,
+              point:
+                data[i + 30].formthree_score === "0"
+                  ? ""
+                  : data[i + 30].formthree_score,
               skill: data[i + 30].formthree_comment,
             },
             {
@@ -907,7 +998,10 @@ const CommitteeAssess = () => {
                 "ไม่ได้ปฏิบัติตนอยู่ในศีลธรรมเท่าที่ควรต้องคอยตักเตือนอยู่เสมอ",
               levelStart: 0,
               levelEnd: 3,
-              point: data[i + 31].formthree_score,
+              point:
+                data[i + 31].formthree_score === "0"
+                  ? ""
+                  : data[i + 31].formthree_score,
               skill: data[i + 31].formthree_comment,
             },
           ],

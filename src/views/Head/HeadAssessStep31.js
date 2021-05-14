@@ -141,10 +141,11 @@ const CommitteAssessStep31 = (props) => {
 
   const onFinish = () => {
     let _list = [];
-    const filterData = data.EvaForm31.filter((e) => e.point);
-    filterData.forEach((v, i) => {
+    const raw = data.EvaForm31;
+    const filter = raw.filter((e) => e.point !== undefined);
+    filter.forEach((v, i) => {
       let f = {};
-      f.formthree_score = v.point;
+      f.formthree_score = v.point === "" ? "0" : v.point;
       f.formthree_num = i + 1;
       f.formthree_comment = v.skill;
       _list.push(f);
@@ -230,18 +231,22 @@ const CommitteAssessStep31 = (props) => {
         </div>
         <div className="mr-4">
           <button
-            className={`${
-              diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"
-            }`}
+            // className={`${
+            //   diss ? "btn-modal-confirm-Dis" : "btn-modal-confirm"
+            // }`}
+            className="btn-modal-confirm"
             type="submit"
-            onClick={diss ? null : onFinish}
+            // onClick={diss ? null : onFinish}
+            onClick={onFinish}
           >
             บันทึก
           </button>
         </div>
         <div
-          className={`pl-4 pr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
-          onClick={diss ? null : props.next}
+          // className={`pl-4 pr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
+          // onClick={diss ? null : props.next}
+          className=" pl-4 pr-4 btnConfirm"
+          onClick={props.next}
         >
           ถัดไป
         </div>
