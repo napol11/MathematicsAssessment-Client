@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Form } from "antd";
+import { Table, Form, Select } from "antd";
 
 // import "./App.css";
 import "./committee.css";
@@ -14,6 +14,7 @@ const urlCOM = `https://database-api-pj.herokuapp.com/api/committee`;
 // import { withRouter } from "react-router-dom";
 
 const title = { color: "black", textAlign: "center" };
+const { Option } = Select;
 
 const EditableContext = React.createContext(null);
 
@@ -79,12 +80,20 @@ const EditableCell = ({
           },
         ]}
       >
-        <Input
+        <Select
           className="textbox"
           ref={inputRef}
           onPressEnter={save}
           onBlur={save}
-        />
+        >
+          <Option value="1">1</Option>
+          <Option value="1.5">1.5</Option>
+          <Option value="2">2</Option>
+          <Option value="2.5">2.5</Option>
+          <Option value="3">3</Option>
+          <Option value="3.5">3.5</Option>
+          <Option value="4">4</Option>
+        </Select>
       </Form.Item>
     ) : (
       <div

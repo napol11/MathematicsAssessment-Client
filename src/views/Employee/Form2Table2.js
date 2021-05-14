@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { Table, Input, Popconfirm, Form } from "antd";
+import { Table, Input, Popconfirm, Form, InputNumber, Select } from "antd";
 
 import { MdDelete } from "react-icons/md";
 import "./App.css";
@@ -13,6 +13,7 @@ const url = `https://database-api-pj.herokuapp.com/api/employee`;
 const EditableContext = React.createContext(null);
 
 const title = { color: "black", textAlign: "center" };
+const { Option } = Select;
 
 const EditableRow = ({ index, ...props }) => {
   const [form] = Form.useForm();
@@ -28,6 +29,8 @@ const EditableRow = ({ index, ...props }) => {
 const EditableCell = ({
   title,
   editable,
+  editinglevel,
+  editingnumber,
   children,
   dataIndex,
   record,
@@ -63,37 +66,113 @@ const EditableCell = ({
   let childNode = children;
 
   if (editable) {
-    childNode = editing ? (
-      <Form.Item
-        style={{
-          margin: 0,
-        }}
-        name={dataIndex}
-        rules={[
-          {
-            required: true,
-            message: `กรุณาระบุ !`,
-          },
-        ]}
-      >
-        <Input
-          className="textbox"
-          ref={inputRef}
-          onPressEnter={save}
-          onBlur={save}
-        />
-      </Form.Item>
-    ) : (
-      <div
-        className="editable-cell-value-wrap"
-        style={{
-          paddingRight: 24,
-        }}
-        onClick={toggleEdit}
-      >
-        {children}
-      </div>
-    );
+    if (editingnumber) {
+      childNode = editing ? (
+        <Form.Item
+          style={{
+            margin: 0,
+          }}
+          name={dataIndex}
+          rules={[
+            {
+              required: true,
+              message: `กรุณาระบุ !`,
+            },
+          ]}
+        >
+          <InputNumber
+            className="textbox"
+            ref={inputRef}
+            onPressEnter={save}
+            onBlur={save}
+            min={0}
+            max={100}
+          />
+        </Form.Item>
+      ) : (
+        <div
+          className="editable-cell-value-wrap"
+          style={{
+            paddingRight: 24,
+          }}
+          onClick={toggleEdit}
+        >
+          {children}
+        </div>
+      );
+    } else if (editinglevel) {
+      childNode = editing ? (
+        <Form.Item
+          style={{
+            margin: 0,
+          }}
+          name={dataIndex}
+          rules={[
+            {
+              required: true,
+              message: `กรุณาระบุ !`,
+            },
+          ]}
+        >
+          <Select
+            className="textbox"
+            ref={inputRef}
+            onPressEnter={save}
+            onBlur={save}
+          >
+            <Option value="1">1</Option>
+            <Option value="1.5">1.5</Option>
+            <Option value="2">2</Option>
+            <Option value="2.5">2.5</Option>
+            <Option value="3">3</Option>
+            <Option value="3.5">3.5</Option>
+            <Option value="4">4</Option>
+          </Select>
+        </Form.Item>
+      ) : (
+        <div
+          className="editable-cell-value-wrap"
+          style={{
+            paddingRight: 24,
+          }}
+          onClick={toggleEdit}
+        >
+          {children}
+        </div>
+      );
+    } else {
+      childNode = editing ? (
+        <Form.Item
+          style={{
+            margin: 0,
+          }}
+          name={dataIndex}
+          rules={[
+            {
+              required: true,
+              message: `กรุณาระบุ !`,
+            },
+          ]}
+        >
+          <Input
+            className="textbox"
+            ref={inputRef}
+            onPressEnter={save}
+            onBlur={save}
+          />
+        </Form.Item>
+      ) : (
+        <div
+          className="editable-cell-value-wrap"
+          style={{
+            paddingRight: 24,
+          }}
+          onClick={toggleEdit}
+        >
+          {children}
+        </div>
+      );
+    }
   }
 
   return <td {...restProps}>{childNode}</td>;
@@ -123,6 +202,7 @@ class Form2Table2 extends React.Component {
         dataIndex: "Table2FTE",
         key: "Table2FTE",
         editable: true,
+        editingnumber: true,
         align: "center",
         width: "10%",
       },
@@ -131,6 +211,7 @@ class Form2Table2 extends React.Component {
         dataIndex: "Table2Level",
         key: "Table2Level",
         editable: true,
+        editinglevel: true,
         align: "center",
         width: "10%",
       },
@@ -186,6 +267,7 @@ class Form2Table2 extends React.Component {
         dataIndex: "Table2Code",
         key: "Table2Code",
         editable: true,
+        editingnumber: true,
         align: "center",
         width: "10%",
       },
@@ -319,6 +401,8 @@ class Form2Table2 extends React.Component {
         onCell: (record) => ({
           record,
           editable: col.editable,
+          editingnumber: col.editingnumber,
+          editinglevel: col.editinglevel,
           dataIndex: col.dataIndex,
           title: col.title,
           handleSave: this.handleSave,

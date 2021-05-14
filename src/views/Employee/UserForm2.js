@@ -10,6 +10,8 @@ import Form2Table2 from "./Form2Table2";
 import Form2Table3 from "./Form2Table3";
 import Form2Table4 from "./Form2Table4";
 
+// import Table1 from "./table1";
+
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import { notify } from "../CustomComponent";
@@ -169,6 +171,11 @@ function UserForm2() {
             </div>
           </div>
         </div>
+        {/* <Table1
+          path={`${id}`}
+          data={dataT1}
+          changeData={(dataT1) => setDataT1(dataT1)}
+        /> */}
         <Form2Table1
           data={dataT1}
           changeData={(dataT1) => setDataT1(dataT1)}
