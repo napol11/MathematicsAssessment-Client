@@ -326,7 +326,7 @@ export default function ModalStaff(props) {
                       placeholder=" ‎‏‏‎ เบอร์โทร"
                       autoComplete={"off"}
                       className="input-modal"
-                      minLength={10}
+                      minLength={9}
                       maxLength={10}
                     />
                   </Form.Item>
