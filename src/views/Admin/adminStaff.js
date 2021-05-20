@@ -19,6 +19,7 @@ const AdminStaff = () => {
   const [datastaff, setdatastaff] = useState([]);
   // const [filterstaff, setfilterstaff] = useState([]);
   const [SendData, setSendData] = useState([]);
+  const [rawstaft, setRawstaft] = useState([]);
   const [filter, setFilter] = useState([]);
   // const [show, setshow] = useState(false);
   const dispatch = useDispatch();
@@ -182,6 +183,7 @@ const AdminStaff = () => {
       }));
       setdatastaff(data);
       setFilter(data);
+      setRawstaft(data);
       // setfilterstaff(data);
     });
     // set Data ไว้ filter
@@ -280,7 +282,7 @@ const AdminStaff = () => {
         show={show}
         closeModal={() => setshow(false)}
       /> */}
-      <ModalStaff reload={LoadData} data={SendData} />
+      <ModalStaff reload={LoadData} data={SendData} rawstaft={rawstaft} />
     </div>
   );
 };

@@ -37,6 +37,7 @@ export default function ModalStaff(props) {
     if (adminModal.type === "add") {
       setTitle(`เพิ่ม${title}`);
     } else {
+      console.log(props);
       setTitle(`แก้ไข${title}`);
       // console.log(props);
       ///  set values เซ็ทค่าในฟอร์ม
@@ -52,10 +53,14 @@ export default function ModalStaff(props) {
         group: props.data.employee_group,
         start: props.data.employee_start,
       });
+      if (props.data.employee_position === "นักบริหารงานทั่วไป") {
+        const degreedata = ["จ.1", "จ.2", "จ.3", "จ.4"];
+        setListdegree(degreedata);
+      } else {
+        const degreedata = ["สว.1", "สว.2", "สว.3", "สว.4"];
+        setListdegree(degreedata);
+      }
     }
-    // map ระดับ สังกัด
-    // setLevel(levels);
-    // setDivision(divisions);
 
     setLoading(false);
   };
@@ -74,15 +79,25 @@ export default function ModalStaff(props) {
     const data = {
       ...values,
     };
-    axios
-      .post(`${url}/employee`, data)
-      .then((res) => {
-        console.log(res);
-        window.location.replace("/administrator/staff");
-      })
-      .catch((err) => {
-        console.log(err);
+    let numfilter = props.rawstaft.filter((v) => v.number === data.number);
+    if (numfilter.length === 0) {
+      notify.success("บันทึกรายชื่อพนักงานเรียบร้อย !");
+      axios
+        .post(`${url}/employee`, data)
+        .then((res) => {
+          console.log(res);
+          window.location.replace("/administrator/staff");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      close();
+    } else {
+      notify.error("เลขที่ ซ้ำ !");
+      formRef.current.setFieldsValue({
+        number: "",
       });
+    }
   };
 
   const editEmployrr = (values) => {
@@ -91,6 +106,8 @@ export default function ModalStaff(props) {
       .then((res) => {
         console.log(res);
         window.location.replace("/administrator/staff");
+        close();
+        notify.success("แก้ไขรายชื่อพนักงานเรียบร้อย !");
       })
       .catch((err) => {
         console.log(err);
@@ -100,8 +117,6 @@ export default function ModalStaff(props) {
   const save = (values) => {
     addEmployee(values);
     setLoading(true);
-    close();
-    notify.success("บันทึกรายชื่อพนักงานเรียบร้อย !");
     // reload();
     setLoading(false);
   };
@@ -109,8 +124,6 @@ export default function ModalStaff(props) {
   const edit = (values) => {
     editEmployrr(values);
     setLoading(true);
-    close();
-    notify.success("แก้ไขรายชื่อพนักงานเรียบร้อย !");
     // reload();
     setLoading(false);
   };
