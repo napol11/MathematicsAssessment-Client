@@ -220,8 +220,8 @@ p {
 
 .ant-cascader-picker:focus .ant-input {
     outline: none !important;
-    box-shadow: 0 0 4px #f26843;
-    border: 1.5px solid #f26843;
+    box-shadow: 0 0 4px #f26843 !important;
+    border: 1.5px solid #f26843 !important;
 }
 
 .textarea {
@@ -325,4 +325,12 @@ p {
 .userguide_button:hover {
     border: #f26843 solid 1.5px !important;
     color: #f26843;
+}
+
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+    border: 1.5px solid #f26843 !important;
+    box-shadow: 0 0 4px #f26843 !important;
 }

@@ -20,6 +20,8 @@ p {
 
 .buttons_add:hover {
   background: #F6BE32;
+  border: 2px solid #F6BE32;
+  color:black;
 }
 
 .buttons_disable {

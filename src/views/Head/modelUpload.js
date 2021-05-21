@@ -3,7 +3,7 @@ import { CModal, CModalBody, CModalHeader } from "@coreui/react";
 import axios from "axios";
 
 import "./head.css";
-import { Upload } from "antd";
+import { Upload,Button } from "antd";
 import "antd/dist/antd.css";
 import { useParams } from "react-router-dom";
 
@@ -71,7 +71,7 @@ const UploadFile = (props) => {
 
   return (
     <>
-      <b
+      <Button
         className={`ml-3 ${
           fileList.length > 0 ? "buttons_add" : "buttons_disable"
         }`}
@@ -79,8 +79,8 @@ const UploadFile = (props) => {
       >
         {fileList.length > 0 ? "มีเอกสาร" : "ไม่มีเอกสาร"}
         {/* เอกสาร */}
-      </b>
-      <CModal show={show} closeOnBackdrop={false} centered>
+      </Button>
+      <CModal show={show} closeOnBackdrop={false} centered className="text-sm-left">
         <CModalHeader>
           <label
             className="m-0"

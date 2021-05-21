@@ -309,17 +309,19 @@ class Table2 extends React.Component {
     return (
       <>
         <div
-          className="Row col-sm-12 mt-4"
+          className="row no-gutter mt-4"
           style={{ backgroundColor: "#E7E5E3" }}
         >
+         <div className="col-sm-6 mt-4">
           <label
-            className="col-sm-11"
             style={{ fontSize: "16px", fontWeight: "bold" }}
           >
             2. การบริหารนโยบาย
           </label>
+          </div>
+          <div className="col-sm-6 text-sm-right align-self-sm-end">
           <UploadFile table={2} form={2} />
-        </div>
+          </div>
         <Table
           className="committeeTableAssess2"
           components={components}
@@ -333,7 +335,7 @@ class Table2 extends React.Component {
           scroll={{ y: 200 }}
           size="middle"
         />
-        {/* {console.log(this.props.data.length !== 0 ? this.props.data : null)} */}
+        </div>
       </>
     );
   }

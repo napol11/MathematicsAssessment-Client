@@ -80,7 +80,7 @@ const UploadFile = (props) => {
         {fileList.length > 0 ? "มีเอกสาร" : "ไม่มีเอกสาร"}
         {/* เอกสาร */}
       </button>
-      <CModal show={show} closeOnBackdrop={false} centered>
+      <CModal show={show} closeOnBackdrop={false} centered className="text-sm-left">
         <CModalHeader>
           <label
             className="m-0"

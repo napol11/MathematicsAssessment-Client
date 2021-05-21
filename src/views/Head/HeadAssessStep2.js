@@ -197,6 +197,7 @@ const CommitteAssessStep2 = (props) => {
           </label>
         </div>
       </div>
+      <div className="col-sm-12">
       <Table1
         data={dataT1}
         changeData={(dataT1) => setDataT1(dataT1)}
@@ -221,6 +222,7 @@ const CommitteAssessStep2 = (props) => {
         pathEM={`${id}`}
         pathAS={`${assessment}`}
       />
+      </div>
       <div className="col-sm-12 mt-4">
         <label
           className="col-sm-4"
