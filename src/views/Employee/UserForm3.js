@@ -107,7 +107,7 @@ function UserFrom3() {
   return (
     <div style={{ width: "100%" }}>
       <div className="userform3">
-        <div className="col-sm-12">
+        <div className="col-sm-12 mb-4">
           <label
             style={{ fontWeight: "bold", fontSize: "24px", color: "black" }}
           >
@@ -122,11 +122,13 @@ function UserFrom3() {
           onFinish={onFinish}
           fields={form}
         >
-          <div className="mb-3">
-            <label className="col-sm-11">
+          <div className="row no-gutter mb-4">
+            <label className="col-sm-6">
               1. ท่านขาดความรู้ ความชำนาญ ทักษะในเรื่องใดบ้าง
             </label>
+            <div className="col-sm-6 text-sm-right align-self-sm-end">
             <UploadFile table={1} form={3} />
+            </div>
           </div>
           <Form.Item
             // id="form3employees1"
@@ -140,12 +142,13 @@ function UserFrom3() {
           >
             <TextArea className="textbox" rows={4} />
           </Form.Item>
-          <div className="mb-3">
-            <label className="col-sm-11">
-              2. ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ
-              ทักษะดังกล่าวได้โดยวิธีใดบ้าง
+          <div className="row no-gutter mb-4">
+            <label className="col-sm-6 mt-2">
+                2. ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ ทักษะดังกล่าวได้โดยวิธีใดบ้าง
             </label>
+            <div className="col-sm-6 text-sm-right align-self-sm-end">
             <UploadFile table={2} form={3} />
+            </div>
           </div>
           <Form.Item
             id="form3employees2"
@@ -159,11 +162,13 @@ function UserFrom3() {
           >
             <TextArea className="textbox" rows={4} />
           </Form.Item>
-          <div className="mb-3">
-            <label className="col-sm-11">
-              3. ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง
+          <div className="row no-gutter mb-4">
+            <label className="col-sm-6 mt-2">
+                3. ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง
             </label>
+            <div className="col-sm-6 text-sm-right align-self-sm-end">
             <UploadFile table={3} form={3} />
+            </div>
           </div>
           <Form.Item
             id="form3employees3"
@@ -177,13 +182,14 @@ function UserFrom3() {
           >
             <TextArea className="textbox" rows={4} />
           </Form.Item>
-          <div className="mb-3">
-            <label className="col-sm-11">
-              4. ท่านสนใจการฝึกอบรม
-              หรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
-              (เรียงลำดับความสำคัญ 1-5){" "}
+          <div className="row no-gutter mb-4">
+            <label className="col-sm-9 mt-2">
+                4. ท่านสนใจการฝึกอบรมหรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
+                (เรียงลำดับความสำคัญ 1-5){" "}
             </label>
-            <UploadFile table={4} form={3} />
+            <div className="col-sm-3 text-sm-right align-self-sm-end">
+            <UploadFile table={3} form={3} />
+            </div>
           </div>
           <Form.Item
             id="form3employees4"
@@ -197,7 +203,7 @@ function UserFrom3() {
           >
             <TextArea className="textbox" rows={4} />
           </Form.Item>
-          <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+          <div className="col-sm-12 d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
             <button className="btn-modal-confirm" type="submit">
               บันทึก
             </button>

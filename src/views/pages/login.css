@@ -13,13 +13,13 @@
   border: none;
   padding: 8px;
   font-size: 16px;
+  outline: none !important;
 }
 
 .submitYellow:hover {
   background-color: #bd9805;
   color: white;
   border: none;
-  outline: none !important;
 }
 
 .password::placeholder {

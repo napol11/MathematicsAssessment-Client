@@ -245,7 +245,6 @@ p {
 
 .editable-cell-value-wrap {
     position: relative;
-
 }
 
 .editable-cell-value-wrap:hover {
@@ -257,6 +256,14 @@ p {
     background-color: #E7E5E3;
     padding: 5px 12px;
     cursor: pointer;
+}
+
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+    border: 1.5px solid #f26843 !important;
+    box-shadow: 0 0 4px #f26843 !important;
 }
 
 .btn-modal-cancel {

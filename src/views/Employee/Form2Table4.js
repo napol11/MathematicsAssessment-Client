@@ -403,20 +403,23 @@ class Form2Table4 extends React.Component {
     return (
       <>
         <div
-          className="Row col-sm-12 mt-5"
+          className="row no-gutter mt-5"
           style={{ backgroundColor: "#E7E5E3" }}
         >
+            <div className="col-sm-6 mt-4">
           <label
             className="col-sm-10"
             style={{ fontSize: "16px", fontWeight: "bold" }}
           >
             4. การพัฒนาตนเอง
           </label>
+          </div>
+          <div className="col-sm-6 text-sm-right align-self-sm-end">
           <button className="buttons_add" onClick={this.handleAdd}>
             เพิ่มแถวตาราง
           </button>
           <UploadFile table={4} form={2} />
-        </div>
+          </div>
         <Table
           className="committeeTableAssess2"
           components={components}
@@ -431,6 +434,7 @@ class Form2Table4 extends React.Component {
           scroll={{ y: 200 }}
         />
         {/* {console.log(this.props.data.length !== 0 ? this.props.data : null)} */}
+        </div>
       </>
     );
   }

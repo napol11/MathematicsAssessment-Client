@@ -141,7 +141,7 @@ const UploadFile = (props) => {
         {/* {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"} */}
         แนบเอกสาร
       </b>
-      <CModal show={show} closeOnBackdrop={false} centered>
+      <CModal show={show} closeOnBackdrop={false} centered className="text-sm-left">
         <CModalHeader>
           <label
             className="m-0"

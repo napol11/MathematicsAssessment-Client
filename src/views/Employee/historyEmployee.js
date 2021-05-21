@@ -78,15 +78,16 @@ const HistoryEmployee = () => {
     <div className="justify-center align-center">
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12 ">
-          <div className="mb-3">
+        <div className="row no-gutter mb-4">
+            <div className="col-sm-6">
             <label
-              className="col-xs-10 col-sm-10"
               style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
             >
               ประวัติพนักงาน
             </label>
+            </div>
+            <div className="col-sm-6 text-sm-right align-self-sm-end">
             <Button
-              className="ml-5"
               shape="round"
               size={"large"}
               onMouseEnter={() => setHover(true)}
@@ -113,7 +114,8 @@ const HistoryEmployee = () => {
             >
               เปลี่ยนรหัสผ่าน
             </Button>
-          </div>
+            </div>
+            </div>
 
           <div className="container-fluid ">
             <div className="row no-gutter">
