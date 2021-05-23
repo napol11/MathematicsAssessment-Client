@@ -188,6 +188,8 @@ const ModalAssess = (props) => {
                       placeholder=" ‎‏‏‎ ‎ระบุปีการประเมิน"
                       autoComplete="off"
                       className="input-modal"
+                      minLength={4}
+                      maxLength={4}
                     />
                   </Form.Item>
                 </div>
