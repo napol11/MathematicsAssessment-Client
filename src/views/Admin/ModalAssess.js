@@ -216,23 +216,23 @@ const ModalAssess = (props) => {
                 <Form.Item
                   style={{ marginBottom: "10px" }}
                   name={"start"}
-                  label="วันที่เริ่มส่งข้อมูลของพนักงาน"
+                  label="วันเริ่มต้นของการส่งข้อมูลการประเมินพนักงาน"
                   rules={[
                     {
                       required: true,
-                      message: "กรุณาระบุ วันที่เริ่มส่งข้อมูล",
+                      message: "กรุณาระบุ วันเริ่มต้นของการส่งข้อมูลการประเมิน",
                     },
                   ]}
                 >
                   <WatDatePicker
                     value={selectedDateStart}
                     onChange={handleDatePickerStart}
-                    placeholder={"ระบุวันที่เริ่มส่งข้อมูล"}
+                    placeholder={"ระบุวันเริ่มต้นของการส่งข้อมูลการประเมิน"}
                     dateFormat={"yyyy-MM-dd"}
                     displayFormat={"DD MMM YY"}
                     inputStyle={{
                       color: "black",
-                      width: 365,
+                      width: 370,
                     }}
                     clearable={true}
                   />
@@ -259,7 +259,7 @@ const ModalAssess = (props) => {
                     inputStyle={{
                       color: "black",
                       // width: "100%",
-                      width: 370,
+                      width: 365,
                     }}
                     minDate={selectedDateStart}
                     maxDate={selectedDateEnd}
@@ -269,35 +269,6 @@ const ModalAssess = (props) => {
               </div>
             </div>
             <div className="row no-gutter">
-              {/* <div className="col-sm-6">
-                <Form.Item
-                  style={{ marginBottom: "10px" }}
-                  name={"endedit"}
-                  label="วันสุดท้ายของการส่งข้อมูลการประเมินพนักงาน"
-                  rules={[
-                    {
-                      required: true,
-                      message: "กรุณาระบุ วันสุดท้ายของการส่งข้อมูลการประเมิน",
-                    },
-                  ]}
-                >
-                  <WatDatePicker
-                    value={selectedDateEdit}
-                    onChange={handleDatePickerEdit}
-                    placeholder={"ระบุวันสุดท้ายของการส่งข้อมูลการประเมิน"}
-                    dateFormat={"yyyy-MM-dd"}
-                    displayFormat={`DD MMM YY`}
-                    inputStyle={{
-                      color: "black",
-                      // width: "100%",
-                      width: 370,
-                    }}
-                    minDate={selectedDateStart}
-                    maxDate={selectedDateEnd}
-                    clearable={true}
-                  />
-                </Form.Item>
-              </div> */}
               <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
@@ -318,7 +289,7 @@ const ModalAssess = (props) => {
                     displayFormat={`DD MMM YY`}
                     inputStyle={{
                       color: "black",
-                      width: 365,
+                      width: 765,
                     }}
                     minDate={selectedDateStart}
                     clearable={true}

@@ -102,11 +102,11 @@ const AdminAssessment = () => {
       // },
     },
     {
-      title: <div style={title}>วันที่เริ่มส่งข้อมูลของพนักงาน</div>,
+      title: <div style={title}>วันเริ่มต้นของการส่งข้อมูลการประเมินพนักงาน</div>,
       dataIndex: "start",
       key: "start",
       align: "center",
-      width: "150px",
+      width: "180px",
       render: (text, row, index) => {
         return dateText(row.start);
       },
@@ -121,7 +121,7 @@ const AdminAssessment = () => {
       dataIndex: "edit",
       key: "edit",
       align: "center",
-      width: "150px",
+      width: "180px",
       render: (text, row, index) => {
         return dateText(row.edit);
       },
@@ -134,7 +134,7 @@ const AdminAssessment = () => {
       dataIndex: "end",
       key: "end",
       align: "center",
-      width: "150px",
+      width: "180px",
       render: (text, row, index) => {
         return dateText(row.end);
       },
