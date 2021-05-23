@@ -19,6 +19,7 @@ const ModalAssess = (props) => {
   const [selectedDateStart, setSelectedDateStart] = useState("");
   const [selectedDateEnd, setSelectedDateEnd] = useState("");
   const [selectedDateEdit, setSelectedDateEdit] = useState("");
+  const [selectedyear, setSelectedyear] = useState("");
 
   const formRef = useRef(null);
 
@@ -35,15 +36,16 @@ const ModalAssess = (props) => {
   };
 
   const addAssessment = (values) => {
-    axios
-      .post(`${url}/assessment`, values)
-      .then((res) => {
-        console.log(res);
-        window.location.replace("/administrator/assessment");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(values);
+    // axios
+    //   .post(`${url}/assessment`, values)
+    //   .then((res) => {
+    //     console.log(res);
+    //     window.location.replace("/administrator/assessment");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   const reset = () => {
@@ -99,6 +101,9 @@ const ModalAssess = (props) => {
   const LoadData = () => {
     setLoading(true);
     let title = "การประเมิน";
+    var d = new Date();
+    var year = d.getFullYear();
+    setSelectedyear(year);
 
     if (adminModal.type === "add") {
       setTitle(`เพิ่ม${title}`);
@@ -166,33 +171,47 @@ const ModalAssess = (props) => {
                     },
                   ]}
                 >
-                 <Select
-                      className="select-modal"
-                      placeholder=" ‎‏‏‎ ‎เลือกรอบการประเมิน"
+                  <Select
+                    className="select-modal"
+                    placeholder=" ‎‏‏‎ ‎เลือกรอบการประเมิน"
+                  >
+                    <Option
+                      value={`รอบที่ 1 : 1 ส.ค. - 31 ม.ค. ${
+                        selectedyear + 543
+                      }`}
+                    >{`รอบที่ 1 : 1 ส.ค. - 31 ม.ค. ${
+                      selectedyear + 543
+                    }`}</Option>
+                    <Option
+                      value={`รอบที่ 2 : 1 ก.พ. - 31 ก.ค. ${
+                        selectedyear + 544
+                      }`}
                     >
-                      <Option value="1">1</Option>
-                      <Option value="2"> 2</Option>
-                    </Select>
+                      {`รอบที่ 2 : 1 ก.พ. - 31 ก.ค. ${selectedyear + 544}`}
+                    </Option>
+                  </Select>
                 </Form.Item>
               </div>
             </div>
             <div className="row no-gutter">
-                <div className="col-sm-6">
-                  <Form.Item
-                    style={{ marginBottom: "10px" }}
-                    name={["name"]}
-                    label="ประจำปีที่"
-                    rules={[{ required: true, message: "กรุณาระบุ ปีการประเมิน" }]}
-                  >
-                    <Input
-                      placeholder=" ‎‏‏‎ ‎ระบุปีการประเมิน"
-                      autoComplete="off"
-                      className="input-modal"
-                      minLength={4}
-                      maxLength={4}
-                    />
-                  </Form.Item>
-                </div>
+              {/* <div className="col-sm-6">
+                <Form.Item
+                  style={{ marginBottom: "10px" }}
+                  name={["year"]}
+                  label="ประจำปีที่"
+                  rules={[
+                    { required: true, message: "กรุณาระบุ ปีการประเมิน" },
+                  ]}
+                >
+                  <Input
+                    placeholder=" ‎‏‏‎ ‎ระบุปีการประเมิน"
+                    autoComplete="off"
+                    className="input-modal"
+                    minLength={4}
+                    maxLength={4}
+                  />
+                </Form.Item>
+              </div> */}
               <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
@@ -219,8 +238,6 @@ const ModalAssess = (props) => {
                   />
                 </Form.Item>
               </div>
-            </div>
-            <div className="row no-gutter">
               <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}
@@ -250,6 +267,37 @@ const ModalAssess = (props) => {
                   />
                 </Form.Item>
               </div>
+            </div>
+            <div className="row no-gutter">
+              {/* <div className="col-sm-6">
+                <Form.Item
+                  style={{ marginBottom: "10px" }}
+                  name={"endedit"}
+                  label="วันสุดท้ายของการส่งข้อมูลการประเมินพนักงาน"
+                  rules={[
+                    {
+                      required: true,
+                      message: "กรุณาระบุ วันสุดท้ายของการส่งข้อมูลการประเมิน",
+                    },
+                  ]}
+                >
+                  <WatDatePicker
+                    value={selectedDateEdit}
+                    onChange={handleDatePickerEdit}
+                    placeholder={"ระบุวันสุดท้ายของการส่งข้อมูลการประเมิน"}
+                    dateFormat={"yyyy-MM-dd"}
+                    displayFormat={`DD MMM YY`}
+                    inputStyle={{
+                      color: "black",
+                      // width: "100%",
+                      width: 370,
+                    }}
+                    minDate={selectedDateStart}
+                    maxDate={selectedDateEnd}
+                    clearable={true}
+                  />
+                </Form.Item>
+              </div> */}
               <div className="col-sm-6">
                 <Form.Item
                   style={{ marginBottom: "10px" }}

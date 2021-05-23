@@ -102,7 +102,7 @@ const AdminAssessment = () => {
       // },
     },
     {
-      title: <div style={title}>วันเริ่มประเมิน</div>,
+      title: <div style={title}>วันที่เริ่มส่งข้อมูลของพนักงาน</div>,
       dataIndex: "start",
       key: "start",
       align: "center",
@@ -115,7 +115,9 @@ const AdminAssessment = () => {
       // },
     },
     {
-      title: <div style={title}>วันสิ้นสุดส่งแบบฟอร์ม</div>,
+      title: (
+        <div style={title}>วันสุดท้ายของการส่งข้อมูลการประเมินพนักงาน</div>
+      ),
       dataIndex: "edit",
       key: "edit",
       align: "center",
@@ -128,7 +130,7 @@ const AdminAssessment = () => {
       // },
     },
     {
-      title: <div style={title}>วันสิ้นสุดประเมิน</div>,
+      title: <div style={title}>วันสุดท้ายของการประเมินโดยกรรมการ</div>,
       dataIndex: "end",
       key: "end",
       align: "center",
