@@ -202,7 +202,7 @@ class Table1 extends React.Component {
                 parseFloat(row.Table4LevelCOM4) +
                 parseFloat(row.Table4LevelHead)) /
                 5) *
-                parseFloat(row.Table4FTE)}
+                parseFloat(row.Table4FTE).toFixed(2)}
             </div>
           );
         },
@@ -221,14 +221,16 @@ class Table1 extends React.Component {
                 textAlign: "center",
               }}
             >
-              {(((parseFloat(row.Table4LevelCOM1) +
-                parseFloat(row.Table4LevelCOM2) +
-                parseFloat(row.Table4LevelCOM3) +
-                parseFloat(row.Table4LevelCOM4) +
-                parseFloat(row.Table4LevelHead)) /
-                5) *
-                parseFloat(row.Table4FTE)) /
-                4}
+              {(
+                (((parseFloat(row.Table4LevelCOM1) +
+                  parseFloat(row.Table4LevelCOM2) +
+                  parseFloat(row.Table4LevelCOM3) +
+                  parseFloat(row.Table4LevelCOM4) +
+                  parseFloat(row.Table4LevelHead)) /
+                  5) *
+                  parseFloat(row.Table4FTE)) /
+                4
+              ).toFixed(2)}
             </div>
           );
         },
@@ -381,29 +383,27 @@ class Table1 extends React.Component {
           className="row no-gutter mt-4"
           style={{ backgroundColor: "#E7E5E3" }}
         >
-         <div className="col-sm-6 mt-4">
-          <label
-            style={{ fontSize: "16px", fontWeight: "bold" }}
-          >
-            4. การพัฒนาตนเอง
-          </label>
+          <div className="col-sm-6 mt-4">
+            <label style={{ fontSize: "16px", fontWeight: "bold" }}>
+              4. การพัฒนาตนเอง
+            </label>
           </div>
           <div className="col-sm-6 text-sm-right align-self-sm-end">
-          <UploadFile table={4} form={2} />
+            <UploadFile table={4} form={2} />
           </div>
-        <Table
-          className="committeeTableAssess2"
-          components={components}
-          rowClassName={() => "editable-row"}
-          dataSource={dataSource}
-          columns={columns}
-          pagination={false}
-          // pagination={{
-          //   defaultPageSize: 4,
-          // }}
-          scroll={{ y: 200 }}
-          size="middle"
-        />
+          <Table
+            className="committeeTableAssess2"
+            components={components}
+            rowClassName={() => "editable-row"}
+            dataSource={dataSource}
+            columns={columns}
+            pagination={false}
+            // pagination={{
+            //   defaultPageSize: 4,
+            // }}
+            scroll={{ y: 200 }}
+            size="middle"
+          />
         </div>
       </>
     );

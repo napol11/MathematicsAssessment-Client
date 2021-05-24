@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { CModal, CModalHeader, CModalBody, CModalFooter } from "@coreui/react";
-import { Spin, Form, Select, Input } from "antd";
+import { Spin, Form, Select } from "antd";
 import { WatDatePicker } from "thaidatepicker-react";
 import { notify } from "../CustomComponent";
 import { useSelector, useDispatch } from "react-redux";
@@ -36,16 +36,16 @@ const ModalAssess = (props) => {
   };
 
   const addAssessment = (values) => {
-    console.log(values);
-    // axios
-    //   .post(`${url}/assessment`, values)
-    //   .then((res) => {
-    //     console.log(res);
-    //     window.location.replace("/administrator/assessment");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    // console.log(values);
+    axios
+      .post(`${url}/assessment`, values)
+      .then((res) => {
+        console.log(res);
+        window.location.replace("/administrator/assessment");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const reset = () => {
@@ -262,7 +262,6 @@ const ModalAssess = (props) => {
                       width: 365,
                     }}
                     minDate={selectedDateStart}
-                    maxDate={selectedDateEnd}
                     clearable={true}
                   />
                 </Form.Item>
@@ -291,7 +290,7 @@ const ModalAssess = (props) => {
                       color: "black",
                       width: 765,
                     }}
-                    minDate={selectedDateStart}
+                    minDate={selectedDateEdit}
                     clearable={true}
                   />
                 </Form.Item>
