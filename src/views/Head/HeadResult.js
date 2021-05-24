@@ -604,7 +604,7 @@ const CommitteAssessStep4 = (props) => {
                 <Form.Item name={["salary"]} className="col-sm-12 mb-3">
                   <Radio.Group style={{ marginLeft: "25%" }}>
                     <Radio value="เห็นสมควรให้ขึ้นเงินเดือน">
-                      {`เห็นสมควรให้ขึ้นเงินเดือน ${total} %`}
+                      {`เห็นสมควรให้ขึ้นเงินเดือน`}
                     </Radio>
                     <Radio
                       style={{ marginLeft: 204 }}
