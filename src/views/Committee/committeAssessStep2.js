@@ -29,24 +29,28 @@ const CommitteAssessStep2 = (props) => {
     dataT1.forEach((v) => {
       let f = {};
       f.formtwo_table = "1";
+      f.num = v.Table1No;
       f.formtwo_sucesscom = v.Table1LevelCom;
       _list.push(f);
     });
     dataT2.forEach((v) => {
       let f = {};
       f.formtwo_table = "2";
+      f.num = v.Table2No;
       f.formtwo_sucesscom = v.Table2LevelCom;
       _list.push(f);
     });
     dataT3.forEach((v) => {
       let f = {};
       f.formtwo_table = "3";
+      f.num = v.Table3No;
       f.formtwo_sucesscom = v.Table3LevelCom;
       _list.push(f);
     });
     dataT4.forEach((v) => {
       let f = {};
       f.formtwo_table = "4";
+      f.num = v.Table4No;
       f.formtwo_sucesscom = v.Table4LevelCom;
       _list.push(f);
     });
@@ -79,6 +83,7 @@ const CommitteAssessStep2 = (props) => {
       let f = {};
       f.formtwo_table = "1";
       f.formtwo_fte = v.Table1FTE;
+      f.num = v.Table1No;
       f.totle = v.Table1FTE * v.Table1LevelCom;
       f.totlepercen = (v.Table1FTE * v.Table1LevelCom) / 4;
       _list.push(f);
@@ -86,6 +91,7 @@ const CommitteAssessStep2 = (props) => {
     dataT2.forEach((v) => {
       let f = {};
       f.formtwo_table = "2";
+      f.num = v.Table2No;
       f.totle = v.Table2FTE * v.Table2LevelCom;
       f.formtwo_fte = v.Table2FTE;
       f.totlepercen = (v.Table2FTE * v.Table2LevelCom) / 4;
@@ -94,6 +100,7 @@ const CommitteAssessStep2 = (props) => {
     dataT3.forEach((v) => {
       let f = {};
       f.formtwo_table = "3";
+      f.num = v.Table3No;
       f.formtwo_fte = v.Table3FTE;
       f.totle = v.Table3FTE * v.Table3LevelCom;
       f.totlepercen = (v.Table3FTE * v.Table3LevelCom) / 4;
@@ -102,6 +109,7 @@ const CommitteAssessStep2 = (props) => {
     dataT4.forEach((v) => {
       let f = {};
       f.formtwo_table = "4";
+      f.num = v.Table4No;
       f.formtwo_fte = v.Table4FTE;
       f.totle = v.Table4FTE * v.Table4LevelCom;
       f.totlepercen = (v.Table4FTE * v.Table4LevelCom) / 4;
@@ -136,30 +144,30 @@ const CommitteAssessStep2 = (props) => {
         </div>
       </div>
       <div className="col-sm-12">
-      <Table1
-        data={dataT1}
-        changeData={(dataT1) => setDataT1(dataT1)}
-        pathEM={`${id}`}
-        pathAS={`${assessment}`}
-      />
-      <Table2
-        data={dataT2}
-        changeData={(dataT2) => setDataT2(dataT2)}
-        pathEM={`${id}`}
-        pathAS={`${assessment}`}
-      />
-      <Table3
-        data={dataT3}
-        changeData={(dataT3) => setDataT3(dataT3)}
-        pathEM={`${id}`}
-        pathAS={`${assessment}`}
-      />
-      <Table4
-        data={dataT4}
-        changeData={(dataT4) => setDataT4(dataT4)}
-        pathEM={`${id}`}
-        pathAS={`${assessment}`}
-      />
+        <Table1
+          data={dataT1}
+          changeData={(dataT1) => setDataT1(dataT1)}
+          pathEM={`${id}`}
+          pathAS={`${assessment}`}
+        />
+        <Table2
+          data={dataT2}
+          changeData={(dataT2) => setDataT2(dataT2)}
+          pathEM={`${id}`}
+          pathAS={`${assessment}`}
+        />
+        <Table3
+          data={dataT3}
+          changeData={(dataT3) => setDataT3(dataT3)}
+          pathEM={`${id}`}
+          pathAS={`${assessment}`}
+        />
+        <Table4
+          data={dataT4}
+          changeData={(dataT4) => setDataT4(dataT4)}
+          pathEM={`${id}`}
+          pathAS={`${assessment}`}
+        />
       </div>
       <div className="col-sm-12 mt-4">
         <label

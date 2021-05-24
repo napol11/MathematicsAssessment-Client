@@ -111,6 +111,10 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 
+function compare(a, b) {
+  return a.num - b.num;
+}
+
 class Table1 extends React.Component {
   constructor(props) {
     super(props);
@@ -243,10 +247,13 @@ class Table1 extends React.Component {
         const dataEM = em.data.data.formtwo;
         const dataCOM = com.data.data.formtwoCOM;
         const T1EM = dataEM.filter((v) => v.formtwo_table === 1);
+        const T1EMsoft = T1EM.sort(compare);
         const T1COM = dataCOM.filter((v) => v.formtwo_table === 1);
+        const T1COMsoft = T1COM.sort(compare);
+
         console.log(T1COM);
         this.setState({
-          dataSource: T1EM.map((v, i) => ({
+          dataSource: T1EMsoft.map((v, i) => ({
             key: i + 1,
             Table1No: i + 1,
             Table1Activity: v.formtwo_name,
@@ -254,7 +261,7 @@ class Table1 extends React.Component {
             Table1Level: v.formtwo_sucessem,
             Table1Comments: v.formtwo_comment,
             Table1LevelCom:
-              T1COM.length !== 0 ? T1COM[i].formtwo_sucesscom : " ",
+              T1COMsoft.length !== 0 ? T1COMsoft[i].formtwo_sucesscom : " ",
           })),
         });
         const rawData = [...this.state.dataSource];
@@ -315,29 +322,27 @@ class Table1 extends React.Component {
           className="row no-gutter mt-4"
           style={{ backgroundColor: "#E7E5E3" }}
         >
-         <div className="col-sm-6 mt-4">
-          <label
-            style={{ fontSize: "16px", fontWeight: "bold" }}
-          >
-            1. การจัดการงานที่รับผิดชอบ
-          </label>
+          <div className="col-sm-6 mt-4">
+            <label style={{ fontSize: "16px", fontWeight: "bold" }}>
+              1. การจัดการงานที่รับผิดชอบ
+            </label>
           </div>
           <div className="col-sm-6 text-sm-right align-self-sm-end">
-          <UploadFile table={1} form={2} />
+            <UploadFile table={1} form={2} />
           </div>
-        <Table
-          className="committeeTableAssess2"
-          components={components}
-          rowClassName={() => "editable-row"}
-          dataSource={dataSource}
-          columns={columns}
-          pagination={false}
-          // pagination={{
-          //   defaultPageSize: 4,
-          // }}
-          scroll={{ y: 200 }}
-          size="middle"
-        />
+          <Table
+            className="committeeTableAssess2"
+            components={components}
+            rowClassName={() => "editable-row"}
+            dataSource={dataSource}
+            columns={columns}
+            pagination={false}
+            // pagination={{
+            //   defaultPageSize: 4,
+            // }}
+            scroll={{ y: 200 }}
+            size="middle"
+          />
         </div>
       </>
     );

@@ -29,24 +29,28 @@ const CommitteAssessStep2 = (props) => {
     dataT1.forEach((v) => {
       let f = {};
       f.formtwo_table = "1";
+      f.num = v.Table1No;
       f.formtwo_sucesscom = v.Table1LevelHead;
       _list.push(f);
     });
     dataT2.forEach((v) => {
       let f = {};
       f.formtwo_table = "2";
+      f.num = v.Table2No;
       f.formtwo_sucesscom = v.Table2LevelHead;
       _list.push(f);
     });
     dataT3.forEach((v) => {
       let f = {};
       f.formtwo_table = "3";
+      f.num = v.Table3No;
       f.formtwo_sucesscom = v.Table3LevelHead;
       _list.push(f);
     });
     dataT4.forEach((v) => {
       let f = {};
       f.formtwo_table = "4";
+      f.num = v.Table4No;
       f.formtwo_sucesscom = v.Table4LevelHead;
       _list.push(f);
     });
@@ -87,6 +91,7 @@ const CommitteAssessStep2 = (props) => {
           parseFloat(v.Table1LevelHead)) /
           5) *
         v.Table1FTE;
+      f.num = v.Table1No;
       f.totlepercen =
         (((parseFloat(v.Table1LevelCOM1) +
           parseFloat(v.Table1LevelCOM2) +
@@ -110,6 +115,7 @@ const CommitteAssessStep2 = (props) => {
           parseFloat(v.Table2LevelHead)) /
           5) *
         v.Table2FTE;
+      f.num = v.Table2No;
       f.totlepercen =
         (((parseFloat(v.Table2LevelCOM1) +
           parseFloat(v.Table2LevelCOM2) +
@@ -125,6 +131,7 @@ const CommitteAssessStep2 = (props) => {
       let f = {};
       f.formtwo_table = "3";
       f.formtwo_fte = v.Table3FTE;
+      f.num = v.Table3No;
       f.totle =
         ((parseFloat(v.Table3LevelCOM1) +
           parseFloat(v.Table3LevelCOM2) +
@@ -148,6 +155,7 @@ const CommitteAssessStep2 = (props) => {
       let f = {};
       f.formtwo_table = "4";
       f.formtwo_fte = v.Table4FTE;
+      f.num = v.Table4No;
       f.totle =
         ((parseFloat(v.Table4LevelCOM1) +
           parseFloat(v.Table4LevelCOM2) +
@@ -198,30 +206,30 @@ const CommitteAssessStep2 = (props) => {
         </div>
       </div>
       <div className="col-sm-12">
-      <Table1
-        data={dataT1}
-        changeData={(dataT1) => setDataT1(dataT1)}
-        pathEM={`${id}`}
-        pathAS={`${assessment}`}
-      />
-      <Table2
-        data={dataT2}
-        changeData={(dataT2) => setDataT2(dataT2)}
-        pathEM={`${id}`}
-        pathAS={`${assessment}`}
-      />
-      <Table3
-        data={dataT3}
-        changeData={(dataT3) => setDataT3(dataT3)}
-        pathEM={`${id}`}
-        pathAS={`${assessment}`}
-      />
-      <Table4
-        data={dataT4}
-        changeData={(dataT4) => setDataT4(dataT4)}
-        pathEM={`${id}`}
-        pathAS={`${assessment}`}
-      />
+        <Table1
+          data={dataT1}
+          changeData={(dataT1) => setDataT1(dataT1)}
+          pathEM={`${id}`}
+          pathAS={`${assessment}`}
+        />
+        <Table2
+          data={dataT2}
+          changeData={(dataT2) => setDataT2(dataT2)}
+          pathEM={`${id}`}
+          pathAS={`${assessment}`}
+        />
+        <Table3
+          data={dataT3}
+          changeData={(dataT3) => setDataT3(dataT3)}
+          pathEM={`${id}`}
+          pathAS={`${assessment}`}
+        />
+        <Table4
+          data={dataT4}
+          changeData={(dataT4) => setDataT4(dataT4)}
+          pathEM={`${id}`}
+          pathAS={`${assessment}`}
+        />
       </div>
       <div className="col-sm-12 mt-4">
         <label

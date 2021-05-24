@@ -111,6 +111,10 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 
+function compare(a, b) {
+  return a.num - b.num;
+}
+
 class Table1 extends React.Component {
   constructor(props) {
     super(props);
@@ -284,7 +288,11 @@ class Table1 extends React.Component {
           const dataCOM = com.data.data.formtwoCOM;
           const dataCOMALL = comAll.data.data;
           const T4EM = dataEM.filter((v) => v.formtwo_table === 4);
+          const T4EMsoft = T4EM.sort(compare);
+
           const T4COM = dataCOM.filter((v) => v.formtwo_table === 4);
+          const T4COMsoft = T4COM.sort(compare);
+
           const T4COMALL = dataCOMALL.filter((v) => v.formtwo_table === 4);
           const T4COMFILTER = T4COMALL.filter(
             (e) => parseInt(id_committee) !== e.fk_committee_id
@@ -294,18 +302,26 @@ class Table1 extends React.Component {
           const T4COM1 = T4COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[0]
           );
+          const T4COM1soft = T4COM1.sort(compare);
+
           const T4COM2 = T4COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[1]
           );
+          const T4COM2soft = T4COM2.sort(compare);
+
           const T4COM3 = T4COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[2]
           );
+          const T4COM3soft = T4COM3.sort(compare);
+
           const T4COM4 = T4COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[3]
           );
+          const T4COM4soft = T4COM4.sort(compare);
+
           console.log(T4COMFILTER);
           this.setState({
-            dataSource: T4EM.map((v, i) => ({
+            dataSource: T4EMsoft.map((v, i) => ({
               key: i + 1,
               Table4No: i + 1,
               Table4Activity: v.formtwo_name,
@@ -313,15 +329,15 @@ class Table1 extends React.Component {
               Table4Level: v.formtwo_sucessem,
               Table4Comments: v.formtwo_comment,
               Table4LevelCOM1:
-                T4COM1.length !== 0 ? T4COM1[i].formtwo_sucesscom : 0,
+                T4COM1soft.length !== 0 ? T4COM1soft[i].formtwo_sucesscom : 0,
               Table4LevelCOM2:
-                T4COM2.length !== 0 ? T4COM2[i].formtwo_sucesscom : 0,
+                T4COM2soft.length !== 0 ? T4COM2soft[i].formtwo_sucesscom : 0,
               Table4LevelCOM3:
-                T4COM3.length !== 0 ? T4COM3[i].formtwo_sucesscom : 0,
+                T4COM3soft.length !== 0 ? T4COM3soft[i].formtwo_sucesscom : 0,
               Table4LevelCOM4:
-                T4COM4.length !== 0 ? T4COM4[i].formtwo_sucesscom : 0,
+                T4COM4soft.length !== 0 ? T4COM4soft[i].formtwo_sucesscom : 0,
               Table4LevelHead:
-                T4COM.length !== 0 ? T4COM[i].formtwo_sucesscom : " ",
+                T4COMsoft.length !== 0 ? T4COMsoft[i].formtwo_sucesscom : " ",
             })),
           });
           const rawData = [...this.state.dataSource];

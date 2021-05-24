@@ -77,7 +77,8 @@ const AdminAssessment = () => {
   const deleteStaff = (row) => {
     notify.success(`ลบรายการประเมิน เรียบร้อย!`);
     axios.delete(`${url}/assessment/` + row.id);
-    window.location.replace("/administrator/assessment");
+    LoadData();
+    // window.location.replace("/administrator/assessment");
   };
 
   const columns = [

@@ -33,6 +33,7 @@ function UserForm2() {
     dataT1.forEach((v) => {
       let f = {};
       f.formtwo_table = "1";
+      f.num = v.Table1No;
       f.formtwo_name = v.Table1Activity;
       f.formtwo_fte = v.Table1FTE;
       f.formtwo_sucessem = v.Table1Level;
@@ -42,6 +43,7 @@ function UserForm2() {
     dataT2.forEach((v) => {
       let f = {};
       f.formtwo_table = "2";
+      f.num = v.Table2No;
       f.formtwo_name = v.Table2Activity;
       f.formtwo_fte = v.Table2FTE;
       f.formtwo_sucessem = v.Table2Level;
@@ -52,6 +54,7 @@ function UserForm2() {
     dataT3.forEach((v) => {
       let f = {};
       f.formtwo_table = "3";
+      f.num = v.Table3No;
       f.formtwo_name = v.Table3Activity;
       f.formtwo_fte = v.Table3FTE;
       f.formtwo_sucessem = v.Table3Level;
@@ -62,6 +65,7 @@ function UserForm2() {
     dataT4.forEach((v) => {
       let f = {};
       f.formtwo_table = "4";
+      f.num = v.Table4No;
       f.formtwo_name = v.Table4Activity;
       f.formtwo_fte = v.Table4FTE;
       f.formtwo_sucessem = v.Table4Level;
@@ -86,6 +90,7 @@ function UserForm2() {
         employee_id: id_employee,
         formtwo: _list,
       };
+      console.log(data);
       axios
         .post(`${url}/formtwo`, data)
         .then((res) => {
@@ -104,6 +109,7 @@ function UserForm2() {
     dataT1.forEach((v) => {
       let f = {};
       f.formtwo_table = "1";
+      f.num = v.Table1No;
       f.formtwo_fte = v.Table1FTE;
       f.totle = v.Table1FTE * v.Table1Level;
       f.totlepercen = (v.Table1FTE * v.Table1Level) / 4;
@@ -112,6 +118,7 @@ function UserForm2() {
     dataT2.forEach((v) => {
       let f = {};
       f.formtwo_table = "2";
+      f.num = v.Table2No;
       f.totle = v.Table2FTE * v.Table2Level;
       f.formtwo_fte = v.Table2FTE;
       f.totlepercen = (v.Table2FTE * v.Table2Level) / 4;
@@ -120,6 +127,7 @@ function UserForm2() {
     dataT3.forEach((v) => {
       let f = {};
       f.formtwo_table = "3";
+      f.num = v.Table3No;
       f.formtwo_fte = v.Table3FTE;
       f.totle = v.Table3FTE * v.Table3Level;
       f.totlepercen = (v.Table3FTE * v.Table3Level) / 4;
@@ -128,6 +136,7 @@ function UserForm2() {
     dataT4.forEach((v) => {
       let f = {};
       f.formtwo_table = "4";
+      f.num = v.Table4No;
       f.formtwo_fte = v.Table4FTE;
       f.totle = v.Table4FTE * v.Table4Level;
       f.totlepercen = (v.Table4FTE * v.Table4Level) / 4;

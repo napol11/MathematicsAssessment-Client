@@ -137,7 +137,8 @@ const AdminCommittee = () => {
   const deleteCommittee = (row) => {
     notify.success(`ลบรายชื่อกรรมการ เรียบร้อย!`);
     axios.delete(`${url}/committee/` + row.id);
-    window.location.replace("/administrator/committee");
+    LoadData();
+    // window.location.replace("/administrator/committee");
   };
 
   const LoadData = () => {

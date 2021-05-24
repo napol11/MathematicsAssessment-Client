@@ -178,6 +178,10 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 
+function compare(a, b) {
+  return a.num - b.num;
+}
+
 class Form2Table3 extends React.Component {
   constructor(props) {
     super(props);
@@ -326,10 +330,11 @@ class Form2Table3 extends React.Component {
     axios.post(`${url}/dataFormtwo`, data).then((res) => {
       const data = res.data.data.formtwo;
       const T3 = data.filter((v) => v.formtwo_table === 3);
+      const T3soft = T3.sort(compare);
       this.setState({
         dataSource:
-          T3.length !== 0
-            ? T3.map((v, i) => ({
+          T3soft.length !== 0
+            ? T3soft.map((v, i) => ({
                 key: i + 1,
                 Table3No: i + 1,
                 Table3Activity: v.formtwo_name,
@@ -339,7 +344,7 @@ class Form2Table3 extends React.Component {
                 Table3Code: v.formtwo_code,
               }))
             : [],
-        count: T3.length !== 0 ? T3.length + 1 : 1,
+        count: T3soft.length !== 0 ? T3soft.length + 1 : 1,
       });
       const rawData = [...this.state.dataSource];
       this.props.changeData(rawData);
@@ -416,34 +421,34 @@ class Form2Table3 extends React.Component {
           className="row no-gutter mt-5"
           style={{ backgroundColor: "#E7E5E3" }}
         >
-        <div className="col-sm-6 mt-4">
-          <label
-            className="col-sm-10"
-            style={{ fontSize: "16px", fontWeight: "bold" }}
-          >
-            3. การจัดการแบบข้ามสายงาน
-          </label>
+          <div className="col-sm-6 mt-4">
+            <label
+              className="col-sm-10"
+              style={{ fontSize: "16px", fontWeight: "bold" }}
+            >
+              3. การจัดการแบบข้ามสายงาน
+            </label>
           </div>
           <div className="col-sm-6 text-sm-right align-self-sm-end">
-          <button className="buttons_add" onClick={this.handleAdd}>
-            เพิ่มแถวตาราง
-          </button>
-          <UploadFile table={3} form={2} />
+            <button className="buttons_add" onClick={this.handleAdd}>
+              เพิ่มแถวตาราง
+            </button>
+            <UploadFile table={3} form={2} />
           </div>
-        <Table
-          className="committeeTableAssess2"
-          components={components}
-          rowClassName={() => "editable-row"}
-          dataSource={dataSource}
-          columns={columns}
-          pagination={false}
-          // pagination={{
-          //   defaultPageSize: 4,
-          // }}
-          scroll={{ y: 200 }}
-          size="middle"
-        />
-        {/* {console.log(this.props.data.length !== 0 ? this.props.data : null)} */}
+          <Table
+            className="committeeTableAssess2"
+            components={components}
+            rowClassName={() => "editable-row"}
+            dataSource={dataSource}
+            columns={columns}
+            pagination={false}
+            // pagination={{
+            //   defaultPageSize: 4,
+            // }}
+            scroll={{ y: 200 }}
+            size="middle"
+          />
+          {/* {console.log(this.props.data.length !== 0 ? this.props.data : null)} */}
         </div>
       </>
     );

@@ -111,6 +111,10 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 
+function compare(a, b) {
+  return a.num - b.num;
+}
+
 class Table1 extends React.Component {
   constructor(props) {
     super(props);
@@ -282,7 +286,10 @@ class Table1 extends React.Component {
           const dataCOM = com.data.data.formtwoCOM;
           const dataCOMALL = comAll.data.data;
           const T1EM = dataEM.filter((v) => v.formtwo_table === 1);
+          const T1EMsoft = T1EM.sort(compare);
           const T1COM = dataCOM.filter((v) => v.formtwo_table === 1);
+          const T1COMsoft = T1COM.sort(compare);
+
           const T1COMALL = dataCOMALL.filter((v) => v.formtwo_table === 1);
           const T1COMFILTER = T1COMALL.filter(
             (e) => parseInt(id_committee) !== e.fk_committee_id
@@ -292,18 +299,26 @@ class Table1 extends React.Component {
           const T1COM1 = T1COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[0]
           );
+          const T1COM1soft = T1COM1.sort(compare);
+
           const T1COM2 = T1COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[1]
           );
+          const T1COM2soft = T1COM2.sort(compare);
+
           const T1COM3 = T1COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[2]
           );
+          const T1COM3soft = T1COM3.sort(compare);
+
           const T1COM4 = T1COMFILTER.filter(
             (e) => e.fk_committee_id === duplicateID[3]
           );
+          const T1COM4soft = T1COM4.sort(compare);
+
           console.log(T1COMFILTER);
           this.setState({
-            dataSource: T1EM.map((v, i) => ({
+            dataSource: T1EMsoft.map((v, i) => ({
               key: i + 1,
               Table1No: i + 1,
               Table1Activity: v.formtwo_name,
@@ -311,15 +326,15 @@ class Table1 extends React.Component {
               Table1Level: v.formtwo_sucessem,
               Table1Comments: v.formtwo_comment,
               Table1LevelCOM1:
-                T1COM1.length !== 0 ? T1COM1[i].formtwo_sucesscom : 0,
+                T1COM1soft.length !== 0 ? T1COM1soft[i].formtwo_sucesscom : 0,
               Table1LevelCOM2:
-                T1COM2.length !== 0 ? T1COM2[i].formtwo_sucesscom : 0,
+                T1COM2soft.length !== 0 ? T1COM2soft[i].formtwo_sucesscom : 0,
               Table1LevelCOM3:
-                T1COM3.length !== 0 ? T1COM3[i].formtwo_sucesscom : 0,
+                T1COM3soft.length !== 0 ? T1COM3soft[i].formtwo_sucesscom : 0,
               Table1LevelCOM4:
-                T1COM4.length !== 0 ? T1COM4[i].formtwo_sucesscom : 0,
+                T1COM4soft.length !== 0 ? T1COM4soft[i].formtwo_sucesscom : 0,
               Table1LevelHead:
-                T1COM.length !== 0 ? T1COM[i].formtwo_sucesscom : " ",
+                T1COMsoft.length !== 0 ? T1COMsoft[i].formtwo_sucesscom : " ",
             })),
           });
           const rawData = [...this.state.dataSource];
@@ -381,29 +396,27 @@ class Table1 extends React.Component {
           className="row no-gutter mt-4"
           style={{ backgroundColor: "#E7E5E3" }}
         >
-         <div className="col-sm-6 mt-4">
-          <label
-            style={{ fontSize: "16px", fontWeight: "bold" }}
-          >
-            1. การจัดการงานที่รับผิดชอบ
-          </label>
+          <div className="col-sm-6 mt-4">
+            <label style={{ fontSize: "16px", fontWeight: "bold" }}>
+              1. การจัดการงานที่รับผิดชอบ
+            </label>
           </div>
           <div className="col-sm-6 text-sm-right align-self-sm-end">
-          <UploadFile table={1} form={2} />
+            <UploadFile table={1} form={2} />
           </div>
-        <Table
-          className="committeeTableAssess2"
-          components={components}
-          rowClassName={() => "editable-row"}
-          dataSource={dataSource}
-          columns={columns}
-          pagination={false}
-          // pagination={{
-          //   defaultPageSize: 4,
-          // }}
-          scroll={{ y: 200 }}
-          size="middle"
-        />
+          <Table
+            className="committeeTableAssess2"
+            components={components}
+            rowClassName={() => "editable-row"}
+            dataSource={dataSource}
+            columns={columns}
+            pagination={false}
+            // pagination={{
+            //   defaultPageSize: 4,
+            // }}
+            scroll={{ y: 200 }}
+            size="middle"
+          />
         </div>
       </>
     );
