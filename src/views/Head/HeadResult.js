@@ -534,18 +534,6 @@ const CommitteAssessStep4 = (props) => {
                   {`คะแนนการประเมินผลการปฏิบัติงานเป็นเพียงคะแนนส่วนบุคคลที่ใช้ประกอบการประเมินผลการปฏิบัติงานในเบื้องต้น ทั้งนี้  ผลการประเมินและระดับผลงานขึ้นอยู่กับผลงานในภาพรวมประกอบกับดุลยพินิจของผู้บังคับบัญชา`}
                 </label>
               </div>
-              {/* <div className="col-sm-12 ">
-              <label
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                  color: "black",
-                  marginLeft: "6%",
-                }}
-              >
-                {`ทั้งนี้  ผลการประเมินและระดับผลงานขึ้นอยู่กับผลงานในภาพรวมประกอบกับดุลยพินิจของผู้บังคับบัญชา`}
-              </label>
-            </div> */}
               <div className="col-sm-12 ">
                 <label
                   style={{
@@ -558,19 +546,20 @@ const CommitteAssessStep4 = (props) => {
                   {`พนักงานระดับปฏิบัติการ : เกณฑ์ผ่านรวมไม่ต่ำกว่าร้อยละ 60`}
                 </label>
               </div>
-              <div className="col-sm-8 mt-4">
+              <div className="col-sm-12 mt-4">
                 <label
                   style={{
                     fontWeight: "bold",
                     fontSize: "18px",
                     color: "black",
-                    marginLeft: "9%",
+                    marginLeft: "6%",
                   }}
                 >
+
                   {`สรุป`}
                 </label>
                 <Form.Item name={["pass"]} className="col-sm-12 mb-4">
-                  <Radio.Group style={{ marginLeft: "25%" }}>
+                  <Radio.Group style={{ marginLeft: "17%" }}>
                     <Radio value="ผ่านการประเมิน">ผ่านการประเมิน</Radio>
                     <Radio
                       style={{ marginLeft: 300 }}
@@ -584,30 +573,30 @@ const CommitteAssessStep4 = (props) => {
                   name={["grad"]}
                   label="ผลงานระดับ"
                   className=" mb-3"
-                  style={{ marginLeft: "25%" }}
+                  style={{ marginLeft: "19%" }}
                 >
                   <Select
                     className="select-modal"
                     placeholder=" ‎‏‏‎ ผลงานระดับ"
-                    style={{ width: "40%" }}
+                    style={{ width: "20%" }}
                     // onChange={onChangePosition}
                   >
                     <Option value="A">A</Option>
-                    <Option value="B">B+</Option>
-                    <Option value="B-">B</Option>
-                    <Option value="C">C+</Option>
+                    <Option value="B+">B+</Option>
+                    <Option value="B">B</Option>
+                    <Option value="C+">C+</Option>
                     <Option value="C">C</Option>
-                    <Option value="D">D+</Option>
-                    <Option value="D-">D</Option>
+                    <Option value="D+">D+</Option>
+                    <Option value="D">D</Option>
                   </Select>
                 </Form.Item>
-                <Form.Item name={["salary"]} className="col-sm-12 mb-3">
-                  <Radio.Group style={{ marginLeft: "25%" }}>
+                <Form.Item name={["salary"]} className="col-sm-12 mb-4">
+                  <Radio.Group style={{ marginLeft: "17%" }}>
                     <Radio value="เห็นสมควรให้ขึ้นเงินเดือน">
                       {`เห็นสมควรให้ขึ้นเงินเดือน`}
                     </Radio>
                     <Radio
-                      style={{ marginLeft: 204 }}
+                      style={{ marginLeft: 250 }}
                       value="ไม่เห็นสมควรให้ขึ้นเงินเดือน"
                     >
                       ไม่เห็นสมควรให้ขึ้นเงินเดือน
