@@ -20,11 +20,14 @@ import navigation from "./_nav";
 import navigationug from "./_navUserGuide";
 import "./_nav.css";
 
+import Cookies from "js-cookie";
+import { token } from "../config";
+
 // remove cookies
 import { remove } from "../config";
 
 const bg = "#4f4e4e";
-const fontSize = "18px";
+const fontSize = "16px";
 
 const TheSidebar = () => {
   const history = useHistory();
@@ -40,12 +43,12 @@ const TheSidebar = () => {
     history.push("/login");
   };
 
-//   ชื่อ user
+  //   ชื่อ user
   useEffect(() => {
-    setName("");
-    setPosition("");
+    setName(Cookies.get(token.userName));
+    setPosition(Cookies.get(token.userPosition));
   }, []);
-  
+
   return (
     <CSidebar
       show={show}
@@ -78,9 +81,7 @@ const TheSidebar = () => {
             CSidebarNavTitle,
           }}
         />
-        <hr 
-            style={{ backgroundColor: "white", width: "90%" }}
-        />
+        <hr style={{ backgroundColor: "white", width: "90%" }} />
         <CCreateElement
           items={navigationug}
           components={{
@@ -96,10 +97,11 @@ const TheSidebar = () => {
         className="c-d-md-down-none"
       />
       <CSidebarFooter style={{ background: bg }}>
-        <div className="ml-4 mb-4"
+        <div
+          className="ml-4 mb-4"
           style={
             cusStyle
-              ? { 
+              ? {
                   width: "80%",
                   padding: "13px",
                   fontWeight: "bold",

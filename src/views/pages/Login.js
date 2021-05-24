@@ -38,12 +38,23 @@ const Login = () => {
       .post(`${url}/login`, login)
       .then((res) => {
         const data = res.data;
+        // console.log(data);
         // setUserData(data);
         if (data != null) {
           if (data.data.role === 2) {
             Cookies.set(token.type, 1);
             Cookies.set(token.token, "kmuttTest");
             Cookies.set(token.userId, data.data.profile.id);
+            Cookies.set(
+              token.userName,
+              data.data.profile.employee_firstname +
+                " " +
+                data.data.profile.employee_lastname
+            );
+            Cookies.set(
+              token.userPosition,
+              data.data.profile.employee_position
+            );
             window.location.replace("/employee/history");
           } else if (
             data.data.role === 1 &&
@@ -52,6 +63,16 @@ const Login = () => {
             Cookies.set(token.type, 2);
             Cookies.set(token.token, "kmuttTest");
             Cookies.set(token.userId, data.data.profile.id);
+            Cookies.set(
+              token.userName,
+              data.data.profile.committee_firstname +
+                " " +
+                data.data.profile.committee_lastname
+            );
+            Cookies.set(
+              token.userPosition,
+              data.data.profile.committee_position
+            );
             window.location.replace("/committee");
           } else if (
             data.data.role === 1 &&
@@ -60,11 +81,23 @@ const Login = () => {
             Cookies.set(token.type, 4);
             Cookies.set(token.token, "kmuttTest");
             Cookies.set(token.userId, data.data.profile.id);
+            Cookies.set(
+              token.userName,
+              data.data.profile.committee_firstname +
+                " " +
+                data.data.profile.committee_lastname
+            );
+            Cookies.set(
+              token.userPosition,
+              data.data.profile.committee_position
+            );
             window.location.replace("/head");
           } else if (data.data.role === 0) {
             // user: admin pass: 0846438474
             Cookies.set(token.type, 3);
             Cookies.set(token.token, "kmuttTest");
+            Cookies.set(token.userName, "Admin");
+            Cookies.set(token.userPosition, "admin");
             window.location.replace("/administrator/committee");
           }
         }
