@@ -152,7 +152,7 @@ const AdminStaff = () => {
     // console.log("delete พนักงาน", row);
     notify.success("ลบรายชื่อพนักงาน เรียบร้อย!");
     axios.delete(`${url}/employee/` + row.id);
-    LoadData();
+    window.location.replace("/administrator/staff");
   };
 
   const onSearch = (value) => {

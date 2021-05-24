@@ -137,7 +137,7 @@ const AdminCommittee = () => {
   const deleteCommittee = (row) => {
     notify.success(`ลบรายชื่อกรรมการ เรียบร้อย!`);
     axios.delete(`${url}/committee/` + row.id);
-    LoadData();
+    window.location.replace("/administrator/committee");
   };
 
   const LoadData = () => {
@@ -187,44 +187,44 @@ const AdminCommittee = () => {
     <div className="justify-center align-center">
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12">
-            <div className="row no-gutter mb-4">
+          <div className="row no-gutter mb-4">
             <div className="col-sm-6">
-            <label
-              style={{ fontWeight: "bold", fontSize: "36px", color: "black" }}
-            >
-              รายชื่อกรรมการ
-            </label>
+              <label
+                style={{ fontWeight: "bold", fontSize: "36px", color: "black" }}
+              >
+                รายชื่อกรรมการ
+              </label>
             </div>
             <div className="col-sm-6 text-sm-right align-self-sm-end">
-            <Button
-              shape="round"
-              size={"large"}
-              disabled={dataCommittee.length < 5 ? false : true}
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
-              onClick={() => openModal("add", "committee")}
-              style={
-                hover
-                  ? {
-                      backgroundColor: "#f6be32",
-                      border: "2px solid #f6be32",
-                      color: "white",
-                      paddingLeft: "50px",
-                      paddingRight: "50px",
-                    }
-                  : {
-                      backgroundColor: "white",
-                      border: "2px solid #f6be32",
-                      color: "black",
-                      paddingLeft: "50px",
-                      paddingRight: "50px",
-                    }
-              }
-            >
-              เพิ่มกรรมการ
-            </Button>
+              <Button
+                shape="round"
+                size={"large"}
+                disabled={dataCommittee.length < 5 ? false : true}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                onClick={() => openModal("add", "committee")}
+                style={
+                  hover
+                    ? {
+                        backgroundColor: "#f6be32",
+                        border: "2px solid #f6be32",
+                        color: "white",
+                        paddingLeft: "50px",
+                        paddingRight: "50px",
+                      }
+                    : {
+                        backgroundColor: "white",
+                        border: "2px solid #f6be32",
+                        color: "black",
+                        paddingLeft: "50px",
+                        paddingRight: "50px",
+                      }
+                }
+              >
+                เพิ่มกรรมการ
+              </Button>
             </div>
-            </div>
+          </div>
           <Table
             rowKey={"no"} // uniq key หรือ primary key ตัวไม่ซ้ำ
             className="adminTable"

@@ -77,7 +77,7 @@ const AdminAssessment = () => {
   const deleteStaff = (row) => {
     notify.success(`ลบรายการประเมิน เรียบร้อย!`);
     axios.delete(`${url}/assessment/` + row.id);
-    LoadData();
+    window.location.replace("/administrator/assessment");
   };
 
   const columns = [
@@ -102,7 +102,9 @@ const AdminAssessment = () => {
       // },
     },
     {
-      title: <div style={title}>วันเริ่มต้นของการส่งข้อมูลการประเมินพนักงาน</div>,
+      title: (
+        <div style={title}>วันเริ่มต้นของการส่งข้อมูลการประเมินพนักงาน</div>
+      ),
       dataIndex: "start",
       key: "start",
       align: "center",
