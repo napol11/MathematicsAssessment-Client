@@ -148,11 +148,12 @@ const AdminStaff = () => {
     });
   };
 
-  const deleteStaff = (row) => {
+  const deleteStaff = async (row) => {
     // console.log("delete พนักงาน", row);
-    notify.success("ลบรายชื่อพนักงาน เรียบร้อย!");
-    axios.delete(`${url}/employee/` + row.id);
-    LoadData();
+    await axios.delete(`${url}/employee/` + row.id).then((res) => {
+      notify.success("ลบรายชื่อพนักงาน เรียบร้อย!");
+      window.history.go(0);
+    });
     // window.location.replace("/administrator/staff");
   };
 

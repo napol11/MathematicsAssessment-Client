@@ -74,10 +74,15 @@ const AdminAssessment = () => {
     });
   };
 
-  const deleteStaff = (row) => {
-    notify.success(`ลบรายการประเมิน เรียบร้อย!`);
-    axios.delete(`${url}/assessment/` + row.id);
-    LoadData();
+  const deleteStaff = async (row) => {
+    // notify.success(`ลบรายการประเมิน เรียบร้อย!`);
+    await axios.delete(`${url}/assessment/` + row.id).then((res) => {
+      console.log(res);
+      notify.success(`ลบรายการประเมิน เรียบร้อย!`);
+      window.history.go(0);
+
+      // LoadData();
+    });
     // window.location.replace("/administrator/assessment");
   };
 

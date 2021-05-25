@@ -134,10 +134,11 @@ const AdminCommittee = () => {
     });
   };
 
-  const deleteCommittee = (row) => {
-    notify.success(`ลบรายชื่อกรรมการ เรียบร้อย!`);
-    axios.delete(`${url}/committee/` + row.id);
-    LoadData();
+  const deleteCommittee = async (row) => {
+    await axios.delete(`${url}/committee/` + row.id).then((res) => {
+      notify.success(`ลบรายชื่อกรรมการ เรียบร้อย!`);
+      window.history.go(0);
+    });
     // window.location.replace("/administrator/committee");
   };
 
