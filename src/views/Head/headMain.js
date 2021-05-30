@@ -23,7 +23,7 @@ const CommitteeMain = () => {
 
   const columns = [
     {
-      title: <div style={title}>เลขที่</div>,
+      title: <div style={title}>ลำดับที่</div>,
       dataIndex: "no",
       key: "no",
       align: "center",

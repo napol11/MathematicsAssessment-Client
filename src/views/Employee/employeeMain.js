@@ -31,7 +31,7 @@ const CommitteeMain = () => {
 
   const columns = [
     {
-      title: <div style={title}>เลขที่</div>,
+      title: <div style={title}>ลำดับที่</div>,
       dataIndex: "no",
       key: "no",
       align: "center",
@@ -47,22 +47,22 @@ const CommitteeMain = () => {
       width: "500px",
     },
     {
-      title: <div style={title}>วันเริ่มประเมิน</div>,
+      title: <div style={title}>วันเริ่มต้นของการส่งข้อมูลการประเมินพนักงาน</div>,
       dataIndex: "start",
       key: "start",
       align: "center",
-      width: "150px",
+      width: "180px",
       render: (text, row, index) => {
         // ห้ามเป็น null
         return dateText(row.start);
       },
     },
     {
-      title: <div style={title}>วันสิ้นสุดส่งแบบฟอร์ม</div>,
+      title: <div style={title}>วันสุดท้ายของการส่งข้อมูลการประเมินพนักงาน</div>,
       dataIndex: "end",
       key: "end",
       align: "center",
-      width: "150px",
+      width: "180px",
       render: (text, row, index) => {
         // ห้ามเป็น null
         return dateText(row.end);

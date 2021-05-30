@@ -188,7 +188,7 @@ const Login = () => {
                   color: "#fdc331",
                 }}
               >
-                Mathematic
+                Mathematics
               </div>
             </div>
             <br />
