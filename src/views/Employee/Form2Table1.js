@@ -14,6 +14,8 @@ const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
 const title = { color: "black", textAlign: "center" };
 const { Option } = Select;
+const { TextArea } = Input;
+
 
 const EditableContext = React.createContext(null);
 
@@ -157,10 +159,10 @@ const EditableCell = ({
             },
           ]}
         >
-          <Input
+          <TextArea
             className="textbox"
             ref={inputRef}
-            onPressEnter={save}
+            autoSize
             onBlur={save}
           />
         </Form.Item>

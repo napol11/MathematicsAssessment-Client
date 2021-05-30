@@ -14,6 +14,7 @@ const EditableContext = React.createContext(null);
 
 const title = { color: "black", textAlign: "center" };
 const { Option } = Select;
+const { TextArea } = Input;
 
 const EditableRow = ({ index, ...props }) => {
   const [form] = Form.useForm();
@@ -154,10 +155,10 @@ const EditableCell = ({
             },
           ]}
         >
-          <Input
+          <TextArea
             className="textbox"
             ref={inputRef}
-            onPressEnter={save}
+            autoSize
             onBlur={save}
           />
         </Form.Item>
