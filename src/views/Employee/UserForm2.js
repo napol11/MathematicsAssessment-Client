@@ -218,7 +218,7 @@ function UserForm2() {
             {`รวม`}
           </label>
           <label
-            className="col-sm-1"
+            className="col-sm-2"
             style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
           >
             {`%FTE = ${fte}`}
@@ -229,7 +229,7 @@ function UserForm2() {
               fontWeight: "bold",
               fontSize: "16px",
               color: "black",
-              marginLeft: "5%",
+              marginLeft: "3%",
             }}
           >
             {`คะแนนรวม % = ${totalpercen} คะแนน (คะแนนเต็ม 100 คะแนน)`}

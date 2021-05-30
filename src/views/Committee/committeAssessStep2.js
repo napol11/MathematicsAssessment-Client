@@ -177,12 +177,13 @@ const CommitteAssessStep2 = (props) => {
             fontSize: "16px",
             color: "black",
             textAlign: "center",
+            marginLeft: "4%",
           }}
         >
           {`รวม`}
         </label>
         <label
-          className="col-sm-1"
+          className="col-sm-3"
           style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
         >
           {`%FTE = ${fte}`}
@@ -193,7 +194,7 @@ const CommitteAssessStep2 = (props) => {
             fontWeight: "bold",
             fontSize: "16px",
             color: "black",
-            marginLeft: "5%",
+            marginLeft: "2%",
           }}
         >
           {`คะแนนรวม % = ${totalpercen} คะแนน (คะแนนเต็ม 100 คะแนน)`}

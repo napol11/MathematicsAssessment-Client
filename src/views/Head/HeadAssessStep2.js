@@ -233,18 +233,19 @@ const CommitteAssessStep2 = (props) => {
       </div>
       <div className="col-sm-12 mt-4">
         <label
-          className="col-sm-4"
+          className="col-sm-3"
           style={{
             fontWeight: "bold",
             fontSize: "16px",
             color: "black",
             textAlign: "center",
+            marginLeft: "3%",
           }}
         >
           {`รวม`}
         </label>
         <label
-          className="col-sm-1"
+          className="col-sm-4"
           style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
         >
           {`%FTE = ${fte}`}
