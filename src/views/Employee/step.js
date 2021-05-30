@@ -126,6 +126,8 @@ function UserStep() {
               borderColor: "#F6BE32",
               color: "black",
               marginBottom: "1%",
+              paddingLeft: "22px",
+              paddingRight: "22px",
             }}
             onClick={() => next()}
           >
@@ -139,6 +141,8 @@ function UserStep() {
               borderColor: "#F6BE32",
               color: "black",
               marginBottom: "1%",
+              paddingLeft: "22px",
+              paddingRight: "22px",
             }}
             onClick={() => showmodal()}
             // onClick={() => next()}
