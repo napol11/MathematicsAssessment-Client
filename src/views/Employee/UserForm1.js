@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { InputNumber, Form } from "antd";
+import { InputNumber, Form, Radio } from "antd";
 import { useParams } from "react-router-dom";
 import { notify } from "../CustomComponent";
+import { WatDatePicker } from "thaidatepicker-react";
 import moment from "moment";
 import "moment/locale/th";
 import "antd/dist/antd.css";
@@ -394,6 +395,93 @@ function UserProfile(props) {
             </label>
           </div>
         </div>
+          <div className="row no-gutter pl-4 pr-4">
+            <div className="col-sm-12">
+            <Form.Item name={["formone_study"]}>
+                <Radio.Group>
+                    <Radio value="ไม่ได้ศึกษาต่อ">ไม่ได้ศึกษาต่อ</Radio>
+                    <Radio
+                      style={{ marginLeft: 250 }}
+                      value="ลาศึกษาต่อ"
+                    >
+                      ลาศึกษาต่อ
+                    </Radio>
+                </Radio.Group>
+            </Form.Item>
+            </div>
+          </div>
+          <div className="row no-gutter pl-4 pr-4">
+            <div className="col-sm-3" />
+            <div className="col-sm-2">
+                <label 
+                    className="m-0 mt-2" 
+                    style={{ fontSize: "14px" }}
+                >
+                ตั้งแต่วันที่
+                </label>
+            </div>
+            <div className="col-sm-2">
+            <Form.Item name={["formone_studystart"]}>
+                <WatDatePicker
+                    placeholder={"ระบุวันที่"}
+                    dateFormat={"yyyy-MM-dd"}
+                    displayFormat={"DD MMM YY"}
+                    inputStyle={{
+                        color: "black",
+                        width: "100%",
+                    }}
+                    clearable={true}
+                />
+            </Form.Item>
+            </div>
+            <div className="col-sm-1">
+                <label 
+                    className="m-0 mt-2" 
+                    style={{ fontSize: "14px" }}
+                >
+                ถึงวันที่
+                </label>
+            </div>
+            <div className="col-sm-2">
+            <Form.Item name={["formone_studyend"]}>
+                <WatDatePicker
+                    placeholder={"ระบุวันที่"}
+                    dateFormat={"yyyy-MM-dd"}
+                    displayFormat={"DD MMM YY"}
+                    inputStyle={{
+                        color: "black",
+                        width: "100%",
+                    }}
+                    clearable={true}
+                />
+            </Form.Item>
+            </div>
+          </div>
+          <div className="row no-gutter pl-4 pr-4">
+            <div className="col-sm-3" />
+            <div className="col-sm-2">
+                <label 
+                    className="m-0 mt-2" 
+                    style={{ fontSize: "14px" }}
+                >
+                กลับเข้าปฏิบัติงานวันที่
+                </label>
+            </div>
+            <div className="col-sm-2">
+            <Form.Item name={["formone_studyback"]}>
+                <WatDatePicker
+                    placeholder={"ระบุวันที่"}
+                    dateFormat={"yyyy-MM-dd"}
+                    displayFormat={"DD MMM YY"}
+                    inputStyle={{
+                        color: "black",
+                        width: "100%",
+                    }}
+                    clearable={true}
+                />
+            </Form.Item>
+            </div>
+            </div>
           <div className="row no-gutter pl-4 pr-4 mt-2">
             <div className="col-sm-3">
               <Form.Item
@@ -558,7 +646,7 @@ function UserProfile(props) {
             <div className="col-sm-1">
                 <label 
                     className="m-0 mt-2" 
-                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                    style={{ fontSize: "14px" }}
                 >
                 ปีงบประมาณ
                 </label>
@@ -586,7 +674,7 @@ function UserProfile(props) {
             <div className="col-sm-1">
                 <label 
                     className="m-0 mt-2" 
-                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                    style={{ fontSize: "14px" }}
                 >
                 % การเลื่อนขั้น
                 </label>
@@ -636,7 +724,7 @@ function UserProfile(props) {
             <div className="col-sm-1">
                 <label 
                     className="m-0 mt-2" 
-                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                    style={{ fontSize: "14px" }}
                 >
                 เมื่อ
                 </label>
@@ -653,7 +741,7 @@ function UserProfile(props) {
             <div className="col-sm-1">
                 <label 
                     className="m-0 mt-2" 
-                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                    style={{ fontSize: "14px" }}
                 >
                 ระดับที่ลงโทษ
                 </label>
