@@ -51,22 +51,25 @@ const HistoryEmployee = () => {
   };
 
   const onFinish = (values) => {
-    close();
     const data = {
       ...values,
       employee_id: Cookies.get(token.userId),
     };
-    console.log(data);
-    axios
-      .put(`${urlauth}/changepass`, data)
-      .then((res) => {
-        console.log(res);
-        notify.success("บันทึกสำเร็จ !");
-      })
-      .catch((err) => {
-        console.log(err);
-        notify.error("บันทึกไม่สำเร็จ !");
-      });
+    if (data.Com_password === data.password) {
+      axios
+        .put(`${urlauth}/changepass`, data)
+        .then((res) => {
+          console.log(res);
+          notify.success("บันทึกสำเร็จ !");
+          close();
+        })
+        .catch((err) => {
+          console.log(err);
+          notify.error("บันทึกไม่สำเร็จ !");
+        });
+    } else {
+      notify.error("รหัสผ่านไม่ตรงกัน !");
+    }
   };
 
   const close = () => {
@@ -299,12 +302,40 @@ const HistoryEmployee = () => {
                     <div className="row no-gutter">
                       <div className="col-md-12">
                         <Form.Item
+                          label="ระบุรหัสผ่านเก่า"
+                          name="oldpassword"
+                          rules={[
+                            {
+                              required: true,
+                              message: "ระบุรหัสผ่านเก่า",
+                            },
+                          ]}
+                        >
+                          <Input.Password />
+                        </Form.Item>
+                      </div>
+                      <div className="col-md-12">
+                        <Form.Item
                           label="ระบุรหัสผ่านใหม่"
                           name="password"
                           rules={[
                             {
                               required: true,
                               message: "ระบุรหัสผ่านใหม่",
+                            },
+                          ]}
+                        >
+                          <Input.Password />
+                        </Form.Item>
+                      </div>
+                      <div className="col-md-12">
+                        <Form.Item
+                          label="ยืนยันรหัสผ่านใหม่"
+                          name="Com_password"
+                          rules={[
+                            {
+                              required: true,
+                              message: "ยืนยันรหัสผ่านใหม่",
                             },
                           ]}
                         >
