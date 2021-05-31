@@ -18,7 +18,7 @@ import { notify } from "../CustomComponent";
 import axios from "axios";
 const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
-function UserForm2() {
+function UserForm2(props) {
   const { id } = useParams();
   const [dataT1, setDataT1] = useState([]);
   const [dataT2, setDataT2] = useState([]);
@@ -27,6 +27,7 @@ function UserForm2() {
   // const [total, setTotal] = useState("");
   const [totalpercen, setTotalpercen] = useState("");
   const [fte, setFte] = useState("");
+  const [next, setNext] = useState(false);
 
   const onFinish = () => {
     let _list = [];
@@ -76,10 +77,11 @@ function UserForm2() {
     for (let i = 0; i < _list.length; i++) {
       result += parseInt(_list[i].formtwo_fte);
     }
-    if (result < 100) {
-      console.log("น้อยกว่า 100 ");
-      notify.error("ค่า FTE รวมยังไม่ถึง 100% !");
-    } else if (result > 100) {
+    // if (result < 100) {
+    //   console.log("น้อยกว่า 100 ");
+    //   notify.error("ค่า FTE รวมยังไม่ถึง 100% !");
+    // } else
+    if (result > 100) {
       console.log("มากกว่า 100");
       notify.error("ค่า FTE รวมเกิน 100% !");
     } else if (result === 100) {
@@ -96,6 +98,7 @@ function UserForm2() {
         .then((res) => {
           console.log(res);
           notify.success("บันทึกสำเร็จ !");
+          setNext(true);
         })
         .catch((err) => {
           console.log(err);
@@ -243,6 +246,14 @@ function UserForm2() {
           >
             บันทึก
           </button>
+          <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
+            ย้อนกลับ
+          </div>
+          {next === true ? (
+            <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+              ถัดไป
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

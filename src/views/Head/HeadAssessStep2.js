@@ -20,6 +20,7 @@ const CommitteAssessStep2 = (props) => {
   const [dataT2, setDataT2] = useState([]);
   const [dataT3, setDataT3] = useState([]);
   const [dataT4, setDataT4] = useState([]);
+  const [next, setNext] = useState(false);
   // const [total, setTotal] = useState("");
   const [totalpercen, setTotalpercen] = useState("");
   const [fte, setFte] = useState("");
@@ -70,6 +71,7 @@ const CommitteAssessStep2 = (props) => {
       .then((res) => {
         console.log(res);
         notify.success("บันทึกสำเร็จ !");
+        setNext(true);
       })
       .catch((err) => {
         console.log(err);
@@ -281,9 +283,11 @@ const CommitteAssessStep2 = (props) => {
             บันทึก
           </button>
         </div>
-        <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
-          ถัดไป
-        </div>
+        {next === true ? (
+          <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+            ถัดไป
+          </div>
+        ) : null}
       </div>
     </div>
   );

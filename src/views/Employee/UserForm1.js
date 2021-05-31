@@ -13,7 +13,7 @@ import { date2Thai } from "../CustomFunction";
 import axios from "axios";
 const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
-function UserProfile() {
+function UserProfile(props) {
   const { id } = useParams();
   // console.log(`${id}`);
   const formRef = useRef(null);
@@ -26,6 +26,7 @@ function UserProfile() {
     start: null,
     times: null,
   });
+  const [next, setNext] = useState(false);
 
   const LoadData = () => {
     const id_employee = Cookies.get(token.userId);
@@ -144,6 +145,7 @@ function UserProfile() {
       .then((res) => {
         console.log(res);
         notify.success("บันทึกสำเร็จ !");
+        setNext(true);
       })
       .catch((err) => {
         console.log(err);
@@ -597,6 +599,14 @@ function UserProfile() {
             <button className="btn-modal-confirm" type="submit">
               บันทึก
             </button>
+            {next === true ? (
+              <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+                ถัดไป
+              </div>
+            ) : null}
+            {/* <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+              ถัดไป
+            </div> */}
           </div>
         </Form>
       </div>

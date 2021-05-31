@@ -43,13 +43,13 @@ function UserStep() {
     setCurrent(current + 1);
   };
 
-  const prev = () => {
-    setCurrent(current - 1);
-  };
+  // const prev = () => {
+  //   setCurrent(current - 1);
+  // };
 
-  const showmodal = () => {
-    setModal(true);
-  };
+  // const showmodal = () => {
+  //   setModal(true);
+  // };
 
   const handleOk = () => {
     const id_assessment = `${id}`;
@@ -70,9 +70,9 @@ function UserStep() {
     next();
   };
 
-  const handleCancel = () => {
-    setModal(false);
-  };
+  // const handleCancel = () => {
+  //   setModal(false);
+  // };
 
   return (
     <div>
@@ -87,12 +87,27 @@ function UserStep() {
         </Steps>
       </center>
       <div>
-        {current === 0 && [<Form1 />]}
+        {/* {current === 0 && [<Form1 />]}
         {current === 1 && [<Form2 />]}
         {current === 2 && [<Form3 />]}
-        {current === 3 && [<Success />]}
+        {current === 3 && [<Success />]} */}
+        {current === 0 ? (
+          <Form1 next={() => setCurrent(current + 1)} />
+        ) : current === 1 ? (
+          <Form2
+            next={() => setCurrent(current + 1)}
+            prev={() => setCurrent(current - 1)}
+          />
+        ) : current === 2 ? (
+          <Form3
+            next={() => setModal(true)}
+            prev={() => setCurrent(current - 1)}
+          />
+        ) : current === 3 ? (
+          <Success />
+        ) : null}
       </div>
-      <div style={{ marginTop: 24, textAlign: "center" }}>
+      {/* <div style={{ marginTop: 24, textAlign: "center" }}>
         {current === 1 && (
           <Button
             style={{
@@ -150,7 +165,7 @@ function UserStep() {
             ถัดไป
           </Button>
         )}
-      </div>
+      </div> */}
       <CModal show={modal} size="lg" style={{ textAlign: "center" }}>
         <CModalBody>
           <img
@@ -169,7 +184,7 @@ function UserStep() {
             <h4>จนกว่าจะครบกำหนดวันส่งแบบประเมินวันสุดท้าย</h4>
           </Row>
 
-          <Button
+          {/* <Button
             style={{
               marginTop: "3%",
               marginRight: "2%",
@@ -180,7 +195,7 @@ function UserStep() {
             onClick={() => handleCancel()}
           >
             ยกเลิก
-          </Button>
+          </Button> */}
           <Button
             style={{
               marginTop: "3%",

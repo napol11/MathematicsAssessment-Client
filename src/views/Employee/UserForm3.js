@@ -15,9 +15,10 @@ const url = `https://database-api-pj.herokuapp.com/api/employee`;
 
 const { TextArea } = Input;
 
-function UserFrom3() {
+function UserFrom3(props) {
   const { id } = useParams();
   const formRef = useRef(null);
+  const [next, setNext] = useState(false);
 
   const [form, setForm] = useState([
     {
@@ -94,6 +95,7 @@ function UserFrom3() {
       .then((res) => {
         console.log(res);
         notify.success("บันทึกสำเร็จ !");
+        setNext(true);
       })
       .catch((err) => {
         console.log(err);
@@ -127,7 +129,7 @@ function UserFrom3() {
               1. ท่านขาดความรู้ ความชำนาญ ทักษะในเรื่องใดบ้าง
             </label>
             <div className="col-sm-6 text-sm-right align-self-sm-end">
-            <UploadFile table={1} form={3} />
+              <UploadFile table={1} form={3} />
             </div>
           </div>
           <Form.Item
@@ -144,10 +146,11 @@ function UserFrom3() {
           </Form.Item>
           <div className="row no-gutter mb-4">
             <label className="col-sm-6 mt-2">
-                2. ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ ทักษะดังกล่าวได้โดยวิธีใดบ้าง
+              2. ท่านคิดว่าจะสามารถเพิ่มความรู้ ความชำนาญ
+              ทักษะดังกล่าวได้โดยวิธีใดบ้าง
             </label>
             <div className="col-sm-6 text-sm-right align-self-sm-end">
-            <UploadFile table={2} form={3} />
+              <UploadFile table={2} form={3} />
             </div>
           </div>
           <Form.Item
@@ -164,10 +167,10 @@ function UserFrom3() {
           </Form.Item>
           <div className="row no-gutter mb-4">
             <label className="col-sm-6 mt-2">
-                3. ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง
+              3. ในช่วง 6 เดือนที่ผ่านมา ท่านได้เข้ารับการอบรมอะไรบ้าง
             </label>
             <div className="col-sm-6 text-sm-right align-self-sm-end">
-            <UploadFile table={3} form={3} />
+              <UploadFile table={3} form={3} />
             </div>
           </div>
           <Form.Item
@@ -184,11 +187,12 @@ function UserFrom3() {
           </Form.Item>
           <div className="row no-gutter mb-4">
             <label className="col-sm-9 mt-2">
-                4. ท่านสนใจการฝึกอบรมหรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
-                (เรียงลำดับความสำคัญ 1-5){" "}
+              4.
+              ท่านสนใจการฝึกอบรมหรือต้องการเรียนรู้เรื่องใดบ้างที่จะช่วยให้มีความสามารถปฏิบัติงานที่ได้รับมอบหมายในปัจจุบันได้ดียิ่งขึ้น
+              (เรียงลำดับความสำคัญ 1-5){" "}
             </label>
             <div className="col-sm-3 text-sm-right align-self-sm-end">
-            <UploadFile table={3} form={3} />
+              <UploadFile table={3} form={3} />
             </div>
           </div>
           <Form.Item
@@ -207,6 +211,14 @@ function UserFrom3() {
             <button className="btn-modal-confirm" type="submit">
               บันทึก
             </button>
+            {next === true ? (
+              <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+                ถัดไป
+              </div>
+            ) : null}
+            <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
+              ย้อนกลับ
+            </div>
           </div>
         </Form>
       </div>

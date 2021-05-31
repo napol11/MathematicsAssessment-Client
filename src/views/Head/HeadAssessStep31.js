@@ -17,6 +17,7 @@ const CommitteAssessStep31 = (props) => {
   const { id, assessment } = useParams();
   const { data, setData } = props;
   const [diss, setDiss] = useState(true);
+  const [next, setNext] = useState(false);
 
   useEffect(() => {
     const value = data.EvaForm31.every((r, i) => {
@@ -164,6 +165,7 @@ const CommitteAssessStep31 = (props) => {
       .then((res) => {
         console.log(res);
         notify.success("บันทึกสำเร็จ !");
+        setNext(true);
       })
       .catch((err) => {
         console.log(err);
@@ -242,14 +244,19 @@ const CommitteAssessStep31 = (props) => {
             บันทึก
           </button>
         </div>
-        <div
+        {/* <div
           // className={`pl-4 pr-4 ${diss ? "btnConfirmDis" : "btnConfirm"}`}
           // onClick={diss ? null : props.next}
           className=" pl-4 pr-4 btnConfirm"
           onClick={props.next}
         >
           ถัดไป
-        </div>
+        </div> */}
+        {next === true ? (
+          <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+            ถัดไป
+          </div>
+        ) : null}
       </div>
     </div>
   );

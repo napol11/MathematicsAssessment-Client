@@ -55,6 +55,8 @@ const CommitteAssessStep32 = (props) => {
   };
 
   const [modal, setModal] = useState(false);
+  const [next, setNext] = useState(false);
+
   const showmodal = () => {
     setModal(true);
   };
@@ -82,6 +84,7 @@ const CommitteAssessStep32 = (props) => {
       .then((res) => {
         console.log(res);
         notify.success("บันทึกสำเร็จ !");
+        setNext(true);
       })
       .catch((err) => {
         console.log(err);
@@ -299,9 +302,14 @@ const CommitteAssessStep32 = (props) => {
               บันทึก
             </button>
           </div>
-          <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+          {/* <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
             ถัดไป
-          </div>
+          </div> */}
+          {next === true ? (
+            <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+              ถัดไป
+            </div>
+          ) : null}
         </div>
       </Form>
 
