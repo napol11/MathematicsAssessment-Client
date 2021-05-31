@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { InputNumber, Form } from "antd";
 import { useParams } from "react-router-dom";
 import { notify } from "../CustomComponent";
+import moment from "moment";
+import "moment/locale/th";
 import "antd/dist/antd.css";
-// import { date2Thai } from "../CustomFunction";
-// import moment from "moment";
 
 import Cookies from "js-cookie";
 import { token } from "../../config";
@@ -32,8 +32,8 @@ function UserProfile() {
     axios.get(`${url}/employee/` + id_employee).then((res) => {
       const startWork = date2Thai(res.data.data.employee_start);
       const start = new Date(res.data.data.employee_start);
-      const data = new Date();
-      const timeYear = data.getFullYear() - start.getFullYear();
+      // const data = new Date();
+      // const timeYear = data.getFullYear() - start.getFullYear();
       setData({
         name:
           res.data.data.employee_firstname +
@@ -44,7 +44,8 @@ function UserProfile() {
         level: res.data.data.employee_degree,
         group: res.data.data.employee_group,
         start: startWork,
-        times: timeYear + "   ปี",
+        // times: timeYear + "   ปี",
+        times: start,
       });
     });
     const id_assessment = `${id}`;
@@ -53,54 +54,55 @@ function UserProfile() {
       assessment_id: id_assessment,
     };
     axios.post(`${url}/dataFormone`, assessment).then((res) => {
+      console.log(res);
       setDatala([
         {
           name: ["formone_lasick"],
           value:
-            res.data.data.formone.formone_lasick === null
-              ? 0
+            res.data.data.formone.formone_lasick === ""
+              ? ""
               : res.data.data.formone.formone_lasick,
         },
         {
           name: ["formone_lalate"],
           value:
             res.data.data.formone.formone_lalate === null
-              ? 0
+              ? ""
               : res.data.data.formone.formone_lalate,
         },
         {
           name: ["formone_laleave"],
           value:
-            res.data.data.formone.formone_laleave === null
-              ? 0
+            res.data.data.formone.formone_laleave === ""
+              ? ""
               : res.data.data.formone.formone_laleave,
         },
         {
           name: ["formone_lamilitary"],
           value:
-            res.data.data.formone.formone_lamilitary === null
-              ? 0
+            res.data.data.formone.formone_lamilitary === ""
+              ? ""
               : res.data.data.formone.formone_lamilitary,
         },
         {
           name: ["formone_lamonk"],
           value:
-            res.data.data.formone.formone_lamonk === null
-              ? 0
+            res.data.data.formone.formone_lamonk === ""
+              ? ""
               : res.data.data.formone.formone_lamonk,
         },
         {
           name: ["formone_lapaper"],
           value:
-            res.data.data.formone.formone_lapaper === null
-              ? 0
+            res.data.data.formone.formone_lapaper === ""
+              ? ""
               : res.data.data.formone.formone_lapaper,
         },
         {
           name: ["formone_laprivate"],
           value:
-            res.data.data.formone.formone_laprivate === null
-              ? 0
+            res.data.data.formone.formone_laprivate === ""
+              ? ""
               : res.data.data.formone.formone_laprivate,
         },
         {
@@ -120,8 +122,8 @@ function UserProfile() {
         {
           name: ["formone_lababy"],
           value:
-            res.data.data.formone.formone_lababy === null
-              ? 0
+            res.data.data.formone.formone_lababy === ""
+              ? ""
               : res.data.data.formone.formone_lababy,
         },
       ]);
@@ -136,6 +138,7 @@ function UserProfile() {
       assessment_id: id_assessment,
       employee_id: id_employee,
     };
+    console.log(data);
     axios
       .post(`${url}/formone`, data)
       .then((res) => {
@@ -251,6 +254,7 @@ function UserProfile() {
                 style={{ color: "black", fontSize: "16px" }}
               >
                 {data.position}
+                {console.log(data)}
               </label>
             </div>
             <div className="col-sm-2">
@@ -327,7 +331,12 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {data.times}
+                {/* {data.times} */}
+                {`${
+                  data.times
+                    ? moment(data.times, "YYYY-MM-DD").fromNow(true)
+                    : null
+                }`}
               </label>
             </div>
           </div>
@@ -370,6 +379,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
+                  max={100}
+                  maxLength={4}
                   className="textarea"
                   style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
@@ -384,6 +395,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
+                  max={100}
+                  maxLength={4}
                   className="textarea"
                   style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
@@ -399,6 +412,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
+                  max={100}
+                  maxLength={4}
                   className="textarea"
                   style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
@@ -414,6 +429,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
+                  max={100}
+                  maxLength={4}
                   className="textarea"
                   style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
@@ -431,6 +448,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
+                  max={100}
+                  maxLength={4}
                   className="textarea"
                   style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
@@ -446,6 +465,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
+                  max={100}
+                  maxLength={4}
                   className="textarea"
                   style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
@@ -461,6 +482,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
+                  max={100}
+                  maxLength={4}
                   className="textarea"
                   style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
@@ -476,6 +499,8 @@ function UserProfile() {
               >
                 <InputNumber
                   min={0}
+                  max={100}
+                  maxLength={4}
                   className="textarea"
                   style={{ width: "100px" }}
                   placeholder="ระบุจำนวนวัน"
