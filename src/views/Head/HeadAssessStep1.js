@@ -286,135 +286,155 @@ const CommitteAssessStep1 = (props) => {
           <div className="col-sm-3">
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
-                data.study
-                  ? data.study.study === ""
-                    ? "-"
-                    : `${data.study.study}`
-                  : "-"
+                data.studyHistory
+                  ? data.studyHistory.study === 2
+                    ? "ลาศึกษาต่อ"
+                    : "ไม่ลาศึกษาต่อ"
+                  : null
               }`}
             </label>
           </div>
-          {data.study.study === "ลาศึกษาต่อ" ? (
-            <>
-              <div className="col-sm-2">
-                <label
-                  className="m-0"
-                  style={{ color: "#5f5f5f", fontSize: "14px" }}
-                >
-                  ตั้งแต่วันที่
-                </label>
-              </div>
-              {/* formone_studystart */}
-              <div className="col-sm-2">
-                <label
-                  className="m-0"
-                  style={{ color: "black", fontSize: "16px" }}
-                >
-                  {`${
-                    data.study
-                      ? `วันที่ ${date2Thai(data.study.start, true)
-                          .toString()
-                          .substring(0, 2)}
-                            เดือน ${date2Thai(data.study.start, true)
+          {data.studyHistory ? (
+            data.studyHistory.study === 2 ? (
+              <>
+                <div className="col-sm-2">
+                  <label
+                    className="m-0"
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                  >
+                    ตั้งแต่วันที่
+                  </label>
+                </div>
+                {/* formone_studystart */}
+                <div className="col-sm-2">
+                  <label
+                    className="m-0"
+                    style={{ color: "black", fontSize: "16px" }}
+                  >
+                    {`${
+                      data.studyHistory
+                        ? `วันที่ ${date2Thai(data.studyHistory.start, true)
+                            .toString()
+                            .substring(0, 2)}
+                            เดือน ${date2Thai(data.studyHistory.start, true)
                               .toString()
                               .substring(
                                 3,
-                                date2Thai(data.study.start, true).toString()
-                                  .length - 4
+                                date2Thai(
+                                  data.studyHistory.start,
+                                  true
+                                ).toString().length - 4
                               )}
-                              พ.ศ. ${date2Thai(data.study.start, true)
+                              พ.ศ. ${date2Thai(data.studyHistory.start, true)
                                 .toString()
                                 .substring(
-                                  date2Thai(data.study.start, true).toString()
-                                    .length - 4,
-                                  date2Thai(data.study.start, true).toString()
-                                    .length
+                                  date2Thai(
+                                    data.studyHistory.start,
+                                    true
+                                  ).toString().length - 4,
+                                  date2Thai(
+                                    data.studyHistory.start,
+                                    true
+                                  ).toString().length
                                 )}
                             `
-                      : null
-                  }`}
-                </label>
-              </div>
-              <div className="col-sm-1">
-                <label
-                  className="m-0"
-                  style={{ color: "#5f5f5f", fontSize: "14px" }}
-                >
-                  ถึงวันที่
-                </label>
-              </div>
-              {/* formone_studyend */}
-              <div className="col-sm-2">
-                <label
-                  className="m-0"
-                  style={{ color: "black", fontSize: "16px" }}
-                >
-                  {`${
-                    data.study
-                      ? `วันที่ ${date2Thai(data.study.end, true)
-                          .toString()
-                          .substring(0, 2)}
-                            เดือน ${date2Thai(data.study.end, true)
+                        : null
+                    }`}
+                  </label>
+                </div>
+                <div className="col-sm-1">
+                  <label
+                    className="m-0"
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                  >
+                    ถึงวันที่
+                  </label>
+                </div>
+                {/* formone_studyHistoryend */}
+                <div className="col-sm-2">
+                  <label
+                    className="m-0"
+                    style={{ color: "black", fontSize: "16px" }}
+                  >
+                    {`${
+                      data.studyHistory
+                        ? `วันที่ ${date2Thai(data.studyHistory.end, true)
+                            .toString()
+                            .substring(0, 2)}
+                            เดือน ${date2Thai(data.studyHistory.end, true)
                               .toString()
                               .substring(
                                 3,
-                                date2Thai(data.study.end, true).toString()
-                                  .length - 4
+                                date2Thai(
+                                  data.studyHistory.end,
+                                  true
+                                ).toString().length - 4
                               )}
-                              พ.ศ. ${date2Thai(data.study.end, true)
+                              พ.ศ. ${date2Thai(data.studyHistory.end, true)
                                 .toString()
                                 .substring(
-                                  date2Thai(data.study.end, true).toString()
-                                    .length - 4,
-                                  date2Thai(data.study.end, true).toString()
-                                    .length
+                                  date2Thai(
+                                    data.studyHistory.end,
+                                    true
+                                  ).toString().length - 4,
+                                  date2Thai(
+                                    data.studyHistory.end,
+                                    true
+                                  ).toString().length
                                 )}
                             `
-                      : null
-                  }`}
-                </label>
-              </div>
-              <div className="col-sm-5" />
-              <div className="col-sm-2">
-                <label
-                  className="m-0"
-                  style={{ color: "#5f5f5f", fontSize: "14px" }}
-                >
-                  กลับเข้าปฏิบัติงานวันที่
-                </label>
-              </div>
-              {/* formone_studyback */}
-              <div className="col-sm-2">
-                <label
-                  className="m-0"
-                  style={{ color: "black", fontSize: "16px" }}
-                >
-                  {`${
-                    data.study
-                      ? `วันที่ ${date2Thai(data.study.back, true)
-                          .toString()
-                          .substring(0, 2)}
-                            เดือน ${date2Thai(data.study.back, true)
+                        : null
+                    }`}
+                  </label>
+                </div>
+                <div className="col-sm-5" />
+                <div className="col-sm-2">
+                  <label
+                    className="m-0"
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                  >
+                    กลับเข้าปฏิบัติงานวันที่
+                  </label>
+                </div>
+                {/* formone_studyHistoryback */}
+                <div className="col-sm-2">
+                  <label
+                    className="m-0"
+                    style={{ color: "black", fontSize: "16px" }}
+                  >
+                    {`${
+                      data.studyHistory
+                        ? `วันที่ ${date2Thai(data.studyHistory.back, true)
+                            .toString()
+                            .substring(0, 2)}
+                            เดือน ${date2Thai(data.studyHistory.back, true)
                               .toString()
                               .substring(
                                 3,
-                                date2Thai(data.study.back, true).toString()
-                                  .length - 4
+                                date2Thai(
+                                  data.studyHistory.back,
+                                  true
+                                ).toString().length - 4
                               )}
-                              พ.ศ. ${date2Thai(data.study.back, true)
+                              พ.ศ. ${date2Thai(data.studyHistory.back, true)
                                 .toString()
                                 .substring(
-                                  date2Thai(data.study.back, true).toString()
-                                    .length - 4,
-                                  date2Thai(data.study.back, true).toString()
-                                    .length
+                                  date2Thai(
+                                    data.studyHistory.back,
+                                    true
+                                  ).toString().length - 4,
+                                  date2Thai(
+                                    data.studyHistory.back,
+                                    true
+                                  ).toString().length
                                 )}
                             `
-                      : null
-                  }`}
-                </label>
-              </div>
-            </>
+                        : null
+                    }`}
+                  </label>
+                </div>
+              </>
+            ) : null
           ) : null}
         </div>
         {/* <div className="row no-gutter pl-4 pr-4 mt-2">
@@ -454,7 +474,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.sickLeave === "0"
+                  ? data.leaveHistory.sickLeave === ""
                     ? "-"
                     : `${data.leaveHistory.sickLeave} วัน`
                   : "-"
@@ -472,7 +492,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.sickLeaveMedical === "0"
+                  ? data.leaveHistory.sickLeaveMedical === ""
                     ? "-"
                     : `${data.leaveHistory.sickLeaveMedical} วัน`
                   : "-"
@@ -490,7 +510,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.businessLeave === "0"
+                  ? data.leaveHistory.businessLeave === ""
                     ? "-"
                     : `${data.leaveHistory.businessLeave} วัน`
                   : "-"
@@ -508,7 +528,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.late === "0"
+                  ? data.leaveHistory.late === ""
                     ? "-"
                     : `${data.leaveHistory.late} วัน`
                   : "-"
@@ -528,7 +548,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.holiday === "0"
+                  ? data.leaveHistory.holiday === ""
                     ? "-"
                     : `${data.leaveHistory.holiday} วัน`
                   : "-"
@@ -546,7 +566,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.MaternityLeave === "0"
+                  ? data.leaveHistory.MaternityLeave === ""
                     ? "-"
                     : `${data.leaveHistory.MaternityLeave} วัน`
                   : "-"
@@ -564,7 +584,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.ordainLeave === "0"
+                  ? data.leaveHistory.ordainLeave === ""
                     ? "-"
                     : `${data.leaveHistory.ordainLeave} วัน`
                   : "-"
@@ -582,7 +602,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.govermentLack === "0"
+                  ? data.leaveHistory.govermentLack === ""
                     ? "-"
                     : `${data.leaveHistory.govermentLack} วัน`
                   : "-"

@@ -495,13 +495,11 @@ const HeadAssess = () => {
                 ? ""
                 : form1.data.data.formone.formone_punishlevel,
           },
-          study: {
+          studyHistory: {
             study:
-              form1.data.data.formone.formone_study === 1
-                ? "ไม่ได้ศึกษาต่อ"
-                : form1.data.data.formone.formone_study === 2
-                ? "ลาศึกษาต่อ"
-                : "",
+              form1.data.data.formone.formone_study === null
+                ? ""
+                : form1.data.data.formone.formone_study,
             start:
               form1.data.data.formone.formone_studystart === null
                 ? ""
