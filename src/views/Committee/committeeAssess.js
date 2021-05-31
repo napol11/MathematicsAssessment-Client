@@ -133,8 +133,7 @@ const CommitteeAssess = () => {
         id: 11,
         title: {
           title: "หมวดที่ 2 คุณสมบัติเฉพาะตัว",
-          head:
-            "3. ความรู้ความสามารถ   ความรู้  ความเข้าใจ  ความสามารถและความเชี่ยวชาญในงานที่รับผิดชอบ",
+          head: "3. ความรู้ความสามารถ   ความรู้  ความเข้าใจ  ความสามารถและความเชี่ยวชาญในงานที่รับผิดชอบ",
           detail:
             "ความรู้ ความเข้าใจ ความสามารถและความเชี่ยวชาญในงานที่รับผิดชอบ",
         },
@@ -467,16 +466,52 @@ const CommitteeAssess = () => {
                 : form1.data.data.formone.formone_lamilitary,
           },
           salaryHistory: {
-            text:
-              form1.data.data.formone.formone_historypromo === null
+            budgetone:
+              form1.data.data.formone.formone_budgetone === null
                 ? ""
-                : form1.data.data.formone.formone_historypromo,
+                : form1.data.data.formone.formone_budgetone,
+            budgettwo:
+              form1.data.data.formone.formone_budgettwo === null
+                ? ""
+                : form1.data.data.formone.formone_budgettwo,
+            promoone:
+              form1.data.data.formone.formone_promoone === null
+                ? ""
+                : form1.data.data.formone.formone_promoone,
+            promotwo:
+              form1.data.data.formone.formone_promotwo === null
+                ? ""
+                : form1.data.data.formone.formone_promotwo,
           },
           punishHistory: {
-            text:
-              form1.data.data.formone.formone_historypunish === null
+            punishdate:
+              form1.data.data.formone.formone_punishdate === null
                 ? ""
-                : form1.data.data.formone.formone_historypunish,
+                : form1.data.data.formone.formone_punishdate,
+            punishlevel:
+              form1.data.data.formone.formone_punishlevel === null
+                ? ""
+                : form1.data.data.formone.formone_punishlevel,
+          },
+          study: {
+            study:
+              form1.data.data.formone.formone_study === 1
+                ? "ไม่ได้ศึกษาต่อ"
+                : form1.data.data.formone.formone_study === 2
+                ? "ลาศึกษาต่อ"
+                : "",
+            start:
+              form1.data.data.formone.formone_studystart === null
+                ? ""
+                : form1.data.data.formone.formone_studystart,
+            end:
+              form1.data.data.formone.formone_studyend === null
+                ? ""
+                : form1.data.data.formone.formone_studyend,
+            back:
+              form1.data.data.formone.formone_studyback === null
+                ? ""
+                : form1.data.data.formone.formone_studyback,
           },
         });
       });
@@ -659,8 +694,7 @@ const CommitteeAssess = () => {
               id: 11,
               title: {
                 title: "หมวดที่ 2 คุณสมบัติเฉพาะตัว",
-                head:
-                  "3. ความรู้ความสามารถ   ความรู้  ความเข้าใจ  ความสามารถและความเชี่ยวชาญในงานที่รับผิดชอบ",
+                head: "3. ความรู้ความสามารถ   ความรู้  ความเข้าใจ  ความสามารถและความเชี่ยวชาญในงานที่รับผิดชอบ",
                 detail:
                   "ความรู้ ความเข้าใจ ความสามารถและความเชี่ยวชาญในงานที่รับผิดชอบ",
               },

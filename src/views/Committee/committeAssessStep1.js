@@ -281,17 +281,17 @@ const CommitteAssessStep1 = (props) => {
             >
               การลาศึกษาต่อ
             </label>
-            </div>
-            {/* formone_study */}
-            <div className="col-sm-3">
+          </div>
+          {/* formone_study */}
+          <div className="col-sm-3">
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
-                {`${
-                    data.punishHistory
-                    ? data.punishHistory.text === ""
+              {`${
+                data.study
+                  ? data.study.study === ""
                     ? "-"
-                    : `${data.punishHistory.text}`
-                    : "-"
-                }`}
+                    : `${data.study.study}`
+                  : "-"
+              }`}
             </label>
           </div>
           <div className="col-sm-2">
@@ -302,59 +302,128 @@ const CommitteAssessStep1 = (props) => {
               ตั้งแต่วันที่
             </label>
           </div>
-            {/* formone_studystart */}
-          <div className="col-sm-2">
-            <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
-                {`${
-                    data.punishHistory
-                    ? data.punishHistory.text === ""
-                    ? "-"
-                    : `${data.punishHistory.text}`
-                    : "-"
-                }`}
-            </label>
-          </div>
-          <div className="col-sm-1">
-            <label
-              className="m-0"
-              style={{ color: "#5f5f5f", fontSize: "14px" }}
-            >
-              ถึงวันที่
-            </label>
-          </div>
-            {/* formone_studyend */}
-          <div className="col-sm-2">
-            <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
-                {`${
-                    data.punishHistory
-                    ? data.punishHistory.text === ""
-                    ? "-"
-                    : `${data.punishHistory.text}`
-                    : "-"
-                }`}
-            </label>
-          </div>
-          <div className="col-sm-5" />
-          <div className="col-sm-2">
-            <label
-              className="m-0"
-              style={{ color: "#5f5f5f", fontSize: "14px" }}
-            >
-              ถึงวันที่
-            </label>
-          </div>
-            {/* formone_studyback */}
-          <div className="col-sm-2">
-            <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
-                {`${
-                    data.punishHistory
-                    ? data.punishHistory.text === ""
-                    ? "-"
-                    : `${data.punishHistory.text}`
-                    : "-"
-                }`}
-            </label>
-          </div>
+          {data.study.study === "ลาศึกษาต่อ" ? (
+            <>
+              <div className="col-sm-2">
+                <label
+                  className="m-0"
+                  style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                  ตั้งแต่วันที่
+                </label>
+              </div>
+              {/* formone_studystart */}
+              <div className="col-sm-2">
+                <label
+                  className="m-0"
+                  style={{ color: "black", fontSize: "16px" }}
+                >
+                  {`${
+                    data.study
+                      ? `วันที่ ${date2Thai(data.study.start, true)
+                          .toString()
+                          .substring(0, 2)}
+                            เดือน ${date2Thai(data.study.start, true)
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(data.study.start, true).toString()
+                                  .length - 4
+                              )}
+                              พ.ศ. ${date2Thai(data.study.start, true)
+                                .toString()
+                                .substring(
+                                  date2Thai(data.study.start, true).toString()
+                                    .length - 4,
+                                  date2Thai(data.study.start, true).toString()
+                                    .length
+                                )}
+                            `
+                      : null
+                  }`}
+                </label>
+              </div>
+              <div className="col-sm-1">
+                <label
+                  className="m-0"
+                  style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                  ถึงวันที่
+                </label>
+              </div>
+              {/* formone_studyend */}
+              <div className="col-sm-2">
+                <label
+                  className="m-0"
+                  style={{ color: "black", fontSize: "16px" }}
+                >
+                  {`${
+                    data.study
+                      ? `วันที่ ${date2Thai(data.study.end, true)
+                          .toString()
+                          .substring(0, 2)}
+                            เดือน ${date2Thai(data.study.end, true)
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(data.study.end, true).toString()
+                                  .length - 4
+                              )}
+                              พ.ศ. ${date2Thai(data.study.end, true)
+                                .toString()
+                                .substring(
+                                  date2Thai(data.study.end, true).toString()
+                                    .length - 4,
+                                  date2Thai(data.study.end, true).toString()
+                                    .length
+                                )}
+                            `
+                      : null
+                  }`}
+                </label>
+              </div>
+              <div className="col-sm-5" />
+              <div className="col-sm-2">
+                <label
+                  className="m-0"
+                  style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                  กลับเข้าปฏิบัติงานวันที่
+                </label>
+              </div>
+              {/* formone_studyback */}
+              <div className="col-sm-2">
+                <label
+                  className="m-0"
+                  style={{ color: "black", fontSize: "16px" }}
+                >
+                  {`${
+                    data.study
+                      ? `วันที่ ${date2Thai(data.study.back, true)
+                          .toString()
+                          .substring(0, 2)}
+                            เดือน ${date2Thai(data.study.back, true)
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(data.study.back, true).toString()
+                                  .length - 4
+                              )}
+                              พ.ศ. ${date2Thai(data.study.back, true)
+                                .toString()
+                                .substring(
+                                  date2Thai(data.study.back, true).toString()
+                                    .length - 4,
+                                  date2Thai(data.study.back, true).toString()
+                                    .length
+                                )}
+                            `
+                      : null
+                  }`}
+                </label>
+              </div>
+            </>
+          ) : null}
         </div>
         {/* <div className="row no-gutter pl-4 pr-4 mt-2">
           <div className="col-sm-12">
@@ -553,103 +622,103 @@ const CommitteAssessStep1 = (props) => {
         </div>
         <div className="row no-gutter pl-4 pr-4 mt-2">
           <div className="col-sm-1">
-                <label 
-                    className="m-0" 
-                    style={{ color: "#5f5f5f", fontSize: "14px" }}
-                >
-                ปีงบประมาณ
-                </label>
+            <label
+              className="m-0"
+              style={{ color: "#5f5f5f", fontSize: "14px" }}
+            >
+              ปีงบประมาณ
+            </label>
           </div>
           {/* formone_budgetone */}
           <div className="col-sm-5">
-          <label
-            className="m-0"
-            style={{
-              color: "black",
-              fontSize: "16px",
-              wordWrap: "break-word",
-              wordBreak: "break-word",
-            }}
-          >
-            {`${
-              data.salaryHistory
-                ? data.salaryHistory.text === ""
-                  ? "-"
-                  : `${data.salaryHistory.text}`
-                : "-"
-            }`}
-          </label>
+            <label
+              className="m-0"
+              style={{
+                color: "black",
+                fontSize: "16px",
+                wordWrap: "break-word",
+                wordBreak: "break-word",
+              }}
+            >
+              {`${
+                data.salaryHistory
+                  ? data.salaryHistory.budgetone === ""
+                    ? "-"
+                    : `${data.salaryHistory.budgetone}`
+                  : "-"
+              }`}
+            </label>
           </div>
           {/* formone_budgettwo */}
           <div className="col-sm-5">
-          <label
-            className="m-0"
-            style={{
-              color: "black",
-              fontSize: "16px",
-              wordWrap: "break-word",
-              wordBreak: "break-word",
-            }}
-          >
-            {`${
-              data.salaryHistory
-                ? data.salaryHistory.text === ""
-                  ? "-"
-                  : `${data.salaryHistory.text}`
-                : "-"
-            }`}
-          </label>
+            <label
+              className="m-0"
+              style={{
+                color: "black",
+                fontSize: "16px",
+                wordWrap: "break-word",
+                wordBreak: "break-word",
+              }}
+            >
+              {`${
+                data.salaryHistory
+                  ? data.salaryHistory.budgettwo === ""
+                    ? "-"
+                    : `${data.salaryHistory.budgettwo}`
+                  : "-"
+              }`}
+            </label>
           </div>
         </div>
         <div className="row no-gutter pl-4 pr-4 mt-2">
-        <div className="col-sm-1">
-                <label 
-                    className="m-0" 
-                    style={{ color: "#5f5f5f", fontSize: "14px" }}
-                >
-                % การเลื่อนขั้น
-                </label>
-        </div>
-        {/* formone_promoone */}
-        <div className="col-sm-5">
-          <label
-            className="m-0"
-            style={{
-              color: "black",
-              fontSize: "16px",
-              wordWrap: "break-word",
-              wordBreak: "break-word",
-            }}
-          >
-            {`${
-              data.salaryHistory
-                ? data.salaryHistory.text === ""
-                  ? "-"
-                  : `${data.salaryHistory.text}`
-                : "-"
-            }`}
-          </label>
-        </div>
-        {/* formone_promotwo */}
-        <div className="col-sm-5">
-          <label
-            className="m-0"
-            style={{
-              color: "black",
-              fontSize: "16px",
-              wordWrap: "break-word",
-              wordBreak: "break-word",
-            }}
-          >
-            {`${
-              data.salaryHistory
-                ? data.salaryHistory.text === ""
-                  ? "-"
-                  : `${data.salaryHistory.text}`
-                : "-"
-            }`}
-          </label>
-        </div>
+          <div className="col-sm-1">
+            <label
+              className="m-0"
+              style={{ color: "#5f5f5f", fontSize: "14px" }}
+            >
+              % การเลื่อนขั้น
+            </label>
+          </div>
+          {/* formone_promoone */}
+          <div className="col-sm-5">
+            <label
+              className="m-0"
+              style={{
+                color: "black",
+                fontSize: "16px",
+                wordWrap: "break-word",
+                wordBreak: "break-word",
+              }}
+            >
+              {`${
+                data.salaryHistory
+                  ? data.salaryHistory.promoone === ""
+                    ? "-"
+                    : `${data.salaryHistory.promoone}`
+                  : "-"
+              }`}
+            </label>
+          </div>
+          {/* formone_promotwo */}
+          <div className="col-sm-5">
+            <label
+              className="m-0"
+              style={{
+                color: "black",
+                fontSize: "16px",
+                wordWrap: "break-word",
+                wordBreak: "break-word",
+              }}
+            >
+              {`${
+                data.salaryHistory
+                  ? data.salaryHistory.promotwo === ""
+                    ? "-"
+                    : `${data.salaryHistory.promotwo}`
+                  : "-"
+              }`}
+            </label>
+          </div>
         </div>
       </div>
 
@@ -675,61 +744,61 @@ const CommitteAssessStep1 = (props) => {
           </div>
         </div>
         <div className="row no-gutter pl-4 pr-4 mt-2">
-        <div className="col-sm-1">
-                <label 
-                    className="m-0" 
-                    style={{ color: "#5f5f5f", fontSize: "14px" }}
-                >
-                เมื่อ
-                </label>
-        </div>
+          <div className="col-sm-1">
+            <label
+              className="m-0"
+              style={{ color: "#5f5f5f", fontSize: "14px" }}
+            >
+              เมื่อ
+            </label>
+          </div>
           {/* formone_punishdate */}
           <div className="col-sm-5">
-          <label
-            className="m-0"
-            style={{
-              color: "black",
-              fontSize: "16px",
-              wordWrap: "break-word",
-              wordBreak: "break-word",
-            }}
-          >
-            {`${
-              data.punishHistory
-                ? data.punishHistory.text === ""
-                  ? "-"
-                  : `${data.punishHistory.text}`
-                : "-"
-            }`}
-          </label>
+            <label
+              className="m-0"
+              style={{
+                color: "black",
+                fontSize: "16px",
+                wordWrap: "break-word",
+                wordBreak: "break-word",
+              }}
+            >
+              {`${
+                data.punishHistory
+                  ? data.punishHistory.punishdate === ""
+                    ? "-"
+                    : `${data.punishHistory.punishdate}`
+                  : "-"
+              }`}
+            </label>
           </div>
           <div className="col-sm-1">
-                <label 
-                    className="m-0" 
-                    style={{ color: "#5f5f5f", fontSize: "14px" }}
-                >
-                ระดับที่ลงโทษ
-                </label>
-        </div>
-        {/* formone_punishlevel */}
-        <div className="col-sm-5">
-          <label
-            className="m-0"
-            style={{
-              color: "black",
-              fontSize: "16px",
-              wordWrap: "break-word",
-              wordBreak: "break-word",
-            }}
-          >
-            {`${
-              data.punishHistory
-                ? data.punishHistory.text === ""
-                  ? "-"
-                  : `${data.punishHistory.text}`
-                : "-"
-            }`}
-          </label>
+            <label
+              className="m-0"
+              style={{ color: "#5f5f5f", fontSize: "14px" }}
+            >
+              ระดับที่ลงโทษ
+            </label>
+          </div>
+          {/* formone_punishlevel */}
+          <div className="col-sm-5">
+            <label
+              className="m-0"
+              style={{
+                color: "black",
+                fontSize: "16px",
+                wordWrap: "break-word",
+                wordBreak: "break-word",
+              }}
+            >
+              {`${
+                data.punishHistory
+                  ? data.punishHistory.punishlevel === ""
+                    ? "-"
+                    : `${data.punishHistory.punishlevel}`
+                  : "-"
+              }`}
+            </label>
           </div>
         </div>
       </div>
