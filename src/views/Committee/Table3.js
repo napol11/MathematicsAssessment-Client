@@ -203,7 +203,6 @@ class Table2 extends React.Component {
       {
         title: <div style={title}>{"ความคิดเห็น"}</div>,
         dataIndex: "Table3Comments",
-        align: "center",
         key: "Table3Comments",
         width: "30%",
         render: (text, row, index) => {
@@ -212,7 +211,6 @@ class Table2 extends React.Component {
               style={{
                 wordWrap: "break-word",
                 wordBreak: "break-word",
-                // textAlign: "center",
               }}
             >
               {row.Table3Comments === "ระบุความคิดเห็น"
