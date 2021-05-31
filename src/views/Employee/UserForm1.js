@@ -595,18 +595,23 @@ function UserProfile(props) {
               </Form.Item>
             </div>
           </div>
-          <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-2">
+          <div
+            className="mt-4 mb-4"
+            style={{
+                display: "flex",
+                justifyContent: "center",
+            }}
+          >
+            <div className="mr-4">
             <button className="btn-modal-confirm" type="submit">
               บันทึก
             </button>
+            </div>
             {next === true ? (
               <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
                 ถัดไป
               </div>
             ) : null}
-            {/* <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
-              ถัดไป
-            </div> */}
           </div>
         </Form>
       </div>

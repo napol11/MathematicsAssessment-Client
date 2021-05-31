@@ -56,42 +56,63 @@
 }
 
 .btnCancel {
-  border-radius: 5px;
-  border: 1px solid #f6be32;
-  background-color: white;
-  cursor: pointer;
-  box-shadow: none !important;
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid #f6be32;
+    background-color: white;
+    cursor: pointer;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 
 .btnCancel:hover {
-  border-radius: 5px;
-  border: 1px solid white;
-  background-color: #f6be32;
-  color: white;
-  cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: #f6be32;
+    color: white;
+    cursor: pointer;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 
 .btnConfirm {
-  border-radius: 5px;
-  border: 1px solid white;
-  background-color: #f6be32;
-  cursor: pointer;
-  box-shadow: none !important;
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid #f6be32;
+    background-color: white;
+    cursor: pointer;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 
 .btnConfirm:hover {
-  border-radius: 5px;
-  border: 1px solid white;
-  background-color: #f6be32;
-  color: white;
-  cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: #f6be32;
+    color: white;
+    cursor: pointer;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 
 .btnConfirmDis {
-  border-radius: 5px;
-  border: 1px solid #c6c6c6;
-  background-color: #c6c6c6;
-  cursor: no-drop;
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid #c6c6c6;
+    background-color: #c6c6c6;
+    cursor: no-drop;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 
 .committee2Btn {
@@ -141,7 +162,7 @@
   border-radius: 20px;
   padding: 5px 25px;
   border: 1px solid transparent;
-  background-color: #f26843;
+  background-color: #f6be32;
   color: white;
 }
 

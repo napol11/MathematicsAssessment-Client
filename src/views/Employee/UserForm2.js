@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import "./App.css";
+import "./employee.css";
 
 import GuidePoint from "./GuidePoint";
 import GuideCode from "./GuideCode";
@@ -238,7 +239,17 @@ function UserForm2(props) {
             {`คะแนนรวม % = ${totalpercen} คะแนน (คะแนนเต็ม 100 คะแนน)`}
           </label>
         </div>
-        <div className="col-sm-12  d-sm-flex align-items-sm-end justify-content-sm-end mt-4">
+        <div 
+            className="mt-4 mb-4"
+            style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+        >
+        <div className="btnCancel pl-3 pr-3 mr-4" onClick={props.prev}>
+            ย้อนกลับ
+          </div>
+          <div className="mr-4">
           <button
             className="btn-modal-confirm"
             type="submit"
@@ -246,11 +257,9 @@ function UserForm2(props) {
           >
             บันทึก
           </button>
-          <div className="pl-3 pr-3 mr-4 btnCancel" onClick={props.prev}>
-            ย้อนกลับ
           </div>
           {next === true ? (
-            <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+            <div className="btnConfirm pl-4 pr-4" onClick={props.next}>
               ถัดไป
             </div>
           ) : null}
