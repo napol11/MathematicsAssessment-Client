@@ -396,25 +396,22 @@ function UserProfile(props) {
           </div>
         </div>
           <div className="row no-gutter pl-4 pr-4">
-            <div className="col-sm-12">
+            <div className="col-sm-5">
             <Form.Item name={["formone_study"]}>
                 <Radio.Group>
                     <Radio value="ไม่ได้ศึกษาต่อ">ไม่ได้ศึกษาต่อ</Radio>
                     <Radio
-                      style={{ marginLeft: 250 }}
                       value="ลาศึกษาต่อ"
+                      style={{ marginLeft: 250 }}
                     >
                       ลาศึกษาต่อ
                     </Radio>
                 </Radio.Group>
             </Form.Item>
             </div>
-          </div>
-          <div className="row no-gutter pl-4 pr-4">
-            <div className="col-sm-3" />
             <div className="col-sm-2">
                 <label 
-                    className="m-0 mt-2" 
+                    className="m-0 mt-1" 
                     style={{ fontSize: "14px" }}
                 >
                 ตั้งแต่วันที่
@@ -436,7 +433,7 @@ function UserProfile(props) {
             </div>
             <div className="col-sm-1">
                 <label 
-                    className="m-0 mt-2" 
+                    className="m-0 mt-1" 
                     style={{ fontSize: "14px" }}
                 >
                 ถึงวันที่
@@ -456,12 +453,10 @@ function UserProfile(props) {
                 />
             </Form.Item>
             </div>
-          </div>
-          <div className="row no-gutter pl-4 pr-4">
-            <div className="col-sm-3" />
+            <div className="col-sm-5" />
             <div className="col-sm-2">
                 <label 
-                    className="m-0 mt-2" 
+                    className="m-0 mt-1" 
                     style={{ fontSize: "14px" }}
                 >
                 กลับเข้าปฏิบัติงานวันที่
