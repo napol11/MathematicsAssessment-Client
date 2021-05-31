@@ -366,6 +366,13 @@ function UserProfile(props) {
           </div>
         </div>
       </div>
+      <Form
+          ref={formRef}
+          layout="vertical"
+          name="nest-messages"
+          onFinish={onFinish}
+          fields={datala}
+        >
       <div
         className="mt-4"
         style={{
@@ -387,13 +394,6 @@ function UserProfile(props) {
             </label>
           </div>
         </div>
-        <Form
-          ref={formRef}
-          layout="vertical"
-          name="nest-messages"
-          onFinish={onFinish}
-          fields={datala}
-        >
           <div className="row no-gutter pl-4 pr-4 mt-2">
             <div className="col-sm-3">
               <Form.Item
@@ -532,12 +532,13 @@ function UserProfile(props) {
               </Form.Item>
             </div>
           </div>
+          </div>
           <div
-            className="mt-12"
+            className="mt-4"
             style={{
               padding: "14px",
               borderRadius: "4px",
-              // backgroundColor: "rgba(79, 78, 78, 0.04)",
+              backgroundColor: "rgba(79, 78, 78, 0.04)",
             }}
           >
             <div className="row no-gutter">
@@ -553,24 +554,69 @@ function UserProfile(props) {
                 </label>
               </div>
             </div>
-            <div className="mt-2">
-              {/* {salaryHistory()} */}
+            <div className="row no-gutter pl-4 pr-4 mt-2">
+            <div className="col-sm-1">
+                <label 
+                    className="m-0 mt-2" 
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                ปีงบประมาณ
+                </label>
+            </div>
+            <div className="col-sm-5">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                name={["formone_historypromo"]}
-                // label="ประวัติการเลื่อนขั้นเงินเดือน"
+                name={["formone_budgetone"]}
                 // rules={[{ required: true }]}
               >
                 <textarea className="textarea" style={{ width: "100%" }} />
               </Form.Item>
             </div>
+            <div className="col-sm-5">
+              <Form.Item
+                style={{ marginBottom: "10px" }}
+                name={["formone_budgettwo"]}
+                // rules={[{ required: true }]}
+              >
+                <textarea className="textarea" style={{ width: "100%" }} />
+              </Form.Item>
+            </div>
+            </div>
+            <div className="row no-gutter pl-4 pr-4 mt-2">
+            <div className="col-sm-1">
+                <label 
+                    className="m-0 mt-2" 
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                % การเลื่อนขั้น
+                </label>
+            </div>
+            <div className="col-sm-5">
+              <Form.Item
+                style={{ marginBottom: "10px" }}
+                name={["formone_promoone"]}
+                // rules={[{ required: true }]}
+              >
+                <textarea className="textarea" style={{ width: "100%" }} />
+              </Form.Item>
+            </div>
+            <div className="col-sm-5">
+              <Form.Item
+                style={{ marginBottom: "10px" }}
+                name={["formone_promotwo"]}
+                // rules={[{ required: true }]}
+              >
+                <textarea className="textarea" style={{ width: "100%" }} />
+              </Form.Item>
+            </div>
+            </div>
           </div>
           <div
-            className="mt-12"
+            className="mt-4"
             style={{
               padding: "14px",
               borderRadius: "4px",
-              // backgroundColor: "rgba(79, 78, 78, 0.04)",
+              backgroundColor: "rgba(79, 78, 78, 0.04)",
             }}
           >
             <div className="row no-gutter">
@@ -586,15 +632,46 @@ function UserProfile(props) {
                 </label>
               </div>
             </div>
-            <div className="mt-2">
+            <div className="row no-gutter pl-4 pr-4 mt-2">
+            <div className="col-sm-1">
+                <label 
+                    className="m-0 mt-2" 
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                เมื่อ
+                </label>
+            </div>
+            <div className="col-sm-5">
               <Form.Item
                 style={{ marginBottom: "10px" }}
-                name={["formone_historypunish"]}
+                name={["formone_punishdate"]}
+                // rules={[{ required: true }]}
               >
                 <textarea className="textarea" style={{ width: "100%" }} />
               </Form.Item>
             </div>
+            <div className="col-sm-1">
+                <label 
+                    className="m-0 mt-2" 
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                ระดับที่ลงโทษ
+                </label>
+            </div>
+            <div className="col-sm-5">
+              <Form.Item
+                style={{ marginBottom: "10px" }}
+                name={["formone_punishlevel"]}
+                // rules={[{ required: true }]}
+              >
+                <textarea className="textarea" style={{ width: "100%" }} />
+              </Form.Item>
+            </div>
+            </div>
+
           </div>
+
+
           <div
             className="mt-4 mb-4"
             style={{
@@ -613,8 +690,7 @@ function UserProfile(props) {
               </div>
             ) : null}
           </div>
-        </Form>
-      </div>
+      </Form>
     </div>
   );
 }
