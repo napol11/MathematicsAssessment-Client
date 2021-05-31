@@ -324,7 +324,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.sickLeave === 0
+                  ? data.leaveHistory.sickLeave === "0"
                     ? "-"
                     : `${data.leaveHistory.sickLeave} วัน`
                   : "-"
@@ -342,7 +342,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.sickLeaveMedical === 0
+                  ? data.leaveHistory.sickLeaveMedical === "0"
                     ? "-"
                     : `${data.leaveHistory.sickLeaveMedical} วัน`
                   : "-"
@@ -360,7 +360,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.businessLeave === 0
+                  ? data.leaveHistory.businessLeave === "0"
                     ? "-"
                     : `${data.leaveHistory.businessLeave} วัน`
                   : "-"
@@ -378,7 +378,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.late === 0
+                  ? data.leaveHistory.late === "0"
                     ? "-"
                     : `${data.leaveHistory.late} วัน`
                   : "-"
@@ -398,7 +398,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.holiday === 0
+                  ? data.leaveHistory.holiday === "0"
                     ? "-"
                     : `${data.leaveHistory.holiday} วัน`
                   : "-"
@@ -416,7 +416,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.MaternityLeave === 0
+                  ? data.leaveHistory.MaternityLeave === "0"
                     ? "-"
                     : `${data.leaveHistory.MaternityLeave} วัน`
                   : "-"
@@ -434,7 +434,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.ordainLeave === 0
+                  ? data.leaveHistory.ordainLeave === "0"
                     ? "-"
                     : `${data.leaveHistory.ordainLeave} วัน`
                   : "-"
@@ -452,7 +452,7 @@ const CommitteAssessStep1 = (props) => {
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
               {`${
                 data.leaveHistory
-                  ? data.leaveHistory.govermentLack === 0
+                  ? data.leaveHistory.govermentLack === "0"
                     ? "-"
                     : `${data.leaveHistory.govermentLack} วัน`
                   : "-"
@@ -484,13 +484,15 @@ const CommitteAssessStep1 = (props) => {
         </div>
         <div className="row no-gutter pl-4 pr-4 mt-2">
           {/* {salaryHistory()} */}
-          <label className="m-0" 
-                 style={{ 
-                        color: "black", 
-                        fontSize: "16px", 
-                        wordWrap: "break-word",
-                        wordBreak: "break-word", 
-                 }}>
+          <label
+            className="m-0"
+            style={{
+              color: "black",
+              fontSize: "16px",
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+            }}
+          >
             {/* {`${data.salaryHistory ? data.salaryHistory.text : null}`} */}
             {`${
               data.salaryHistory
@@ -527,20 +529,22 @@ const CommitteAssessStep1 = (props) => {
         <div className="row no-gutter pl-4 pr-4 mt-2">
           {/* {punishHistory()} */}
           {/* {`${data.punishHistory ? data.punishHistory.text : null}`} */}
-          <label className="m-0" 
-                 style={{ 
-                        color: "black", 
-                        fontSize: "16px", 
-                        wordWrap: "break-word",
-                        wordBreak: "break-word", 
-                 }}>
-          {`${
-            data.punishHistory
-              ? data.punishHistory.text === ""
-                ? "-"
-                : `${data.punishHistory.text}`
-              : "-"
-          }`}
+          <label
+            className="m-0"
+            style={{
+              color: "black",
+              fontSize: "16px",
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+            }}
+          >
+            {`${
+              data.punishHistory
+                ? data.punishHistory.text === ""
+                  ? "-"
+                  : `${data.punishHistory.text}`
+                : "-"
+            }`}
           </label>
         </div>
       </div>

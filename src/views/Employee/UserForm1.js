@@ -30,7 +30,7 @@ function UserProfile() {
   const LoadData = () => {
     const id_employee = Cookies.get(token.userId);
     axios.get(`${url}/employee/` + id_employee).then((res) => {
-      const startWork = date2Thai(res.data.data.employee_start);
+      // const startWork = date2Thai(res.data.data.employee_start);
       const start = new Date(res.data.data.employee_start);
       // const data = new Date();
       // const timeYear = data.getFullYear() - start.getFullYear();
@@ -43,7 +43,7 @@ function UserProfile() {
         number: res.data.data.employee_number,
         level: res.data.data.employee_degree,
         group: res.data.data.employee_group,
-        start: startWork,
+        start: res.data.data.employee_start,
         // times: timeYear + "   ปี",
         times: start,
       });
@@ -316,7 +316,29 @@ function UserProfile() {
                 className="m-0"
                 style={{ color: "black", fontSize: "16px" }}
               >
-                {data.start}
+                {/* {data.start} */}
+                {`${
+                  data.start
+                    ? `วันที่ ${date2Thai(data.start, true)
+                        .toString()
+                        .substring(0, 2)}
+                            เดือน ${date2Thai(data.start, true)
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(data.start, true).toString().length -
+                                  4
+                              )}
+                              พ.ศ. ${date2Thai(data.start, true)
+                                .toString()
+                                .substring(
+                                  date2Thai(data.start, true).toString()
+                                    .length - 4,
+                                  date2Thai(data.start, true).toString().length
+                                )}
+                            `
+                    : null
+                }`}
               </label>
             </div>
             <div className="col-sm-7">

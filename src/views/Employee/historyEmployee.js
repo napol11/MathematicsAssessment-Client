@@ -7,6 +7,8 @@ import { notify } from "../CustomComponent";
 import Cookies from "js-cookie";
 import { token } from "../../config";
 import { date2Thai } from "../CustomFunction";
+import moment from "moment";
+import "moment/locale/th";
 import axios from "axios";
 const url = `https://database-api-pj.herokuapp.com/api/employee`;
 const urlauth = `https://database-api-pj.herokuapp.com/api/auth`;
@@ -28,10 +30,10 @@ const HistoryEmployee = () => {
   const LoadData = () => {
     const id_employee = Cookies.get(token.userId);
     axios.get(`${url}/employee/` + id_employee).then((res) => {
-      const startWork = date2Thai(res.data.data.employee_start);
+      // const startWork = date2Thai(res.data.data.employee_start);
       const start = new Date(res.data.data.employee_start);
-      const data = new Date();
-      const timeYear = data.getFullYear() - start.getFullYear();
+      // const data = new Date();
+      // const timeYear = data.getFullYear() - start.getFullYear();
       setData({
         name:
           res.data.data.employee_firstname +
@@ -41,8 +43,9 @@ const HistoryEmployee = () => {
         number: res.data.data.employee_number,
         level: res.data.data.employee_degree,
         group: res.data.data.employee_group,
-        start: startWork,
-        times: timeYear + "   ปี",
+        start: res.data.data.employee_start,
+        // times: timeYear + "   ปี",
+        times: start,
       });
     });
   };
@@ -78,44 +81,44 @@ const HistoryEmployee = () => {
     <div className="justify-center align-center">
       <div className="row wrap window-height">
         <div className="col-xs-12 col-sm-12 ">
-        <div className="row no-gutter mb-4">
+          <div className="row no-gutter mb-4">
             <div className="col-sm-6">
-            <label
-              style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
-            >
-              ประวัติพนักงาน
-            </label>
+              <label
+                style={{ fontWeight: "bold", fontSize: "26px", color: "black" }}
+              >
+                ประวัติพนักงาน
+              </label>
             </div>
             <div className="col-sm-6 text-sm-right align-self-sm-end">
-            <Button
-              shape="round"
-              size={"large"}
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
-              onClick={() => setVisible(true)}
-              type="submit"
-              style={
-                hover
-                  ? {
-                      backgroundColor: "#f6be32",
-                      border: "2px solid #f6be32",
-                      color: "white",
-                      paddingLeft: "50px",
-                      paddingRight: "50px",
-                    }
-                  : {
-                      backgroundColor: "white",
-                      border: "2px solid #f6be32",
-                      color: "black",
-                      paddingLeft: "50px",
-                      paddingRight: "50px",
-                    }
-              }
-            >
-              เปลี่ยนรหัสผ่าน
-            </Button>
+              <Button
+                shape="round"
+                size={"large"}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                onClick={() => setVisible(true)}
+                type="submit"
+                style={
+                  hover
+                    ? {
+                        backgroundColor: "#f6be32",
+                        border: "2px solid #f6be32",
+                        color: "white",
+                        paddingLeft: "50px",
+                        paddingRight: "50px",
+                      }
+                    : {
+                        backgroundColor: "white",
+                        border: "2px solid #f6be32",
+                        color: "black",
+                        paddingLeft: "50px",
+                        paddingRight: "50px",
+                      }
+                }
+              >
+                เปลี่ยนรหัสผ่าน
+              </Button>
             </div>
-            </div>
+          </div>
 
           <div className="container-fluid ">
             <div className="row no-gutter">
@@ -229,7 +232,29 @@ const HistoryEmployee = () => {
                       className="m-0"
                       style={{ color: "black", fontSize: "16px" }}
                     >
-                      {data.start}
+                      {/* {data.start} */}
+                      {`${
+                        data.start
+                          ? `วันที่ ${date2Thai(data.start, true)
+                              .toString()
+                              .substring(0, 2)}
+                            เดือน ${date2Thai(data.start, true)
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(data.start, true).toString().length -
+                                  4
+                              )}
+                              พ.ศ. ${date2Thai(data.start, true)
+                                .toString()
+                                .substring(
+                                  date2Thai(data.start, true).toString()
+                                    .length - 4,
+                                  date2Thai(data.start, true).toString().length
+                                )}
+                            `
+                          : null
+                      }`}
                     </label>
                   </div>
                   <div className="col-md-4">
@@ -244,7 +269,12 @@ const HistoryEmployee = () => {
                       className="m-0"
                       style={{ color: "black", fontSize: "16px" }}
                     >
-                      {data.times}
+                      {/* {data.times} */}
+                      {`${
+                        data.times
+                          ? moment(data.times, "YYYY-MM-DD").fromNow(true)
+                          : null
+                      }`}
                     </label>
                   </div>
                 </div>
