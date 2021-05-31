@@ -19,6 +19,7 @@ const CommitteAssessStep4 = (props) => {
   const [sumForm3, setSumForm3] = useState("");
   const [sumForm3Per, setSumForm3Per] = useState("");
   const [total, setTotle] = useState("");
+  const [next, setNext] = useState(false);
 
   const formRef = useRef(null);
   const { Option } = Select;
@@ -309,6 +310,7 @@ const CommitteAssessStep4 = (props) => {
       .then((res) => {
         console.log(res);
         notify.success("บันทึกสำเร็จ !");
+        setNext(true);
       })
       .catch((err) => {
         console.log(err);
@@ -555,7 +557,6 @@ const CommitteAssessStep4 = (props) => {
                     marginLeft: "6%",
                   }}
                 >
-
                   {`สรุป`}
                 </label>
                 <Form.Item name={["pass"]} className="col-sm-12 mb-4">
@@ -623,9 +624,14 @@ const CommitteAssessStep4 = (props) => {
               บันทึก
             </button>
           </div>
-          <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+          {/* <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
             ถัดไป
-          </div>
+          </div> */}
+          {next === true ? (
+            <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+              ถัดไป
+            </div>
+          ) : null}
         </div>
       </Form>
     </div>
