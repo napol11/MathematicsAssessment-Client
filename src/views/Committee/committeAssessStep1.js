@@ -273,20 +273,89 @@ const CommitteAssessStep1 = (props) => {
             </label>
           </div>
         </div>
-        {/* <div className="row no-gutter pl-4 pr-4">
-          <div className="col-sm-12">
+        <div className="row no-gutter pl-4 pr-4">
+          <div className="col-sm-2">
             <label
               className="m-0"
               style={{ color: "#5f5f5f", fontSize: "14px" }}
             >
               การลาศึกษาต่อ
             </label>
-            <br />
+            </div>
+            {/* formone_study */}
+            <div className="col-sm-3">
             <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
-              {`${data.leaveHistory ? data.leaveHistory.studieLeave : null}`}
+                {`${
+                    data.punishHistory
+                    ? data.punishHistory.text === ""
+                    ? "-"
+                    : `${data.punishHistory.text}`
+                    : "-"
+                }`}
             </label>
           </div>
-        </div> */}
+          <div className="col-sm-2">
+            <label
+              className="m-0"
+              style={{ color: "#5f5f5f", fontSize: "14px" }}
+            >
+              ตั้งแต่วันที่
+            </label>
+          </div>
+            {/* formone_studystart */}
+          <div className="col-sm-2">
+            <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
+                {`${
+                    data.punishHistory
+                    ? data.punishHistory.text === ""
+                    ? "-"
+                    : `${data.punishHistory.text}`
+                    : "-"
+                }`}
+            </label>
+          </div>
+          <div className="col-sm-1">
+            <label
+              className="m-0"
+              style={{ color: "#5f5f5f", fontSize: "14px" }}
+            >
+              ถึงวันที่
+            </label>
+          </div>
+            {/* formone_studyend */}
+          <div className="col-sm-2">
+            <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
+                {`${
+                    data.punishHistory
+                    ? data.punishHistory.text === ""
+                    ? "-"
+                    : `${data.punishHistory.text}`
+                    : "-"
+                }`}
+            </label>
+          </div>
+          <div className="col-sm-5" />
+          <div className="col-sm-2">
+            <label
+              className="m-0"
+              style={{ color: "#5f5f5f", fontSize: "14px" }}
+            >
+              ถึงวันที่
+            </label>
+          </div>
+            {/* formone_studyback */}
+          <div className="col-sm-2">
+            <label className="m-0" style={{ color: "black", fontSize: "16px" }}>
+                {`${
+                    data.punishHistory
+                    ? data.punishHistory.text === ""
+                    ? "-"
+                    : `${data.punishHistory.text}`
+                    : "-"
+                }`}
+            </label>
+          </div>
+        </div>
         {/* <div className="row no-gutter pl-4 pr-4 mt-2">
           <div className="col-sm-12">
             <label
@@ -312,7 +381,7 @@ const CommitteAssessStep1 = (props) => {
             </label>
           </div>
         </div> */}
-        <div className="row no-gutter pl-4 pr-4 mt-2">
+        <div className="row no-gutter pl-4 pr-4 mt-3">
           <div className="col-sm-3">
             <label
               className="m-0"
@@ -483,7 +552,16 @@ const CommitteAssessStep1 = (props) => {
           </div>
         </div>
         <div className="row no-gutter pl-4 pr-4 mt-2">
-          {/* {salaryHistory()} */}
+          <div className="col-sm-1">
+                <label 
+                    className="m-0" 
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                ปีงบประมาณ
+                </label>
+          </div>
+          {/* formone_budgetone */}
+          <div className="col-sm-5">
           <label
             className="m-0"
             style={{
@@ -493,7 +571,6 @@ const CommitteAssessStep1 = (props) => {
               wordBreak: "break-word",
             }}
           >
-            {/* {`${data.salaryHistory ? data.salaryHistory.text : null}`} */}
             {`${
               data.salaryHistory
                 ? data.salaryHistory.text === ""
@@ -502,6 +579,77 @@ const CommitteAssessStep1 = (props) => {
                 : "-"
             }`}
           </label>
+          </div>
+          {/* formone_budgettwo */}
+          <div className="col-sm-5">
+          <label
+            className="m-0"
+            style={{
+              color: "black",
+              fontSize: "16px",
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+            }}
+          >
+            {`${
+              data.salaryHistory
+                ? data.salaryHistory.text === ""
+                  ? "-"
+                  : `${data.salaryHistory.text}`
+                : "-"
+            }`}
+          </label>
+          </div>
+        </div>
+        <div className="row no-gutter pl-4 pr-4 mt-2">
+        <div className="col-sm-1">
+                <label 
+                    className="m-0" 
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                % การเลื่อนขั้น
+                </label>
+        </div>
+        {/* formone_promoone */}
+        <div className="col-sm-5">
+          <label
+            className="m-0"
+            style={{
+              color: "black",
+              fontSize: "16px",
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+            }}
+          >
+            {`${
+              data.salaryHistory
+                ? data.salaryHistory.text === ""
+                  ? "-"
+                  : `${data.salaryHistory.text}`
+                : "-"
+            }`}
+          </label>
+        </div>
+        {/* formone_promotwo */}
+        <div className="col-sm-5">
+          <label
+            className="m-0"
+            style={{
+              color: "black",
+              fontSize: "16px",
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+            }}
+          >
+            {`${
+              data.salaryHistory
+                ? data.salaryHistory.text === ""
+                  ? "-"
+                  : `${data.salaryHistory.text}`
+                : "-"
+            }`}
+          </label>
+        </div>
         </div>
       </div>
 
@@ -527,8 +675,16 @@ const CommitteAssessStep1 = (props) => {
           </div>
         </div>
         <div className="row no-gutter pl-4 pr-4 mt-2">
-          {/* {punishHistory()} */}
-          {/* {`${data.punishHistory ? data.punishHistory.text : null}`} */}
+        <div className="col-sm-1">
+                <label 
+                    className="m-0" 
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                เมื่อ
+                </label>
+        </div>
+          {/* formone_punishdate */}
+          <div className="col-sm-5">
           <label
             className="m-0"
             style={{
@@ -546,6 +702,35 @@ const CommitteAssessStep1 = (props) => {
                 : "-"
             }`}
           </label>
+          </div>
+          <div className="col-sm-1">
+                <label 
+                    className="m-0" 
+                    style={{ color: "#5f5f5f", fontSize: "14px" }}
+                >
+                ระดับที่ลงโทษ
+                </label>
+        </div>
+        {/* formone_punishlevel */}
+        <div className="col-sm-5">
+          <label
+            className="m-0"
+            style={{
+              color: "black",
+              fontSize: "16px",
+              wordWrap: "break-word",
+              wordBreak: "break-word",
+            }}
+          >
+            {`${
+              data.punishHistory
+                ? data.punishHistory.text === ""
+                  ? "-"
+                  : `${data.punishHistory.text}`
+                : "-"
+            }`}
+          </label>
+          </div>
         </div>
       </div>
 
