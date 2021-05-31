@@ -52,7 +52,7 @@ const ModalCommittee = (props) => {
   const addcommittee = (values) => {
     const data = {
       ...values,
-      status: values.position === "หัวหน้า" ? "1" : "0",
+      status: values.position === "หัวหน้าภาควิชา" ? "1" : "0",
     };
     // console.log(data);
     axios
@@ -69,7 +69,7 @@ const ModalCommittee = (props) => {
   const editcommittee = (values) => {
     const data = {
       ...values,
-      status: values.position === "หัวหน้า" ? "1" : "0",
+      status: values.position === "หัวหน้าภาควิชา" ? "1" : "0",
       role: "1",
     };
     // console.log(props.data.id);
@@ -196,7 +196,7 @@ const ModalCommittee = (props) => {
                 onChange={onChangePosition}
               >
                 <Option value="กรรมการ">กรรมการ</Option>
-                <Option value="หัวหน้า">หัวหน้า</Option>
+                <Option value="หัวหน้าภาควิชา">หัวหน้าภาควิชา</Option>
               </Select>
             </Form.Item>
             <div className="row no-gutter">
