@@ -28,6 +28,7 @@ function UserProfile(props) {
     times: null,
   });
   const [next, setNext] = useState(false);
+  const [study, setStudy] = useState(false);
 
   const LoadData = () => {
     const id_employee = Cookies.get(token.userId);
@@ -107,20 +108,20 @@ function UserProfile(props) {
               ? ""
               : res.data.data.formone.formone_laprivate,
         },
-        {
-          name: ["formone_historypromo"],
-          value:
-            res.data.data.formone.formone_historypromo === null
-              ? ""
-              : res.data.data.formone.formone_historypromo,
-        },
-        {
-          name: ["formone_historypunish"],
-          value:
-            res.data.data.formone.formone_historypunish === null
-              ? ""
-              : res.data.data.formone.formone_historypunish,
-        },
+        // {
+        //   name: ["formone_historypromo"],
+        //   value:
+        //     res.data.data.formone.formone_historypromo === null
+        //       ? ""
+        //       : res.data.data.formone.formone_historypromo,
+        // },
+        // {
+        //   name: ["formone_historypunish"],
+        //   value:
+        //     res.data.data.formone.formone_historypunish === null
+        //       ? ""
+        //       : res.data.data.formone.formone_historypunish,
+        // },
         {
           name: ["formone_lababy"],
           value:
@@ -128,8 +129,92 @@ function UserProfile(props) {
               ? ""
               : res.data.data.formone.formone_lababy,
         },
+        {
+          name: ["formone_budgetone"],
+          value:
+            res.data.data.formone.formone_budgetone === ""
+              ? ""
+              : res.data.data.formone.formone_budgetone,
+        },
+        {
+          name: ["formone_budgettwo"],
+          value:
+            res.data.data.formone.formone_budgettwo === ""
+              ? ""
+              : res.data.data.formone.formone_budgettwo,
+        },
+        {
+          name: ["formone_promoone"],
+          value:
+            res.data.data.formone.formone_promoone === ""
+              ? ""
+              : res.data.data.formone.formone_promoone,
+        },
+        {
+          name: ["formone_promotwo"],
+          value:
+            res.data.data.formone.formone_promotwo === ""
+              ? ""
+              : res.data.data.formone.formone_promotwo,
+        },
+        {
+          name: ["formone_punishdate"],
+          value:
+            res.data.data.formone.formone_punishdate === ""
+              ? ""
+              : res.data.data.formone.formone_punishdate,
+        },
+        {
+          name: ["formone_punishlevel"],
+          value:
+            res.data.data.formone.formone_punishlevel === ""
+              ? ""
+              : res.data.data.formone.formone_punishlevel,
+        },
+        {
+          name: ["formone_study"],
+          value:
+            res.data.data.formone.formone_study === ""
+              ? ""
+              : res.data.data.formone.formone_study,
+        },
+        {
+          name: ["formone_studyback"],
+          value:
+            res.data.data.formone.formone_studyback === ""
+              ? ""
+              : res.data.data.formone.formone_studyback,
+        },
+        {
+          name: ["formone_studyend"],
+          value:
+            res.data.data.formone.formone_studyend === ""
+              ? ""
+              : res.data.data.formone.formone_studyend,
+        },
+        {
+          name: ["formone_studystart"],
+          value:
+            res.data.data.formone.formone_studystart === ""
+              ? ""
+              : res.data.data.formone.formone_studystart,
+        },
       ]);
+      if (res.data.data.formone.formone_study === 2) {
+        setStudy(true);
+      } else {
+        setStudy(false);
+      }
     });
+  };
+
+  const constudy = (value) => {
+    console.log(value.target.value);
+    if (value.target.value === 2) {
+      setStudy(true);
+    } else {
+      setStudy(false);
+    }
   };
 
   const onFinish = (values) => {
@@ -140,7 +225,7 @@ function UserProfile(props) {
       assessment_id: id_assessment,
       employee_id: id_employee,
     };
-    console.log(data);
+    // console.log(data);
     axios
       .post(`${url}/formone`, data)
       .then((res) => {
@@ -160,7 +245,7 @@ function UserProfile(props) {
       value: "",
     },
     {
-      name: ["formone_lalat"],
+      name: ["formone_lalate"],
       value: "",
     },
     {
@@ -193,6 +278,46 @@ function UserProfile(props) {
     },
     {
       name: ["formone_lababy"],
+      value: "",
+    },
+    {
+      name: ["formone_budgetone"],
+      value: "",
+    },
+    {
+      name: ["formone_budgettwo"],
+      value: "",
+    },
+    {
+      name: ["formone_promoone"],
+      value: "",
+    },
+    {
+      name: ["formone_promotwo"],
+      value: "",
+    },
+    {
+      name: ["formone_punishdate"],
+      value: "",
+    },
+    {
+      name: ["formone_punishlevel"],
+      value: "",
+    },
+    {
+      name: ["formone_study"],
+      value: "",
+    },
+    {
+      name: ["formone_studyback"],
+      value: "",
+    },
+    {
+      name: ["formone_studyend"],
+      value: "",
+    },
+    {
+      name: ["formone_studystart"],
       value: "",
     },
   ]);
@@ -257,7 +382,6 @@ function UserProfile(props) {
                 style={{ color: "black", fontSize: "16px" }}
               >
                 {data.position}
-                {console.log(data)}
               </label>
             </div>
             <div className="col-sm-2">
@@ -368,115 +492,107 @@ function UserProfile(props) {
         </div>
       </div>
       <Form
-          ref={formRef}
-          layout="vertical"
-          name="nest-messages"
-          onFinish={onFinish}
-          fields={datala}
-        >
-      <div
-        className="mt-4"
-        style={{
-          padding: "14px",
-          borderRadius: "4px",
-          backgroundColor: "rgba(79, 78, 78, 0.04)",
-        }}
+        ref={formRef}
+        layout="vertical"
+        name="nest-messages"
+        onFinish={onFinish}
+        fields={datala}
       >
-        <div className="row no-gutter">
-          <div className="col-sm-12">
-            <label
-              style={{
-                fontWeight: "bold",
-                fontSize: "20px",
-                color: "black",
-              }}
-            >
-              {`ประวัติการลา`}
-            </label>
+        <div
+          className="mt-4"
+          style={{
+            padding: "14px",
+            borderRadius: "4px",
+            backgroundColor: "rgba(79, 78, 78, 0.04)",
+          }}
+        >
+          <div className="row no-gutter">
+            <div className="col-sm-12">
+              <label
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  color: "black",
+                }}
+              >
+                {`ประวัติการลา`}
+              </label>
+            </div>
           </div>
-        </div>
           <div className="row no-gutter pl-4 pr-4">
             <div className="col-sm-5">
-            <Form.Item name={["formone_study"]}>
-                <Radio.Group>
-                    <Radio value="ไม่ได้ศึกษาต่อ">ไม่ได้ศึกษาต่อ</Radio>
-                    <Radio
-                      value="ลาศึกษาต่อ"
-                      style={{ marginLeft: 250 }}
-                    >
-                      ลาศึกษาต่อ
-                    </Radio>
+              <Form.Item name={["formone_study"]}>
+                <Radio.Group onChange={constudy}>
+                  <Radio value={1}>ไม่ได้ศึกษาต่อ</Radio>
+                  <Radio value={2} style={{ marginLeft: 250 }}>
+                    ลาศึกษาต่อ
+                  </Radio>
                 </Radio.Group>
-            </Form.Item>
+              </Form.Item>
             </div>
-            <div className="col-sm-2">
-                <label 
-                    className="m-0 mt-1" 
-                    style={{ fontSize: "14px" }}
-                >
-                ตั้งแต่วันที่
-                </label>
-            </div>
-            <div className="col-sm-2">
-            <Form.Item name={["formone_studystart"]}>
-                <WatDatePicker
-                    placeholder={"ระบุวันที่"}
-                    dateFormat={"yyyy-MM-dd"}
-                    displayFormat={"DD MMM YY"}
-                    inputStyle={{
+            {study === true ? (
+              <>
+                <div className="col-sm-2">
+                  <label className="m-0 mt-1" style={{ fontSize: "14px" }}>
+                    ตั้งแต่วันที่
+                  </label>
+                </div>
+                <div className="col-sm-2">
+                  <Form.Item name={["formone_studystart"]}>
+                    <WatDatePicker
+                      placeholder={"ระบุวันที่"}
+                      dateFormat={"yyyy-MM-dd"}
+                      displayFormat={"DD MMM YY"}
+                      inputStyle={{
                         color: "black",
                         width: "100%",
-                    }}
-                    clearable={true}
-                />
-            </Form.Item>
-            </div>
-            <div className="col-sm-1">
-                <label 
-                    className="m-0 mt-1" 
-                    style={{ fontSize: "14px" }}
-                >
-                ถึงวันที่
-                </label>
-            </div>
-            <div className="col-sm-2">
-            <Form.Item name={["formone_studyend"]}>
-                <WatDatePicker
-                    placeholder={"ระบุวันที่"}
-                    dateFormat={"yyyy-MM-dd"}
-                    displayFormat={"DD MMM YY"}
-                    inputStyle={{
+                      }}
+                      clearable={true}
+                    />
+                  </Form.Item>
+                </div>
+                <div className="col-sm-1">
+                  <label className="m-0 mt-1" style={{ fontSize: "14px" }}>
+                    ถึงวันที่
+                  </label>
+                </div>
+                <div className="col-sm-2">
+                  <Form.Item name={["formone_studyend"]}>
+                    <WatDatePicker
+                      placeholder={"ระบุวันที่"}
+                      dateFormat={"yyyy-MM-dd"}
+                      displayFormat={"DD MMM YY"}
+                      inputStyle={{
                         color: "black",
                         width: "100%",
-                    }}
-                    clearable={true}
-                />
-            </Form.Item>
-            </div>
-            <div className="col-sm-5" />
-            <div className="col-sm-2">
-                <label 
-                    className="m-0 mt-1" 
-                    style={{ fontSize: "14px" }}
-                >
-                กลับเข้าปฏิบัติงานวันที่
-                </label>
-            </div>
-            <div className="col-sm-2">
-            <Form.Item name={["formone_studyback"]}>
-                <WatDatePicker
-                    placeholder={"ระบุวันที่"}
-                    dateFormat={"yyyy-MM-dd"}
-                    displayFormat={"DD MMM YY"}
-                    inputStyle={{
+                      }}
+                      clearable={true}
+                    />
+                  </Form.Item>
+                </div>
+                <div className="col-sm-5" />
+                <div className="col-sm-2">
+                  <label className="m-0 mt-1" style={{ fontSize: "14px" }}>
+                    กลับเข้าปฏิบัติงานวันที่
+                  </label>
+                </div>
+                <div className="col-sm-2">
+                  <Form.Item name={["formone_studyback"]}>
+                    <WatDatePicker
+                      placeholder={"ระบุวันที่"}
+                      dateFormat={"yyyy-MM-dd"}
+                      displayFormat={"DD MMM YY"}
+                      inputStyle={{
                         color: "black",
                         width: "100%",
-                    }}
-                    clearable={true}
-                />
-            </Form.Item>
-            </div>
-            </div>
+                      }}
+                      clearable={true}
+                    />
+                  </Form.Item>
+                </div>
+              </>
+            ) : null}
+          </div>
           <div className="row no-gutter pl-4 pr-4 mt-2">
             <div className="col-sm-3">
               <Form.Item
@@ -615,36 +731,33 @@ function UserProfile(props) {
               </Form.Item>
             </div>
           </div>
-          </div>
-          <div
-            className="mt-4"
-            style={{
-              padding: "14px",
-              borderRadius: "4px",
-              backgroundColor: "rgba(79, 78, 78, 0.04)",
-            }}
-          >
-            <div className="row no-gutter">
-              <div className="col-sm-12">
-                <label
-                  style={{
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                    color: "black",
-                  }}
-                >
-                  {`ประวัติการเลื่อนขั้นเงินเดือน`}
-                </label>
-              </div>
+        </div>
+        <div
+          className="mt-4"
+          style={{
+            padding: "14px",
+            borderRadius: "4px",
+            backgroundColor: "rgba(79, 78, 78, 0.04)",
+          }}
+        >
+          <div className="row no-gutter">
+            <div className="col-sm-12">
+              <label
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  color: "black",
+                }}
+              >
+                {`ประวัติการเลื่อนขั้นเงินเดือน`}
+              </label>
             </div>
-            <div className="row no-gutter pl-4 pr-4 mt-2">
+          </div>
+          <div className="row no-gutter pl-4 pr-4 mt-2">
             <div className="col-sm-1">
-                <label 
-                    className="m-0 mt-2" 
-                    style={{ fontSize: "14px" }}
-                >
+              <label className="m-0 mt-2" style={{ fontSize: "14px" }}>
                 ปีงบประมาณ
-                </label>
+              </label>
             </div>
             <div className="col-sm-5">
               <Form.Item
@@ -664,15 +777,12 @@ function UserProfile(props) {
                 <textarea className="textarea" style={{ width: "100%" }} />
               </Form.Item>
             </div>
-            </div>
-            <div className="row no-gutter pl-4 pr-4 mt-2">
+          </div>
+          <div className="row no-gutter pl-4 pr-4 mt-2">
             <div className="col-sm-1">
-                <label 
-                    className="m-0 mt-2" 
-                    style={{ fontSize: "14px" }}
-                >
+              <label className="m-0 mt-2" style={{ fontSize: "14px" }}>
                 % การเลื่อนขั้น
-                </label>
+              </label>
             </div>
             <div className="col-sm-5">
               <Form.Item
@@ -692,37 +802,34 @@ function UserProfile(props) {
                 <textarea className="textarea" style={{ width: "100%" }} />
               </Form.Item>
             </div>
+          </div>
+        </div>
+        <div
+          className="mt-4"
+          style={{
+            padding: "14px",
+            borderRadius: "4px",
+            backgroundColor: "rgba(79, 78, 78, 0.04)",
+          }}
+        >
+          <div className="row no-gutter">
+            <div className="col-sm-12">
+              <label
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  color: "black",
+                }}
+              >
+                {`ประวัติการถูกลงโทษทางวินัย`}
+              </label>
             </div>
           </div>
-          <div
-            className="mt-4"
-            style={{
-              padding: "14px",
-              borderRadius: "4px",
-              backgroundColor: "rgba(79, 78, 78, 0.04)",
-            }}
-          >
-            <div className="row no-gutter">
-              <div className="col-sm-12">
-                <label
-                  style={{
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                    color: "black",
-                  }}
-                >
-                  {`ประวัติการถูกลงโทษทางวินัย`}
-                </label>
-              </div>
-            </div>
-            <div className="row no-gutter pl-4 pr-4 mt-2">
+          <div className="row no-gutter pl-4 pr-4 mt-2">
             <div className="col-sm-1">
-                <label 
-                    className="m-0 mt-2" 
-                    style={{ fontSize: "14px" }}
-                >
+              <label className="m-0 mt-2" style={{ fontSize: "14px" }}>
                 เมื่อ
-                </label>
+              </label>
             </div>
             <div className="col-sm-5">
               <Form.Item
@@ -734,12 +841,9 @@ function UserProfile(props) {
               </Form.Item>
             </div>
             <div className="col-sm-1">
-                <label 
-                    className="m-0 mt-2" 
-                    style={{ fontSize: "14px" }}
-                >
+              <label className="m-0 mt-2" style={{ fontSize: "14px" }}>
                 ระดับที่ลงโทษ
-                </label>
+              </label>
             </div>
             <div className="col-sm-5">
               <Form.Item
@@ -750,29 +854,27 @@ function UserProfile(props) {
                 <textarea className="textarea" style={{ width: "100%" }} />
               </Form.Item>
             </div>
-            </div>
-
           </div>
+        </div>
 
-
-          <div
-            className="mt-4 mb-4"
-            style={{
-                display: "flex",
-                justifyContent: "center",
-            }}
-          >
-            <div className="mr-4">
+        <div
+          className="mt-4 mb-4"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div className="mr-4">
             <button className="btn-modal-confirm" type="submit">
               บันทึก
             </button>
-            </div>
-            {next === true ? (
-              <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
-                ถัดไป
-              </div>
-            ) : null}
           </div>
+          {next === true ? (
+            <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+              ถัดไป
+            </div>
+          ) : null}
+        </div>
       </Form>
     </div>
   );
