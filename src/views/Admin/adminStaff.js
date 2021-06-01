@@ -36,7 +36,7 @@ const AdminStaff = () => {
     //   },
     // },
     {
-      title: <div style={title}>เลขที่</div>,
+      title: <div style={title}>ลำดับที่</div>,
       dataIndex: "number",
       key: "number",
       align: "center",
