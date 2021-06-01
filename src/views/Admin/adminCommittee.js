@@ -23,7 +23,7 @@ const AdminCommittee = () => {
 
   const columnsCommittee = [
     {
-      title: <div style={title}>เลขที่</div>,
+      title: <div style={title}>ลำดับที่</div>,
       dataIndex: "id",
       key: "id",
       align: "center",
