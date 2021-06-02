@@ -523,8 +523,10 @@ function UserProfile(props) {
             <div className="col-sm-5">
               <Form.Item name={["formone_study"]}>
                 <Radio.Group onChange={constudy}>
-                  <Radio value={1}>ไม่ได้ศึกษาต่อ</Radio>
-                  <Radio value={2} style={{ marginLeft: 250 }}>
+                  <Radio value={1} className="mr-5">ไม่ได้ศึกษาต่อ</Radio>
+                  <i className="mr-5 ml-5"/>
+                  <i className="mr-5 ml-4"/>
+                  <Radio value={2} className="ml-5">
                     ลาศึกษาต่อ
                   </Radio>
                 </Radio.Group>
