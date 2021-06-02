@@ -561,13 +561,10 @@ const CommitteAssessStep4 = (props) => {
                 </label>
                 <Form.Item name={["pass"]} className="col-sm-12 mb-4">
                   <Radio.Group style={{ marginLeft: "17%" }}>
-                    <Radio value="ผ่านการประเมิน">ผ่านการประเมิน</Radio>
-                    <Radio
-                      style={{ marginLeft: 300 }}
-                      value="ไม่ผ่านการประเมิน"
-                    >
-                      ไม่ผ่านการประเมิน
-                    </Radio>
+                    <Radio className="mr-5" value="ผ่านการประเมิน">ผ่านการประเมิน</Radio>
+                    <i className="mr-5 ml-5"/>
+                    <i className="mr-5 ml-5"/>
+                    <Radio className="ml-5" value="ไม่ผ่านการประเมิน">ไม่ผ่านการประเมิน</Radio>
                   </Radio.Group>
                 </Form.Item>
                 <Form.Item
@@ -593,11 +590,13 @@ const CommitteAssessStep4 = (props) => {
                 </Form.Item>
                 <Form.Item name={["salary"]} className="col-sm-12 mb-4">
                   <Radio.Group style={{ marginLeft: "17%" }}>
-                    <Radio value="เห็นสมควรให้ขึ้นเงินเดือน">
+                    <Radio className="mr-5" value="เห็นสมควรให้ขึ้นเงินเดือน">
                       {`เห็นสมควรให้ขึ้นเงินเดือน`}
                     </Radio>
+                    <i className="mr-5 ml-5"/>
+                    <i className="mr-4 ml-4"/>
                     <Radio
-                      style={{ marginLeft: 250 }}
+                      className="ml-5"
                       value="ไม่เห็นสมควรให้ขึ้นเงินเดือน"
                     >
                       ไม่เห็นสมควรให้ขึ้นเงินเดือน
