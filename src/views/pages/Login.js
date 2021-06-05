@@ -10,6 +10,7 @@ import {
 } from "@coreui/react";
 import imgHeader from "./logo.png";
 import picture from "./login.png";
+import logo from "./Group 772.png";
 
 import { notify } from "../CustomComponent";
 import { token } from "../../config";
@@ -156,7 +157,7 @@ const Login = () => {
       <div className="container-fluid">
         <div className="row no-gutter">
           <div
-            className="col-md-5 d-none d-md-flex"
+            className="col-md-6 d-none d-md-flex"
             style={{
               backgroundImage: "url(" + picture + ")",
               backgroundSize: "cover",
@@ -165,12 +166,12 @@ const Login = () => {
           >
             <div className="container">
               <CImg
-                src={imgHeader}
+                src={logo}
                 className="d-inline-block align-top m-4"
                 alt="KMUTT ระบบประเมินประสิทธิภาพพนักงานสายสนับสนุน"
                 height="128"
               />
-              <div
+              {/* <div
                 className="row ml-4 mt-4"
                 style={{
                   fontWeight: "bold",
@@ -189,12 +190,12 @@ const Login = () => {
                 }}
               >
                 Mathematics
-              </div>
+              </div> */}
             </div>
             <br />
           </div>
 
-          <div className="col-md-7 bg-white">
+          <div className="col-md-6 bg-white">
             <div
               className=" d-flex align-items-center py-5"
               style={{ minHeight: "100vh" }}

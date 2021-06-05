@@ -78,11 +78,10 @@ function UserForm2(props) {
     for (let i = 0; i < _list.length; i++) {
       result += parseInt(_list[i].formtwo_fte);
     }
-    // if (result < 100) {
-    //   console.log("น้อยกว่า 100 ");
-    //   notify.error("ค่า FTE รวมยังไม่ถึง 100% !");
-    // } else
-    if (result > 100) {
+    if (result < 100) {
+      console.log("น้อยกว่า 100 ");
+      notify.error("ค่า FTE รวมยังไม่ถึง 100% !");
+    } else if (result > 100) {
       console.log("มากกว่า 100");
       notify.error("ค่า FTE รวมเกิน 100% !");
     } else if (result === 100) {
@@ -211,19 +210,25 @@ function UserForm2(props) {
         />
         <div className="col-sm-12 mt-4">
           <label
-            className="col-sm-4"
+            className="col-sm-3"
             style={{
               fontWeight: "bold",
-              fontSize: "16px",
+              fontSize: "18px",
               color: "black",
               textAlign: "center",
+              marginLeft: "7%",
             }}
           >
             {`รวม`}
           </label>
           <label
             className="col-sm-2"
-            style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
+            style={{
+              fontWeight: "bold",
+              fontSize: "18px",
+              color: "black",
+              // marginLeft: "7%",
+            }}
           >
             {`%FTE = ${fte}`}
           </label>
@@ -231,7 +236,7 @@ function UserForm2(props) {
             className="col-sm-4"
             style={{
               fontWeight: "bold",
-              fontSize: "16px",
+              fontSize: "18px",
               color: "black",
               marginLeft: "3%",
             }}
@@ -239,24 +244,24 @@ function UserForm2(props) {
             {`คะแนนรวม % = ${totalpercen} คะแนน (คะแนนเต็ม 100 คะแนน)`}
           </label>
         </div>
-        <div 
-            className="mt-4 mb-4"
-            style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
+        <div
+          className="mt-4 mb-4"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
         >
-        <div className="btnCancel pl-3 pr-3 mr-4" onClick={props.prev}>
+          <div className="btnCancel pl-3 pr-3 mr-4" onClick={props.prev}>
             ย้อนกลับ
           </div>
           <div className="mr-4">
-          <button
-            className="btn-modal-confirm"
-            type="submit"
-            onClick={onFinish}
-          >
-            บันทึก
-          </button>
+            <button
+              className="btn-modal-confirm"
+              type="submit"
+              onClick={onFinish}
+            >
+              บันทึก
+            </button>
           </div>
           {next === true ? (
             <div className="btnConfirm pl-4 pr-4" onClick={props.next}>

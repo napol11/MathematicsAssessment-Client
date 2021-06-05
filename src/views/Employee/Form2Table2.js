@@ -155,12 +155,7 @@ const EditableCell = ({
             },
           ]}
         >
-          <TextArea
-            className="textbox"
-            ref={inputRef}
-            autoSize
-            onBlur={save}
-          />
+          <TextArea className="textbox" ref={inputRef} autoSize onBlur={save} />
         </Form.Item>
       ) : (
         <div
@@ -261,7 +256,11 @@ class Form2Table2 extends React.Component {
         },
       },
       {
-        title: <div style={title}>{"ความคิดเห็น"}</div>,
+        title: (
+          <div style={title}>
+            {"ความคิดเห็นเพิ่มเติม/ข้อเสนอแนะ/ปัญหาและอุปสรรค"}
+          </div>
+        ),
         dataIndex: "Table2Comments",
         key: "Table2Comments",
         editable: true,
