@@ -8,7 +8,7 @@ import {
   CInputGroupAppend,
   CLabel,
 } from "@coreui/react";
-import imgHeader from "./logo.png";
+// import imgHeader from "./logo.png";
 import picture from "./login.png";
 import logo from "./Group 772.png";
 
