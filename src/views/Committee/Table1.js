@@ -201,7 +201,11 @@ class Table1 extends React.Component {
         },
       },
       {
-        title: <div style={title}>{"ความคิดเห็น"}</div>,
+        title: (
+          <div style={title}>
+            {"ความคิดเห็นเพิ่มเติม/ข้อเสนอแนะ/ปัญหาและอุปสรรค"}
+          </div>
+        ),
         dataIndex: "Table1Comments",
         width: "40%",
         key: "Table1Comments",

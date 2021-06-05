@@ -16,7 +16,6 @@ const title = { color: "black", textAlign: "center" };
 const { Option } = Select;
 const { TextArea } = Input;
 
-
 const EditableContext = React.createContext(null);
 
 const EditableRow = ({ index, ...props }) => {
@@ -159,12 +158,7 @@ const EditableCell = ({
             },
           ]}
         >
-          <TextArea
-            className="textbox"
-            ref={inputRef}
-            autoSize
-            onBlur={save}
-          />
+          <TextArea className="textbox" ref={inputRef} autoSize onBlur={save} />
         </Form.Item>
       ) : (
         <div
@@ -265,7 +259,11 @@ class Form2Table1 extends React.Component {
         },
       },
       {
-        title: <div style={title}>{"ความคิดเห็น"}</div>,
+        title: (
+          <div style={title}>
+            {"ความคิดเห็นเพิ่มเติม/ข้อเสนอแนะ/ปัญหาและอุปสรรค"}
+          </div>
+        ),
         dataIndex: "Table1Comments",
         key: "Table1Comments",
         editable: true,

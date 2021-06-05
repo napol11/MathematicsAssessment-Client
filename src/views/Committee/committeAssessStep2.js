@@ -176,7 +176,7 @@ const CommitteAssessStep2 = (props) => {
           className="col-sm-4"
           style={{
             fontWeight: "bold",
-            fontSize: "16px",
+            fontSize: "18px",
             color: "black",
             textAlign: "center",
             marginLeft: "4%",
@@ -186,7 +186,7 @@ const CommitteAssessStep2 = (props) => {
         </label>
         <label
           className="col-sm-3"
-          style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}
+          style={{ fontWeight: "bold", fontSize: "18px", color: "black" }}
         >
           {`%FTE = ${fte}`}
         </label>
@@ -194,7 +194,7 @@ const CommitteAssessStep2 = (props) => {
           className="col-sm-4"
           style={{
             fontWeight: "bold",
-            fontSize: "16px",
+            fontSize: "18px",
             color: "black",
             marginLeft: "2%",
           }}
