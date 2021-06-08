@@ -525,7 +525,6 @@ function UserProfile(props) {
                 <Radio.Group onChange={constudy}>
                   <Radio value={1} className="mr-5">ไม่ได้ศึกษาต่อ</Radio>
                   <i className="mr-5 ml-5"/>
-                  <i className="mr-5 ml-4"/>
                   <Radio value={2} className="ml-5">
                     ลาศึกษาต่อ
                   </Radio>
