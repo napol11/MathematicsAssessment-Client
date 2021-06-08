@@ -3,6 +3,7 @@ import "moment/locale/th";
 
 import { useParams } from "react-router-dom";
 import "./head.css";
+import GuidePoint from "./GuidePoint";
 import Table1 from "../Head/Table1";
 import Table2 from "../Head/Table2";
 import Table3 from "../Head/Table3";
@@ -206,6 +207,11 @@ const CommitteAssessStep2 = (props) => {
             {`ส่วนที่ 2.1 รายการผลการปฏิบัติงาน`}
           </label>
         </div>
+        <div className="col-sm-6 text-sm-right align-self-sm-end">
+            <div className="row justify-content-sm-end mr-2">
+                <GuidePoint />
+            </div>
+          </div>
       </div>
       <div className="col-sm-12">
         <Table1

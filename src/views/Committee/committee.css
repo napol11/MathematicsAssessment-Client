@@ -334,3 +334,25 @@ p {
     border: 1.5px solid #f26843 !important;
     box-shadow: 0 0 4px #f26843 !important;
 }
+
+.guidepointpic {
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 300px;
+}
+
+.buttons_form2_1 {
+    outline: none !important;
+    /* background: #F6BE32; */
+    background-color: white;
+    border: 2px solid #F6BE32;
+    font-size: 15px;
+    border-radius:20px;
+    text-align: center;
+    padding:4px 11px;
+}
+
+.buttons_form2_1:hover {
+    /* background: white; */
+    background: #F6BE32;
+}
