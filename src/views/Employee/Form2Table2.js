@@ -367,7 +367,7 @@ class Form2Table2 extends React.Component {
       Table2No: `${count}`,
       Table2Activity: "ระบุชื่อกิจกรรม",
       Table2FTE: "0",
-      Table2Level: "0",
+      Table2Level: "1",
       // Table2TotalScorePercent: "0",
       Table2Comments: "ระบุความคิดเห็น",
       Table2Code: "0",

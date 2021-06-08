@@ -47,7 +47,9 @@ const CommitteeMain = () => {
       width: "500px",
     },
     {
-      title: <div style={title}>วันเริ่มต้นของการส่งข้อมูลการประเมินพนักงาน</div>,
+      title: (
+        <div style={title}>วันเริ่มต้นของการส่งข้อมูลการประเมินพนักงาน</div>
+      ),
       dataIndex: "start",
       key: "start",
       align: "center",
@@ -58,7 +60,9 @@ const CommitteeMain = () => {
       },
     },
     {
-      title: <div style={title}>วันสุดท้ายของการส่งข้อมูลการประเมินพนักงาน</div>,
+      title: (
+        <div style={title}>วันสุดท้ายของการส่งข้อมูลการประเมินพนักงาน</div>
+      ),
       dataIndex: "end",
       key: "end",
       align: "center",
@@ -108,7 +112,7 @@ const CommitteeMain = () => {
             }
           >
             {/* {`${success ? "ส่งแบบประเมินแล้ว" : "ส่งแบบประเมิน"}`} */}
-            {`${Intime ? "หมดเวลาส่งแบบฟอร์ม" : "ส่งแบบประเมิน"}` ||
+            {`${Intime ? "หมดเวลาส่งแบบประเมิน" : "ส่งแบบประเมิน"}` ||
               `${success ? "ส่งแบบประเมินแล้ว" : null}`}
           </div>
         );

@@ -60,14 +60,15 @@ const UploadFile = (props) => {
     await axios
       .post(`${url}/upload`, data)
       .then((res) => {
-        notify.success("อับโหลดได้");
+        notify.success("แบบเอกสารสำเร็จ");
+        // setShow(false);
         setUploading(false);
         console.log(res);
         setDisable(true);
       })
       .catch((e) => {
         console.log(e);
-        notify.error("อับโหลดไม่ได้");
+        notify.error("แบบเอกสารไม่สำเร็จ");
         setDisable(true);
         setUploading(false);
         // setFileList([]);
@@ -141,7 +142,12 @@ const UploadFile = (props) => {
         {/* {fileList.length > 0 ? "มีเอกสาร" : "อัปโหลดเอกสาร"} */}
         แนบเอกสาร
       </b>
-      <CModal show={show} closeOnBackdrop={false} centered className="text-sm-left">
+      <CModal
+        show={show}
+        closeOnBackdrop={false}
+        centered
+        className="text-sm-left"
+      >
         <CModalHeader>
           <label
             className="m-0"
