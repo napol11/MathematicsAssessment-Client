@@ -14,6 +14,7 @@ const TheLayout = React.lazy(() => import("./containers/TheLayout"));
 // Pages
 const Login = React.lazy(() => import("./views/pages/Login"));
 const Page404 = React.lazy(() => import("./views/pages/page404/page404"));
+const Form = React.lazy(() => import("./views/Head/HeadPDF"));
 
 class App extends Component {
   render() {
@@ -26,6 +27,12 @@ class App extends Component {
               path="/login"
               name="Login Page"
               render={(props) => <Login {...props} />}
+            />
+            <Route
+              exact
+              path="/form/:assessment/:id"
+              name="resultform"
+              render={(props) => <Form {...props} />}
             />
             <Route
               exact

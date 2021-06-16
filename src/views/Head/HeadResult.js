@@ -328,6 +328,11 @@ const CommitteAssessStep4 = (props) => {
     setTotle(totalSum.toFixed(2));
     console.log(total);
   }, [total, sumForm3Per, sumForm2Per]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const viewForm = () => {
+    window.open(`/form/${assessment}/${id}`);
+  };
+
   return (
     <div>
       <Form
@@ -561,10 +566,14 @@ const CommitteAssessStep4 = (props) => {
                 </label>
                 <Form.Item name={["pass"]} className="col-sm-12 mb-4">
                   <Radio.Group style={{ marginLeft: "17%" }}>
-                    <Radio className="mr-5" value="ผ่านการประเมิน">ผ่านการประเมิน</Radio>
-                    <i className="mr-5 ml-5"/>
-                    <i className="mr-5 ml-5"/>
-                    <Radio className="ml-5" value="ไม่ผ่านการประเมิน">ไม่ผ่านการประเมิน</Radio>
+                    <Radio className="mr-5" value="ผ่านการประเมิน">
+                      ผ่านการประเมิน
+                    </Radio>
+                    <i className="mr-5 ml-5" />
+                    <i className="mr-5 ml-5" />
+                    <Radio className="ml-5" value="ไม่ผ่านการประเมิน">
+                      ไม่ผ่านการประเมิน
+                    </Radio>
                   </Radio.Group>
                 </Form.Item>
                 <Form.Item
@@ -593,8 +602,8 @@ const CommitteAssessStep4 = (props) => {
                     <Radio className="mr-5" value="เห็นสมควรให้ขึ้นเงินเดือน">
                       {`เห็นสมควรให้ขึ้นเงินเดือน`}
                     </Radio>
-                    <i className="mr-5 ml-5"/>
-                    <i className="mr-4 ml-4"/>
+                    <i className="mr-5 ml-5" />
+                    <i className="mr-4 ml-4" />
                     <Radio
                       className="ml-5"
                       value="ไม่เห็นสมควรให้ขึ้นเงินเดือน"
@@ -607,6 +616,8 @@ const CommitteAssessStep4 = (props) => {
             </div>
           </div>
         </div>
+
+        <button onClick={viewForm}>print</button>
 
         <div
           className="mt-4 mb-4"

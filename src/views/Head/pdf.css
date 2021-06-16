@@ -1,0 +1,10 @@
+@page{
+  size: A4;
+  orientation: landscape;
+  margin: 5%;
+}
+/*
+#print{
+  display: none;
+  visibility: none;
+} */
