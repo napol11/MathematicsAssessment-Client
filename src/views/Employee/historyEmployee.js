@@ -307,7 +307,7 @@ const HistoryEmployee = () => {
                           rules={[
                             {
                               required: true,
-                              message: "ระบุรหัสผ่านเก่า",
+                              message: "ระบุรหัสผ่านปัจจุบัน",
                             },
                           ]}
                         >
