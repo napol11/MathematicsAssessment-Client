@@ -1,7 +1,8 @@
-@page{
-  size: A4;
+@page {
+  size: a4;
   /* orientation: landscape; */
   margin: 0;
+  size: landscape;
 }
 /*
 #print{

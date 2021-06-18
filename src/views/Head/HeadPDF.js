@@ -1,36 +1,26 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./pdf.css";
-import { Row, Radio, Form, Select } from "antd";
+import { Row, Radio } from "antd";
+import { date2Thai } from "../CustomFunction";
+import moment from "moment";
+import "moment/locale/th";
 
 const url = `https://database-api-pj.herokuapp.com/api/committee`;
 const urlEM = `https://database-api-pj.herokuapp.com/api/employee`;
 
 const HeadPDF = () => {
-  const [data, setData] = useState([
-    {
-      name: ["grad"],
-      value: "",
-    },
-    {
-      name: ["pass"],
-      value: "",
-    },
-    {
-      name: ["salary"],
-      value: "",
-    },
-  ]);
-
   const { id, assessment } = useParams();
   const [sumForm2, setSumForm2] = useState("");
   const [sumForm2Per, setSumForm2Per] = useState("");
   const [sumForm3, setSumForm3] = useState("");
   const [sumForm3Per, setSumForm3Per] = useState("");
   const [total, setTotle] = useState("");
-
-  const formRef = useRef(null);
+  const [grad, setGrad] = useState("");
+  const [pass, setPass] = useState("");
+  const [salary, setSalary] = useState("");
+  const [dataStape1, setDataStape1] = useState([]);
 
   const LoadData = async () => {
     const id_assessment = `${assessment}`;
@@ -39,7 +29,7 @@ const HeadPDF = () => {
       employee_id: id_employee,
       assessment_id: id_assessment,
     };
-    axios.post(`${url}/dataFormtwoAll`, data).then((com) => {
+    await axios.post(`${url}/dataFormtwoAll`, data).then((com) => {
       axios.post(`${urlEM}/dataFormtwo`, data).then((em) => {
         const dataEM = em.data.data.formtwo;
         const dataCOMALL = com.data.data;
@@ -242,7 +232,7 @@ const HeadPDF = () => {
       });
     });
 
-    axios.post(`${url}/dataFromthree`, data).then((res) => {
+    await axios.post(`${url}/dataFromthree`, data).then((res) => {
       const data = res.data.data;
       // console.log(data);
       let _list = [];
@@ -265,22 +255,109 @@ const HeadPDF = () => {
       setSumForm3Per(form3persent.toFixed(2));
     });
 
-    axios.post(`${url}/dataresulthead`, data).then((res) => {
+    await axios.post(`${url}/dataresulthead`, data).then((res) => {
       console.log(res);
-      setData([
-        {
-          name: ["grad"],
-          value: res.data.data.grad || "",
-        },
-        {
-          name: ["pass"],
-          value: res.data.data.pass || "",
-        },
-        {
-          name: ["salary"],
-          value: res.data.data.salary || "",
-        },
-      ]);
+      setGrad(res.data.data.grad || "");
+      setPass(res.data.data.pass || "");
+      setSalary(res.data.data.salary || "");
+    });
+
+    await axios.get(`${urlEM}/employee/` + id_employee).then((info) => {
+      axios.post(`${urlEM}/dataFormone`, data).then((form1) => {
+        setDataStape1({
+          information: {
+            firstName: info.data.data.employee_firstname,
+            lastName: info.data.data.employee_lastname,
+            position: info.data.data.employee_position,
+            number: info.data.data.employee_number,
+            level: info.data.data.employee_degree,
+            division: info.data.data.employee_group,
+            startTimes: info.data.data.employee_start,
+          },
+          leaveHistory: {
+            sickLeave:
+              form1.data.data.formone.formone_lasick === null
+                ? 0
+                : form1.data.data.formone.formone_lasick,
+            sickLeaveMedical:
+              form1.data.data.formone.formone_lapaper === null
+                ? 0
+                : form1.data.data.formone.formone_lapaper,
+            businessLeave:
+              form1.data.data.formone.formone_laprivate === null
+                ? 0
+                : form1.data.data.formone.formone_laprivate,
+            late:
+              form1.data.data.formone.formone_lalate === null
+                ? 0
+                : form1.data.data.formone.formone_lalate,
+            holiday:
+              form1.data.data.formone.formone_laleave === null
+                ? 0
+                : form1.data.data.formone.formone_laleave,
+            MaternityLeave:
+              form1.data.data.formone.formone_lababy === null
+                ? 0
+                : form1.data.data.formone.formone_lababy,
+            ordainLeave:
+              form1.data.data.formone.formone_lamonk === null
+                ? 0
+                : form1.data.data.formone.formone_lamonk,
+            govermentLack:
+              form1.data.data.formone.formone_lamilitary === null
+                ? 0
+                : form1.data.data.formone.formone_lamilitary,
+          },
+          salaryHistory: {
+            budgetone:
+              form1.data.data.formone.formone_budgetone === null
+                ? ""
+                : form1.data.data.formone.formone_budgetone,
+            budgettwo:
+              form1.data.data.formone.formone_budgettwo === null
+                ? ""
+                : form1.data.data.formone.formone_budgettwo,
+            promoone:
+              form1.data.data.formone.formone_promoone === null
+                ? ""
+                : form1.data.data.formone.formone_promoone,
+            promotwo:
+              form1.data.data.formone.formone_promotwo === null
+                ? ""
+                : form1.data.data.formone.formone_promotwo,
+          },
+          punishHistory: {
+            punishdate:
+              form1.data.data.formone.formone_punishdate === null
+                ? ""
+                : form1.data.data.formone.formone_punishdate,
+            punishlevel:
+              form1.data.data.formone.formone_punishlevel === null
+                ? ""
+                : form1.data.data.formone.formone_punishlevel,
+          },
+          studyHistory: {
+            study:
+              form1.data.data.formone.formone_study === null
+                ? ""
+                : form1.data.data.formone.formone_study,
+            start:
+              form1.data.data.formone.formone_studystart === null
+                ? ""
+                : form1.data.data.formone.formone_studystart,
+            end:
+              form1.data.data.formone.formone_studyend === null
+                ? ""
+                : form1.data.data.formone.formone_studyend,
+            back:
+              form1.data.data.formone.formone_studyback === null
+                ? ""
+                : form1.data.data.formone.formone_studyback,
+          },
+        });
+      });
+      console.log(dataStape1);
+      console.log(dataStape1.studyHistory);
     });
   };
 
@@ -291,7 +368,6 @@ const HeadPDF = () => {
   useEffect(() => {
     const totalSum = parseFloat(sumForm3Per) + parseFloat(sumForm2Per);
     setTotle(totalSum.toFixed(2));
-    console.log(total);
   }, [total, sumForm3Per, sumForm2Per]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -307,7 +383,7 @@ const HeadPDF = () => {
           marginTop: "5px",
         }}
       >
-        <label style={{ fontWeight: "bold", fontSize: "24px", color: "black" }}>
+        <label style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}>
           {`ส่วนที่ 4 สรุปผลการประเมิน`}
         </label>
       </div>
@@ -323,7 +399,7 @@ const HeadPDF = () => {
             marginTop: "5px",
           }}
         >
-          <label style={{ fontSize: "18px", color: "black" }}>
+          <label style={{ fontSize: "16px", color: "black" }}>
             {`รวมคะแนนการประเมิน`}
           </label>
         </div>
@@ -338,7 +414,7 @@ const HeadPDF = () => {
             marginTop: "5px",
           }}
         >
-          <label style={{ fontSize: "18px", color: "black" }}>
+          <label style={{ fontSize: "16px", color: "black" }}>
             {`พนักงานรับทราบ`}
           </label>
         </div>
@@ -351,248 +427,211 @@ const HeadPDF = () => {
             marginLeft: "2%",
           }}
         >
-          <div
-            className="col-sm-12 p-0"
-            style={{ borderRight: "4px solid white" }}
-          >
-            <div>
-              <div className="row no-gutter">
-                <div className="col-sm-2">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "40%",
-                    }}
-                  >
-                    {`ส่วนที่ 2.1`}
-                  </label>
-                </div>
-                <div className="col-sm-3">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "1%",
-                    }}
-                  >
-                    {`ประเมินผลงาน`}
-                  </label>
-                </div>
-                <div className="col-sm-3">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "50%",
-                    }}
-                  >
-                    {`${sumForm2} คะแนน`}
-                  </label>
-                </div>
-                <div className="col-sm-2">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "1%",
-                    }}
-                  >
-                    {`คิดเป็น ${sumForm2Per} คะแนน`}
-                  </label>
-                </div>
-                <div className="col-sm-2">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "1%",
-                    }}
-                  >
-                    {`(70%)`}
-                  </label>
-                </div>
-                <div className="col-sm-2">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "40%",
-                    }}
-                  >
-                    {`ส่วนที่ 2.2`}
-                  </label>
-                </div>
-                <div className="col-sm-3">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "1%",
-                    }}
-                  >
-                    {`ประเมินคุณลักษณะในการปฏิบัติงานและคุณสมบัติเฉพาะตัว `}
-                  </label>
-                </div>
-                <div className="col-sm-3">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "50%",
-                    }}
-                  >
-                    {`${sumForm3} คะแนน `}
-                  </label>
-                </div>
-                <div className="col-sm-2">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "1%",
-                    }}
-                  >
-                    {`คิดเป็น ${sumForm3Per}  คะแนน`}
-                  </label>
-                </div>
-                <div className="col-sm-2">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "1%",
-                    }}
-                  >
-                    {`(30%)`}
-                  </label>
-                </div>
-                <div className="col-sm-8">
-                  <label
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "9%",
-                    }}
-                  >
-                    {`รวม`}
-                  </label>
-                </div>
-                <div className="col-sm-2">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "1%",
-                    }}
-                  >
-                    {`คิดเป็น ${total} คะแนน`}
-                  </label>
-                </div>
-                <div className="col-sm-2 ">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "1%",
-                    }}
-                  >
-                    {`(100%)`}
-                  </label>
-                </div>
-                <div className="col-sm-12 mt-4">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "16px",
-                      color: "black",
-                      marginLeft: "6%",
-                    }}
-                  >
-                    {`คะแนนการประเมินผลการปฏิบัติงานเป็นเพียงคะแนนส่วนบุคคลที่ใช้ประกอบการประเมินผลการปฏิบัติงานในเบื้องต้น ทั้งนี้  ผลการประเมินและระดับผลงานขึ้นอยู่กับผลงานในภาพรวมประกอบกับดุลยพินิจของผู้บังคับบัญชา`}
-                  </label>
-                </div>
-                <div className="col-sm-12 ">
-                  <label
-                    style={{
-                      fontWeight: "normal",
-                      fontSize: "16px",
-                      color: "black",
-                      marginLeft: "6%",
-                    }}
-                  >
-                    {`พนักงานระดับปฏิบัติการ : เกณฑ์ผ่านรวมไม่ต่ำกว่าร้อยละ 60`}
-                  </label>
-                </div>
-                <div className="col-sm-12 mt-4">
-                  <label
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      color: "black",
-                      marginLeft: "6%",
-                    }}
-                  >
-                    {`สรุป`}
-                  </label>
-                  <Form ref={formRef} name="nest-messages" fields={data}>
-                    <Form.Item name={["pass"]} className="col-sm-12 mb-4">
-                      <Radio.Group style={{ marginLeft: "17%" }}>
-                        <Radio className="mr-5" value="ผ่านการประเมิน">
-                          ผ่านการประเมิน
-                        </Radio>
-                        <i className="mr-5 ml-5" />
-                        <i className="mr-5 ml-5" />
-                        <Radio className="ml-5" value="ไม่ผ่านการประเมิน">
-                          ไม่ผ่านการประเมิน
-                        </Radio>
-                      </Radio.Group>
-                    </Form.Item>
-                    <Form.Item
-                      name={["grad"]}
-                      label="ผลงานระดับ"
-                      className=" mb-3"
-                      style={{ marginLeft: "19%" }}
-                    >
-                      <Select
-                        className="select-modal"
-                        placeholder=" ‎‏‏‎ ผลงานระดับ"
-                        style={{ width: "20%" }}
-                      ></Select>
-                    </Form.Item>
-                    <Form.Item name={["salary"]} className="col-sm-12 mb-4">
-                      <Radio.Group style={{ marginLeft: "17%" }}>
-                        <Radio
-                          className="mr-5"
-                          value="เห็นสมควรให้ขึ้นเงินเดือน"
-                        >
-                          {`เห็นสมควรให้ขึ้นเงินเดือน`}
-                        </Radio>
-                        <i className="mr-5 ml-5" />
-                        <i className="mr-4 ml-4" />
-                        <Radio
-                          className="ml-5"
-                          value="ไม่เห็นสมควรให้ขึ้นเงินเดือน"
-                        >
-                          ไม่เห็นสมควรให้ขึ้นเงินเดือน
-                        </Radio>
-                      </Radio.Group>
-                    </Form.Item>
-                  </Form>
-                </div>
+          <div className="col-sm-12 p-0">
+            <div className="row">
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "13px",
+                    color: "black",
+                    marginLeft: "40%",
+                  }}
+                >
+                  {`ส่วนที่ 2.1`}
+                </label>
+              </div>
+              <div className="col-sm-4">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "1%",
+                  }}
+                >
+                  {`ประเมินผลงาน`}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "50%",
+                  }}
+                >
+                  {`${sumForm2} คะแนน`}
+                </label>
+              </div>
+              <div className="col-sm-3">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "1%",
+                  }}
+                >
+                  {`คิดเป็น ${sumForm2Per} คะแนน`}
+                </label>
+              </div>
+              <div className="col-sm-1">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "1%",
+                  }}
+                >
+                  {`(70%)`}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "13px",
+                    color: "black",
+                    marginLeft: "40%",
+                  }}
+                >
+                  {`ส่วนที่2.2`}
+                </label>
+              </div>
+              <div className="col-sm-4">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "1%",
+                  }}
+                >
+                  {`ประเมินคุณลักษณะในการปฏิบัติงานและคุณสมบัติเฉพาะตัว `}
+                </label>
+              </div>
+              <div className="col-sm-2">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "50%",
+                  }}
+                >
+                  {`${sumForm3} คะแนน `}
+                </label>
+              </div>
+              <div className="col-sm-3">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "1%",
+                  }}
+                >
+                  {`คิดเป็น ${sumForm3Per}  คะแนน`}
+                </label>
+              </div>
+              <div className="col-sm-1">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "1%",
+                  }}
+                >
+                  {`(30%)`}
+                </label>
+              </div>
+              <div className="col-sm-8">
+                <label
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    color: "black",
+                    marginLeft: "9%",
+                  }}
+                >
+                  {`รวม`}
+                </label>
+              </div>
+              <div className="col-sm-3">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    // marginLeft: "1%",
+                  }}
+                >
+                  {`คิดเป็น ${total} คะแนน`}
+                </label>
+              </div>
+              <div className="col-sm-1 ">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                  }}
+                >
+                  {`(100%)`}
+                </label>
+              </div>
+              <div className="col-sm-12 ">
+                <label
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "14px",
+                    color: "black",
+                    marginLeft: "6%",
+                  }}
+                >
+                  {`คะแนนการประเมินผลการปฏิบัติงานเป็นเพียงคะแนนส่วนบุคคลที่ใช้ประกอบการประเมินผลการปฏิบัติงานในเบื้องต้น ทั้งนี้  ผลการประเมินและระดับผลงานขึ้นอยู่กับผลงานในภาพรวมประกอบกับดุลยพินิจของผู้บังคับบัญชา`}
+                  <br />
+                  {`พนักงานระดับปฏิบัติการ : เกณฑ์ผ่านรวมไม่ต่ำกว่าร้อยละ 60`}
+                </label>
+              </div>
+              <div className="col-sm-12 ">
+                <label
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    color: "black",
+                    marginLeft: "6%",
+                  }}
+                >
+                  {`สรุป`}
+                </label>
+                <Radio.Group style={{ marginLeft: "10%" }} value={pass}>
+                  <Radio className="mr-5" value="ผ่านการประเมิน">
+                    ผ่านการประเมิน
+                  </Radio>
+                  <i className="mr-3 ml-3" />
+                  <i className="mr-3 ml-3" />
+                  <Radio className="ml-5" value="ไม่ผ่านการประเมิน">
+                    ไม่ผ่านการประเมิน
+                  </Radio>
+                </Radio.Group>
+                <br />
+                <label
+                  style={{ marginLeft: "23%" }}
+                >{`ผลงานระดับ ${grad}`}</label>
+                <br />
+                <Radio.Group style={{ marginLeft: "20%" }} value={salary}>
+                  <Radio className="mr-5" value="เห็นสมควรให้ขึ้นเงินเดือน">
+                    {`เห็นสมควรให้ขึ้นเงินเดือน _____%`}
+                  </Radio>
+                  <Radio className="ml-2" value="ไม่เห็นสมควรให้ขึ้นเงินเดือน">
+                    ไม่เห็นสมควรให้ขึ้นเงินเดือน
+                  </Radio>
+                </Radio.Group>
               </div>
             </div>
           </div>
@@ -605,30 +644,30 @@ const HeadPDF = () => {
             marginLeft: "8.3%",
           }}
         >
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p className="col-12" style={{ marginTop: "3%" }}>
+            _______________________________
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p className="col-12" style={{ marginTop: "3%" }}>
+            _______________________________
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p className="col-12" style={{ marginTop: "3%" }}>
+            _______________________________
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p style={{ marginTop: "3%" }}>ลงชื่อ</p>
+          <p style={{ marginTop: "3%", marginLeft: "15%" }}>
+            _________________________
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p style={{ marginTop: "3%", marginLeft: "15%" }}>
+            ( _______________________ )
           </p>
-          <p style={{ marginTop: "5%" }}>ลงชื่อ</p>
-          <p style={{ marginTop: "5%", marginLeft: "15%" }}>
-            _________________________________________
-          </p>
-          <p style={{ marginTop: "5%", marginLeft: "15%" }}>
-            ( ________________________________________ )
-          </p>
-          <p style={{ marginTop: "5%" }}>{`ตำแหน่ง`}</p>
-          <p style={{ marginTop: "5%" }}>วันที่</p>
+          <p style={{ marginTop: "3%" }}>{`ตำแหน่ง ${
+            dataStape1.information
+              ? dataStape1.information.position
+                ? dataStape1.information.position
+                : null
+              : ""
+          }`}</p>
+          <p style={{ marginTop: "3%" }}>วันที่</p>
         </div>
       </Row>
       <Row>
@@ -643,7 +682,7 @@ const HeadPDF = () => {
             textAlign: "center",
           }}
         >
-          <label style={{ fontSize: "18px", color: "black" }}>
+          <label style={{ fontSize: "14px", color: "black" }}>
             {`ความเห็นผู้ประเมิน  (ผู้บังคับบัญชา)`}
           </label>
         </div>
@@ -658,10 +697,8 @@ const HeadPDF = () => {
             marginLeft: "8.3%",
           }}
         >
-          <label style={{ fontSize: "18px", color: "black" }}>
-            {`ความคิดเห็นเพิ่มเติมสำหรับผู้บังคับบัญชา`}
-            <br />
-            {`ระดับเหนือขึ้นไปจากผู้ประเมิน`}
+          <label style={{ fontSize: "14px", color: "black" }}>
+            {`ความคิดเห็นเพิ่มเติมสำหรับผู้บังคับบัญชาระดับเหนือขึ้นไปจากผู้ประเมิน`}
           </label>
         </div>
         <div
@@ -675,7 +712,7 @@ const HeadPDF = () => {
             marginLeft: "8.3%",
           }}
         >
-          <label style={{ fontSize: "18px", color: "black" }}>
+          <label style={{ fontSize: "14px", color: "black" }}>
             {`ความคิดเห็นเพิ่มเติมสำหรับผู้บังคับบัญชาระดับสูงสุด`}
           </label>
         </div>
@@ -689,30 +726,18 @@ const HeadPDF = () => {
             marginLeft: "2%",
           }}
         >
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>ลงชื่อ</p>
+          <p style={{ marginTop: "3%", marginLeft: "15%" }}>
+            __________________________
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p style={{ marginTop: "3%", marginLeft: "15%" }}>
+            (__________________________)
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>ลงชื่อ</p>
-          <p style={{ marginTop: "5%", marginLeft: "15%" }}>
-            _________________________________________
-          </p>
-          <p style={{ marginTop: "5%", marginLeft: "15%" }}>
-            ( ________________________________________ )
-          </p>
-          <p style={{ marginTop: "5%" }}>{`ตำแหน่ง`}</p>
-          <p style={{ marginTop: "5%" }}>วันที่</p>
+          <p style={{ marginTop: "3%" }}>{`ตำแหน่ง`}</p>
+          <p style={{ marginTop: "3%" }}>วันที่</p>
         </div>
         <div
           className="col-sm-3"
@@ -722,30 +747,18 @@ const HeadPDF = () => {
             marginLeft: "8.3%",
           }}
         >
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>ลงชื่อ</p>
+          <p style={{ marginTop: "3%", marginLeft: "15%" }}>
+            __________________________
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p style={{ marginTop: "3%", marginLeft: "15%" }}>
+            (__________________________)
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>ลงชื่อ</p>
-          <p style={{ marginTop: "5%", marginLeft: "15%" }}>
-            _________________________________________
-          </p>
-          <p style={{ marginTop: "5%", marginLeft: "15%" }}>
-            ( ________________________________________ )
-          </p>
-          <p style={{ marginTop: "5%" }}>{`ตำแหน่ง`}</p>
-          <p style={{ marginTop: "5%" }}>วันที่</p>
+          <p style={{ marginTop: "3%" }}>{`ตำแหน่ง`}</p>
+          <p style={{ marginTop: "3%" }}>วันที่</p>
         </div>
         <div
           className="col-sm-3"
@@ -755,30 +768,171 @@ const HeadPDF = () => {
             marginLeft: "8.3%",
           }}
         >
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>_________________________________</p>
+          <p style={{ marginTop: "3%" }}>ลงชื่อ</p>
+          <p style={{ marginTop: "3%", marginLeft: "15%" }}>
+            __________________________
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
+          <p style={{ marginTop: "3%", marginLeft: "15%" }}>
+            (__________________________)
           </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>
-            _________________________________________________________
-          </p>
-          <p style={{ marginTop: "5%" }}>ลงชื่อ</p>
-          <p style={{ marginTop: "5%", marginLeft: "15%" }}>
-            _________________________________________
-          </p>
-          <p style={{ marginTop: "5%", marginLeft: "15%" }}>
-            ( ________________________________________ )
-          </p>
-          <p style={{ marginTop: "5%" }}>{`ตำแหน่ง`}</p>
-          <p style={{ marginTop: "5%" }}>วันที่</p>
+          <p style={{ marginTop: "3%" }}>{`ตำแหน่ง`}</p>
+          <p style={{ marginTop: "3%" }}>วันที่</p>
+        </div>
+      </Row>
+      <br />
+      {/* form 1 */}
+      <br />
+      <div
+        className="col-sm-11"
+        style={{
+          // padding: "5px 5px",
+          border: "2px solid gray",
+          marginLeft: "2%",
+          alignItems: "center",
+          textAlign: "center",
+          marginTop: "5px",
+        }}
+      >
+        <label style={{ fontWeight: "bold", fontSize: "16px", color: "black" }}>
+          {`ส่วนที่ 1   ข้อมูลทั่วไปเกี่ยวกับพนักงาน`}
+        </label>
+      </div>
+      <Row>
+        <div className="col-4" style={{ marginLeft: "1%", marginTop: "1%" }}>
+          {`1. ชื่อ - สกุล ${
+            dataStape1.information
+              ? dataStape1.information.firstName
+                ? dataStape1.information.firstName
+                : null
+              : ""
+          } ${
+            dataStape1.information
+              ? dataStape1.information.lastName
+                ? dataStape1.information.lastName
+                : null
+              : ""
+          }`}
+        </div>
+        <div className="col-3" style={{ marginTop: "1%" }}>
+          {`ตำแหน่ง ${
+            dataStape1.information
+              ? dataStape1.information.position
+                ? dataStape1.information.position
+                : null
+              : ""
+          } `}
+        </div>
+        <div className="col-1" style={{ marginTop: "1%" }}>
+          {`เลขที่ ${
+            dataStape1.information
+              ? dataStape1.information.number
+                ? dataStape1.information.number
+                : null
+              : ""
+          } `}
+        </div>
+        <div className="col-1" style={{ marginTop: "1%" }}>
+          {`ระดับ ${
+            dataStape1.information
+              ? dataStape1.information.level
+                ? dataStape1.information.level
+                : null
+              : ""
+          } `}
+        </div>
+        <div className="col-2" style={{ marginTop: "1%" }}>
+          {`ระดับ ${
+            dataStape1.information
+              ? dataStape1.information.division
+                ? dataStape1.information.division
+                : null
+              : ""
+          } `}
+        </div>
+      </Row>
+      <Row>
+        <div className="col-sm-4">
+          <label style={{ marginLeft: "3%" }}>
+            {`2.เริ่มปฏิบัติงานเมื่อ ${
+              dataStape1.information
+                ? `วันที่ ${date2Thai(dataStape1.information.startTimes, true)
+                    .toString()
+                    .substring(0, 2)}
+                            เดือน ${date2Thai(
+                              dataStape1.information.startTimes,
+                              true
+                            )
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(
+                                  dataStape1.information.startTimes,
+                                  true
+                                ).toString().length - 4
+                              )}
+                              พ.ศ. ${date2Thai(
+                                dataStape1.information.startTimes,
+                                true
+                              )
+                                .toString()
+                                .substring(
+                                  date2Thai(
+                                    dataStape1.information.startTimes,
+                                    true
+                                  ).toString().length - 4,
+                                  date2Thai(
+                                    dataStape1.information.startTimes,
+                                    true
+                                  ).toString().length
+                                )}
+                            `
+                : null
+            }`}
+          </label>
+        </div>
+        <div className="col-sm-3">
+          <label>
+            {` รวมเวลาปฏิบัติงาน ${
+              dataStape1.information
+                ? moment(
+                    dataStape1.information.startTimes,
+                    "YYYY-MM-DD"
+                  ).fromNow(true)
+                : null
+            }`}
+          </label>
+        </div>
+        <label>
+          (ยังไม่นับรวมช่วงระยะเวลาปฏิบัติงานลูกจ้างชั่วคราวตั้งแต่ปีพ.ศ.2544)
+        </label>
+      </Row>
+      <Row>
+        <div className="col-sm-3" style={{ marginLeft: "1%" }}>
+          3.ในรอบปีงบประมาณที่ผ่านมา
+        </div>
+        <div className="col-5">
+          <Radio.Group
+            style={{ marginLeft: "10%" }}
+            value={
+              dataStape1.studyHistory
+                ? dataStape1.studyHistory.study
+                  ? dataStape1.studyHistory.study
+                  : null
+                : 1
+            }
+          >
+            <Radio className="mr-5" value="1">
+              ไม่ได้ลาศึกษาต่อ
+            </Radio>
+            <i className="mr-3 ml-3" />
+            <i className="mr-3 ml-3" />
+            <Radio className="ml-5" value="2">
+              ลาศึกษาต่อ
+            </Radio>
+          </Radio.Group>
         </div>
       </Row>
     </div>
