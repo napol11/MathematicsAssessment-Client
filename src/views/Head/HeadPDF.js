@@ -6,6 +6,7 @@ import { Row, Radio } from "antd";
 import { date2Thai } from "../CustomFunction";
 import moment from "moment";
 import "moment/locale/th";
+import logo from "../pages/1624041618306.jpg";
 
 const url = `https://database-api-pj.herokuapp.com/api/committee`;
 const urlEM = `https://database-api-pj.herokuapp.com/api/employee`;
@@ -21,6 +22,7 @@ const HeadPDF = () => {
   const [pass, setPass] = useState("");
   const [salary, setSalary] = useState("");
   const [dataStape1, setDataStape1] = useState([]);
+  const [Title, setTitle] = useState("");
 
   const LoadData = async () => {
     const id_assessment = `${assessment}`;
@@ -358,6 +360,11 @@ const HeadPDF = () => {
       });
       console.log(dataStape1);
       console.log(dataStape1.studyHistory);
+    });
+
+    await axios.get(`${url}/assessment`).then((res) => {
+      const assessment = res.data.data.time[0];
+      setTitle(assessment.assessment_name);
     });
   };
 
@@ -785,6 +792,9 @@ const HeadPDF = () => {
       <br />
       {/* form 1 */}
       <br />
+      <div style={{ justifyContent: "left", display: "flex" }}>
+        <img src={logo} alt="userguideadmin" style={{ width: "70%" }} />
+      </div>
       <div
         className="col-sm-11"
         style={{
@@ -910,29 +920,427 @@ const HeadPDF = () => {
         </label>
       </Row>
       <Row>
-        <div className="col-sm-3" style={{ marginLeft: "1%" }}>
-          3.ในรอบปีงบประมาณที่ผ่านมา
-        </div>
-        <div className="col-5">
-          <Radio.Group
-            style={{ marginLeft: "10%" }}
-            value={
+        <div style={{ marginLeft: "2.3%" }}>3.ในรอบปีงบประมาณที่ผ่านมา</div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>
+            {`${
               dataStape1.studyHistory
-                ? dataStape1.studyHistory.study
-                  ? dataStape1.studyHistory.study
-                  : null
-                : 1
-            }
-          >
-            <Radio className="mr-5" value="1">
-              ไม่ได้ลาศึกษาต่อ
-            </Radio>
-            <i className="mr-3 ml-3" />
-            <i className="mr-3 ml-3" />
-            <Radio className="ml-5" value="2">
-              ลาศึกษาต่อ
-            </Radio>
-          </Radio.Group>
+                ? dataStape1.studyHistory.study === 2
+                  ? "ลาศึกษาต่อ"
+                  : "ไม่ลาศึกษาต่อ"
+                : null
+            }`}
+          </label>
+        </div>
+        {dataStape1.studyHistory ? (
+          dataStape1.studyHistory.study === 2 ? (
+            <>
+              <div style={{ marginLeft: "2%" }}>
+                <label className="m-0">ตั้งแต่วันที่</label>
+              </div>
+              {/* formone_studystart */}
+              <div style={{ marginLeft: "2%" }}>
+                <label className="m-0">
+                  {`${
+                    dataStape1.studyHistory
+                      ? `วันที่ ${date2Thai(dataStape1.studyHistory.start, true)
+                          .toString()
+                          .substring(0, 2)}
+                            เดือน ${date2Thai(
+                              dataStape1.studyHistory.start,
+                              true
+                            )
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(
+                                  dataStape1.studyHistory.start,
+                                  true
+                                ).toString().length - 4
+                              )}
+                              พ.ศ. ${date2Thai(
+                                dataStape1.studyHistory.start,
+                                true
+                              )
+                                .toString()
+                                .substring(
+                                  date2Thai(
+                                    dataStape1.studyHistory.start,
+                                    true
+                                  ).toString().length - 4,
+                                  date2Thai(
+                                    dataStape1.studyHistory.start,
+                                    true
+                                  ).toString().length
+                                )}
+                            `
+                      : null
+                  }`}
+                </label>
+              </div>
+              <div style={{ marginLeft: "2%" }}>
+                <label className="m-0">ถึงวันที่</label>
+              </div>
+              {/* formone_studyHistoryend */}
+              <div style={{ marginLeft: "2%" }}>
+                <label className="m-0">
+                  {`${
+                    dataStape1.studyHistory
+                      ? `วันที่ ${date2Thai(dataStape1.studyHistory.end, true)
+                          .toString()
+                          .substring(0, 2)}
+                            เดือน ${date2Thai(dataStape1.studyHistory.end, true)
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(
+                                  dataStape1.studyHistory.end,
+                                  true
+                                ).toString().length - 4
+                              )}
+                              พ.ศ. ${date2Thai(
+                                dataStape1.studyHistory.end,
+                                true
+                              )
+                                .toString()
+                                .substring(
+                                  date2Thai(
+                                    dataStape1.studyHistory.end,
+                                    true
+                                  ).toString().length - 4,
+                                  date2Thai(
+                                    dataStape1.studyHistory.end,
+                                    true
+                                  ).toString().length
+                                )}
+                            `
+                      : null
+                  }`}
+                </label>
+              </div>
+              <div className="col-3"></div>
+              <div style={{ marginLeft: "27.5%" }}>
+                <label className="m-0">และกลับเข้าปฏิบัติงานวันที่</label>
+              </div>
+              {/* formone_studyHistoryback */}
+              <div style={{ marginLeft: "2%" }}>
+                <label className="m-0">
+                  {`${
+                    dataStape1.studyHistory
+                      ? `วันที่ ${date2Thai(dataStape1.studyHistory.back, true)
+                          .toString()
+                          .substring(0, 2)}
+                            เดือน ${date2Thai(
+                              dataStape1.studyHistory.back,
+                              true
+                            )
+                              .toString()
+                              .substring(
+                                3,
+                                date2Thai(
+                                  dataStape1.studyHistory.back,
+                                  true
+                                ).toString().length - 4
+                              )}
+                              พ.ศ. ${date2Thai(
+                                dataStape1.studyHistory.back,
+                                true
+                              )
+                                .toString()
+                                .substring(
+                                  date2Thai(
+                                    dataStape1.studyHistory.back,
+                                    true
+                                  ).toString().length - 4,
+                                  date2Thai(
+                                    dataStape1.studyHistory.back,
+                                    true
+                                  ).toString().length
+                                )}
+                            `
+                      : null
+                  }`}
+                </label>
+              </div>
+            </>
+          ) : null
+        ) : null}
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "2.3%" }}>
+          4.เวลาปฏิบัติงานในรอบปีงบประมาณที่ผ่านมา
+        </div>
+        <div style={{ marginLeft: "2%" }}>{`${Title}`}</div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "3.2%" }}>โดยมีวันหยุดงาน</div>
+        <div style={{ marginLeft: "1%" }}>ดังนี้</div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>ลาป่วย</label>
+        </div>
+        <div style={{ marginLeft: "4%" }}>
+          <label>
+            {`${
+              dataStape1.leaveHistory
+                ? dataStape1.leaveHistory.sickLeave === ""
+                  ? "-"
+                  : `${dataStape1.leaveHistory.sickLeave} วัน`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>ลาป่วย ที่มีใบรับรองแพทย์</label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>
+            {`${
+              dataStape1.leaveHistory
+                ? dataStape1.leaveHistory.sickLeaveMedical === ""
+                  ? "-"
+                  : `${dataStape1.leaveHistory.sickLeaveMedical} วัน`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>ลากิจ</label>
+        </div>
+        <div style={{ marginLeft: "5%" }}>
+          <label>
+            {`${
+              dataStape1.leaveHistory
+                ? dataStape1.leaveHistory.businessLeave === ""
+                  ? "-"
+                  : `${dataStape1.leaveHistory.businessLeave} วัน`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>มาสาย</label>
+        </div>
+        <div style={{ marginLeft: "4.5%" }}>
+          <label>
+            {`${
+              dataStape1.leaveHistory
+                ? dataStape1.leaveHistory.late === ""
+                  ? "-"
+                  : `${dataStape1.leaveHistory.late} วัน`
+                : "-"
+            }`}
+          </label>
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "17%" }}>
+          <label>ลาพักผ่อน</label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>
+            {`${
+              dataStape1.leaveHistory
+                ? dataStape1.leaveHistory.holiday === ""
+                  ? "-"
+                  : `${dataStape1.leaveHistory.holiday} วัน`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>ลาคลอดบุตร</label>
+        </div>
+        <div style={{ marginLeft: "8.5%" }}>
+          <label>
+            {`${
+              dataStape1.leaveHistory
+                ? dataStape1.leaveHistory.MaternityLeave === ""
+                  ? "-"
+                  : `${dataStape1.leaveHistory.MaternityLeave} วัน`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>ลาอุปสมบท</label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>
+            {`${
+              dataStape1.leaveHistory
+                ? dataStape1.leaveHistory.ordainLeave === ""
+                  ? "-"
+                  : `${dataStape1.leaveHistory.ordainLeave} วัน`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>ขาดราชการ</label>
+        </div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>
+            {`${
+              dataStape1.leaveHistory
+                ? dataStape1.leaveHistory.govermentLack === ""
+                  ? "-"
+                  : `${dataStape1.leaveHistory.govermentLack} วัน`
+                : "-"
+            }`}
+          </label>
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "2.3%" }}>5.การเลื่อนขั้นเงินเดือน</div>
+        <div style={{ marginLeft: "2%" }}>ปีงบประมาณ</div>
+        <div style={{ marginLeft: "8%" }}>
+          <label>
+            {`${
+              dataStape1.salaryHistory
+                ? dataStape1.salaryHistory.budgetone === ""
+                  ? "-"
+                  : `${dataStape1.salaryHistory.budgetone}`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "3%" }}>
+          <label>
+            {`${
+              dataStape1.salaryHistory
+                ? dataStape1.salaryHistory.budgettwo === ""
+                  ? "-"
+                  : `${dataStape1.salaryHistory.budgettwo}`
+                : "-"
+            }`}
+          </label>
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "16%" }}>% การเลื่อนขั้น</div>
+        <div style={{ marginLeft: "7%" }}>
+          <label>
+            {`${
+              dataStape1.salaryHistory
+                ? dataStape1.salaryHistory.promoone === ""
+                  ? "-"
+                  : `${dataStape1.salaryHistory.promoone}`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "3%" }}>
+          <label>
+            {`${
+              dataStape1.salaryHistory
+                ? dataStape1.salaryHistory.promotwo === ""
+                  ? "-"
+                  : `${dataStape1.salaryHistory.promotwo}`
+                : "-"
+            }`}
+          </label>
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "2.3%" }}>6.เคยถูกลงโทษทางวินัย</div>
+        <div style={{ marginLeft: "2%" }}>เมื่อ</div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>
+            {`${
+              dataStape1.punishHistory
+                ? dataStape1.punishHistory.punishdate === ""
+                  ? "-"
+                  : `${dataStape1.punishHistory.punishdate}`
+                : "-"
+            }`}
+          </label>
+        </div>
+        <div style={{ marginLeft: "3%" }}>ระดับที่ลงโทษ</div>
+        <div style={{ marginLeft: "2%" }}>
+          <label>
+            {`${
+              dataStape1.punishHistory
+                ? dataStape1.punishHistory.punishlevel === ""
+                  ? "-"
+                  : `${dataStape1.punishHistory.punishlevel}`
+                : "-"
+            }`}
+          </label>
+        </div>
+      </Row>
+      <div
+        className="col-sm-11"
+        style={{
+          // padding: "5px 5px",
+          border: "2px solid gray",
+          marginLeft: "2%",
+          alignItems: "center",
+          textAlign: "center",
+          marginTop: "5px",
+        }}
+      >
+        <label>{`การประเมินผลการปฏิบัติงาน   ${Title}`}</label>
+      </div>
+      <Row>
+        <div style={{ marginLeft: "2.3%" }}>คำอธิบายเพิ่มเติม</div>
+        <div style={{ marginLeft: "3%" }}>
+          <label>
+            การประเมินผลการปฏิบัติงาน
+            ควรจะมีการหารือระหว่างผู้บังคับบัญชาและผู้ใต้บังคับบัญชาอย่างน้อยเดือนละ
+            1 ครั้ง
+          </label>
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "14%" }}>
+          1. แบบประเมินผลการปฏิบัติงาน แบ่งออกเป็น 4 ส่วน คือ
+        </div>
+        <div style={{ marginLeft: "3%" }}>
+          ส่วนที่ 1 - ข้อมูลทั่วไปเกี่ยวกับพนักงาน
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "44.3%" }}>ส่วนที่ 2 - การประเมินผลงาน</div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "44.3%" }}>
+          ส่วนที่ 3 - การพัฒนาและฝึกอบรม
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "44.3%" }}>ส่วนที่ 4 - สรุปผลการประเมิน</div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "14.5%" }}>
+          ในการประเมินผล ทั้งหัวหน้าและพนักงานจะกรอกข้อมูลในแต่ละส่วน
+          หัวหน้าจะเป็นผู้ประเมินค่าคะแนนในการปฏิบัติงานของพนักงาน
+          โดยจะต้องได้รับความเห็นชอบจากผู้บังคับบัญชาที่สูงอีกขั้นหนึ่ง
+          และจากพนักงานผู้ถูกประเมินผลงาน หากไม่สามารถสรุปค่าคะแนนได้
+          จะต้องนำผลการพิจารณาคะแนนเสนอต่อคณะกรรมการพิจารณาตัดสินการประเมิน
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "14%" }}>
+          2. หัวหน้าควรติดตามและหาวิธีให้ความช่วยเหลือพนักงานที่มีปัญหา
+          อุปสรรคในการทำงาน และมีผลการประเมินต่ำกว่าเกณฑ์มาตรฐาน
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "14%" }}>
+          3. การประเมินผลงานนี้
+          เปิดโอกาสให้พนักงานประเมินผลงานหรือให้ความเห็นชี้แจงผลการปฏิบัติงานของตนเอง
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "14%" }}>
+          4. แหากเป็นไปได้ และเหมาะสม หัวหน้าควรสอบถามความเห็นของลูกค้า
+          ผู้ใต้บังคับบัญชา หรือผู้ที่ทำงานใกล้ชิดกับพนักงาน
+          เกี่ยวกับการปฏิบัติงานของพนักงาน เพื่อใช้เป็นข้อมูลประกอบการประเมิน
+        </div>
+      </Row>
+      <Row>
+        <div style={{ marginLeft: "14%" }}>
+          5. แโปรดศึกษาจากคู่มือแบบประเมินผลการปฏิบัติงาน
         </div>
       </Row>
     </div>

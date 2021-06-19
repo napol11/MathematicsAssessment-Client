@@ -617,7 +617,7 @@ const CommitteAssessStep4 = (props) => {
           </div>
         </div>
 
-        <button onClick={viewForm}>print</button>
+        {/* <button onClick={viewForm}>print</button> */}
 
         <div
           className="mt-4 mb-4"
@@ -638,9 +638,18 @@ const CommitteAssessStep4 = (props) => {
             ถัดไป
           </div> */}
           {next === true ? (
-            <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
-              ถัดไป
-            </div>
+            <>
+              <div className="pl-4 pr-4 btnConfirm" onClick={props.next}>
+                ถัดไป
+              </div>
+              <div
+                className="pl-4 pr-4 btnConfirm"
+                style={{ marginLeft: "1%" }}
+                onClick={viewForm}
+              >
+                Print
+              </div>
+            </>
           ) : null}
         </div>
       </Form>
