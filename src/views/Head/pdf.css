@@ -9,3 +9,17 @@
   display: none;
   visibility: none;
 } */
+
+.ant-radio-checked .ant-radio-inner{
+  border-color: black !important ;
+  box-shadow: 0 0 1px black !important;
+}
+  
+.ant-radio-checked .ant-radio-inner:after{
+  background-color: black;
+  box-shadow: 0 0 1px black !important;
+}
+  
+.ant-radio:hover .ant-radio-inner {
+   border-color: black ;
+}
